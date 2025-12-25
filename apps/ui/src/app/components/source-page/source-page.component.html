@@ -23,7 +23,7 @@
         <div class="list-row" *ngFor="let s of paginatedSources(); index as idx">
           <div class="row-index">{{ pageIndex() * pageSize() + idx + 1 }}</div>
           <div class="row-text">
-            <div class="row-title">{{ s.name || s.url }}</div>
+            <div class="row-title">{{ getDisplayName(s) }}</div>
             <div class="row-sub">{{ s.url }}</div>
           </div>
           <button

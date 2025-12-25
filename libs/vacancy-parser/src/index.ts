@@ -1,4 +1,5 @@
 export { parseVacancy } from './parse-vacancy';
+export { stripHtml } from './core/preprocess';
 export type {
   BenefitCategory,
   DocumentLang,

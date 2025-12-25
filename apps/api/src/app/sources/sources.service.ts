@@ -79,8 +79,31 @@ export class SourcesService {
         ? await this.buildTelegramMetadata(url, dto.metadata, dto.name)
         : this.toJson(dto.metadata);
 
+    // Для Telegram-источников используем название канала из метаданных, если оно есть
+    let sourceName = dto.name?.trim();
+    if (sourceType === 'telegram') {
+      if (metadataPayload && typeof metadataPayload === 'object') {
+        const metadata = metadataPayload as Record<string, unknown>;
+        const telegramTitle = metadata.telegramTitle as string | undefined;
+        // Приоритет: telegramTitle из метаданных > переданное название > slug
+        if (telegramTitle && telegramTitle.trim()) {
+          sourceName = telegramTitle.trim();
+        } else if (!sourceName) {
+          // Если название не указано и не извлечено, используем slug (имя канала)
+          const slug = this.extractTelegramSlug(url);
+          sourceName = slug || url;
+        }
+      } else if (!sourceName) {
+        // Если метаданные не получены, используем slug
+        const slug = this.extractTelegramSlug(url);
+        sourceName = slug || url;
+      }
+    } else if (!sourceName) {
+      sourceName = url;
+    }
+
     const payload: Prisma.SourceCreateInput = {
-      name: dto.name,
+      name: sourceName.trim(),
       sourceType,
       url,
       metadata: metadataPayload,
@@ -354,18 +377,43 @@ export class SourcesService {
         return null;
       }
 
-      // Берем первое сообщение (самое свежее)
-      const firstMessage = $(messages[0]);
-      const timeAttr =
-        firstMessage.find('time[datetime]').first().attr('datetime') ??
-        firstMessage.find('.tgme_widget_message_date time[datetime]').first().attr('datetime') ??
-        null;
+      // Ищем дату во всех сообщениях и берем самую свежую
+      // В Telegram веб-версии сообщения могут идти в разном порядке,
+      // поэтому проверяем все и выбираем максимальную дату
+      let latestDate: Date | null = null;
 
-      if (!timeAttr) {
-        return null;
+      for (const msgEl of messages) {
+        const $msg = $(msgEl);
+        
+        // Пробуем разные селекторы для поиска datetime
+        let timeAttr =
+          $msg.find('time[datetime]').first().attr('datetime') ??
+          $msg.find('.tgme_widget_message_date time[datetime]').first().attr('datetime') ??
+          $msg.find('a[href*="/s/"] time[datetime]').first().attr('datetime') ??
+          null;
+
+        if (!timeAttr) {
+          // Пробуем найти в родительском элементе
+          const parent = $msg.parent();
+          timeAttr =
+            parent.find('time[datetime]').first().attr('datetime') ??
+            parent.find('.tgme_widget_message_date time[datetime]').first().attr('datetime') ??
+            null;
+        }
+
+        if (timeAttr) {
+          const date = new Date(timeAttr);
+          // Проверяем, что дата валидна
+          if (!isNaN(date.getTime())) {
+            // Берем самую свежую дату
+            if (!latestDate || date > latestDate) {
+              latestDate = date;
+            }
+          }
+        }
       }
 
-      return new Date(timeAttr);
+      return latestDate;
     } catch {
       return null;
     }
@@ -429,23 +477,27 @@ export class SourcesService {
       throw new BadRequestException('Некорректная ссылка на Telegram-канал');
     }
     const probeUrl = `https://t.me/s/${slug}`;
-    let response: Response;
     let body: string;
     try {
-      response = await fetch(probeUrl, {
-        method: 'GET',
-        redirect: 'manual',
+      const response = await axios.get(probeUrl, {
         headers: { 'user-agent': this.telegramUserAgent },
+        maxRedirects: 10,
+        validateStatus: () => true, // Не выбрасывать ошибку на любой статус
+        responseType: 'text',
       });
-      body = await response.text();
-    } catch {
+      
+      if (response.status !== 200) {
+        throw new BadRequestException(
+          'Канал Telegram закрыт или не имеет публичного просмотра (https://t.me/s/...).',
+        );
+      }
+      
+      body = response.data as string;
+    } catch (error) {
+      if (error instanceof BadRequestException) {
+        throw error;
+      }
       throw new BadRequestException('Не удалось проверить доступность Telegram-канала');
-    }
-
-    if (response.status !== 200) {
-      throw new BadRequestException(
-        'Канал Telegram закрыт или не имеет публичного просмотра (https://t.me/s/...).',
-      );
     }
 
     const profile = this.parseTelegramProfile(body);
@@ -459,16 +511,35 @@ export class SourcesService {
   private parseTelegramProfile(html: string): { title?: string; avatar?: string } {
     try {
       const $ = load(html);
-      const title =
-        $('meta[property="og:title"]').attr('content') ||
-        $('.tgme_page_title span').first().text();
+      // Пробуем разные способы извлечения названия канала
+      let title =
+        $('meta[property="og:title"]').attr('content')?.trim() ||
+        $('.tgme_page_title span').first().text()?.trim() ||
+        $('.tgme_page_title').first().text()?.trim() ||
+        $('h1.tgme_page_title').first().text()?.trim() ||
+        null;
+      
+      // Очищаем название от лишних символов и "Telegram:"
+      if (title) {
+        title = title.replace(/^Telegram:\s*/i, '').trim();
+        // Если название содержит URL, используем только имя канала
+        if (title.includes('t.me/')) {
+          const match = title.match(/t\.me\/([^/\s]+)/);
+          if (match && match[1]) {
+            title = match[1].replace(/^s\//, '').trim();
+          }
+        }
+      }
+      
       const avatar =
-        $('meta[property="og:image"]').attr('content') ||
-        $('.tgme_page_photo_image img').attr('src') ||
-        $('.tgme_page_photo_image').attr('src');
+        $('meta[property="og:image"]').attr('content')?.trim() ||
+        $('.tgme_page_photo_image img').attr('src')?.trim() ||
+        $('.tgme_page_photo_image').attr('src')?.trim() ||
+        null;
+      
       return {
-        title: title?.trim(),
-        avatar: avatar?.trim(),
+        title: title || undefined,
+        avatar: avatar || undefined,
       };
     } catch {
       return {};

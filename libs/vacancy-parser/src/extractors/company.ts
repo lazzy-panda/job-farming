@@ -76,6 +76,18 @@ export function extractCompany(ctx: DocumentContext, opts: { enableTraces: boole
     // English "at <Company>:" patterns
     { ruleId: 'company:en:at', re: /(?:^|[^A-Za-zА-Яа-яЁё])at\s+([A-Z][A-Za-z0-9&'.-]{2,60})\s*[:\-–—]/i, group: 1 },
     { ruleId: 'company:ooo', re: /(ООО\s+"?[A-Za-zА-Яа-яЁё0-9 ._-]{2,60}"?)/, group: 1 },
+    // Company with legal suffix (LTD, LLC, INC, Corp, GmbH) - может быть слипшимся с названием должности
+    // Ищем паттерн: "AnalystSTARTRIBE LTD" или "Analyst STARTRIBE LTD"
+    // Важно: ищем название компании ПЕРЕД суффиксом, даже если оно слиплось с должностью
+    { ruleId: 'company:ltd', re: /([A-ZА-ЯЁ][A-Za-zА-Яа-яЁё0-9\s&'.-]{2,50})\s*(?:LTD|LLC|INC|Corp|Corporation|GmbH)\b/i, group: 1 },
+    // Слипшееся название компании после должности (например, "AnalystSTARTRIBE LTD" или "Finance / Data AnalystSTARTRIBE LTD")
+    // Паттерн: строчные/цифры/пробелы/слэши, затем заглавные буквы (название компании), затем LTD/LLC или запятая/двоеточие
+    // Пример: "Finance / Data AnalystSTARTRIBE LTD" -> захватывает "STARTRIBE"
+    { ruleId: 'company:glued', re: /[a-zа-яё0-9\s/&-]+([A-ZА-ЯЁ][A-ZА-ЯЁ][A-Za-zА-Яа-яЁё0-9\s&'.-]{2,40})(?:\s*(?:LTD|LLC|INC|Corp|GmbH)\b|\s*[,:])/i, group: 1 },
+    // Слипшееся название компании без суффикса (например, "данныхITea" или "СербияITea")
+    // Паттерн: кириллическая/строчная буква + заглавная латинская буква (название компании)
+    // Пример: "Специалист по сверке данныхITea" -> захватывает "ITea"
+    { ruleId: 'company:glued_no_suffix', re: /([а-яёА-ЯЁ0-9\s,/-]+)([A-Z][A-Za-z0-9]{2,30})(?=\s|$|,|:|\n)/, group: 2 },
   ];
 
   for (const c of candidates) {
@@ -88,21 +100,48 @@ export function extractCompany(ctx: DocumentContext, opts: { enableTraces: boole
       if (!m) {
         continue;
       }
-      const picked = m[p.group] ?? '';
+      let picked = m[p.group] ?? '';
+      
+      // Для слипшихся названий компаний (ruleId: 'company:glued' или 'company:glued_no_suffix') нужно дополнительно очистить
+      if (p.ruleId === 'company:glued' || p.ruleId === 'company:glued_no_suffix') {
+        // Убираем возможные префиксы перед названием компании
+        picked = picked.replace(/^(?:в|at|from|из)\s+/i, '').trim();
+      }
+      
       const raw = cleanName(cutCompanyTail(picked));
       if (!isPlausibleCompanyName(raw)) {
         continue;
       }
+      
+      // Для слипшихся названий проверяем, что это действительно название компании
+      // (начинается с заглавных букв, не слишком короткое)
+      if ((p.ruleId === 'company:glued' || p.ruleId === 'company:glued_no_suffix') && (!/^[A-ZА-ЯЁ]/.test(raw) || raw.length < 2)) {
+        continue;
+      }
+      
+      // Для склеенных названий без суффикса дополнительная проверка: не должно быть валидным токеном
+      if (p.ruleId === 'company:glued_no_suffix') {
+        // Исключаем валидные токены (B2B, iOS, API и т.д.)
+        if (/^(B2B|3D|C4D|iOS|iPad|iPhone|macOS|tvOS|watchOS|API|URL|HTTP|HTTPS|CSS|HTML|XML|JSON|PDF|JPG|PNG|GIF|SVG|MP4|AVI|MOV|RS|UK|US|EU|DE|FR|IT|ES|PT|NL|BE|AT|CH|SE|NO|DK|FI|PL|CZ|HU|RO|BG|GR|CY|IE|IS|LV|LT|EE|SK|SI|HR|UA|BY|KZ|GE|AM|AZ|TR|IL|AE|SA|QA|KW|BH|OM|CN|JP|KR|IN|SG|TH|VN|PH|ID|MY|TW|HK)$/i.test(raw)) {
+          continue;
+        }
+        // Проверяем, что это не короткий код страны (1-3 буквы) в начале текста
+        if (/^[A-Z]{1,3}$/.test(raw) && picked.length < 15) {
+          continue;
+        }
+      }
+      
       if (opts.enableTraces) {
         traces.push({
           extractor: 'company',
           ruleId: p.ruleId,
           section: c.source,
           snippet: raw,
-          scoreDelta: 3,
+          scoreDelta: p.ruleId === 'company:glued' ? 2 : 3, // Немного ниже confidence для слипшихся
         });
       }
-      return { company: { name: raw }, confidence: 0.75, warnings, traces };
+      const confidence = (p.ruleId === 'company:glued' || p.ruleId === 'company:glued_no_suffix') ? 0.6 : 0.75;
+      return { company: { name: raw }, confidence, warnings, traces };
     }
   }
 

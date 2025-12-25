@@ -69,10 +69,39 @@ export class SourceCreateComponent {
 
     if (/t\.me\//i.test(url)) {
       this.model.sourceType = 'telegram';
+      // Автоматически заполняем название канала из URL
+      const slug = this.extractTelegramSlug(url);
+      if (slug && (!this.model.name || this.model.name === this.model.url)) {
+        this.model.name = slug;
+      }
     } else if (this.isRssSource()) {
       this.model.sourceType = 'rss';
     } else if (url) {
       this.urlError = 'Поддерживаются только ссылки на Telegram (t.me/...) и RSS-ленты';
+    }
+  }
+
+  private extractTelegramSlug(url: string): string | null {
+    if (!url) {
+      return null;
+    }
+    try {
+      const parsed = new URL(url.startsWith('http') ? url : `https://${url}`);
+      if (!/t\.me$/i.test(parsed.hostname)) {
+        return null;
+      }
+      const parts = parsed.pathname.split('/').filter(Boolean);
+      if (!parts.length) {
+        return null;
+      }
+      const [first, second] = parts;
+      const slug = first === 's' || first === 'c' ? second : first;
+      if (!slug || slug.startsWith('+') || slug.toLowerCase().startsWith('joinchat')) {
+        return null;
+      }
+      return slug.replace(/^@/, '');
+    } catch {
+      return null;
     }
   }
 

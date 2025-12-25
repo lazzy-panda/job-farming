@@ -81,7 +81,13 @@ export class ApiService {
   }
 
   createSource(payload: Partial<Source>) {
-    return this.http.post<Source>(`${API_BASE}/sources`, payload);
+    console.log('[ApiService] createSource request:', payload);
+    const result = this.http.post<Source>(`${API_BASE}/sources`, payload);
+    result.subscribe({
+      next: (res) => console.log('[ApiService] createSource success:', res),
+      error: (err) => console.error('[ApiService] createSource error:', err),
+    });
+    return result;
   }
 
   deleteSource(id: string) {

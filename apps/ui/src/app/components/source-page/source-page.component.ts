@@ -48,6 +48,7 @@ export class SourcePageComponent implements OnInit {
     return list.slice(start, start + this.pageSize());
   });
 
+
   constructor(private readonly api: ApiService, private readonly snack: MatSnackBar) {
     effect(() => {
       const total = this.sources().length;
@@ -99,6 +100,31 @@ export class SourcePageComponent implements OnInit {
     this.pageSize.set(event.pageSize);
   }
 
+  public getDisplayName(source: Source): string {
+    // Если название есть и не равно URL, используем его
+    if (source.name && source.name !== source.url && !source.name.includes('t.me/')) {
+      return source.name;
+    }
+    
+    // Если название = URL или содержит URL, извлекаем slug
+    if (source.url) {
+      try {
+        const url = new URL(source.url.startsWith('http') ? source.url : `https://${source.url}`);
+        const parts = url.pathname.replace(/^\/+/, '').split('/').filter(Boolean);
+        if (parts.length > 0) {
+          const slug = parts[0].toLowerCase() === 's' ? parts[1] : parts[0];
+          if (slug) {
+            return slug.replace(/^@/, '');
+          }
+        }
+      } catch {
+        // Если не удалось распарсить URL, возвращаем как есть
+      }
+    }
+    
+    return source.name || source.url || '—';
+  }
+
   public createSource(payload?: Partial<Source>): void {
     const dto = payload ?? this.sourceModel;
     const urlRaw = (dto.url ?? '').trim();
@@ -120,6 +146,7 @@ export class SourcePageComponent implements OnInit {
       metadata: dto.metadata,
     };
 
+    console.log('[SourcePage] Creating source:', normalized);
     this.api.createSource(normalized).subscribe({
       next: () => {
         this.snack.open('Источник создан', 'OK', { duration: 2000 });
@@ -160,24 +187,49 @@ export class SourcePageComponent implements OnInit {
   }
 
   private getErrorMessage(error: unknown, fallback: string): string {
-    // NestJS возвращает ошибки в формате { error: string } или { error: { message: string } }
-    const err = error as { error?: string | { message?: unknown } | unknown };
+    // Angular HttpClient возвращает HttpErrorResponse с полем error, содержащим тело ответа
+    // NestJS HttpExceptionFilter возвращает ошибки в формате:
+    // { statusCode: number, error: string | object, timestamp: string }
+    // где error может быть строкой или объектом с полем message
     
-    if (err?.error) {
-      if (typeof err.error === 'string') {
-        return err.error;
+    const httpError = error as { error?: unknown; message?: string };
+    
+    // Проверяем поле error (тело ответа от сервера)
+    if (httpError?.error !== undefined) {
+      const errorBody = httpError.error;
+      
+      // Если error - строка, возвращаем её (это основной формат NestJS)
+      if (typeof errorBody === 'string') {
+        return errorBody;
       }
-      if (typeof err.error === 'object' && err.error !== null) {
-        const message = (err.error as { message?: unknown })?.message;
-        if (typeof message === 'string') {
-          return message;
+      
+      // Если error - объект, ищем message или error
+      if (typeof errorBody === 'object' && errorBody !== null) {
+        const body = errorBody as Record<string, unknown>;
+        
+        // NestJS может вернуть message напрямую
+        if (typeof body['message'] === 'string') {
+          return body['message'] as string;
         }
-        if (Array.isArray(message)) {
-          return message.join(', ');
+        
+        // Или массив сообщений
+        if (Array.isArray(body['message'])) {
+          return (body['message'] as string[]).join(', ');
+        }
+        
+        // Или error как строка (вложенный объект)
+        if (typeof body['error'] === 'string') {
+          return body['error'] as string;
         }
       }
     }
     
+    // Проверяем message на верхнем уровне (стандартное поле HttpErrorResponse)
+    if (typeof httpError?.message === 'string' && httpError.message !== 'Http failure response') {
+      return httpError.message;
+    }
+    
+    // Если error - строка напрямую
     if (typeof error === 'string') {
       return error;
     }

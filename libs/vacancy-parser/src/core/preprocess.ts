@@ -11,7 +11,7 @@ function decodeBasicEntities(text: string): string {
     .replace(/&#39;/g, "'");
 }
 
-function stripHtml(text: string): string {
+export function stripHtml(text: string): string {
   const withNewlines = text
     .replace(/<\s*br\s*\/?\s*>/gi, '\n')
     .replace(/<\s*\/?p\s*>/gi, '\n')
@@ -20,7 +20,18 @@ function stripHtml(text: string): string {
     .replace(/<\s*script[\s\S]*?<\s*\/\s*script\s*>/gi, '')
     .replace(/<\s*style[\s\S]*?<\s*\/\s*style\s*>/gi, '');
 
-  const noTags = withNewlines.replace(/<[^>]+>/g, ' ');
+  // Заменяем теги на пробелы, но сохраняем пробелы между словами
+  // Важно: заменяем теги на пробел, чтобы не склеивать слова, которые были разделены тегами
+  // Также добавляем пробел перед закрывающим тегом, если перед ним нет пробела
+  const withSpaces = withNewlines.replace(/<([^>]+)>/g, (match, tagContent) => {
+    // Если это закрывающий тег, добавляем пробел перед ним, если перед ним нет пробела или переноса строки
+    if (tagContent.startsWith('/')) {
+      return ' ';
+    }
+    // Для открывающих тегов тоже добавляем пробел
+    return ' ';
+  });
+  const noTags = withSpaces;
   return decodeBasicEntities(noTags);
 }
 

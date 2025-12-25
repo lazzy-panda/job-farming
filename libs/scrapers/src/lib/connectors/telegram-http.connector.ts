@@ -183,7 +183,27 @@ export class TelegramHttpConnector implements SourceConnector {
         break;
       }
 
-      const rawText = $(el).find('.tgme_widget_message_text').text().trim();
+      // Извлекаем текст с сохранением пробелов между элементами
+      // Проблема: cheerio .text() склеивает текст из соседних элементов без пробелов
+      // Решение: добавляем пробелы между элементами перед извлечением текста
+      const textElement = $(el).find('.tgme_widget_message_text').clone();
+      // Заменяем <br> на переносы строк
+      textElement.find('br').replaceWith('\n');
+      // Заменяем блочные элементы на переносы строк
+      textElement.find('div, p').each((__, elem) => {
+        $(elem).replaceWith(`\n${$(elem).text()}\n`);
+      });
+      // Добавляем пробелы между inline элементами, чтобы не склеивать слова
+      // Находим все текстовые узлы и элементы, добавляем пробелы между ними
+      const html = textElement.html() || '';
+      // Заменяем закрывающий тег + открывающий тег на закрывающий тег + пробел + открывающий тег
+      // Это добавит пробелы между соседними элементами
+      const withSpaces = html
+        .replace(/(<\/[^>]+>)(<[^/][^>]*>)/g, '$1 $2') // Между закрывающим и открывающим тегом
+        .replace(/([^>\s])(<[^/][^>]*>)/g, '$1 $2') // Перед открывающим тегом, если нет пробела
+        .replace(/(<\/[^>]+>)([^<\s])/g, '$1 $2'); // После закрывающего тега, если нет пробела
+      const tempEl = $('<div>').html(withSpaces);
+      const rawText = tempEl.text().trim();
       const normalizedText = this.normalizeText(rawText);
       const links: string[] = [];
       $(el)
@@ -233,7 +253,13 @@ export class TelegramHttpConnector implements SourceConnector {
 
   private normalizeText(text: string): string {
     const withoutEmoji = text.replace(/\p{Extended_Pictographic}/gu, '');
-    return withoutEmoji.replace(/\s+/g, ' ').trim();
+    // Сохраняем переносы строк, но нормализуем множественные пробелы
+    // Заменяем множественные пробелы на один, но сохраняем переносы строк
+    const normalized = withoutEmoji
+      .replace(/[ \t]+/g, ' ') // Множественные пробелы/табы -> один пробел
+      .replace(/\n{3,}/g, '\n\n') // Множественные переносы -> два переноса
+      .trim();
+    return normalized;
   }
 
   private hashText(text: string): string {

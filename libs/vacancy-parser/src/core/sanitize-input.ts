@@ -72,6 +72,49 @@ export function sanitizeInputText(rawText: string): SanitizeInputResult {
   );
   // Fix a common glued pattern for company mention: "AI-креаторв Cacao" -> "AI-креатор в Cacao"
   text = text.replace(/(-[\p{Script=Cyrillic}]{3,})в(\s+[A-ZА-ЯЁ])/gu, '$1 в$2');
+  
+  // Fix glued company names and city names: "данныхITea" -> "данных ITea", "СербияITea" -> "Сербия ITea", "БелградМеждународная" -> "Белград Международная"
+  // Паттерн 1: кириллическая строчная буква + кириллическая заглавная буква (например, "БелградМеждународная")
+  text = text.replace(/([А-Яа-яЁё0-9\s,/-]+[а-яё])([А-ЯЁ][А-Яа-яЁё0-9]{2,40})(?=\s|$|,|:|\n)/g, (match, before, word) => {
+    // Проверяем, что перед словом есть достаточно текста
+    if (before.trim().length < 3) {
+      return match;
+    }
+    // Исключаем случаи, когда это просто начало предложения (заглавная буква после точки)
+    if (/[.!?]\s*$/.test(before.trim())) {
+      return match;
+    }
+    return `${before} ${word}`;
+  });
+  
+  // Паттерн 2: строчная буква (латиница/кириллица) + заглавная латинская буква (например, "данныхITea", "AnalystSTARTRIBE")
+  // Минимум 2 символа для компании, чтобы захватить "ITea", "RS" и т.д.
+  text = text.replace(/([a-zа-яё0-9\s/&-]+)([A-Z][A-Za-z0-9]{2,30})(?=\s|$|,|:|\n|LTD|LLC|INC|Corp|GmbH)/g, (match, before, company) => {
+    // Проверяем, что это не валидный токен (B2B, iOS и т.д.)
+    if (/^(B2B|3D|C4D|iOS|iPad|iPhone|macOS|tvOS|watchOS|API|URL|HTTP|HTTPS|CSS|HTML|XML|JSON|PDF|JPG|PNG|GIF|SVG|MP4|AVI|MOV)$/i.test(company)) {
+      return match;
+    }
+    // Проверяем, что перед компанией есть достаточно текста (не просто случайное совпадение)
+    if (before.trim().length < 3) {
+      return match;
+    }
+    return `${before} ${company}`;
+  });
+  
+  // Паттерн 3: заглавная латинская буква + заглавная латинская буква (например, "AnalystSTARTRIBE")
+  // Когда две заглавные латинские буквы идут подряд без пробела
+  text = text.replace(/([A-Z][a-z]+)([A-Z][A-Za-z0-9]{2,30})(?=\s|$|,|:|LTD|LLC|INC|Corp|GmbH)/g, (match, before, company) => {
+    // Проверяем, что это не валидный токен
+    if (/^(B2B|3D|C4D|iOS|iPad|iPhone|macOS|tvOS|watchOS|API|URL|HTTP|HTTPS|CSS|HTML|XML|JSON|PDF|JPG|PNG|GIF|SVG|MP4|AVI|MOV)$/i.test(company)) {
+      return match;
+    }
+    // Проверяем, что перед компанией есть достаточно текста
+    if (before.length < 3) {
+      return match;
+    }
+    return `${before} ${company}`;
+  });
+  
   // Insert newline after punctuation if next token starts a new sentence/section.
   text = text.replace(/([.!?])([А-ЯЁ])/g, '$1\n$2');
   text = text.replace(/([)\]])([А-ЯЁ])/g, '$1\n$2');

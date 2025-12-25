@@ -126,6 +126,25 @@ const COUNTRY_ALIASES: Array<{ re: RegExp; country: string }> = [
   { re: /\b(uae|united\s+arab\s+emirates)\b/i, country: 'UAE' },
   { re: /\b(kazakhstan)\b|\bказахстан\b/i, country: 'Kazakhstan' },
   { re: /\b(ukraine)\b|\bукраина\b/i, country: 'Ukraine' },
+  { re: /\b(israel|il)\b/i, country: 'Israel' },
+  { re: /\b(china|prc|people's\s+republic\s+of\s+china)\b/i, country: 'China' },
+  { re: /\b(japan|jp)\b/i, country: 'Japan' },
+  { re: /\b(south\s+korea|korea|republic\s+of\s+korea|rok)\b/i, country: 'South Korea' },
+  { re: /\b(india|in)\b/i, country: 'India' },
+  { re: /\b(singapore|sg)\b/i, country: 'Singapore' },
+  { re: /\b(thailand|th)\b/i, country: 'Thailand' },
+  { re: /\b(vietnam|vn)\b/i, country: 'Vietnam' },
+  { re: /\b(philippines|ph)\b/i, country: 'Philippines' },
+  { re: /\b(indonesia|id)\b/i, country: 'Indonesia' },
+  { re: /\b(malaysia|my)\b/i, country: 'Malaysia' },
+  { re: /\b(taiwan|tw)\b/i, country: 'Taiwan' },
+  { re: /\b(hong\s+kong|hk)\b/i, country: 'Hong Kong' },
+  { re: /\b(saudi\s+arabia|sa)\b/i, country: 'Saudi Arabia' },
+  { re: /\b(qatar|qa)\b/i, country: 'Qatar' },
+  { re: /\b(kuwait|kw)\b/i, country: 'Kuwait' },
+  { re: /\b(bahrain|bh)\b/i, country: 'Bahrain' },
+  { re: /\b(oman|om)\b/i, country: 'Oman' },
+  { re: /\b(turkey|tr|türkiye)\b/i, country: 'Turkey' },
 ];
 
 function isKnownCountryToken(value: string): boolean {
@@ -180,6 +199,9 @@ const CITY_ALIASES: Array<{ re: RegExp; city: string; country?: string }> = [
   { re: /\bbratislava\b/i, city: 'Bratislava', country: 'Slovakia' },
   { re: /\bluxembourg\b/i, city: 'Luxembourg', country: 'Luxembourg' },
   { re: /\breykjav[ií]k\b/i, city: 'Reykjavik', country: 'Iceland' },
+  // Serbia
+  { re: /(\bbelgrade\b|белград)/i, city: 'Belgrade', country: 'Serbia' },
+  { re: /\bnovi\s+sad\b/i, city: 'Novi Sad', country: 'Serbia' },
   // Kazakhstan
   { re: /(\balmaty\b|алматы)/i, city: 'Almaty', country: 'Kazakhstan' },
   // Greece
@@ -189,6 +211,201 @@ const CITY_ALIASES: Array<{ re: RegExp; city: string; country?: string }> = [
   { re: /\bnicosia\b|lefkosia|λευκωσία/i, city: 'Nicosia', country: 'Cyprus' },
   { re: /\blimassol\b|λεμεσός/i, city: 'Limassol', country: 'Cyprus' },
   { re: /\blarnaca\b|λά[ρr]νακα/i, city: 'Larnaca', country: 'Cyprus' },
+  // UK - крупные города
+  { re: /\bmanchester\b/i, city: 'Manchester', country: 'UK' },
+  { re: /\bbirmingham\b/i, city: 'Birmingham', country: 'UK' },
+  { re: /\bliverpool\b/i, city: 'Liverpool', country: 'UK' },
+  { re: /\bedinburgh\b/i, city: 'Edinburgh', country: 'UK' },
+  { re: /\bglasgow\b/i, city: 'Glasgow', country: 'UK' },
+  { re: /\bleeds\b/i, city: 'Leeds', country: 'UK' },
+  { re: /\bbristol\b/i, city: 'Bristol', country: 'UK' },
+  // Germany - крупные города
+  { re: /\bmunich\b|\bmünchen\b/i, city: 'Munich', country: 'Germany' },
+  { re: /\bhamburg\b/i, city: 'Hamburg', country: 'Germany' },
+  { re: /\bfrankfurt\b/i, city: 'Frankfurt', country: 'Germany' },
+  { re: /\bcologne\b|\bköln\b/i, city: 'Cologne', country: 'Germany' },
+  { re: /\bstuttgart\b/i, city: 'Stuttgart', country: 'Germany' },
+  { re: /\bdüsseldorf\b/i, city: 'Düsseldorf', country: 'Germany' },
+  { re: /\bdortmund\b/i, city: 'Dortmund', country: 'Germany' },
+  { re: /\bessen\b/i, city: 'Essen', country: 'Germany' },
+  // France - крупные города
+  { re: /\blyon\b/i, city: 'Lyon', country: 'France' },
+  { re: /\bmarseille\b/i, city: 'Marseille', country: 'France' },
+  { re: /\btoulouse\b/i, city: 'Toulouse', country: 'France' },
+  { re: /\bnice\b/i, city: 'Nice', country: 'France' },
+  { re: /\bnantes\b/i, city: 'Nantes', country: 'France' },
+  { re: /\bstrasbourg\b/i, city: 'Strasbourg', country: 'France' },
+  { re: /\bmontpellier\b/i, city: 'Montpellier', country: 'France' },
+  // Italy - крупные города
+  { re: /\bnaples\b|\bnapoli\b/i, city: 'Naples', country: 'Italy' },
+  { re: /\bturin\b|\btorino\b/i, city: 'Turin', country: 'Italy' },
+  { re: /\bpalermo\b/i, city: 'Palermo', country: 'Italy' },
+  { re: /\bgenoa\b|\bgenova\b/i, city: 'Genoa', country: 'Italy' },
+  { re: /\bbologna\b/i, city: 'Bologna', country: 'Italy' },
+  { re: /\bflorence\b|\bfirenze\b/i, city: 'Florence', country: 'Italy' },
+  { re: /\bbari\b/i, city: 'Bari', country: 'Italy' },
+  // Spain - крупные города
+  { re: /\bvalencia\b/i, city: 'Valencia', country: 'Spain' },
+  { re: /\bseville\b|\bsevilla\b/i, city: 'Seville', country: 'Spain' },
+  { re: /\bzaragoza\b/i, city: 'Zaragoza', country: 'Spain' },
+  { re: /\bmálaga\b|\bmalaga\b/i, city: 'Málaga', country: 'Spain' },
+  { re: /\bmurcia\b/i, city: 'Murcia', country: 'Spain' },
+  { re: /\bbilbao\b/i, city: 'Bilbao', country: 'Spain' },
+  // Netherlands - крупные города
+  { re: /\brotterdam\b/i, city: 'Rotterdam', country: 'Netherlands' },
+  { re: /\bthe\s+hague\b|\bden\s+haag\b/i, city: 'The Hague', country: 'Netherlands' },
+  { re: /\butrecht\b/i, city: 'Utrecht', country: 'Netherlands' },
+  { re: /\beindhoven\b/i, city: 'Eindhoven', country: 'Netherlands' },
+  // Belgium - крупные города
+  { re: /\bantwerp\b|\bantwerpen\b/i, city: 'Antwerp', country: 'Belgium' },
+  { re: /\bgent\b|\bghent\b/i, city: 'Ghent', country: 'Belgium' },
+  { re: /\bbruges\b|\bbrugge\b/i, city: 'Bruges', country: 'Belgium' },
+  // Switzerland - крупные города
+  { re: /\bzurich\b|\bzürich\b/i, city: 'Zurich', country: 'Switzerland' },
+  { re: /\bgeneva\b|\bgenève\b/i, city: 'Geneva', country: 'Switzerland' },
+  { re: /\bbasel\b/i, city: 'Basel', country: 'Switzerland' },
+  { re: /\bbern\b|\bberne\b/i, city: 'Bern', country: 'Switzerland' },
+  { re: /\blausanne\b/i, city: 'Lausanne', country: 'Switzerland' },
+  // Austria - крупные города
+  { re: /\bgraz\b/i, city: 'Graz', country: 'Austria' },
+  { re: /\blinz\b/i, city: 'Linz', country: 'Austria' },
+  { re: /\bsalzburg\b/i, city: 'Salzburg', country: 'Austria' },
+  // Poland - крупные города
+  { re: /\bkrakow\b|\bkraków\b/i, city: 'Krakow', country: 'Poland' },
+  { re: /\bwroclaw\b|\bwrocław\b/i, city: 'Wroclaw', country: 'Poland' },
+  { re: /\bpoznan\b|\bpoznań\b/i, city: 'Poznan', country: 'Poland' },
+  { re: /\bgdansk\b|\bgdańsk\b/i, city: 'Gdansk', country: 'Poland' },
+  // Czechia - крупные города
+  { re: /\bostrava\b/i, city: 'Ostrava', country: 'Czechia' },
+  // Hungary - крупные города
+  { re: /\bdebrecen\b/i, city: 'Debrecen', country: 'Hungary' },
+  { re: /\bszeged\b/i, city: 'Szeged', country: 'Hungary' },
+  // Romania - крупные города
+  { re: /\bcluj\b|\bcluj-napoca\b/i, city: 'Cluj-Napoca', country: 'Romania' },
+  { re: /\btimișoara\b|\btimisoara\b/i, city: 'Timișoara', country: 'Romania' },
+  { re: /\biași\b|\biasi\b/i, city: 'Iași', country: 'Romania' },
+  // Bulgaria - крупные города
+  { re: /\bplovdiv\b/i, city: 'Plovdiv', country: 'Bulgaria' },
+  { re: /\bvarna\b/i, city: 'Varna', country: 'Bulgaria' },
+  // Croatia - крупные города
+  { re: /\bsplit\b/i, city: 'Split', country: 'Croatia' },
+  // Norway - крупные города
+  { re: /\bbergen\b/i, city: 'Bergen', country: 'Norway' },
+  { re: /\btrondheim\b/i, city: 'Trondheim', country: 'Norway' },
+  // Sweden - крупные города
+  { re: /\bgothenburg\b|\bgöteborg\b/i, city: 'Gothenburg', country: 'Sweden' },
+  { re: /\bmalmö\b|\bmalmo\b/i, city: 'Malmö', country: 'Sweden' },
+  // Denmark - крупные города
+  { re: /\baarhus\b/i, city: 'Aarhus', country: 'Denmark' },
+  // Finland - крупные города
+  { re: /\btampere\b/i, city: 'Tampere', country: 'Finland' },
+  { re: /\bturku\b/i, city: 'Turku', country: 'Finland' },
+  // Ireland - крупные города
+  { re: /\bcork\b/i, city: 'Cork', country: 'Ireland' },
+  // Israel - крупные города
+  { re: /\btel\s+aviv\b|\btel\s+aviv[-\s]?yafo\b/i, city: 'Tel Aviv', country: 'Israel' },
+  { re: /\bjerusalem\b/i, city: 'Jerusalem', country: 'Israel' },
+  { re: /\bhaifa\b/i, city: 'Haifa', country: 'Israel' },
+  { re: /\brishon\s+lezion\b|\brishon\s+le[-\s]?zion\b/i, city: 'Rishon LeZion', country: 'Israel' },
+  { re: /\bpetah\s+tikva\b/i, city: 'Petah Tikva', country: 'Israel' },
+  { re: /\bashdod\b/i, city: 'Ashdod', country: 'Israel' },
+  { re: /\bnetanya\b/i, city: 'Netanya', country: 'Israel' },
+  { re: /\bbeer\s+sheva\b|\bbeersheba\b/i, city: 'Beer Sheva', country: 'Israel' },
+  // UAE - крупные города
+  { re: /\bdubai\b/i, city: 'Dubai', country: 'UAE' },
+  { re: /\babu\s+dhabi\b/i, city: 'Abu Dhabi', country: 'UAE' },
+  { re: /\bsharjah\b/i, city: 'Sharjah', country: 'UAE' },
+  { re: /\bajman\b/i, city: 'Ajman', country: 'UAE' },
+  { re: /\bra's\s+al[-\s]?khaimah\b/i, city: 'Ras Al Khaimah', country: 'UAE' },
+  { re: /\bfujairah\b/i, city: 'Fujairah', country: 'UAE' },
+  { re: /\bumm\s+al[-\s]?quwain\b/i, city: 'Umm Al Quwain', country: 'UAE' },
+  // China - крупные города
+  { re: /\bbeijing\b|\bpeking\b/i, city: 'Beijing', country: 'China' },
+  { re: /\bshanghai\b/i, city: 'Shanghai', country: 'China' },
+  { re: /\bguangzhou\b/i, city: 'Guangzhou', country: 'China' },
+  { re: /\bshenzhen\b/i, city: 'Shenzhen', country: 'China' },
+  { re: /\bchengdu\b/i, city: 'Chengdu', country: 'China' },
+  { re: /\bhangzhou\b/i, city: 'Hangzhou', country: 'China' },
+  { re: /\bwuhan\b/i, city: 'Wuhan', country: 'China' },
+  { re: /\bxi'an\b|\bxian\b/i, city: 'Xi\'an', country: 'China' },
+  { re: /\bnanjing\b/i, city: 'Nanjing', country: 'China' },
+  { re: /\btianjin\b/i, city: 'Tianjin', country: 'China' },
+  // Japan - крупные города
+  { re: /\btokyo\b/i, city: 'Tokyo', country: 'Japan' },
+  { re: /\byokohama\b/i, city: 'Yokohama', country: 'Japan' },
+  { re: /\bosaka\b/i, city: 'Osaka', country: 'Japan' },
+  { re: /\bnagoya\b/i, city: 'Nagoya', country: 'Japan' },
+  { re: /\bsapporo\b/i, city: 'Sapporo', country: 'Japan' },
+  { re: /\bfukuoka\b/i, city: 'Fukuoka', country: 'Japan' },
+  { re: /\bkyoto\b/i, city: 'Kyoto', country: 'Japan' },
+  { re: /\bkobe\b/i, city: 'Kobe', country: 'Japan' },
+  // South Korea - крупные города
+  { re: /\bseoul\b/i, city: 'Seoul', country: 'South Korea' },
+  { re: /\bbusan\b/i, city: 'Busan', country: 'South Korea' },
+  { re: /\bincheon\b/i, city: 'Incheon', country: 'South Korea' },
+  { re: /\bdaegu\b/i, city: 'Daegu', country: 'South Korea' },
+  { re: /\bdaejeon\b/i, city: 'Daejeon', country: 'South Korea' },
+  { re: /\bgwangju\b/i, city: 'Gwangju', country: 'South Korea' },
+  // India - крупные города
+  { re: /\bmumbai\b|\bbombay\b/i, city: 'Mumbai', country: 'India' },
+  { re: /\bdelhi\b|\bnew\s+delhi\b/i, city: 'Delhi', country: 'India' },
+  { re: /\bbangalore\b|\bbengaluru\b/i, city: 'Bangalore', country: 'India' },
+  { re: /\bhyderabad\b/i, city: 'Hyderabad', country: 'India' },
+  { re: /\bchennai\b|\bmadras\b/i, city: 'Chennai', country: 'India' },
+  { re: /\bkolkata\b|\bcalcutta\b/i, city: 'Kolkata', country: 'India' },
+  { re: /\bpune\b/i, city: 'Pune', country: 'India' },
+  { re: /\bjaipur\b/i, city: 'Jaipur', country: 'India' },
+  { re: /\bsurat\b/i, city: 'Surat', country: 'India' },
+  { re: /\blucknow\b/i, city: 'Lucknow', country: 'India' },
+  // Singapore
+  { re: /\bsingapore\b/i, city: 'Singapore', country: 'Singapore' },
+  // Thailand - крупные города
+  { re: /\bbangkok\b/i, city: 'Bangkok', country: 'Thailand' },
+  { re: /\bchiang\s+mai\b/i, city: 'Chiang Mai', country: 'Thailand' },
+  { re: /\bphuket\b/i, city: 'Phuket', country: 'Thailand' },
+  // Vietnam - крупные города
+  { re: /\bho\s+chi\s+minh\s+city\b|\bsaigon\b/i, city: 'Ho Chi Minh City', country: 'Vietnam' },
+  { re: /\bhanoi\b/i, city: 'Hanoi', country: 'Vietnam' },
+  { re: /\bda\s+nang\b/i, city: 'Da Nang', country: 'Vietnam' },
+  // Philippines - крупные города
+  { re: /\bmanila\b/i, city: 'Manila', country: 'Philippines' },
+  { re: /\bcebu\b/i, city: 'Cebu', country: 'Philippines' },
+  { re: /\bdavao\b/i, city: 'Davao', country: 'Philippines' },
+  // Indonesia - крупные города
+  { re: /\bjakarta\b/i, city: 'Jakarta', country: 'Indonesia' },
+  { re: /\bsurabaya\b/i, city: 'Surabaya', country: 'Indonesia' },
+  { re: /\bbandung\b/i, city: 'Bandung', country: 'Indonesia' },
+  { re: /\bmedan\b/i, city: 'Medan', country: 'Indonesia' },
+  // Malaysia - крупные города
+  { re: /\bkuala\s+lumpur\b/i, city: 'Kuala Lumpur', country: 'Malaysia' },
+  { re: /\bpenang\b|\bgeorge\s+town\b/i, city: 'Penang', country: 'Malaysia' },
+  { re: /\bjohor\s+bahru\b/i, city: 'Johor Bahru', country: 'Malaysia' },
+  // Taiwan
+  { re: /\btaipei\b/i, city: 'Taipei', country: 'Taiwan' },
+  { re: /\bkaohsiung\b/i, city: 'Kaohsiung', country: 'Taiwan' },
+  { re: /\btaichung\b/i, city: 'Taichung', country: 'Taiwan' },
+  // Hong Kong
+  { re: /\bhong\s+kong\b/i, city: 'Hong Kong', country: 'Hong Kong' },
+  // Saudi Arabia - крупные города
+  { re: /\briyadh\b|\briyad\b/i, city: 'Riyadh', country: 'Saudi Arabia' },
+  { re: /\bjeddah\b/i, city: 'Jeddah', country: 'Saudi Arabia' },
+  { re: /\bdammam\b/i, city: 'Dammam', country: 'Saudi Arabia' },
+  { re: /\bmecca\b|\bmakkah\b/i, city: 'Mecca', country: 'Saudi Arabia' },
+  { re: /\bmedina\b|\bmadinah\b/i, city: 'Medina', country: 'Saudi Arabia' },
+  // Qatar
+  { re: /\bdoha\b/i, city: 'Doha', country: 'Qatar' },
+  // Kuwait
+  { re: /\bkuwait\s+city\b/i, city: 'Kuwait City', country: 'Kuwait' },
+  // Bahrain
+  { re: /\bmanama\b/i, city: 'Manama', country: 'Bahrain' },
+  // Oman
+  { re: /\bmuscat\b/i, city: 'Muscat', country: 'Oman' },
+  // Turkey - крупные города
+  { re: /\bistanbul\b/i, city: 'Istanbul', country: 'Turkey' },
+  { re: /\bankara\b/i, city: 'Ankara', country: 'Turkey' },
+  { re: /\bizmir\b/i, city: 'Izmir', country: 'Turkey' },
+  { re: /\bantalya\b/i, city: 'Antalya', country: 'Turkey' },
+  { re: /\bbursa\b/i, city: 'Bursa', country: 'Turkey' },
   // US common aliases (minimal, for better normalization)
   { re: /\bnyc\b|\bnew\s+york\s+city\b/i, city: 'New York', country: 'USA' },
   { re: /\bnew\s+york\b/i, city: 'New York', country: 'USA' },
@@ -233,9 +450,89 @@ function detectVisaSupport(text: string): boolean {
   return /\bvisa\b|виза|visa\s+support|work\s+permit|разрешени[ея]\s+на\s+работу/.test(v);
 }
 
+function removeGluedCompany(text: string): string {
+  // Удаляем склеенные названия компаний из текста локации
+  // Примеры: "СербияITea" -> "Сербия", "данныхITea" -> "данных", "RS, СербияITea" -> "RS, Сербия", "БелградМеждународная" -> "Белград"
+  
+  // Паттерн 0: кириллическая строчная буква + кириллическая заглавная буква (например, "БелградМеждународная")
+  // Ищем переход от кириллической строчной к кириллической заглавной
+  const gluedRe0 = /([А-Яа-яЁё0-9\s,/-]+[а-яё])([А-ЯЁ][А-Яа-яЁё0-9]{2,40})(?=\s|$|,|:)/;
+  const match0 = gluedRe0.exec(text);
+  if (match0 && match0.index !== undefined) {
+    const beforePart = match0[1]?.trim() || '';
+    const wordPart = match0[2]?.trim() || '';
+    if (beforePart.length > 2 && wordPart.length >= 2) {
+      // Проверяем, что перед словом есть достаточно текста (не просто случайное совпадение)
+      if (beforePart.length > 3) {
+        return beforePart;
+      }
+    }
+  }
+  
+  // Паттерн 1: кириллическая буква + латинская заглавная буква (например, "СербияITea")
+  // Ищем переход от кириллицы к латинице с заглавной буквы
+  const gluedRe1 = /([А-Яа-яЁё0-9\s,/-]+)([A-Z][A-Za-z0-9\s&'.-]{2,40})(?=\s|$|,|:)/;
+  const match1 = gluedRe1.exec(text);
+  if (match1 && match1.index !== undefined) {
+    const beforePart = match1[1]?.trim() || '';
+    const companyPart = match1[2]?.trim() || '';
+    if (beforePart.length > 2 && /[А-Яа-яЁё]/.test(beforePart) && /^[A-Z]/.test(companyPart)) {
+      // Проверяем, что это не просто код страны (RS, UK и т.д.) в начале
+      // Если перед компанией есть запятая и короткий код, это может быть "RS, СербияITea"
+      const hasCommaBefore = /,\s*[A-Z]{1,3}\s*$/.test(beforePart);
+      if (!hasCommaBefore || beforePart.length > 15) {
+        // Проверяем, что это не просто код страны
+        if (!/^[A-Z]{1,3}$/.test(companyPart) || beforePart.length > 10) {
+          // Исключаем валидные токены
+          if (!/^(B2B|3D|C4D|iOS|iPad|iPhone|macOS|tvOS|watchOS|API|URL|HTTP|HTTPS|CSS|HTML|XML|JSON|PDF|JPG|PNG|GIF|SVG|MP4|AVI|MOV)$/i.test(companyPart)) {
+            return beforePart;
+          }
+        }
+      }
+    }
+  }
+  
+  // Паттерн 2: строчная буква + заглавная буква (например, "данныхITea")
+  // Ищем переход от строчной к заглавной букве
+  const gluedRe2 = /(.{3,})([a-zа-яё0-9])([A-ZА-ЯЁ][A-Za-zА-Яа-яЁё0-9]{1,30})(?=\s|$|,|:)/;
+  const match2 = gluedRe2.exec(text);
+  if (match2 && match2.index !== undefined) {
+    const beforePart = (match2[1] + match2[2]).trim();
+    const companyPart = match2[3]?.trim() || '';
+    if (beforePart.length > 3 && companyPart.length >= 2 && /^[A-ZА-ЯЁ]/.test(companyPart)) {
+      // Проверяем, что компания не слишком короткая (может быть случайное совпадение)
+      if (companyPart.length >= 3 || beforePart.length > 10) {
+        // Исключаем валидные токены
+        if (!/^(B2B|3D|C4D|iOS|iPad|iPhone|macOS|tvOS|watchOS|API|URL|HTTP|HTTPS|CSS|HTML|XML|JSON|PDF|JPG|PNG|GIF|SVG|MP4|AVI|MOV)$/i.test(companyPart)) {
+          return beforePart;
+        }
+      }
+    }
+  }
+  
+  // Паттерн 3: обработка формата "RS, СербияITea" - нужно отделить компанию от города после запятой
+  const commaMatch = /^([^,]+,\s*[^,]+)([A-ZА-ЯЁ][A-Za-zА-Яа-яЁё0-9]{2,30})(?=\s|$|,|:)/;
+  const commaResult = commaMatch.exec(text);
+  if (commaResult && commaResult.index !== undefined) {
+    const beforeCompany = commaResult[1]?.trim() || '';
+    const companyPart = commaResult[2]?.trim() || '';
+    // Проверяем, что перед компанией есть кириллический текст (город/страна)
+    if (beforeCompany.length > 5 && /[А-Яа-яЁё]/.test(beforeCompany) && /^[A-Z]/.test(companyPart)) {
+      // Исключаем валидные токены
+      if (!/^(B2B|3D|C4D|iOS|iPad|iPhone|macOS|tvOS|watchOS|API|URL|HTTP|HTTPS|CSS|HTML|XML|JSON|PDF|JPG|PNG|GIF|SVG|MP4|AVI|MOV)$/i.test(companyPart)) {
+        return beforeCompany;
+      }
+    }
+  }
+  
+  return text;
+}
+
 function tryExplicitCityCountry(text: string): { city: string | null; country: string | null; index: number; len: number } | null {
   // formats like "Москва, РФ" or "Berlin, Germany" or "г. Москва"
-  const m1 = /(г\.?\s*)?([A-Za-zА-Яа-яЁё][A-Za-zА-Яа-яЁё\- ]{1,40})\s*,\s*([A-Za-zА-Яа-яЁё][A-Za-zА-Яа-яЁё\- ]{1,40})/i.exec(text);
+  // Сначала очищаем склеенный текст
+  const cleanedText = removeGluedCompany(text);
+  const m1 = /(г\.?\s*)?([A-Za-zА-Яа-яЁё][A-Za-zА-Яа-яЁё\- ]{1,40})\s*,\s*([A-Za-zА-Яа-яЁё][A-Za-zА-Яа-яЁё\- ]{1,40})/i.exec(cleanedText);
   if (m1 && m1.index !== undefined) {
     const full = m1[0];
     // avoid matching emails/urls like "example.com, https" or "mail@x.com, apply"
@@ -397,16 +694,17 @@ function normalizeCity(raw: string | null): { city: string | null; countryHint: 
   if (!raw) {
     return { city: null, countryHint: null };
   }
-  const value = raw.trim();
-  if (!value) {
+  // Сначала очищаем склеенный текст (например, "СербияITea" -> "Сербия")
+  const cleaned = removeGluedCompany(raw.trim());
+  if (!cleaned) {
     return { city: null, countryHint: null };
   }
   for (const a of CITY_ALIASES) {
-    if (a.re.test(value)) {
+    if (a.re.test(cleaned)) {
       return { city: a.city, countryHint: a.country ?? null };
     }
   }
-  return { city: value, countryHint: null };
+  return { city: cleaned, countryHint: null };
 }
 
 function findBestHit(hits: Hit[]): Hit | null {
@@ -463,7 +761,9 @@ export function extractLocation(
     const relocation = detectRelocation(text);
     const visaSupport = detectVisaSupport(text);
 
-    const explicit = tryExplicitCityCountry(textNoUrls);
+    // Очищаем текст от склеенных названий компаний перед поиском локаций
+    const cleanedTextNoUrls = removeGluedCompany(textNoUrls);
+    const explicit = tryExplicitCityCountry(cleanedTextNoUrls);
     if (explicit) {
       const cityNorm = normalizeCity(explicit.city);
       const countryNorm = normalizeCountry(explicit.country) ?? cityNorm.countryHint;
@@ -482,7 +782,7 @@ export function extractLocation(
 
     // city-only aliases
     for (const a of CITY_ALIASES) {
-      const m = a.re.exec(textNoUrls);
+      const m = a.re.exec(cleanedTextNoUrls);
       if (m && m.index !== undefined) {
         hits.push({
           city: a.city,
