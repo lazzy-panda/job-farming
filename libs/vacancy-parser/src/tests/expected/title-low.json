@@ -1,0 +1,105 @@
+{
+  "title": {
+    "value": null,
+    "role": "unknown",
+    "level": "unknown",
+    "specialization": [
+      "TypeScript"
+    ],
+    "raw": "Requirements: strong TypeScript"
+  },
+  "salary": {
+    "min": null,
+    "max": null,
+    "currency": "UNKNOWN",
+    "period": "unknown",
+    "salaryType": "unknown",
+    "raw": null
+  },
+  "contacts": {
+    "emails": [],
+    "phones": [],
+    "telegram": [],
+    "urls": []
+  },
+  "employment": {
+    "types": []
+  },
+  "workFormat": {
+    "value": "remote"
+  },
+  "schedule": {
+    "patterns": [],
+    "hoursPerWeek": null,
+    "hasNightShifts": false,
+    "hasWeekends": false,
+    "isFlexible": false
+  },
+  "location": {
+    "value": {
+      "city": null,
+      "country": null,
+      "relocation": false,
+      "visaSupport": false
+    }
+  },
+  "experience": {
+    "minYears": null,
+    "maxYears": null
+  },
+  "tech": {
+    "must": [
+      "TypeScript"
+    ],
+    "plus": [],
+    "all": []
+  },
+  "languages": {
+    "required": [],
+    "plus": []
+  },
+  "benefits": [
+    "remote"
+  ],
+  "interview": {
+    "steps": [],
+    "hasTestTask": false
+  },
+  "company": {
+    "name": null
+  },
+  "confidence": {
+    "title": 0.3318122278318339,
+    "salary": 0,
+    "contacts": 0,
+    "employment": 0,
+    "workFormat": 0.85,
+    "schedule": 0,
+    "location": 0,
+    "experience": 0,
+    "tech": 0.28,
+    "languages": 0,
+    "benefits": 0.46,
+    "interview": 0,
+    "company": 0,
+    "total": 0.85
+  },
+  "meta": {
+    "lang": "en",
+    "warnings": [
+      "contacts_not_found",
+      "salary_not_found",
+      "employment_not_found",
+      "schedule_not_found",
+      "location_not_found",
+      "title_low_confidence",
+      "title_looks_like_section",
+      "experience_not_found",
+      "languages_not_found",
+      "interview_not_found",
+      "company_not_found"
+    ],
+    "sourceUrl": null,
+    "timingMs": 0
+  }
+}

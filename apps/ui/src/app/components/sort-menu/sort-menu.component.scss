@@ -1,0 +1,118 @@
+.sort-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 1rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #4b5ab7;
+  border-color: rgba(75, 90, 183, 0.25);
+  background: rgba(238, 241, 255, 0.9);
+  transition: all 0.15s ease-in-out;
+
+  mat-icon {
+    width: 1.1rem;
+    height: 1.1rem;
+    font-size: 1.1rem;
+  }
+
+  &:hover {
+    background: rgba(238, 241, 255, 1);
+    border-color: rgba(75, 90, 183, 0.4);
+  }
+}
+
+::ng-deep {
+  .sort-menu-panel {
+    min-width: 360px !important;
+    max-width: 400px !important;
+    border-radius: 0.75rem !important;
+    box-shadow: 0 0.25rem 1.25rem 0 rgba(75, 70, 92, 0.15), 0 0 0 0.0625rem rgba(75, 70, 92, 0.05) !important;
+    border: 1px solid rgba(75, 70, 92, 0.08) !important;
+    margin-top: 0.5rem !important;
+    padding: 0 !important;
+    overflow: visible;
+    background: #fff !important;
+
+    .sort-menu-content {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      .sort-header {
+        padding: 1.25rem 1.5rem;
+        border-bottom: 1px solid rgba(75, 70, 92, 0.08);
+
+        .sort-title {
+          font-size: 1rem;
+          font-weight: 600;
+          line-height: 1.5;
+          color: #566a7f;
+          margin: 0;
+          letter-spacing: -0.01em;
+        }
+      }
+
+      .sort-body {
+        padding: 0.5rem 0;
+        display: flex;
+        flex-direction: column;
+
+        .sort-option {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          padding: 0.875rem 1.5rem;
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          transition: background-color 0.15s ease-in-out;
+          text-align: left;
+          width: 100%;
+
+          .option-content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: 2px;
+          }
+
+          .option-title {
+            font-weight: 600;
+            color: #4b5ab7;
+            font-size: 0.95rem;
+            line-height: 1.5;
+          }
+
+          .option-caption {
+            font-size: 0.78rem;
+            color: #8ea0b5;
+            line-height: 1.4;
+          }
+
+          .checkmark {
+            color: #4b5ab7;
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+          }
+
+          &:hover {
+            background: rgba(105, 108, 255, 0.06);
+          }
+
+          &.active {
+            background: rgba(105, 108, 255, 0.08);
+
+            .option-title {
+              color: #3a4e9f;
+            }
+          }
+        }
+      }
+    }
+  }
+}

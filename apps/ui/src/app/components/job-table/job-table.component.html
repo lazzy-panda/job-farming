@@ -1,0 +1,63 @@
+<ng-container *ngIf="jobs.length; else empty">
+  <mat-table [dataSource]="jobs" class="striped">
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef> Заголовок </mat-header-cell>
+      <mat-cell *matCellDef="let job">
+        <div class="title-cell">
+          <div class="job-title">{{ job.title }}</div>
+          <div class="job-company" *ngIf="job.company">{{ job.company }}</div>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="company">
+      <mat-header-cell *matHeaderCellDef> Компания </mat-header-cell>
+      <mat-cell *matCellDef="let job">{{ job.company || '—' }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef> Статус </mat-header-cell>
+      <mat-cell *matCellDef="let job">{{ job.status }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="source">
+      <mat-header-cell *matHeaderCellDef> Источник </mat-header-cell>
+      <mat-cell *matCellDef="let job">
+        {{ getSourceName(job) }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="link">
+      <mat-header-cell *matHeaderCellDef> Ссылка </mat-header-cell>
+      <mat-cell *matCellDef="let job">
+        <a *ngIf="job.link" [href]="job.link" target="_blank">Открыть</a>
+        <span *ngIf="!job.link">—</span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Действия </mat-header-cell>
+      <mat-cell *matCellDef="let job">
+        <div class="actions">
+          <button mat-stroked-button color="primary" (click)="open.emit(job)">
+            Copy Reply
+          </button>
+          <a *ngIf="job.link" mat-stroked-button color="accent" [href]="job.link" target="_blank">
+            Открыть
+          </a>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row
+      *matRowDef="let row; columns: displayedColumns; trackBy: trackById"
+    ></mat-row>
+  </mat-table>
+</ng-container>
+
+<ng-template #empty>
+  <div class="empty">Нет вакансий. Добавьте или обновите фильтры.</div>
+</ng-template>
+
+

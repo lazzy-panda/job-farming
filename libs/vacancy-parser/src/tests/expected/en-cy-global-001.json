@@ -1,0 +1,98 @@
+{
+  "title": {
+    "value": "QA Engineer",
+    "role": "qa_engineer",
+    "level": "unknown",
+    "specialization": [],
+    "raw": "QA Engineer"
+  },
+  "salary": {
+    "min": 3500,
+    "max": 3500,
+    "currency": "EUR",
+    "period": "month",
+    "salaryType": "unknown",
+    "raw": "QA Engineer Limassol, Cyprus (Onsite) Salary: €3,500 per month Contact: qa@company.cy"
+  },
+  "contacts": {
+    "emails": [
+      "qa@company.cy"
+    ],
+    "phones": [],
+    "telegram": [],
+    "urls": []
+  },
+  "employment": {
+    "types": []
+  },
+  "workFormat": {
+    "value": "onsite"
+  },
+  "schedule": {
+    "patterns": [],
+    "hoursPerWeek": null,
+    "hasNightShifts": false,
+    "hasWeekends": false,
+    "isFlexible": false
+  },
+  "location": {
+    "value": {
+      "city": "Limassol",
+      "country": "Cyprus",
+      "relocation": false,
+      "visaSupport": false
+    }
+  },
+  "experience": {
+    "minYears": null,
+    "maxYears": null
+  },
+  "tech": {
+    "must": [],
+    "plus": [],
+    "all": []
+  },
+  "languages": {
+    "required": [],
+    "plus": []
+  },
+  "benefits": [],
+  "interview": {
+    "steps": [],
+    "hasTestTask": false
+  },
+  "company": {
+    "name": null
+  },
+  "confidence": {
+    "title": 0.6681877721681662,
+    "salary": 0.7,
+    "contacts": 0.5,
+    "employment": 0,
+    "workFormat": 0.75,
+    "schedule": 0,
+    "location": 0.9000000000000001,
+    "experience": 0,
+    "tech": 0,
+    "languages": 0,
+    "benefits": 0,
+    "interview": 0,
+    "company": 0,
+    "total": 0.9000000000000001
+  },
+  "meta": {
+    "lang": "en",
+    "warnings": [
+      "employment_not_found",
+      "schedule_not_found",
+      "experience_not_found",
+      "tech_not_found",
+      "languages_not_found",
+      "benefits_not_found",
+      "interview_not_found",
+      "company_not_found"
+    ],
+    "sourceUrl": null,
+    "timingMs": 0
+  }
+}

@@ -1,0 +1,129 @@
+[analyze-parser-compare] input=/Users/kirill/MyApps/job_farm/storage/parser-compare-v9.txt
+[analyze-parser-compare] jobs=1472 jobsWithIssues=138 issues=141
+
+## Issue types (sorted by count)
+- original_text_looks_like_multi_vacancy_dump: 132
+- title_glued_or_too_long_raw: 6
+- contacts_missed_obvious: 3
+
+## Examples
+
+### original_text_looks_like_multi_vacancy_dump (132)
+---
+jobId=cmjbhn6qs00adv9jkm49oum49
+title=Python разработчикУдалённоКомпания разрабатывает и внедряет свою платформу управления информацией о товарах. Выстраивает
+link=https://www.vseti.app/vakansii/437438893829443434343
+detail={"length":3409}
+originalPreview=Python разработчикУдалённоКомпания разрабатывает и внедряет свою платформу управления информацией о товарах. Выстраивает и автоматизирует сквозной процесс: от создания и хранения данных до сбора аналитики по метрикам онлайн-продаж.В портфеле наших клиентов свыше 40+ глобальных ко...
+---
+jobId=cmjbhn6qs00axv9jkh8az3mu5
+title=Python разработчикУдалённоКомпания разрабатывает и внедряет свою платформу управления информацией о товарах. Выстраивает
+link=https://www.vseti.app/vakansii/437438893829443434343
+detail={"length":3409}
+originalPreview=Python разработчикУдалённоКомпания разрабатывает и внедряет свою платформу управления информацией о товарах. Выстраивает и автоматизирует сквозной процесс: от создания и хранения данных до сбора аналитики по метрикам онлайн-продаж.В портфеле наших клиентов свыше 40+ глобальных ко...
+---
+jobId=cmjbhn6qs00bhv9jk702nevhs
+title=Python разработчикУдалённоКомпания разрабатывает и внедряет свою платформу управления информацией о товарах. Выстраивает
+link=https://www.vseti.app/vakansii/437438893829443434343
+detail={"length":3409}
+originalPreview=Python разработчикУдалённоКомпания разрабатывает и внедряет свою платформу управления информацией о товарах. Выстраивает и автоматизирует сквозной процесс: от создания и хранения данных до сбора аналитики по метрикам онлайн-продаж.В портфеле наших клиентов свыше 40+ глобальных ко...
+---
+jobId=cmjbhorii00w3v9jkvmrhnwpn
+title=#вакансия #job #работа #python Вакансия: Junior Python Developer (Web3)Компания: RateX.AiУровень зп: до 1 600 $ за месяц
+link=https://t.me/ru_pythonjobs/25565
+detail={"length":1229}
+originalPreview=#вакансия #job #работа #python Вакансия: Junior Python Developer (Web3)Компания: RateX.AiУровень зп: до 1 600 $ за месяц, на рукиФормат: удаленная работа Занятость: полная занятость, 5/2;RateX.Ai — это платформа, которая переосмысливает инвестиции в Web3, используя искусственный ...
+---
+jobId=cmjbhorii00wnv9jk9oj9kt18
+title=#вакансия #job #работа #python Вакансия: Junior Python Developer (Web3)Компания: RateX.AiУровень зп: до 1 600 $ за месяц
+link=https://t.me/ru_pythonjobs/25565
+detail={"length":1229}
+originalPreview=#вакансия #job #работа #python Вакансия: Junior Python Developer (Web3)Компания: RateX.AiУровень зп: до 1 600 $ за месяц, на рукиФормат: удаленная работа Занятость: полная занятость, 5/2;RateX.Ai — это платформа, которая переосмысливает инвестиции в Web3, используя искусственный ...
+---
+jobId=cmjbhorii00x7v9jk55krky1j
+title=#вакансия #job #работа #python Вакансия: Junior Python Developer (Web3)Компания: RateX.AiУровень зп: до 1 600 $ за месяц
+link=https://t.me/ru_pythonjobs/25565
+detail={"length":1229}
+originalPreview=#вакансия #job #работа #python Вакансия: Junior Python Developer (Web3)Компания: RateX.AiУровень зп: до 1 600 $ за месяц, на рукиФормат: удаленная работа Занятость: полная занятость, 5/2;RateX.Ai — это платформа, которая переосмысливает инвестиции в Web3, используя искусственный ...
+---
+jobId=cmjbhmlxg002sv9jkyb7vais5
+title=#вакансия #директор Директор по маркетингу в ресторанную сеть. Санкт-Петербург. Частичная удаленка.О НАС: Мы – быстрорас
+link=https://t.me/frilancekomfort/12627
+detail={"length":1907}
+originalPreview=#вакансия #директор Директор по маркетингу в ресторанную сеть. Санкт-Петербург. Частичная удаленка.О НАС: Мы – быстрорастущая сеть ресторанов. Сейчас мы в поиске директора по маркетингуЗадачи:Стратегия и бренд:• Формирование и обновление бренд-платформы (позиционирование, ценност...
+---
+jobId=cmjbhmlxg003cv9jk63rdiusf
+title=#вакансия #директор Директор по маркетингу в ресторанную сеть. Санкт-Петербург. Частичная удаленка.О НАС: Мы – быстрорас
+link=https://t.me/frilancekomfort/12627
+detail={"length":1907}
+originalPreview=#вакансия #директор Директор по маркетингу в ресторанную сеть. Санкт-Петербург. Частичная удаленка.О НАС: Мы – быстрорастущая сеть ресторанов. Сейчас мы в поиске директора по маркетингуЗадачи:Стратегия и бренд:• Формирование и обновление бренд-платформы (позиционирование, ценност...
+---
+jobId=cmjbhmlxg003wv9jkde85494j
+title=#вакансия #директор Директор по маркетингу в ресторанную сеть. Санкт-Петербург. Частичная удаленка.О НАС: Мы – быстрорас
+link=https://t.me/frilancekomfort/12627
+detail={"length":1907}
+originalPreview=#вакансия #директор Директор по маркетингу в ресторанную сеть. Санкт-Петербург. Частичная удаленка.О НАС: Мы – быстрорастущая сеть ресторанов. Сейчас мы в поиске директора по маркетингуЗадачи:Стратегия и бренд:• Формирование и обновление бренд-платформы (позиционирование, ценност...
+---
+jobId=cmjbhorii00w2v9jkav0fh0do
+title=#вакансия #fulltime #senior #удаленка #remote #Python #FastApiПозиция: Senior Python Developer Компания: CHOICEITМестопо
+link=https://t.me/ru_pythonjobs/25564
+detail={"length":1282}
+originalPreview=#вакансия #fulltime #senior #удаленка #remote #Python #FastApiПозиция: Senior Python Developer Компания: CHOICEITМестоположение: Remote (любая точка мира, кроме РФ и РБ)ЗП: от 5000$График работы: полный рабочий деньКонтакты: @shmbrvМеждународная продуктовая команда, создающая Saa...
+
+### title_glued_or_too_long_raw (6)
+---
+jobId=cmjbhorii00vnv9jktn2tacct
+title=#вакансия #vacancy #job #remote #AI #deep_research #middle #senior #ML #machine_learning #DS #Data_science #OCR #python 
+link=https://t.me/ru_pythonjobs/25548
+detail={"rawLen":140,"rawPreview":"Research engineer (remote)Skygen.ai - стартап, делаем ИИ-агента который выполняет любую задачу на компьютере.Нужен инженер (с ресерч-эксперт"}
+originalPreview=#вакансия #vacancy #job #remote #AI #deep_research #middle #senior #ML #machine_learning #DS #Data_science #OCR #python #RAG #pytorchDeep Research engineer (remote)Skygen.ai — стартап, делаем ИИ-агента который выполняет любую задачу на компьютере.Нужен инженер (с ресерч-экспертиз...
+---
+jobId=cmjbhorii00w7v9jkugn7j1k3
+title=#вакансия #vacancy #job #remote #AI #deep_research #middle #senior #ML #machine_learning #DS #Data_science #OCR #python 
+link=https://t.me/ru_pythonjobs/25548
+detail={"rawLen":140,"rawPreview":"Research engineer (remote)Skygen.ai - стартап, делаем ИИ-агента который выполняет любую задачу на компьютере.Нужен инженер (с ресерч-эксперт"}
+originalPreview=#вакансия #vacancy #job #remote #AI #deep_research #middle #senior #ML #machine_learning #DS #Data_science #OCR #python #RAG #pytorchDeep Research engineer (remote)Skygen.ai — стартап, делаем ИИ-агента который выполняет любую задачу на компьютере.Нужен инженер (с ресерч-экспертиз...
+---
+jobId=cmjbhorii00wrv9jktreeec7w
+title=#вакансия #vacancy #job #remote #AI #deep_research #middle #senior #ML #machine_learning #DS #Data_science #OCR #python 
+link=https://t.me/ru_pythonjobs/25548
+detail={"rawLen":140,"rawPreview":"Research engineer (remote)Skygen.ai - стартап, делаем ИИ-агента который выполняет любую задачу на компьютере.Нужен инженер (с ресерч-эксперт"}
+originalPreview=#вакансия #vacancy #job #remote #AI #deep_research #middle #senior #ML #machine_learning #DS #Data_science #OCR #python #RAG #pytorchDeep Research engineer (remote)Skygen.ai — стартап, делаем ИИ-агента который выполняет любую задачу на компьютере.Нужен инженер (с ресерч-экспертиз...
+---
+jobId=cmjbhn6qs009vv9jk0h08il07
+title=SMM managerУдалённоКомпания Hiiro (https://hiiro.app) — это лондонский стартап, созданный командой опытных IT-специалист
+link=https://www.vseti.app/vakansii/4334843943034043493834343
+detail={"rawLen":140,"rawPreview":"Описание стажировки:Компания Hiiro приглашает амбициозного и креативного стажера в отдел маркетинга на направление SMM. Стажировка ориентиро"}
+originalPreview=SMM managerУдалённоКомпания Hiiro (https://hiiro.app) — это лондонский стартап, созданный командой опытных IT-специалистов и бегунов-энтузиастов. Мы разрабатываем инновационное мобильное приложение для iPhone, которое помогает пользователям подготовиться и успешно преодолеть свой...
+---
+jobId=cmjbhn6qs00afv9jkn5n0ivjt
+title=SMM managerУдалённоКомпания Hiiro (https://hiiro.app) — это лондонский стартап, созданный командой опытных IT-специалист
+link=https://www.vseti.app/vakansii/4334843943034043493834343
+detail={"rawLen":140,"rawPreview":"Описание стажировки:Компания Hiiro приглашает амбициозного и креативного стажера в отдел маркетинга на направление SMM. Стажировка ориентиро"}
+originalPreview=SMM managerУдалённоКомпания Hiiro (https://hiiro.app) — это лондонский стартап, созданный командой опытных IT-специалистов и бегунов-энтузиастов. Мы разрабатываем инновационное мобильное приложение для iPhone, которое помогает пользователям подготовиться и успешно преодолеть свой...
+---
+jobId=cmjbhn6qs00azv9jkqndam3dl
+title=SMM managerУдалённоКомпания Hiiro (https://hiiro.app) — это лондонский стартап, созданный командой опытных IT-специалист
+link=https://www.vseti.app/vakansii/4334843943034043493834343
+detail={"rawLen":140,"rawPreview":"Описание стажировки:Компания Hiiro приглашает амбициозного и креативного стажера в отдел маркетинга на направление SMM. Стажировка ориентиро"}
+originalPreview=SMM managerУдалённоКомпания Hiiro (https://hiiro.app) — это лондонский стартап, созданный командой опытных IT-специалистов и бегунов-энтузиастов. Мы разрабатываем инновационное мобильное приложение для iPhone, которое помогает пользователям подготовиться и успешно преодолеть свой...
+
+### contacts_missed_obvious (3)
+---
+jobId=cmjbhn6qs00a8v9jkcabv4w7v
+title=Младший продуктовый редак­торУдалённо‍Привет! Ищу редактора, который поможет Т⁠-⁠Банку привлекать сильных кандидатов и р
+link=https://www.vseti.app/vakansii/434383494393404303434342
+detail={"originalHasEmail":true,"originalHasAt":false}
+originalPreview=Младший продуктовый редак­торУдалённо‍Привет! Ищу редактора, который поможет Т⁠-⁠Банку привлекать сильных кандидатов и развивать бренд работодателя и технобренд‍Какому продукту нужно помогатьУ редакции разные заказчики. Сейчас я ищу редактора, который будет помогать привлекать ка...
+---
+jobId=cmjbhn6qs00asv9jkuwj6a183
+title=Младший продуктовый редак­торУдалённо‍Привет! Ищу редактора, который поможет Т⁠-⁠Банку привлекать сильных кандидатов и р
+link=https://www.vseti.app/vakansii/434383494393404303434342
+detail={"originalHasEmail":true,"originalHasAt":false}
+originalPreview=Младший продуктовый редак­торУдалённо‍Привет! Ищу редактора, который поможет Т⁠-⁠Банку привлекать сильных кандидатов и развивать бренд работодателя и технобренд‍Какому продукту нужно помогатьУ редакции разные заказчики. Сейчас я ищу редактора, который будет помогать привлекать ка...
+---
+jobId=cmjbhn6qs00bcv9jkix7r9vbu
+title=Младший продуктовый редак­торУдалённо‍Привет! Ищу редактора, который поможет Т⁠-⁠Банку привлекать сильных кандидатов и р
+link=https://www.vseti.app/vakansii/434383494393404303434342
+detail={"originalHasEmail":true,"originalHasAt":false}
+originalPreview=Младший продуктовый редак­торУдалённо‍Привет! Ищу редактора, который поможет Т⁠-⁠Банку привлекать сильных кандидатов и развивать бренд работодателя и технобренд‍Какому продукту нужно помогатьУ редакции разные заказчики. Сейчас я ищу редактора, который будет помогать привлекать ка...

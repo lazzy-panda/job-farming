@@ -1,0 +1,10 @@
+Source: Telegram
+Requirements:
+- 3-5 years experience
+- TypeScript, Node.js
+Benefits:
+- Remote
+- Medical insurance
+Salary: $3021-$3521 per month gross
+Contacts: jobs21@example.com, https://www.example.com/careers
+Company: Example 21 Inc

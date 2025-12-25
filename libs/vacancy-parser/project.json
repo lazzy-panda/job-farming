@@ -1,0 +1,32 @@
+{
+  "name": "vacancy-parser",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/vacancy-parser/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/vacancy-parser",
+        "main": "libs/vacancy-parser/src/index.ts",
+        "tsConfig": "libs/vacancy-parser/tsconfig.lib.json",
+        "assets": [
+          {
+            "input": "libs/vacancy-parser/src/rules",
+            "glob": "**/*",
+            "output": "rules"
+          }
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/vacancy-parser/jest.config.ts"
+      }
+    }
+  }
+}

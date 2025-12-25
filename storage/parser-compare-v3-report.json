@@ -1,0 +1,1715 @@
+{
+  "maxExamplesPerType": 10,
+  "counts": {
+    "original_text_looks_like_multi_vacancy_dump": 147,
+    "salary_currency_unknown_but_mentioned": 39,
+    "title_glued_or_too_long_raw": 3,
+    "title_starts_with_hashtags": 6
+  },
+  "examples": {
+    "original_text_looks_like_multi_vacancy_dump": [
+      {
+        "jobId": "cmjbhn6qs00adv9jkm49oum49",
+        "title": "Python разработчикУдалённоКомпания разрабатывает и внедряет свою платформу управления информацией о товарах. Выстраивает",
+        "link": "https://www.vseti.app/vakansii/437438893829443434343",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 3409
+        },
+        "originalPreview": "Python разработчикУдалённоКомпания разрабатывает и внедряет свою платформу управления информацией о товарах. Выстраивает и автоматизирует сквозной процесс: от создания и хранения данных до сбора аналитики по метрикам онлайн-продаж.В портфеле наших клиентов свыше 40+ глобальных ко...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "Python разработчикУдалённоКомпания разрабатывает и внедряет свою платформу управления информацией о товарах. Выстраивает"
+          },
+          "salary": {
+            "min": 170,
+            "max": 170,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "й офис во Франции (Лилль). Сейчас в компании работает более 170 сотрудников.‍Ключевые задачи:- Разработка скриптов на Pytho"
+          },
+          "location": {
+            "value": {
+              "city": "Moscow",
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "salary_low_confidence",
+              "title_low_confidence",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://www.vseti.app/vakansii/437438893829443434343",
+            "timingMs": 2
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhn6qs00axv9jkh8az3mu5",
+        "title": "Python разработчикУдалённоКомпания разрабатывает и внедряет свою платформу управления информацией о товарах. Выстраивает",
+        "link": "https://www.vseti.app/vakansii/437438893829443434343",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 3409
+        },
+        "originalPreview": "Python разработчикУдалённоКомпания разрабатывает и внедряет свою платформу управления информацией о товарах. Выстраивает и автоматизирует сквозной процесс: от создания и хранения данных до сбора аналитики по метрикам онлайн-продаж.В портфеле наших клиентов свыше 40+ глобальных ко...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "Python разработчикУдалённоКомпания разрабатывает и внедряет свою платформу управления информацией о товарах. Выстраивает"
+          },
+          "salary": {
+            "min": 170,
+            "max": 170,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "й офис во Франции (Лилль). Сейчас в компании работает более 170 сотрудников.‍Ключевые задачи:- Разработка скриптов на Pytho"
+          },
+          "location": {
+            "value": {
+              "city": "Moscow",
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "salary_low_confidence",
+              "title_low_confidence",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://www.vseti.app/vakansii/437438893829443434343",
+            "timingMs": 2
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhn6qs00bhv9jk702nevhs",
+        "title": "Python разработчикУдалённоКомпания разрабатывает и внедряет свою платформу управления информацией о товарах. Выстраивает",
+        "link": "https://www.vseti.app/vakansii/437438893829443434343",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 3409
+        },
+        "originalPreview": "Python разработчикУдалённоКомпания разрабатывает и внедряет свою платформу управления информацией о товарах. Выстраивает и автоматизирует сквозной процесс: от создания и хранения данных до сбора аналитики по метрикам онлайн-продаж.В портфеле наших клиентов свыше 40+ глобальных ко...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "Python разработчикУдалённоКомпания разрабатывает и внедряет свою платформу управления информацией о товарах. Выстраивает"
+          },
+          "salary": {
+            "min": 170,
+            "max": 170,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "й офис во Франции (Лилль). Сейчас в компании работает более 170 сотрудников.‍Ключевые задачи:- Разработка скриптов на Pytho"
+          },
+          "location": {
+            "value": {
+              "city": "Moscow",
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "salary_low_confidence",
+              "title_low_confidence",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://www.vseti.app/vakansii/437438893829443434343",
+            "timingMs": 3
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhorii00w3v9jkvmrhnwpn",
+        "title": "#вакансия #job #работа #python Вакансия: Junior Python Developer (Web3)Компания: RateX.AiУровень зп: до 1 600 $ за месяц",
+        "link": "https://t.me/ru_pythonjobs/25565",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 1229
+        },
+        "originalPreview": "#вакансия #job #работа #python Вакансия: Junior Python Developer (Web3)Компания: RateX.AiУровень зп: до 1 600 $ за месяц, на рукиФормат: удаленная работа Занятость: полная занятость, 5/2;RateX.Ai — это платформа, которая переосмысливает инвестиции в Web3, используя искусственный ...",
+        "parsedPreview": {
+          "title": {
+            "value": "Junior Python Developer (Web3)",
+            "role": "backend_developer",
+            "level": "junior",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "Вакансия: Junior Python Developer (Web3)"
+          },
+          "salary": {
+            "min": null,
+            "max": 1600,
+            "currency": "USD",
+            "period": "month",
+            "salaryType": "net",
+            "raw": "r Python Developer (Web3)Компания: RateX.AiУровень зп: до 1 600 $ за месяц, на рукиФормат: удаленная работа Занятость: полн"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "experience_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25565",
+            "timingMs": 0
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhorii00wnv9jk9oj9kt18",
+        "title": "#вакансия #job #работа #python Вакансия: Junior Python Developer (Web3)Компания: RateX.AiУровень зп: до 1 600 $ за месяц",
+        "link": "https://t.me/ru_pythonjobs/25565",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 1229
+        },
+        "originalPreview": "#вакансия #job #работа #python Вакансия: Junior Python Developer (Web3)Компания: RateX.AiУровень зп: до 1 600 $ за месяц, на рукиФормат: удаленная работа Занятость: полная занятость, 5/2;RateX.Ai — это платформа, которая переосмысливает инвестиции в Web3, используя искусственный ...",
+        "parsedPreview": {
+          "title": {
+            "value": "Junior Python Developer (Web3)",
+            "role": "backend_developer",
+            "level": "junior",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "Вакансия: Junior Python Developer (Web3)"
+          },
+          "salary": {
+            "min": null,
+            "max": 1600,
+            "currency": "USD",
+            "period": "month",
+            "salaryType": "net",
+            "raw": "r Python Developer (Web3)Компания: RateX.AiУровень зп: до 1 600 $ за месяц, на рукиФормат: удаленная работа Занятость: полн"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "experience_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25565",
+            "timingMs": 0
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhorii00x7v9jk55krky1j",
+        "title": "#вакансия #job #работа #python Вакансия: Junior Python Developer (Web3)Компания: RateX.AiУровень зп: до 1 600 $ за месяц",
+        "link": "https://t.me/ru_pythonjobs/25565",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 1229
+        },
+        "originalPreview": "#вакансия #job #работа #python Вакансия: Junior Python Developer (Web3)Компания: RateX.AiУровень зп: до 1 600 $ за месяц, на рукиФормат: удаленная работа Занятость: полная занятость, 5/2;RateX.Ai — это платформа, которая переосмысливает инвестиции в Web3, используя искусственный ...",
+        "parsedPreview": {
+          "title": {
+            "value": "Junior Python Developer (Web3)",
+            "role": "backend_developer",
+            "level": "junior",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "Вакансия: Junior Python Developer (Web3)"
+          },
+          "salary": {
+            "min": null,
+            "max": 1600,
+            "currency": "USD",
+            "period": "month",
+            "salaryType": "net",
+            "raw": "r Python Developer (Web3)Компания: RateX.AiУровень зп: до 1 600 $ за месяц, на рукиФормат: удаленная работа Занятость: полн"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "experience_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25565",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhmlxg002sv9jkyb7vais5",
+        "title": "#вакансия #директор Директор по маркетингу в ресторанную сеть. Санкт-Петербург. Частичная удаленка.О НАС: Мы – быстрорас",
+        "link": "https://t.me/frilancekomfort/12627",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 1907
+        },
+        "originalPreview": "#вакансия #директор Директор по маркетингу в ресторанную сеть. Санкт-Петербург. Частичная удаленка.О НАС: Мы – быстрорастущая сеть ресторанов. Сейчас мы в поиске директора по маркетингуЗадачи:Стратегия и бренд:• Формирование и обновление бренд-платформы (позиционирование, ценност...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Директор по маркетингу в ресторанную сеть. Санкт-Петербург. Частичная удаленка.О НАС: Мы – быстрорас"
+          },
+          "salary": {
+            "min": 150000,
+            "max": null,
+            "currency": "RUB",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "ю.• Прямое участие в росте и трансформации компании.• ЗП от 150 000 руб., обсуждается индивидуально.Контакт:@land_la (отправляй"
+          },
+          "location": {
+            "value": {
+              "city": "позиционирование",
+              "country": "ценности",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "employment_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/frilancekomfort/12627",
+            "timingMs": 2
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhmlxg003cv9jk63rdiusf",
+        "title": "#вакансия #директор Директор по маркетингу в ресторанную сеть. Санкт-Петербург. Частичная удаленка.О НАС: Мы – быстрорас",
+        "link": "https://t.me/frilancekomfort/12627",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 1907
+        },
+        "originalPreview": "#вакансия #директор Директор по маркетингу в ресторанную сеть. Санкт-Петербург. Частичная удаленка.О НАС: Мы – быстрорастущая сеть ресторанов. Сейчас мы в поиске директора по маркетингуЗадачи:Стратегия и бренд:• Формирование и обновление бренд-платформы (позиционирование, ценност...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Директор по маркетингу в ресторанную сеть. Санкт-Петербург. Частичная удаленка.О НАС: Мы – быстрорас"
+          },
+          "salary": {
+            "min": 150000,
+            "max": null,
+            "currency": "RUB",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "ю.• Прямое участие в росте и трансформации компании.• ЗП от 150 000 руб., обсуждается индивидуально.Контакт:@land_la (отправляй"
+          },
+          "location": {
+            "value": {
+              "city": "позиционирование",
+              "country": "ценности",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "employment_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/frilancekomfort/12627",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhmlxg003wv9jkde85494j",
+        "title": "#вакансия #директор Директор по маркетингу в ресторанную сеть. Санкт-Петербург. Частичная удаленка.О НАС: Мы – быстрорас",
+        "link": "https://t.me/frilancekomfort/12627",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 1907
+        },
+        "originalPreview": "#вакансия #директор Директор по маркетингу в ресторанную сеть. Санкт-Петербург. Частичная удаленка.О НАС: Мы – быстрорастущая сеть ресторанов. Сейчас мы в поиске директора по маркетингуЗадачи:Стратегия и бренд:• Формирование и обновление бренд-платформы (позиционирование, ценност...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Директор по маркетингу в ресторанную сеть. Санкт-Петербург. Частичная удаленка.О НАС: Мы – быстрорас"
+          },
+          "salary": {
+            "min": 150000,
+            "max": null,
+            "currency": "RUB",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "ю.• Прямое участие в росте и трансформации компании.• ЗП от 150 000 руб., обсуждается индивидуально.Контакт:@land_la (отправляй"
+          },
+          "location": {
+            "value": {
+              "city": "позиционирование",
+              "country": "ценности",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "employment_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/frilancekomfort/12627",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhorii00w2v9jkav0fh0do",
+        "title": "#вакансия #fulltime #senior #удаленка #remote #Python #FastApiПозиция: Senior Python Developer Компания: CHOICEITМестопо",
+        "link": "https://t.me/ru_pythonjobs/25564",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 1282
+        },
+        "originalPreview": "#вакансия #fulltime #senior #удаленка #remote #Python #FastApiПозиция: Senior Python Developer Компания: CHOICEITМестоположение: Remote (любая точка мира, кроме РФ и РБ)ЗП: от 5000$График работы: полный рабочий деньКонтакты: @shmbrvМеждународная продуктовая команда, создающая Saa...",
+        "parsedPreview": {
+          "title": {
+            "value": "Senior Python Developer",
+            "role": "backend_developer",
+            "level": "senior",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "Senior Python Developer"
+          },
+          "salary": {
+            "min": 5000,
+            "max": null,
+            "currency": "USD",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "тоположение: Remote (любая точка мира, кроме РФ и РБ)ЗП: от 5000$График работы: полный рабочий деньКонтакты: @shmbrvМеждунар"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@shmbrv"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "schedule_not_found",
+              "experience_not_found",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25564",
+            "timingMs": 2
+          }
+        }
+      }
+    ],
+    "salary_currency_unknown_but_mentioned": [
+      {
+        "jobId": "cmjbhob0s00pfv9jkk1y5wtoc",
+        "title": "Последнее спецпредложение для наших подписчиков в этом году! Анонсируем финальную акцию 2025 года — доступ к «Работодром",
+        "link": "http://t.me/TD_paid_channelbot?start=promo_NY2025",
+        "issue": "salary_currency_unknown_but_mentioned",
+        "detail": {
+          "min": 67,
+          "max": 67,
+          "currency": "UNKNOWN",
+          "mentioned": "RUB"
+        },
+        "originalPreview": "Последнее спецпредложение для наших подписчиков в этом году! Анонсируем финальную акцию 2025 года — доступ к «Работодром 2.0» можно оформить или продлить (новый период суммируется с действующим) с 20% скидкой. Напомним, что «Работодром 2.0» это: • более 100 вакансий каждый рабочи...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Последнее спецпредложение для наших подписчиков в этом году! Анонсируем финальную акцию 2025 года — доступ к «Работодром"
+          },
+          "salary": {
+            "min": 67,
+            "max": 67,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "ете, стоит ли пробовать? По данным ноябрьского опроса более 67% подписчиков «Работодром 2.0» нашли постоянную работу или п"
+          },
+          "location": {
+            "value": {
+              "city": "Напомним",
+              "country": "что",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "salary_low_confidence",
+              "employment_not_found",
+              "work_format_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "http://t.me/TD_paid_channelbot?start=promo_NY2025",
+            "timingMs": 2
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhob0s00pzv9jk4j1w51g2",
+        "title": "Последнее спецпредложение для наших подписчиков в этом году! Анонсируем финальную акцию 2025 года — доступ к «Работодром",
+        "link": "http://t.me/TD_paid_channelbot?start=promo_NY2025",
+        "issue": "salary_currency_unknown_but_mentioned",
+        "detail": {
+          "min": 67,
+          "max": 67,
+          "currency": "UNKNOWN",
+          "mentioned": "RUB"
+        },
+        "originalPreview": "Последнее спецпредложение для наших подписчиков в этом году! Анонсируем финальную акцию 2025 года — доступ к «Работодром 2.0» можно оформить или продлить (новый период суммируется с действующим) с 20% скидкой. Напомним, что «Работодром 2.0» это: • более 100 вакансий каждый рабочи...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Последнее спецпредложение для наших подписчиков в этом году! Анонсируем финальную акцию 2025 года — доступ к «Работодром"
+          },
+          "salary": {
+            "min": 67,
+            "max": 67,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "ете, стоит ли пробовать? По данным ноябрьского опроса более 67% подписчиков «Работодром 2.0» нашли постоянную работу или п"
+          },
+          "location": {
+            "value": {
+              "city": "Напомним",
+              "country": "что",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "salary_low_confidence",
+              "employment_not_found",
+              "work_format_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "http://t.me/TD_paid_channelbot?start=promo_NY2025",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhob0s00qjv9jkbpri3fec",
+        "title": "Последнее спецпредложение для наших подписчиков в этом году! Анонсируем финальную акцию 2025 года — доступ к «Работодром",
+        "link": "http://t.me/TD_paid_channelbot?start=promo_NY2025",
+        "issue": "salary_currency_unknown_but_mentioned",
+        "detail": {
+          "min": 67,
+          "max": 67,
+          "currency": "UNKNOWN",
+          "mentioned": "RUB"
+        },
+        "originalPreview": "Последнее спецпредложение для наших подписчиков в этом году! Анонсируем финальную акцию 2025 года — доступ к «Работодром 2.0» можно оформить или продлить (новый период суммируется с действующим) с 20% скидкой. Напомним, что «Работодром 2.0» это: • более 100 вакансий каждый рабочи...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Последнее спецпредложение для наших подписчиков в этом году! Анонсируем финальную акцию 2025 года — доступ к «Работодром"
+          },
+          "salary": {
+            "min": 67,
+            "max": 67,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "ете, стоит ли пробовать? По данным ноябрьского опроса более 67% подписчиков «Работодром 2.0» нашли постоянную работу или п"
+          },
+          "location": {
+            "value": {
+              "city": "Напомним",
+              "country": "что",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "salary_low_confidence",
+              "employment_not_found",
+              "work_format_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "http://t.me/TD_paid_channelbot?start=promo_NY2025",
+            "timingMs": 2
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhn6qs00abv9jktjga4r96",
+        "title": "Коллеги-дизайнеры!Недавно мы запустили новый канал с вакансиями для UX, product, motion и graphic дизайнеров.Что вы полу",
+        "link": "https://t.me/tribute/app?startapp=ep_b1iMP5lm2flEtkg1sNGQZuCt6EArtoaA4fhlvVQQhDH5YSifNaEX4sj4c5",
+        "issue": "salary_currency_unknown_but_mentioned",
+        "detail": {
+          "min": 50,
+          "max": 70,
+          "currency": "UNKNOWN",
+          "mentioned": "RUB"
+        },
+        "originalPreview": "Коллеги-дизайнеры!Недавно мы запустили новый канал с вакансиями для UX, product, motion и graphic дизайнеров.Что вы получите? 50–70 свежих вакансий в месяц, которых нет на vseti.app, HH и часто в других телеграм каналах Работу в компаниях типа InDrive, Авиасейлс, Prequel, Tabby, ...",
+        "parsedPreview": {
+          "title": {
+            "value": "Коллеги-дизайнеры!Недавно мы запустили новый канал с вакансиями для UX, product, motion и graphic дизайнеров.Что вы полу",
+            "role": "ux_ui_designer",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Коллеги-дизайнеры!Недавно мы запустили новый канал с вакансиями для UX, product, motion и graphic дизайнеров.Что вы полу"
+          },
+          "salary": {
+            "min": 50,
+            "max": 70,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "я UX, product, motion и graphic дизайнеров.Что вы получите? 50-70 свежих вакансий в месяц, которых нет на vseti.app, HH и"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@tribute"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "schedule_not_found",
+              "experience_not_found",
+              "tech_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/tribute/app?startapp=ep_b1iMP5lm2flEtkg1sNGQZuCt6EArtoaA4fhlvVQQhDH5YSifNaEX4sj4c5",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhn6qs00avv9jk6p4qmyz3",
+        "title": "Коллеги-дизайнеры!Недавно мы запустили новый канал с вакансиями для UX, product, motion и graphic дизайнеров.Что вы полу",
+        "link": "https://t.me/tribute/app?startapp=ep_b1iMP5lm2flEtkg1sNGQZuCt6EArtoaA4fhlvVQQhDH5YSifNaEX4sj4c5",
+        "issue": "salary_currency_unknown_but_mentioned",
+        "detail": {
+          "min": 50,
+          "max": 70,
+          "currency": "UNKNOWN",
+          "mentioned": "RUB"
+        },
+        "originalPreview": "Коллеги-дизайнеры!Недавно мы запустили новый канал с вакансиями для UX, product, motion и graphic дизайнеров.Что вы получите? 50–70 свежих вакансий в месяц, которых нет на vseti.app, HH и часто в других телеграм каналах Работу в компаниях типа InDrive, Авиасейлс, Prequel, Tabby, ...",
+        "parsedPreview": {
+          "title": {
+            "value": "Коллеги-дизайнеры!Недавно мы запустили новый канал с вакансиями для UX, product, motion и graphic дизайнеров.Что вы полу",
+            "role": "ux_ui_designer",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Коллеги-дизайнеры!Недавно мы запустили новый канал с вакансиями для UX, product, motion и graphic дизайнеров.Что вы полу"
+          },
+          "salary": {
+            "min": 50,
+            "max": 70,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "я UX, product, motion и graphic дизайнеров.Что вы получите? 50-70 свежих вакансий в месяц, которых нет на vseti.app, HH и"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@tribute"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "schedule_not_found",
+              "experience_not_found",
+              "tech_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/tribute/app?startapp=ep_b1iMP5lm2flEtkg1sNGQZuCt6EArtoaA4fhlvVQQhDH5YSifNaEX4sj4c5",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhn6qs00bfv9jkobqed22u",
+        "title": "Коллеги-дизайнеры!Недавно мы запустили новый канал с вакансиями для UX, product, motion и graphic дизайнеров.Что вы полу",
+        "link": "https://t.me/tribute/app?startapp=ep_b1iMP5lm2flEtkg1sNGQZuCt6EArtoaA4fhlvVQQhDH5YSifNaEX4sj4c5",
+        "issue": "salary_currency_unknown_but_mentioned",
+        "detail": {
+          "min": 50,
+          "max": 70,
+          "currency": "UNKNOWN",
+          "mentioned": "RUB"
+        },
+        "originalPreview": "Коллеги-дизайнеры!Недавно мы запустили новый канал с вакансиями для UX, product, motion и graphic дизайнеров.Что вы получите? 50–70 свежих вакансий в месяц, которых нет на vseti.app, HH и часто в других телеграм каналах Работу в компаниях типа InDrive, Авиасейлс, Prequel, Tabby, ...",
+        "parsedPreview": {
+          "title": {
+            "value": "Коллеги-дизайнеры!Недавно мы запустили новый канал с вакансиями для UX, product, motion и graphic дизайнеров.Что вы полу",
+            "role": "ux_ui_designer",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Коллеги-дизайнеры!Недавно мы запустили новый канал с вакансиями для UX, product, motion и graphic дизайнеров.Что вы полу"
+          },
+          "salary": {
+            "min": 50,
+            "max": 70,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "я UX, product, motion и graphic дизайнеров.Что вы получите? 50-70 свежих вакансий в месяц, которых нет на vseti.app, HH и"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@tribute"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "schedule_not_found",
+              "experience_not_found",
+              "tech_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/tribute/app?startapp=ep_b1iMP5lm2flEtkg1sNGQZuCt6EArtoaA4fhlvVQQhDH5YSifNaEX4sj4c5",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhmlxg002nv9jkcmc9a4c8",
+        "title": "#вакансия #контент_менеджер Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бр",
+        "link": "https://t.me/frilancekomfort/12622",
+        "issue": "salary_currency_unknown_but_mentioned",
+        "detail": {
+          "min": null,
+          "max": 50,
+          "currency": "UNKNOWN",
+          "mentioned": "RUB"
+        },
+        "originalPreview": "#вакансия #контент_менеджер Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бренд БАДов. Сейчас наша ключевая задача — построить UGC-контент-завод и масштабировать short-контент.Ищем главу контент-завода, который будет выстраивать систему...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бр"
+          },
+          "salary": {
+            "min": null,
+            "max": 50,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "граничений контента БАДов.• Опыт масштабирования через UGC (30-50+ видео в неделю).Чтобы попасть на следующий этап, просим"
+          },
+          "location": {
+            "value": {
+              "city": "Moscow",
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@archidise"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/frilancekomfort/12622",
+            "timingMs": 2
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhmlxg0037v9jkorwzuxk2",
+        "title": "#вакансия #контент_менеджер Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бр",
+        "link": "https://t.me/frilancekomfort/12622",
+        "issue": "salary_currency_unknown_but_mentioned",
+        "detail": {
+          "min": null,
+          "max": 50,
+          "currency": "UNKNOWN",
+          "mentioned": "RUB"
+        },
+        "originalPreview": "#вакансия #контент_менеджер Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бренд БАДов. Сейчас наша ключевая задача — построить UGC-контент-завод и масштабировать short-контент.Ищем главу контент-завода, который будет выстраивать систему...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бр"
+          },
+          "salary": {
+            "min": null,
+            "max": 50,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "граничений контента БАДов.• Опыт масштабирования через UGC (30-50+ видео в неделю).Чтобы попасть на следующий этап, просим"
+          },
+          "location": {
+            "value": {
+              "city": "Moscow",
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@archidise"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/frilancekomfort/12622",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhmlxg003rv9jkq1mrt3rk",
+        "title": "#вакансия #контент_менеджер Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бр",
+        "link": "https://t.me/frilancekomfort/12622",
+        "issue": "salary_currency_unknown_but_mentioned",
+        "detail": {
+          "min": null,
+          "max": 50,
+          "currency": "UNKNOWN",
+          "mentioned": "RUB"
+        },
+        "originalPreview": "#вакансия #контент_менеджер Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бренд БАДов. Сейчас наша ключевая задача — построить UGC-контент-завод и масштабировать short-контент.Ищем главу контент-завода, который будет выстраивать систему...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бр"
+          },
+          "salary": {
+            "min": null,
+            "max": 50,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "граничений контента БАДов.• Опыт масштабирования через UGC (30-50+ видео в неделю).Чтобы попасть на следующий этап, просим"
+          },
+          "location": {
+            "value": {
+              "city": "Moscow",
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@archidise"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/frilancekomfort/12622",
+            "timingMs": 2
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhowdq00xpv9jk0hzjfs78",
+        "title": "Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бренд БАДов. Сейчас наша ключе",
+        "link": "https://t.me/archidise",
+        "issue": "salary_currency_unknown_but_mentioned",
+        "detail": {
+          "min": null,
+          "max": 50,
+          "currency": "UNKNOWN",
+          "mentioned": "RUB"
+        },
+        "originalPreview": "Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бренд БАДов. Сейчас наша ключевая задача — построить UGC-контент-завод и масштабировать short-контент.Ищем главу контент-завода, который будет выстраивать систему производства контента, учас...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бренд БАДов. Сейчас наша ключе"
+          },
+          "salary": {
+            "min": null,
+            "max": 50,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "граничений контента БАДов.• Опыт масштабирования через UGC (30-50+ видео в неделю).Чтобы попасть на следующий этап, просим"
+          },
+          "location": {
+            "value": {
+              "city": "Moscow",
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@archidise"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/archidise",
+            "timingMs": 1
+          }
+        }
+      }
+    ],
+    "title_glued_or_too_long_raw": [
+      {
+        "jobId": "cmjbhp5bx0110v9jkezrsqzil",
+        "title": "Задача:Карточка товараОписание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N",
+        "link": "https://clck.ru/3N9iqa",
+        "issue": "title_glued_or_too_long_raw",
+        "detail": {
+          "rawLen": 140,
+          "rawPreview": "Задача:Карточка товараОписание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N9iqa#Карточка_товара"
+        },
+        "originalPreview": "Задача:Карточка товараОписание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N9iqa#Карточка_товара @AcademyQA_ru_bot - Бесплатные курсы и вебинары@Vakanser_bot - Бот вакансий и фриланс задач@Work_for_everyone_bot - Удаленная работа и рабо...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "qa_engineer",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Задача:Карточка товараОписание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N9iqa#Карточка_товара"
+          },
+          "salary": {
+            "min": 1000,
+            "max": null,
+            "currency": "RUB",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "писание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N9iqa#Карточка_товара @Acad"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@AcademyQA_ru_bot"
+            ],
+            "urls": [
+              "https://clck.ru/3N9iqa#Карточка_товара"
+            ]
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://clck.ru/3N9iqa",
+            "timingMs": 0
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhp5bx011kv9jk7vdbtrtc",
+        "title": "Задача:Карточка товараОписание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N",
+        "link": "https://clck.ru/3N9iqa",
+        "issue": "title_glued_or_too_long_raw",
+        "detail": {
+          "rawLen": 140,
+          "rawPreview": "Задача:Карточка товараОписание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N9iqa#Карточка_товара"
+        },
+        "originalPreview": "Задача:Карточка товараОписание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N9iqa#Карточка_товара @AcademyQA_ru_bot - Бесплатные курсы и вебинары@Vakanser_bot - Бот вакансий и фриланс задач@Work_for_everyone_bot - Удаленная работа и рабо...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "qa_engineer",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Задача:Карточка товараОписание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N9iqa#Карточка_товара"
+          },
+          "salary": {
+            "min": 1000,
+            "max": null,
+            "currency": "RUB",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "писание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N9iqa#Карточка_товара @Acad"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@AcademyQA_ru_bot"
+            ],
+            "urls": [
+              "https://clck.ru/3N9iqa#Карточка_товара"
+            ]
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://clck.ru/3N9iqa",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhp5bx0124v9jkjaae8jw7",
+        "title": "Задача:Карточка товараОписание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N",
+        "link": "https://clck.ru/3N9iqa",
+        "issue": "title_glued_or_too_long_raw",
+        "detail": {
+          "rawLen": 140,
+          "rawPreview": "Задача:Карточка товараОписание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N9iqa#Карточка_товара"
+        },
+        "originalPreview": "Задача:Карточка товараОписание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N9iqa#Карточка_товара @AcademyQA_ru_bot - Бесплатные курсы и вебинары@Vakanser_bot - Бот вакансий и фриланс задач@Work_for_everyone_bot - Удаленная работа и рабо...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "qa_engineer",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Задача:Карточка товараОписание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N9iqa#Карточка_товара"
+          },
+          "salary": {
+            "min": 1000,
+            "max": null,
+            "currency": "RUB",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "писание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N9iqa#Карточка_товара @Acad"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@AcademyQA_ru_bot"
+            ],
+            "urls": [
+              "https://clck.ru/3N9iqa#Карточка_товара"
+            ]
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://clck.ru/3N9iqa",
+            "timingMs": 0
+          }
+        }
+      }
+    ],
+    "title_starts_with_hashtags": [
+      {
+        "jobId": "cmjbhorii00vuv9jk8n5ea8od",
+        "title": "#вакансия #Python #удаленно #fulltime #techlead #FastAPI #AI #NLP #LLM #BackendLead #TechLead #Docker #BigData #startup ",
+        "link": "https://t.me/ru_pythonjobs/25556",
+        "issue": "title_starts_with_hashtags",
+        "detail": {
+          "rawPreview": "#BigData #startup Python Tech Lead"
+        },
+        "originalPreview": "#вакансия #Python #удаленно #fulltime #techlead #FastAPI #AI #NLP #LLM #BackendLead #TechLead #Docker #BigData #startup Python Tech LeadКомпания: Devhunt (к/а)️Проект: High-load AI-платформа для глубокой аналитики поведения пользователей! Локация: Россия Формат работы: удаленноВи...",
+        "parsedPreview": {
+          "title": {
+            "value": "Python Tech Lead",
+            "role": "tech_lead",
+            "level": "lead",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "#BigData #startup Python Tech Lead"
+          },
+          "salary": {
+            "min": 350,
+            "max": 450,
+            "currency": "RUB",
+            "period": "month",
+            "salaryType": "gross",
+            "raw": "ользователей! Локация: Россия Формат работы: удаленноВилка: 350.000 - 450.000 руб (GROSS)Задачи:Руководство командой разработки"
+          },
+          "location": {
+            "value": {
+              "city": "планирование",
+              "country": "распределение задач",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@aljenat"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "work_format_not_found",
+              "schedule_not_found",
+              "experience_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25556",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhorii00wev9jkeeprbo3i",
+        "title": "#вакансия #Python #удаленно #fulltime #techlead #FastAPI #AI #NLP #LLM #BackendLead #TechLead #Docker #BigData #startup ",
+        "link": "https://t.me/ru_pythonjobs/25556",
+        "issue": "title_starts_with_hashtags",
+        "detail": {
+          "rawPreview": "#BigData #startup Python Tech Lead"
+        },
+        "originalPreview": "#вакансия #Python #удаленно #fulltime #techlead #FastAPI #AI #NLP #LLM #BackendLead #TechLead #Docker #BigData #startup Python Tech LeadКомпания: Devhunt (к/а)️Проект: High-load AI-платформа для глубокой аналитики поведения пользователей! Локация: Россия Формат работы: удаленноВи...",
+        "parsedPreview": {
+          "title": {
+            "value": "Python Tech Lead",
+            "role": "tech_lead",
+            "level": "lead",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "#BigData #startup Python Tech Lead"
+          },
+          "salary": {
+            "min": 350,
+            "max": 450,
+            "currency": "RUB",
+            "period": "month",
+            "salaryType": "gross",
+            "raw": "ользователей! Локация: Россия Формат работы: удаленноВилка: 350.000 - 450.000 руб (GROSS)Задачи:Руководство командой разработки"
+          },
+          "location": {
+            "value": {
+              "city": "планирование",
+              "country": "распределение задач",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@aljenat"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "work_format_not_found",
+              "schedule_not_found",
+              "experience_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25556",
+            "timingMs": 0
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhorii00wyv9jkq4zszfz4",
+        "title": "#вакансия #Python #удаленно #fulltime #techlead #FastAPI #AI #NLP #LLM #BackendLead #TechLead #Docker #BigData #startup ",
+        "link": "https://t.me/ru_pythonjobs/25556",
+        "issue": "title_starts_with_hashtags",
+        "detail": {
+          "rawPreview": "#BigData #startup Python Tech Lead"
+        },
+        "originalPreview": "#вакансия #Python #удаленно #fulltime #techlead #FastAPI #AI #NLP #LLM #BackendLead #TechLead #Docker #BigData #startup Python Tech LeadКомпания: Devhunt (к/а)️Проект: High-load AI-платформа для глубокой аналитики поведения пользователей! Локация: Россия Формат работы: удаленноВи...",
+        "parsedPreview": {
+          "title": {
+            "value": "Python Tech Lead",
+            "role": "tech_lead",
+            "level": "lead",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "#BigData #startup Python Tech Lead"
+          },
+          "salary": {
+            "min": 350,
+            "max": 450,
+            "currency": "RUB",
+            "period": "month",
+            "salaryType": "gross",
+            "raw": "ользователей! Локация: Россия Формат работы: удаленноВилка: 350.000 - 450.000 руб (GROSS)Задачи:Руководство командой разработки"
+          },
+          "location": {
+            "value": {
+              "city": "планирование",
+              "country": "распределение задач",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@aljenat"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "work_format_not_found",
+              "schedule_not_found",
+              "experience_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25556",
+            "timingMs": 0
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhorii00vnv9jktn2tacct",
+        "title": "#вакансия #vacancy #job #remote #AI #deep_research #middle #senior #ML #machine_learning #DS #Data_science #OCR #python ",
+        "link": "https://t.me/ru_pythonjobs/25548",
+        "issue": "title_starts_with_hashtags",
+        "detail": {
+          "rawPreview": "#OCR #python"
+        },
+        "originalPreview": "#вакансия #vacancy #job #remote #AI #deep_research #middle #senior #ML #machine_learning #DS #Data_science #OCR #python #RAG #pytorchDeep Research engineer (remote)Skygen.ai — стартап, делаем ИИ-агента который выполняет любую задачу на компьютере.Нужен инженер (с ресерч-экспертиз...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "#OCR #python"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": null,
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@foreverinlovewithsummer"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "salary_not_found",
+              "employment_not_found",
+              "schedule_not_found",
+              "location_not_found",
+              "title_low_confidence",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25548",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhorii00w7v9jkugn7j1k3",
+        "title": "#вакансия #vacancy #job #remote #AI #deep_research #middle #senior #ML #machine_learning #DS #Data_science #OCR #python ",
+        "link": "https://t.me/ru_pythonjobs/25548",
+        "issue": "title_starts_with_hashtags",
+        "detail": {
+          "rawPreview": "#OCR #python"
+        },
+        "originalPreview": "#вакансия #vacancy #job #remote #AI #deep_research #middle #senior #ML #machine_learning #DS #Data_science #OCR #python #RAG #pytorchDeep Research engineer (remote)Skygen.ai — стартап, делаем ИИ-агента который выполняет любую задачу на компьютере.Нужен инженер (с ресерч-экспертиз...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "#OCR #python"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": null,
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@foreverinlovewithsummer"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "salary_not_found",
+              "employment_not_found",
+              "schedule_not_found",
+              "location_not_found",
+              "title_low_confidence",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25548",
+            "timingMs": 0
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhorii00wrv9jktreeec7w",
+        "title": "#вакансия #vacancy #job #remote #AI #deep_research #middle #senior #ML #machine_learning #DS #Data_science #OCR #python ",
+        "link": "https://t.me/ru_pythonjobs/25548",
+        "issue": "title_starts_with_hashtags",
+        "detail": {
+          "rawPreview": "#OCR #python"
+        },
+        "originalPreview": "#вакансия #vacancy #job #remote #AI #deep_research #middle #senior #ML #machine_learning #DS #Data_science #OCR #python #RAG #pytorchDeep Research engineer (remote)Skygen.ai — стартап, делаем ИИ-агента который выполняет любую задачу на компьютере.Нужен инженер (с ресерч-экспертиз...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "#OCR #python"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": null,
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@foreverinlovewithsummer"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "salary_not_found",
+              "employment_not_found",
+              "schedule_not_found",
+              "location_not_found",
+              "title_low_confidence",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25548",
+            "timingMs": 0
+          }
+        }
+      }
+    ]
+  },
+  "totals": {
+    "jobs": 1472,
+    "jobsWithIssues": 189,
+    "issues": 195
+  }
+}

@@ -1,0 +1,25 @@
+<mat-card>
+  <mat-card-title>Добавить шаблон</mat-card-title>
+  <mat-card-content>
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Название</mat-label>
+        <input matInput [(ngModel)]="model.name" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Канал</mat-label>
+        <mat-select [(ngModel)]="model.channel">
+          <mat-option value="email">email</mat-option>
+          <mat-option value="telegram">telegram</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <mat-form-field appearance="outline" class="full">
+      <mat-label>Текст шаблона</mat-label>
+      <textarea matInput rows="4" [(ngModel)]="model.content"></textarea>
+    </mat-form-field>
+    <button mat-flat-button color="primary" (click)="submit.emit(model)">Создать шаблон</button>
+  </mat-card-content>
+</mat-card>
+
+

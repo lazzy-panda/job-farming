@@ -1,0 +1,139 @@
+diff --git a/node_modules/@angular/build/src/builders/dev-server/vite/index.js b/node_modules/@angular/build/src/builders/dev-server/vite/index.js
+index 64a5c13..b41d878 100755
+--- a/node_modules/@angular/build/src/builders/dev-server/vite/index.js
++++ b/node_modules/@angular/build/src/builders/dev-server/vite/index.js
+@@ -49,6 +49,7 @@ const node_path_1 = require("node:path");
+ const plugins_1 = require("../../../tools/vite/plugins");
+ const utils_1 = require("../../../tools/vite/utils");
+ const utils_2 = require("../../../utils");
++const load_esm_1 = require("../../../utils/load-esm");
+ const environment_options_1 = require("../../../utils/environment-options");
+ const results_1 = require("../../application/results");
+ const schema_1 = require("../../application/schema");
+@@ -145,7 +146,7 @@ async function* serveWithVite(serverOptions, builderName, builderAction, context
+     { sourcemap: true, jit: true, thirdPartySourcemaps }, 1);
+     // The index HTML path will be updated from the build results if provided by the builder
+     let htmlIndexPath = 'index.html';
+-    const { createServer, normalizePath } = await Promise.resolve().then(() => __importStar(require('vite')));
++    const { createServer, normalizePath } = await (0, load_esm_1.loadEsmModule)('vite');
+     let server;
+     let serverUrl;
+     let hadError = false;
+diff --git a/node_modules/@angular/build/src/builders/dev-server/vite/server.js b/node_modules/@angular/build/src/builders/dev-server/vite/server.js
+index 7e688fb..f7f2b7c 100755
+--- a/node_modules/@angular/build/src/builders/dev-server/vite/server.js
++++ b/node_modules/@angular/build/src/builders/dev-server/vite/server.js
+@@ -46,6 +46,7 @@ const node_path_1 = require("node:path");
+ const plugins_1 = require("../../../tools/vite/plugins");
+ const utils_1 = require("../../../tools/vite/utils");
+ const utils_2 = require("../../../utils");
++const load_esm_1 = require("../../../utils/load-esm");
+ async function createServerConfig(serverOptions, assets, ssrMode, preTransformRequests, cacheDir) {
+     const proxy = await (0, utils_2.loadProxyConfiguration)(serverOptions.workspaceRoot, serverOptions.proxyConfig);
+     // Files used for SSR warmup.
+@@ -127,7 +128,7 @@ function createSsrConfig(externalMetadata, serverOptions, prebundleTransformer,
+     };
+ }
+ async function setupServer(serverOptions, outputFiles, assets, preserveSymlinks, externalMetadata, ssrMode, prebundleTransformer, target, zoneless, componentStyles, templateUpdates, prebundleLoaderExtensions, define, extensionMiddleware, indexHtmlTransformer, thirdPartySourcemaps = false) {
+-    const { normalizePath } = await Promise.resolve().then(() => __importStar(require('vite')));
++    const { normalizePath } = await (0, load_esm_1.loadEsmModule)('vite');
+     // Path will not exist on disk and only used to provide separate path for Vite requests
+     const virtualProjectRoot = normalizePath((0, node_path_1.join)(serverOptions.workspaceRoot, `.angular/vite-root`, serverOptions.buildTarget.project));
+     /**
+diff --git a/node_modules/@angular/build/src/builders/unit-test/runners/vitest/executor.js b/node_modules/@angular/build/src/builders/unit-test/runners/vitest/executor.js
+index d230767..f8f9d54 100755
+--- a/node_modules/@angular/build/src/builders/unit-test/runners/vitest/executor.js
++++ b/node_modules/@angular/build/src/builders/unit-test/runners/vitest/executor.js
+@@ -47,6 +47,7 @@ exports.VitestExecutor = void 0;
+ const node_assert_1 = __importDefault(require("node:assert"));
+ const node_path_1 = __importDefault(require("node:path"));
+ const utils_1 = require("../../../../tools/vite/utils");
++const load_esm_1 = require("../../../../utils/load-esm");
+ const error_1 = require("../../../../utils/error");
+ const results_1 = require("../../../application/results");
+ const browser_provider_1 = require("./browser-provider");
+@@ -81,7 +82,7 @@ class VitestExecutor {
+         }
+     }
+     async *execute(buildResult) {
+-        this.normalizePath ??= (await Promise.resolve().then(() => __importStar(require('vite')))).normalizePath;
++        this.normalizePath ??= (await (0, load_esm_1.loadEsmModule)('vite')).normalizePath;
+         if (buildResult.kind === results_1.ResultKind.Full) {
+             this.buildResultFiles.clear();
+             for (const [path, file] of Object.entries(buildResult.files)) {
+diff --git a/node_modules/@angular/build/src/tools/angular/compilation/angular-compilation.js b/node_modules/@angular/build/src/tools/angular/compilation/angular-compilation.js
+index 98e36c6..f535d8f 100755
+--- a/node_modules/@angular/build/src/tools/angular/compilation/angular-compilation.js
++++ b/node_modules/@angular/build/src/tools/angular/compilation/angular-compilation.js
+@@ -43,6 +43,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.AngularCompilation = exports.DiagnosticModes = void 0;
+ const diagnostics_1 = require("../../esbuild/angular/diagnostics");
+ const profiling_1 = require("../../esbuild/profiling");
++const load_esm_1 = require("../../../utils/load-esm");
+ var DiagnosticModes;
+ (function (DiagnosticModes) {
+     DiagnosticModes[DiagnosticModes["None"] = 0] = "None";
+@@ -55,11 +56,12 @@ class AngularCompilation {
+     static #angularCompilerCliModule;
+     static #typescriptModule;
+     static async loadCompilerCli() {
+-        AngularCompilation.#angularCompilerCliModule ??= await Promise.resolve().then(() => __importStar(require('@angular/compiler-cli')));
++        AngularCompilation.#angularCompilerCliModule ??=
++            await (0, load_esm_1.loadEsmModule)('@angular/compiler-cli');
+         return AngularCompilation.#angularCompilerCliModule;
+     }
+     static async loadTypescript() {
+-        AngularCompilation.#typescriptModule ??= await Promise.resolve().then(() => __importStar(require('typescript')));
++        AngularCompilation.#typescriptModule ??= await (0, load_esm_1.loadEsmModule)('typescript');
+         return AngularCompilation.#typescriptModule;
+     }
+     async loadConfiguration(tsconfig) {
+diff --git a/node_modules/@angular/build/src/tools/vite/plugins/angular-memory-plugin.js b/node_modules/@angular/build/src/tools/vite/plugins/angular-memory-plugin.js
+index d641199..96e5ad5 100755
+--- a/node_modules/@angular/build/src/tools/vite/plugins/angular-memory-plugin.js
++++ b/node_modules/@angular/build/src/tools/vite/plugins/angular-memory-plugin.js
+@@ -48,12 +48,13 @@ const node_assert_1 = __importDefault(require("node:assert"));
+ const promises_1 = require("node:fs/promises");
+ const node_path_1 = require("node:path");
+ const node_url_1 = require("node:url");
++const load_esm_1 = require("../../../utils/load-esm");
+ const ANGULAR_PREFIX = '/@ng/';
+ const VITE_FS_PREFIX = '/@fs/';
+ const FILE_PROTOCOL = 'file:';
+ async function createAngularMemoryPlugin(options) {
+     const { virtualProjectRoot, outputFiles, external } = options;
+-    const { normalizePath } = await Promise.resolve().then(() => __importStar(require('vite')));
++    const { normalizePath } = await (0, load_esm_1.loadEsmModule)('vite');
+     return {
+         name: 'vite:angular-memory',
+         // Ensures plugin hooks run before built-in Vite hooks
+diff --git a/node_modules/@angular/build/src/tools/vite/plugins/ssr-transform-plugin.js b/node_modules/@angular/build/src/tools/vite/plugins/ssr-transform-plugin.js
+index b19b54d..7142eb3 100755
+--- a/node_modules/@angular/build/src/tools/vite/plugins/ssr-transform-plugin.js
++++ b/node_modules/@angular/build/src/tools/vite/plugins/ssr-transform-plugin.js
+@@ -45,8 +45,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
+ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.createAngularSsrTransformPlugin = createAngularSsrTransformPlugin;
+ const remapping_1 = __importDefault(require("@ampproject/remapping"));
++const load_esm_1 = require("../../../utils/load-esm");
+ async function createAngularSsrTransformPlugin(workspaceRoot) {
+-    const { normalizePath } = await Promise.resolve().then(() => __importStar(require('vite')));
++    const { normalizePath } = await (0, load_esm_1.loadEsmModule)('vite');
+     return {
+         name: 'vite:angular-ssr-transform',
+         enforce: 'post',
+diff --git a/node_modules/@angular/build/src/utils/index-file/html-rewriting-stream.js b/node_modules/@angular/build/src/utils/index-file/html-rewriting-stream.js
+index e044e84..fbbfcca 100755
+--- a/node_modules/@angular/build/src/utils/index-file/html-rewriting-stream.js
++++ b/node_modules/@angular/build/src/utils/index-file/html-rewriting-stream.js
+@@ -43,8 +43,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.htmlRewritingStream = htmlRewritingStream;
+ const node_stream_1 = require("node:stream");
+ const promises_1 = require("node:stream/promises");
++const load_esm_1 = require("../load-esm");
+ async function htmlRewritingStream(content) {
+-    const { RewritingStream } = await Promise.resolve().then(() => __importStar(require('parse5-html-rewriting-stream')));
++    const { RewritingStream } = await (0, load_esm_1.loadEsmModule)('parse5-html-rewriting-stream');
+     const rewriter = new RewritingStream();
+     return {
+         rewriter,

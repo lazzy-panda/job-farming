@@ -1,0 +1,12 @@
+<div class="layout">
+  <app-dashboard-header
+    title="Настройки"
+    subtitle="SMTP/порты и другие параметры; данные сохраняются локально"
+  />
+
+  <section class="form-card">
+    <app-settings-form [settings]="settings()" (save)="saveSettings($event)"></app-settings-form>
+  </section>
+</div>
+
+

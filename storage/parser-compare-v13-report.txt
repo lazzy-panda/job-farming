@@ -1,0 +1,6 @@
+[analyze-parser-compare] input=/Users/kirill/MyApps/job_farm/storage/parser-compare-v13.txt
+[analyze-parser-compare] jobs=1472 jobsWithIssues=0 issues=0
+
+## Issue types (sorted by count)
+
+## Examples

@@ -1,0 +1,37 @@
+<div class="layout">
+  <app-dashboard-header
+    title="Job Farm"
+    subtitle="Angular 21 + API http://localhost:3000/api"
+    [showSort]="true"
+    [sortMode]="sortMode()"
+    (refresh)="refreshAndScrape()"
+    (sortChange)="onSortChange($event)"
+  />
+  <section class="search-section">
+    <app-job-search
+      [query]="searchQuery()"
+      [total]="jobs().length"
+      [filtered]="totalFiltered()"
+      (queryChange)="onSearchQueryChange($event)"
+    />
+  </section>
+
+  <section>
+    <app-job-cards
+      [jobs]="paginatedJobs()"
+      [sources]="sources()"
+      (open)="openAndCopy($event)"
+      (remove)="deleteJob($event)"
+    ></app-job-cards>
+  </section>
+
+  <section class="pagination-section" *ngIf="totalFiltered() > 0">
+    <app-pagination
+      [total]="totalFiltered()"
+      [pageIndex]="pageIndex()"
+      [pageSize]="pageSize()"
+      [pageSizeOptions]="pageSizeOptions"
+      (pageChange)="onPageChange($event)"
+    ></app-pagination>
+  </section>
+</div>

@@ -1,0 +1,1132 @@
+{
+  "maxExamplesPerType": 10,
+  "counts": {
+    "original_text_looks_like_multi_vacancy_dump": 99,
+    "contacts_missed_obvious": 3,
+    "title_glued_or_too_long_raw": 6
+  },
+  "examples": {
+    "original_text_looks_like_multi_vacancy_dump": [
+      {
+        "jobId": "cmjbhorii00w3v9jkvmrhnwpn",
+        "title": "#вакансия #job #работа #python Вакансия: Junior Python Developer (Web3)Компания: RateX.AiУровень зп: до 1 600 $ за месяц",
+        "link": "https://t.me/ru_pythonjobs/25565",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 1229
+        },
+        "originalPreview": "#вакансия #job #работа #python Вакансия: Junior Python Developer (Web3)Компания: RateX.AiУровень зп: до 1 600 $ за месяц, на рукиФормат: удаленная работа Занятость: полная занятость, 5/2;RateX.Ai — это платформа, которая переосмысливает инвестиции в Web3, используя искусственный ...",
+        "parsedPreview": {
+          "title": {
+            "value": "Junior Python Developer (Web3)",
+            "role": "backend_developer",
+            "level": "junior",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "Вакансия: Junior Python Developer (Web3)"
+          },
+          "salary": {
+            "min": null,
+            "max": 1600,
+            "currency": "USD",
+            "period": "month",
+            "salaryType": "net",
+            "raw": "r Python Developer (Web3)Компания: RateX.AiУровень зп: до 1 600 $ за месяц, на рукиФормат: удаленная работа Занятость: полн"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "experience_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25565",
+            "timingMs": 5
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhorii00wnv9jk9oj9kt18",
+        "title": "#вакансия #job #работа #python Вакансия: Junior Python Developer (Web3)Компания: RateX.AiУровень зп: до 1 600 $ за месяц",
+        "link": "https://t.me/ru_pythonjobs/25565",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 1229
+        },
+        "originalPreview": "#вакансия #job #работа #python Вакансия: Junior Python Developer (Web3)Компания: RateX.AiУровень зп: до 1 600 $ за месяц, на рукиФормат: удаленная работа Занятость: полная занятость, 5/2;RateX.Ai — это платформа, которая переосмысливает инвестиции в Web3, используя искусственный ...",
+        "parsedPreview": {
+          "title": {
+            "value": "Junior Python Developer (Web3)",
+            "role": "backend_developer",
+            "level": "junior",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "Вакансия: Junior Python Developer (Web3)"
+          },
+          "salary": {
+            "min": null,
+            "max": 1600,
+            "currency": "USD",
+            "period": "month",
+            "salaryType": "net",
+            "raw": "r Python Developer (Web3)Компания: RateX.AiУровень зп: до 1 600 $ за месяц, на рукиФормат: удаленная работа Занятость: полн"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "experience_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25565",
+            "timingMs": 5
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhorii00x7v9jk55krky1j",
+        "title": "#вакансия #job #работа #python Вакансия: Junior Python Developer (Web3)Компания: RateX.AiУровень зп: до 1 600 $ за месяц",
+        "link": "https://t.me/ru_pythonjobs/25565",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 1229
+        },
+        "originalPreview": "#вакансия #job #работа #python Вакансия: Junior Python Developer (Web3)Компания: RateX.AiУровень зп: до 1 600 $ за месяц, на рукиФормат: удаленная работа Занятость: полная занятость, 5/2;RateX.Ai — это платформа, которая переосмысливает инвестиции в Web3, используя искусственный ...",
+        "parsedPreview": {
+          "title": {
+            "value": "Junior Python Developer (Web3)",
+            "role": "backend_developer",
+            "level": "junior",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "Вакансия: Junior Python Developer (Web3)"
+          },
+          "salary": {
+            "min": null,
+            "max": 1600,
+            "currency": "USD",
+            "period": "month",
+            "salaryType": "net",
+            "raw": "r Python Developer (Web3)Компания: RateX.AiУровень зп: до 1 600 $ за месяц, на рукиФормат: удаленная работа Занятость: полн"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "experience_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25565",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhmlxg002sv9jkyb7vais5",
+        "title": "#вакансия #директор Директор по маркетингу в ресторанную сеть. Санкт-Петербург. Частичная удаленка.О НАС: Мы – быстрорас",
+        "link": "https://t.me/frilancekomfort/12627",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 1907
+        },
+        "originalPreview": "#вакансия #директор Директор по маркетингу в ресторанную сеть. Санкт-Петербург. Частичная удаленка.О НАС: Мы – быстрорастущая сеть ресторанов. Сейчас мы в поиске директора по маркетингуЗадачи:Стратегия и бренд:• Формирование и обновление бренд-платформы (позиционирование, ценност...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Директор по маркетингу в ресторанную сеть. Санкт-Петербург. Частичная удаленка.О НАС: Мы – быстрорас"
+          },
+          "salary": {
+            "min": 150000,
+            "max": null,
+            "currency": "RUB",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "ю.• Прямое участие в росте и трансформации компании.• ЗП от 150 000 руб., обсуждается индивидуально.Контакт:@land_la (отправляй"
+          },
+          "location": {
+            "value": {
+              "city": "позиционирование",
+              "country": "ценности",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "employment_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/frilancekomfort/12627",
+            "timingMs": 2
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhmlxg003cv9jk63rdiusf",
+        "title": "#вакансия #директор Директор по маркетингу в ресторанную сеть. Санкт-Петербург. Частичная удаленка.О НАС: Мы – быстрорас",
+        "link": "https://t.me/frilancekomfort/12627",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 1907
+        },
+        "originalPreview": "#вакансия #директор Директор по маркетингу в ресторанную сеть. Санкт-Петербург. Частичная удаленка.О НАС: Мы – быстрорастущая сеть ресторанов. Сейчас мы в поиске директора по маркетингуЗадачи:Стратегия и бренд:• Формирование и обновление бренд-платформы (позиционирование, ценност...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Директор по маркетингу в ресторанную сеть. Санкт-Петербург. Частичная удаленка.О НАС: Мы – быстрорас"
+          },
+          "salary": {
+            "min": 150000,
+            "max": null,
+            "currency": "RUB",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "ю.• Прямое участие в росте и трансформации компании.• ЗП от 150 000 руб., обсуждается индивидуально.Контакт:@land_la (отправляй"
+          },
+          "location": {
+            "value": {
+              "city": "позиционирование",
+              "country": "ценности",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "employment_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/frilancekomfort/12627",
+            "timingMs": 2
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhmlxg003wv9jkde85494j",
+        "title": "#вакансия #директор Директор по маркетингу в ресторанную сеть. Санкт-Петербург. Частичная удаленка.О НАС: Мы – быстрорас",
+        "link": "https://t.me/frilancekomfort/12627",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 1907
+        },
+        "originalPreview": "#вакансия #директор Директор по маркетингу в ресторанную сеть. Санкт-Петербург. Частичная удаленка.О НАС: Мы – быстрорастущая сеть ресторанов. Сейчас мы в поиске директора по маркетингуЗадачи:Стратегия и бренд:• Формирование и обновление бренд-платформы (позиционирование, ценност...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Директор по маркетингу в ресторанную сеть. Санкт-Петербург. Частичная удаленка.О НАС: Мы – быстрорас"
+          },
+          "salary": {
+            "min": 150000,
+            "max": null,
+            "currency": "RUB",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "ю.• Прямое участие в росте и трансформации компании.• ЗП от 150 000 руб., обсуждается индивидуально.Контакт:@land_la (отправляй"
+          },
+          "location": {
+            "value": {
+              "city": "позиционирование",
+              "country": "ценности",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "employment_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/frilancekomfort/12627",
+            "timingMs": 8
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhorii00w2v9jkav0fh0do",
+        "title": "#вакансия #fulltime #senior #удаленка #remote #Python #FastApiПозиция: Senior Python Developer Компания: CHOICEITМестопо",
+        "link": "https://t.me/ru_pythonjobs/25564",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 1282
+        },
+        "originalPreview": "#вакансия #fulltime #senior #удаленка #remote #Python #FastApiПозиция: Senior Python Developer Компания: CHOICEITМестоположение: Remote (любая точка мира, кроме РФ и РБ)ЗП: от 5000$График работы: полный рабочий деньКонтакты: @shmbrvМеждународная продуктовая команда, создающая Saa...",
+        "parsedPreview": {
+          "title": {
+            "value": "Senior Python Developer",
+            "role": "backend_developer",
+            "level": "senior",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "Senior Python Developer"
+          },
+          "salary": {
+            "min": 5000,
+            "max": null,
+            "currency": "USD",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "тоположение: Remote (любая точка мира, кроме РФ и РБ)ЗП: от 5000$График работы: полный рабочий деньКонтакты: @shmbrvМеждунар"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@shmbrv"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "schedule_not_found",
+              "experience_not_found",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25564",
+            "timingMs": 2
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhorii00wmv9jk6apujuy0",
+        "title": "#вакансия #fulltime #senior #удаленка #remote #Python #FastApiПозиция: Senior Python Developer Компания: CHOICEITМестопо",
+        "link": "https://t.me/ru_pythonjobs/25564",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 1282
+        },
+        "originalPreview": "#вакансия #fulltime #senior #удаленка #remote #Python #FastApiПозиция: Senior Python Developer Компания: CHOICEITМестоположение: Remote (любая точка мира, кроме РФ и РБ)ЗП: от 5000$График работы: полный рабочий деньКонтакты: @shmbrvМеждународная продуктовая команда, создающая Saa...",
+        "parsedPreview": {
+          "title": {
+            "value": "Senior Python Developer",
+            "role": "backend_developer",
+            "level": "senior",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "Senior Python Developer"
+          },
+          "salary": {
+            "min": 5000,
+            "max": null,
+            "currency": "USD",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "тоположение: Remote (любая точка мира, кроме РФ и РБ)ЗП: от 5000$График работы: полный рабочий деньКонтакты: @shmbrvМеждунар"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@shmbrv"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "schedule_not_found",
+              "experience_not_found",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25564",
+            "timingMs": 20
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhorii00x6v9jktddlo8x3",
+        "title": "#вакансия #fulltime #senior #удаленка #remote #Python #FastApiПозиция: Senior Python Developer Компания: CHOICEITМестопо",
+        "link": "https://t.me/ru_pythonjobs/25564",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 1282
+        },
+        "originalPreview": "#вакансия #fulltime #senior #удаленка #remote #Python #FastApiПозиция: Senior Python Developer Компания: CHOICEITМестоположение: Remote (любая точка мира, кроме РФ и РБ)ЗП: от 5000$График работы: полный рабочий деньКонтакты: @shmbrvМеждународная продуктовая команда, создающая Saa...",
+        "parsedPreview": {
+          "title": {
+            "value": "Senior Python Developer",
+            "role": "backend_developer",
+            "level": "senior",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "Senior Python Developer"
+          },
+          "salary": {
+            "min": 5000,
+            "max": null,
+            "currency": "USD",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "тоположение: Remote (любая точка мира, кроме РФ и РБ)ЗП: от 5000$График работы: полный рабочий деньКонтакты: @shmbrvМеждунар"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@shmbrv"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "schedule_not_found",
+              "experience_not_found",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25564",
+            "timingMs": 2
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhorii00w1v9jkebwj96na",
+        "title": "#вакансия #Python #MiddlePython Middle Developer Компания: Luna Capital (аутстафф) Локация: строго РФ Формат: удаленка Р",
+        "link": "https://t.me/ru_pythonjobs/25563",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 1536
+        },
+        "originalPreview": "#вакансия #Python #MiddlePython Middle Developer Компания: Luna Capital (аутстафф) Локация: строго РФ Формат: удаленка РФ Грейд: миддл Вилка: от 140 000₽ ️ Занятость: фуллтайм🏻 Оформление: любое на выбор кандидата.—————————————————-О ПРОЕКТЕ:Команда развивает внутренние сервисы ...",
+        "parsedPreview": {
+          "title": {
+            "value": "Middle Developer",
+            "role": "unknown",
+            "level": "middle",
+            "specialization": [],
+            "raw": "Middle Developer"
+          },
+          "salary": {
+            "min": 140000,
+            "max": null,
+            "currency": "RUB",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "кация: строго РФ Формат: удаленка РФ Грейд: миддл Вилка: от 140 000₽ ️ Занятость: фуллтайм🏻 Оформление: любое на выбор кандида"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@recruiter_vv"
+            ],
+            "urls": [
+              "https://www.lunacapital.ru/"
+            ]
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "employment_not_found",
+              "schedule_not_found",
+              "experience_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25563",
+            "timingMs": 1
+          }
+        }
+      }
+    ],
+    "contacts_missed_obvious": [
+      {
+        "jobId": "cmjbhn6qs00a8v9jkcabv4w7v",
+        "title": "Младший продуктовый редак­торУдалённо‍Привет! Ищу редактора, который поможет Т⁠-⁠Банку привлекать сильных кандидатов и р",
+        "link": "https://www.vseti.app/vakansii/434383494393404303434342",
+        "issue": "contacts_missed_obvious",
+        "detail": {
+          "originalHasEmail": true,
+          "originalHasAt": false
+        },
+        "originalPreview": "Младший продуктовый редак­торУдалённо‍Привет! Ищу редактора, который поможет Т⁠-⁠Банку привлекать сильных кандидатов и развивать бренд работодателя и технобренд‍Какому продукту нужно помогатьУ редакции разные заказчики. Сейчас я ищу редактора, который будет помогать привлекать ка...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Младший продуктовый редак­торУдалённо‍Привет! Ищу редактора, который поможет Т⁠-⁠Банку привлекать сильных кандидатов и р"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": "Ищу редактора",
+              "country": "который поможет Т",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "input_separator_normalized",
+              "input_truncated",
+              "multi_vacancy_detected",
+              "contacts_not_found",
+              "salary_not_found",
+              "work_format_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://www.vseti.app/vakansii/434383494393404303434342",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhn6qs00asv9jkuwj6a183",
+        "title": "Младший продуктовый редак­торУдалённо‍Привет! Ищу редактора, который поможет Т⁠-⁠Банку привлекать сильных кандидатов и р",
+        "link": "https://www.vseti.app/vakansii/434383494393404303434342",
+        "issue": "contacts_missed_obvious",
+        "detail": {
+          "originalHasEmail": true,
+          "originalHasAt": false
+        },
+        "originalPreview": "Младший продуктовый редак­торУдалённо‍Привет! Ищу редактора, который поможет Т⁠-⁠Банку привлекать сильных кандидатов и развивать бренд работодателя и технобренд‍Какому продукту нужно помогатьУ редакции разные заказчики. Сейчас я ищу редактора, который будет помогать привлекать ка...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Младший продуктовый редак­торУдалённо‍Привет! Ищу редактора, который поможет Т⁠-⁠Банку привлекать сильных кандидатов и р"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": "Ищу редактора",
+              "country": "который поможет Т",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "input_separator_normalized",
+              "input_truncated",
+              "multi_vacancy_detected",
+              "contacts_not_found",
+              "salary_not_found",
+              "work_format_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://www.vseti.app/vakansii/434383494393404303434342",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhn6qs00bcv9jkix7r9vbu",
+        "title": "Младший продуктовый редак­торУдалённо‍Привет! Ищу редактора, который поможет Т⁠-⁠Банку привлекать сильных кандидатов и р",
+        "link": "https://www.vseti.app/vakansii/434383494393404303434342",
+        "issue": "contacts_missed_obvious",
+        "detail": {
+          "originalHasEmail": true,
+          "originalHasAt": false
+        },
+        "originalPreview": "Младший продуктовый редак­торУдалённо‍Привет! Ищу редактора, который поможет Т⁠-⁠Банку привлекать сильных кандидатов и развивать бренд работодателя и технобренд‍Какому продукту нужно помогатьУ редакции разные заказчики. Сейчас я ищу редактора, который будет помогать привлекать ка...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Младший продуктовый редак­торУдалённо‍Привет! Ищу редактора, который поможет Т⁠-⁠Банку привлекать сильных кандидатов и р"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": "Ищу редактора",
+              "country": "который поможет Т",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "input_separator_normalized",
+              "input_truncated",
+              "multi_vacancy_detected",
+              "contacts_not_found",
+              "salary_not_found",
+              "work_format_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://www.vseti.app/vakansii/434383494393404303434342",
+            "timingMs": 1
+          }
+        }
+      }
+    ],
+    "title_glued_or_too_long_raw": [
+      {
+        "jobId": "cmjbhorii00vnv9jktn2tacct",
+        "title": "#вакансия #vacancy #job #remote #AI #deep_research #middle #senior #ML #machine_learning #DS #Data_science #OCR #python ",
+        "link": "https://t.me/ru_pythonjobs/25548",
+        "issue": "title_glued_or_too_long_raw",
+        "detail": {
+          "rawLen": 140,
+          "rawPreview": "Research engineer (remote)Skygen.ai - стартап, делаем ИИ-агента который выполняет любую задачу на компьютере.Нужен инженер (с ресерч-эксперт"
+        },
+        "originalPreview": "#вакансия #vacancy #job #remote #AI #deep_research #middle #senior #ML #machine_learning #DS #Data_science #OCR #python #RAG #pytorchDeep Research engineer (remote)Skygen.ai — стартап, делаем ИИ-агента который выполняет любую задачу на компьютере.Нужен инженер (с ресерч-экспертиз...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Research engineer (remote)Skygen.ai - стартап, делаем ИИ-агента который выполняет любую задачу на компьютере.Нужен инженер (с ресерч-эксперт"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": null,
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@foreverinlovewithsummer"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "salary_not_found",
+              "employment_not_found",
+              "schedule_not_found",
+              "location_not_found",
+              "title_low_confidence",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25548",
+            "timingMs": 0
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhorii00w7v9jkugn7j1k3",
+        "title": "#вакансия #vacancy #job #remote #AI #deep_research #middle #senior #ML #machine_learning #DS #Data_science #OCR #python ",
+        "link": "https://t.me/ru_pythonjobs/25548",
+        "issue": "title_glued_or_too_long_raw",
+        "detail": {
+          "rawLen": 140,
+          "rawPreview": "Research engineer (remote)Skygen.ai - стартап, делаем ИИ-агента который выполняет любую задачу на компьютере.Нужен инженер (с ресерч-эксперт"
+        },
+        "originalPreview": "#вакансия #vacancy #job #remote #AI #deep_research #middle #senior #ML #machine_learning #DS #Data_science #OCR #python #RAG #pytorchDeep Research engineer (remote)Skygen.ai — стартап, делаем ИИ-агента который выполняет любую задачу на компьютере.Нужен инженер (с ресерч-экспертиз...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Research engineer (remote)Skygen.ai - стартап, делаем ИИ-агента который выполняет любую задачу на компьютере.Нужен инженер (с ресерч-эксперт"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": null,
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@foreverinlovewithsummer"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "salary_not_found",
+              "employment_not_found",
+              "schedule_not_found",
+              "location_not_found",
+              "title_low_confidence",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25548",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhorii00wrv9jktreeec7w",
+        "title": "#вакансия #vacancy #job #remote #AI #deep_research #middle #senior #ML #machine_learning #DS #Data_science #OCR #python ",
+        "link": "https://t.me/ru_pythonjobs/25548",
+        "issue": "title_glued_or_too_long_raw",
+        "detail": {
+          "rawLen": 140,
+          "rawPreview": "Research engineer (remote)Skygen.ai - стартап, делаем ИИ-агента который выполняет любую задачу на компьютере.Нужен инженер (с ресерч-эксперт"
+        },
+        "originalPreview": "#вакансия #vacancy #job #remote #AI #deep_research #middle #senior #ML #machine_learning #DS #Data_science #OCR #python #RAG #pytorchDeep Research engineer (remote)Skygen.ai — стартап, делаем ИИ-агента который выполняет любую задачу на компьютере.Нужен инженер (с ресерч-экспертиз...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Research engineer (remote)Skygen.ai - стартап, делаем ИИ-агента который выполняет любую задачу на компьютере.Нужен инженер (с ресерч-эксперт"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": null,
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@foreverinlovewithsummer"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "salary_not_found",
+              "employment_not_found",
+              "schedule_not_found",
+              "location_not_found",
+              "title_low_confidence",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25548",
+            "timingMs": 0
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhn6qs009vv9jk0h08il07",
+        "title": "SMM managerУдалённоКомпания Hiiro (https://hiiro.app) — это лондонский стартап, созданный командой опытных IT-специалист",
+        "link": "https://www.vseti.app/vakansii/4334843943034043493834343",
+        "issue": "title_glued_or_too_long_raw",
+        "detail": {
+          "rawLen": 140,
+          "rawPreview": "Описание стажировки:Компания Hiiro приглашает амбициозного и креативного стажера в отдел маркетинга на направление SMM. Стажировка ориентиро"
+        },
+        "originalPreview": "SMM managerУдалённоКомпания Hiiro (https://hiiro.app) — это лондонский стартап, созданный командой опытных IT-специалистов и бегунов-энтузиастов. Мы разрабатываем инновационное мобильное приложение для iPhone, которое помогает пользователям подготовиться и успешно преодолеть свой...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "intern",
+            "specialization": [],
+            "raw": "Описание стажировки:Компания Hiiro приглашает амбициозного и креативного стажера в отдел маркетинга на направление SMM. Стажировка ориентиро"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": "London",
+              "country": "UK",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": [
+              "https://hiiro.app"
+            ]
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "input_separator_normalized",
+              "input_truncated",
+              "salary_not_found",
+              "work_format_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://www.vseti.app/vakansii/4334843943034043493834343",
+            "timingMs": 2
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhn6qs00afv9jkn5n0ivjt",
+        "title": "SMM managerУдалённоКомпания Hiiro (https://hiiro.app) — это лондонский стартап, созданный командой опытных IT-специалист",
+        "link": "https://www.vseti.app/vakansii/4334843943034043493834343",
+        "issue": "title_glued_or_too_long_raw",
+        "detail": {
+          "rawLen": 140,
+          "rawPreview": "Описание стажировки:Компания Hiiro приглашает амбициозного и креативного стажера в отдел маркетинга на направление SMM. Стажировка ориентиро"
+        },
+        "originalPreview": "SMM managerУдалённоКомпания Hiiro (https://hiiro.app) — это лондонский стартап, созданный командой опытных IT-специалистов и бегунов-энтузиастов. Мы разрабатываем инновационное мобильное приложение для iPhone, которое помогает пользователям подготовиться и успешно преодолеть свой...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "intern",
+            "specialization": [],
+            "raw": "Описание стажировки:Компания Hiiro приглашает амбициозного и креативного стажера в отдел маркетинга на направление SMM. Стажировка ориентиро"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": "London",
+              "country": "UK",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": [
+              "https://hiiro.app"
+            ]
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "input_separator_normalized",
+              "input_truncated",
+              "salary_not_found",
+              "work_format_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://www.vseti.app/vakansii/4334843943034043493834343",
+            "timingMs": 3
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhn6qs00azv9jkqndam3dl",
+        "title": "SMM managerУдалённоКомпания Hiiro (https://hiiro.app) — это лондонский стартап, созданный командой опытных IT-специалист",
+        "link": "https://www.vseti.app/vakansii/4334843943034043493834343",
+        "issue": "title_glued_or_too_long_raw",
+        "detail": {
+          "rawLen": 140,
+          "rawPreview": "Описание стажировки:Компания Hiiro приглашает амбициозного и креативного стажера в отдел маркетинга на направление SMM. Стажировка ориентиро"
+        },
+        "originalPreview": "SMM managerУдалённоКомпания Hiiro (https://hiiro.app) — это лондонский стартап, созданный командой опытных IT-специалистов и бегунов-энтузиастов. Мы разрабатываем инновационное мобильное приложение для iPhone, которое помогает пользователям подготовиться и успешно преодолеть свой...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "intern",
+            "specialization": [],
+            "raw": "Описание стажировки:Компания Hiiro приглашает амбициозного и креативного стажера в отдел маркетинга на направление SMM. Стажировка ориентиро"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": "London",
+              "country": "UK",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": [
+              "https://hiiro.app"
+            ]
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "input_separator_normalized",
+              "input_truncated",
+              "salary_not_found",
+              "work_format_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://www.vseti.app/vakansii/4334843943034043493834343",
+            "timingMs": 2
+          }
+        }
+      }
+    ]
+  },
+  "totals": {
+    "jobs": 1472,
+    "jobsWithIssues": 108,
+    "issues": 108
+  }
+}

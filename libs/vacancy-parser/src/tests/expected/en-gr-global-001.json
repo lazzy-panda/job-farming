@@ -1,0 +1,98 @@
+{
+  "title": {
+    "value": "Backend Engineer",
+    "role": "backend_developer",
+    "level": "unknown",
+    "specialization": [],
+    "raw": "Backend Engineer"
+  },
+  "salary": {
+    "min": 60000,
+    "max": 75000,
+    "currency": "EUR",
+    "period": "year",
+    "salaryType": "unknown",
+    "raw": "Backend Engineer Athens, Greece (Hybrid) Salary: €60.000-€75.000 p.a. Apply: https://example.gr/jobs"
+  },
+  "contacts": {
+    "emails": [],
+    "phones": [],
+    "telegram": [],
+    "urls": [
+      "https://example.gr/jobs"
+    ]
+  },
+  "employment": {
+    "types": []
+  },
+  "workFormat": {
+    "value": "hybrid"
+  },
+  "schedule": {
+    "patterns": [],
+    "hoursPerWeek": null,
+    "hasNightShifts": false,
+    "hasWeekends": false,
+    "isFlexible": false
+  },
+  "location": {
+    "value": {
+      "city": "Athens",
+      "country": "Greece",
+      "relocation": false,
+      "visaSupport": false
+    }
+  },
+  "experience": {
+    "minYears": null,
+    "maxYears": null
+  },
+  "tech": {
+    "must": [],
+    "plus": [],
+    "all": []
+  },
+  "languages": {
+    "required": [],
+    "plus": []
+  },
+  "benefits": [],
+  "interview": {
+    "steps": [],
+    "hasTestTask": false
+  },
+  "company": {
+    "name": null
+  },
+  "confidence": {
+    "title": 0.6681877721681662,
+    "salary": 1,
+    "contacts": 0.5,
+    "employment": 0,
+    "workFormat": 0.75,
+    "schedule": 0,
+    "location": 0.9000000000000001,
+    "experience": 0,
+    "tech": 0,
+    "languages": 0,
+    "benefits": 0,
+    "interview": 0,
+    "company": 0,
+    "total": 1
+  },
+  "meta": {
+    "lang": "en",
+    "warnings": [
+      "employment_not_found",
+      "schedule_not_found",
+      "experience_not_found",
+      "tech_not_found",
+      "languages_not_found",
+      "benefits_not_found",
+      "interview_not_found",
+      "company_not_found"
+    ],
+    "sourceUrl": null,
+    "timingMs": 0
+  }
+}

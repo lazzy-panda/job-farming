@@ -1,0 +1,32 @@
+<mat-card>
+  <mat-card-title>Добавить вакансию</mat-card-title>
+  <mat-card-content>
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Заголовок</mat-label>
+        <input matInput [(ngModel)]="model.title" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Компания</mat-label>
+        <input matInput [(ngModel)]="model.company" />
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Ссылка</mat-label>
+        <input matInput [(ngModel)]="model.link" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Статус</mat-label>
+        <mat-select [(ngModel)]="model.status">
+          <mat-option value="new">New</mat-option>
+          <mat-option value="applied">Applied</mat-option>
+          <mat-option value="archived">Archived</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <button mat-flat-button color="primary" (click)="submit.emit(model)">Создать</button>
+  </mat-card-content>
+</mat-card>
+
+

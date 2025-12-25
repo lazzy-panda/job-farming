@@ -1,0 +1,102 @@
+{
+  "title": {
+    "value": "Senior Backend Engineer",
+    "role": "backend_developer",
+    "level": "senior",
+    "specialization": [],
+    "raw": "Senior Backend Engineer"
+  },
+  "salary": {
+    "min": 650,
+    "max": 650,
+    "currency": "EUR",
+    "period": "day",
+    "salaryType": "unknown",
+    "raw": "Senior Backend Engineer Rate: €650/day (B2B) Location: EU only Apply: https://example.eu/apply"
+  },
+  "contacts": {
+    "emails": [],
+    "phones": [],
+    "telegram": [],
+    "urls": [
+      "https://example.eu/apply"
+    ]
+  },
+  "employment": {
+    "types": [
+      "b2b"
+    ]
+  },
+  "workFormat": {
+    "value": "unknown"
+  },
+  "schedule": {
+    "patterns": [],
+    "hoursPerWeek": null,
+    "hasNightShifts": false,
+    "hasWeekends": false,
+    "isFlexible": false
+  },
+  "location": {
+    "value": {
+      "city": null,
+      "country": null,
+      "relocation": false,
+      "visaSupport": false
+    }
+  },
+  "experience": {
+    "minYears": null,
+    "maxYears": null
+  },
+  "tech": {
+    "must": [],
+    "plus": [],
+    "all": []
+  },
+  "languages": {
+    "required": [],
+    "plus": []
+  },
+  "benefits": [],
+  "interview": {
+    "steps": [],
+    "hasTestTask": false
+  },
+  "company": {
+    "name": null
+  },
+  "confidence": {
+    "title": 0.7407748991821539,
+    "salary": 0.8,
+    "contacts": 0.5,
+    "employment": 0.75,
+    "workFormat": 0,
+    "schedule": 0,
+    "location": 0,
+    "experience": 0,
+    "tech": 0,
+    "languages": 0,
+    "benefits": 0,
+    "interview": 0,
+    "company": 0,
+    "total": 0.8
+  },
+  "meta": {
+    "lang": "en",
+    "warnings": [
+      "work_format_not_found",
+      "schedule_not_found",
+      "location_not_found",
+      "location_region_only:EU",
+      "experience_not_found",
+      "tech_not_found",
+      "languages_not_found",
+      "benefits_not_found",
+      "interview_not_found",
+      "company_not_found"
+    ],
+    "sourceUrl": null,
+    "timingMs": 0
+  }
+}

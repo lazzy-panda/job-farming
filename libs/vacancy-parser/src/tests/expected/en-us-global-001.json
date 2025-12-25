@@ -1,0 +1,103 @@
+{
+  "title": {
+    "value": "Senior Software Engineer",
+    "role": "unknown",
+    "level": "senior",
+    "specialization": [],
+    "raw": "Senior Software Engineer"
+  },
+  "salary": {
+    "min": 253,
+    "max": 650,
+    "currency": "USD",
+    "period": "month",
+    "salaryType": "unknown",
+    "raw": "com - Phone: 650-253-0000 - Apply: https://example.com/jobs/123"
+  },
+  "contacts": {
+    "emails": [
+      "hiring@example.com"
+    ],
+    "phones": [
+      "+16502530000"
+    ],
+    "telegram": [],
+    "urls": [
+      "https://example.com/jobs/123"
+    ]
+  },
+  "employment": {
+    "types": []
+  },
+  "workFormat": {
+    "value": "hybrid"
+  },
+  "schedule": {
+    "patterns": [],
+    "hoursPerWeek": null,
+    "hasNightShifts": false,
+    "hasWeekends": false,
+    "isFlexible": false
+  },
+  "location": {
+    "value": {
+      "city": "New York",
+      "country": "NY",
+      "relocation": false,
+      "visaSupport": false
+    }
+  },
+  "experience": {
+    "minYears": null,
+    "maxYears": null
+  },
+  "tech": {
+    "must": [],
+    "plus": [],
+    "all": []
+  },
+  "languages": {
+    "required": [],
+    "plus": []
+  },
+  "benefits": [
+    "bonus"
+  ],
+  "interview": {
+    "steps": [],
+    "hasTestTask": false
+  },
+  "company": {
+    "name": null
+  },
+  "confidence": {
+    "title": 0.5866175789173301,
+    "salary": 0.9,
+    "contacts": 0.7999999999999999,
+    "employment": 0,
+    "workFormat": 0.75,
+    "schedule": 0,
+    "location": 0.9000000000000001,
+    "experience": 0,
+    "tech": 0,
+    "languages": 0,
+    "benefits": 0.46,
+    "interview": 0,
+    "company": 0,
+    "total": 0.9000000000000001
+  },
+  "meta": {
+    "lang": "en",
+    "warnings": [
+      "employment_not_found",
+      "schedule_not_found",
+      "experience_not_found",
+      "tech_not_found",
+      "languages_not_found",
+      "interview_not_found",
+      "company_not_found"
+    ],
+    "sourceUrl": null,
+    "timingMs": 0
+  }
+}

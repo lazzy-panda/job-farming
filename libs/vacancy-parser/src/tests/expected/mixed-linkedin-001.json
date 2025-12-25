@@ -1,0 +1,108 @@
+{
+  "title": {
+    "value": "Frontend Developer",
+    "role": "frontend_developer",
+    "level": "unknown",
+    "specialization": [],
+    "raw": "Frontend Developer"
+  },
+  "salary": {
+    "min": 1501,
+    "max": 1701,
+    "currency": "EUR",
+    "period": "month",
+    "salaryType": "unknown",
+    "raw": "English B2 - опыт от 2 лет Nice to have: German B1 Оплата: 1501-1701 EUR Контакт: @jobs_1"
+  },
+  "contacts": {
+    "emails": [],
+    "phones": [],
+    "telegram": [
+      "@jobs_1"
+    ],
+    "urls": []
+  },
+  "employment": {
+    "types": []
+  },
+  "workFormat": {
+    "value": "unknown"
+  },
+  "schedule": {
+    "patterns": [],
+    "hoursPerWeek": null,
+    "hasNightShifts": false,
+    "hasWeekends": false,
+    "isFlexible": false
+  },
+  "location": {
+    "value": {
+      "city": null,
+      "country": null,
+      "relocation": false,
+      "visaSupport": false
+    }
+  },
+  "experience": {
+    "minYears": 2,
+    "maxYears": null
+  },
+  "tech": {
+    "must": [],
+    "plus": [],
+    "all": []
+  },
+  "languages": {
+    "required": [
+      {
+        "language": "English",
+        "level": "B2"
+      }
+    ],
+    "plus": [
+      {
+        "language": "German",
+        "level": "B1"
+      }
+    ]
+  },
+  "benefits": [],
+  "interview": {
+    "steps": [],
+    "hasTestTask": false
+  },
+  "company": {
+    "name": null
+  },
+  "confidence": {
+    "title": 0.6681877721681662,
+    "salary": 0.9,
+    "contacts": 0.5,
+    "employment": 0,
+    "workFormat": 0,
+    "schedule": 0,
+    "location": 0,
+    "experience": 0.7000000000000001,
+    "tech": 0,
+    "languages": 0.55,
+    "benefits": 0,
+    "interview": 0,
+    "company": 0,
+    "total": 0.9
+  },
+  "meta": {
+    "lang": "mixed",
+    "warnings": [
+      "employment_not_found",
+      "work_format_not_found",
+      "schedule_not_found",
+      "location_not_found",
+      "tech_not_found",
+      "benefits_not_found",
+      "interview_not_found",
+      "company_not_found"
+    ],
+    "sourceUrl": null,
+    "timingMs": 0
+  }
+}

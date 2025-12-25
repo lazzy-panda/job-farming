@@ -1,0 +1,2993 @@
+{
+  "maxExamplesPerType": 10,
+  "counts": {
+    "salary_false_positive_year": 20,
+    "contacts_urls_trailing_punct": 24,
+    "original_text_looks_like_multi_vacancy_dump": 48,
+    "salary_currency_unknown_but_mentioned": 33,
+    "title_glued_or_too_long_raw": 3,
+    "title_starts_with_hashtags": 6
+  },
+  "examples": {
+    "salary_false_positive_year": [
+      {
+        "jobId": "cmjbhnzns00k5v9jkxnbl488j",
+        "title": "ИЩЕМ 3D Motion Designer с опытом производства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство ",
+        "link": "https://svmd.io/creativeproduction",
+        "issue": "salary_false_positive_year",
+        "detail": {
+          "min": 2013,
+          "max": 2013,
+          "currency": "UNKNOWN",
+          "hint": "looks like year but no salary keywords in text"
+        },
+        "originalPreview": "ИЩЕМ 3D Motion Designer с опытом производства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство SVMD (https://svmd.io/creativeproduction) успешно занимается закупкой мобильной рекламы по всему миру. Среди наших клиентов — топ-10 игровых компаний на мировом...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "3D Motion Designer с опытом производства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство"
+          },
+          "salary": {
+            "min": 2013,
+            "max": 2013,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "дства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство SVMD (https://svmd.io/creativeproduction) ус"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@mprobably"
+            ],
+            "urls": [
+              "https://forms.yandex.ru/cloud/673499d590fa7ba4c6988bb7/Marin,",
+              "https://svmd.io/creativeproduction"
+            ]
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "salary_low_confidence",
+              "work_format_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://svmd.io/creativeproduction",
+            "timingMs": 11
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhnzns00knv9jkekhkt02y",
+        "title": "ИЩЕМ 3D Motion Designer с опытом производства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство ",
+        "link": "https://svmd.io/creativeproduction",
+        "issue": "salary_false_positive_year",
+        "detail": {
+          "min": 2013,
+          "max": 2013,
+          "currency": "UNKNOWN",
+          "hint": "looks like year but no salary keywords in text"
+        },
+        "originalPreview": "ИЩЕМ 3D Motion Designer с опытом производства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство SVMD (https://svmd.io/creativeproduction) успешно занимается закупкой мобильной рекламы по всему миру. Среди наших клиентов — топ-10 игровых компаний на мировом...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "3D Motion Designer с опытом производства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство"
+          },
+          "salary": {
+            "min": 2013,
+            "max": 2013,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "дства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство SVMD (https://svmd.io/creativeproduction) ус"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@mprobably"
+            ],
+            "urls": [
+              "https://forms.yandex.ru/cloud/673499d590fa7ba4c6988bb7/Marin,",
+              "https://svmd.io/creativeproduction"
+            ]
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "salary_low_confidence",
+              "work_format_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://svmd.io/creativeproduction",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhnzns00l5v9jk1lpmefee",
+        "title": "ИЩЕМ 3D Motion Designer с опытом производства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство ",
+        "link": "https://svmd.io/creativeproduction",
+        "issue": "salary_false_positive_year",
+        "detail": {
+          "min": 2013,
+          "max": 2013,
+          "currency": "UNKNOWN",
+          "hint": "looks like year but no salary keywords in text"
+        },
+        "originalPreview": "ИЩЕМ 3D Motion Designer с опытом производства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство SVMD (https://svmd.io/creativeproduction) успешно занимается закупкой мобильной рекламы по всему миру. Среди наших клиентов — топ-10 игровых компаний на мировом...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "3D Motion Designer с опытом производства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство"
+          },
+          "salary": {
+            "min": 2013,
+            "max": 2013,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "дства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство SVMD (https://svmd.io/creativeproduction) ус"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@mprobably"
+            ],
+            "urls": [
+              "https://forms.yandex.ru/cloud/673499d590fa7ba4c6988bb7/Marin,",
+              "https://svmd.io/creativeproduction"
+            ]
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "salary_low_confidence",
+              "work_format_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://svmd.io/creativeproduction",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbf4fiz0005hgjkyuela8hh",
+        "title": "ИЩЕМ 3D Motion Designer с опытом производства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство ",
+        "link": "https://svmd.io/",
+        "issue": "salary_false_positive_year",
+        "detail": {
+          "min": 2013,
+          "max": 2013,
+          "currency": "UNKNOWN",
+          "hint": "looks like year but no salary keywords in text"
+        },
+        "originalPreview": "ИЩЕМ 3D Motion Designer с опытом производства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство SVMD успешно занимается закупкой мобильной рекламы по всему миру. Среди наших клиентов — топ-10 игровых компаний на мировом рынке.Что нам важно:- Профессиональн...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "3D Motion Designer с опытом производства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство"
+          },
+          "salary": {
+            "min": 2013,
+            "max": 2013,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "дства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство SVMD успешно занимается закупкой мобильной р"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": [
+              "https://forms.yandex.ru/cloud/673499d590fa7ba4c6988bb7/"
+            ]
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "salary_low_confidence",
+              "employment_not_found",
+              "work_format_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://svmd.io/",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbf4fiz000ghgjkaz5qmanm",
+        "title": "ИЩЕМ 3D Motion Designer с опытом производства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство ",
+        "link": "https://svmd.io/",
+        "issue": "salary_false_positive_year",
+        "detail": {
+          "min": 2013,
+          "max": 2013,
+          "currency": "UNKNOWN",
+          "hint": "looks like year but no salary keywords in text"
+        },
+        "originalPreview": "ИЩЕМ 3D Motion Designer с опытом производства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство SVMD успешно занимается закупкой мобильной рекламы по всему миру. Среди наших клиентов — топ-10 игровых компаний на мировом рынке.Что нам важно:- Профессиональн...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "3D Motion Designer с опытом производства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство"
+          },
+          "salary": {
+            "min": 2013,
+            "max": 2013,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "дства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство SVMD успешно занимается закупкой мобильной р"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": [
+              "https://forms.yandex.ru/cloud/673499d590fa7ba4c6988bb7/"
+            ]
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "salary_low_confidence",
+              "employment_not_found",
+              "work_format_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://svmd.io/",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhnvkh00ijv9jk8i1lqwys",
+        "title": "Помните тот самый новогодний вайб из детства? За окном снег, скоро Новый год, а ты читаешь сказки в гостях у бабушки и ж",
+        "link": "https://cpeople.timepad.ru/event/3701185/",
+        "issue": "salary_false_positive_year",
+        "detail": {
+          "min": 2026,
+          "max": 2026,
+          "currency": "UNKNOWN",
+          "hint": "looks like year but no salary keywords in text"
+        },
+        "originalPreview": "Помните тот самый новогодний вайб из детства? За окном снег, скоро Новый год, а ты читаешь сказки в гостях у бабушки и ждёшь чуда Чтобы хоть немного его прочувствовать, 18 декабря в 15:00 весь диджитал-рынок будет украшать виртуальную ёлку в figma на Наряжалово-2026 от агентства ...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Помните тот самый новогодний вайб из детства? За окном снег, скоро Новый год, а ты читаешь сказки в гостях у бабушки и ж"
+          },
+          "salary": {
+            "min": 2026,
+            "max": 2026,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "рынок будет украшать виртуальную ёлку в figma на Наряжалово-2026 от агентства CreativePeople ‍️ В этом году погрузимся в атм"
+          },
+          "location": {
+            "value": {
+              "city": "За окном снег",
+              "country": "скоро Новый год",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [
+              "+77709959022"
+            ],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "salary_low_confidence",
+              "employment_not_found",
+              "work_format_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found"
+            ],
+            "sourceUrl": "https://cpeople.timepad.ru/event/3701185/",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhnvkh00j3v9jksrlh548z",
+        "title": "Помните тот самый новогодний вайб из детства? За окном снег, скоро Новый год, а ты читаешь сказки в гостях у бабушки и ж",
+        "link": "https://cpeople.timepad.ru/event/3701185/",
+        "issue": "salary_false_positive_year",
+        "detail": {
+          "min": 2026,
+          "max": 2026,
+          "currency": "UNKNOWN",
+          "hint": "looks like year but no salary keywords in text"
+        },
+        "originalPreview": "Помните тот самый новогодний вайб из детства? За окном снег, скоро Новый год, а ты читаешь сказки в гостях у бабушки и ждёшь чуда Чтобы хоть немного его прочувствовать, 18 декабря в 15:00 весь диджитал-рынок будет украшать виртуальную ёлку в figma на Наряжалово-2026 от агентства ...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Помните тот самый новогодний вайб из детства? За окном снег, скоро Новый год, а ты читаешь сказки в гостях у бабушки и ж"
+          },
+          "salary": {
+            "min": 2026,
+            "max": 2026,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "рынок будет украшать виртуальную ёлку в figma на Наряжалово-2026 от агентства CreativePeople ‍️ В этом году погрузимся в атм"
+          },
+          "location": {
+            "value": {
+              "city": "За окном снег",
+              "country": "скоро Новый год",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [
+              "+77709959022"
+            ],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "salary_low_confidence",
+              "employment_not_found",
+              "work_format_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found"
+            ],
+            "sourceUrl": "https://cpeople.timepad.ru/event/3701185/",
+            "timingMs": 0
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhnvkh00jnv9jknjw87vs4",
+        "title": "Помните тот самый новогодний вайб из детства? За окном снег, скоро Новый год, а ты читаешь сказки в гостях у бабушки и ж",
+        "link": "https://cpeople.timepad.ru/event/3701185/",
+        "issue": "salary_false_positive_year",
+        "detail": {
+          "min": 2026,
+          "max": 2026,
+          "currency": "UNKNOWN",
+          "hint": "looks like year but no salary keywords in text"
+        },
+        "originalPreview": "Помните тот самый новогодний вайб из детства? За окном снег, скоро Новый год, а ты читаешь сказки в гостях у бабушки и ждёшь чуда Чтобы хоть немного его прочувствовать, 18 декабря в 15:00 весь диджитал-рынок будет украшать виртуальную ёлку в figma на Наряжалово-2026 от агентства ...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Помните тот самый новогодний вайб из детства? За окном снег, скоро Новый год, а ты читаешь сказки в гостях у бабушки и ж"
+          },
+          "salary": {
+            "min": 2026,
+            "max": 2026,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "рынок будет украшать виртуальную ёлку в figma на Наряжалово-2026 от агентства CreativePeople ‍️ В этом году погрузимся в атм"
+          },
+          "location": {
+            "value": {
+              "city": "За окном снег",
+              "country": "скоро Новый год",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [
+              "+77709959022"
+            ],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "salary_low_confidence",
+              "employment_not_found",
+              "work_format_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found"
+            ],
+            "sourceUrl": "https://cpeople.timepad.ru/event/3701185/",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhncqn00byv9jku1jpilnj",
+        "title": "(#Удаленка) Требуется #дизайнер - #верстальщик, проектно (многостраничные издания)Ищу несколько графических дизайнеров у",
+        "link": "https://t.me/talentedpeoples/31627",
+        "issue": "salary_false_positive_year",
+        "detail": {
+          "min": 2026,
+          "max": 2026,
+          "currency": "UNKNOWN",
+          "hint": "looks like year but no salary keywords in text"
+        },
+        "originalPreview": "(#Удаленка) Требуется #дизайнер - #верстальщик, проектно (многостраничные издания)Ищу несколько графических дизайнеров удаленно на проектное сотрудничество по июнь 2026.Задача: верстка контента многостраничных изданий согласно общей дизайн-концепции, работа со стилями (построение...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "(#Удаленка) Требуется #дизайнер - #верстальщик, проектно (многостраничные издания)Ищу несколько графических дизайнеров у"
+          },
+          "salary": {
+            "min": 2026,
+            "max": 2026,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "ких дизайнеров удаленно на проектное сотрудничество по июнь 2026.Задача: верстка контента многостраничных изданий согласно о"
+          },
+          "location": {
+            "value": {
+              "city": "верстальщик",
+              "country": "проектно",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": [
+              "https://docs.google.com/forms/d/e/1FAIpQLSfEJRPCC_XazLsGPnNFH7HZjMvm2w744QbMk6_LTT0kuE44CQ/viewformСобираю"
+            ]
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "salary_low_confidence",
+              "employment_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/talentedpeoples/31627",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhncqn00civ9jkuszkculs",
+        "title": "(#Удаленка) Требуется #дизайнер - #верстальщик, проектно (многостраничные издания)Ищу несколько графических дизайнеров у",
+        "link": "https://t.me/talentedpeoples/31627",
+        "issue": "salary_false_positive_year",
+        "detail": {
+          "min": 2026,
+          "max": 2026,
+          "currency": "UNKNOWN",
+          "hint": "looks like year but no salary keywords in text"
+        },
+        "originalPreview": "(#Удаленка) Требуется #дизайнер - #верстальщик, проектно (многостраничные издания)Ищу несколько графических дизайнеров удаленно на проектное сотрудничество по июнь 2026.Задача: верстка контента многостраничных изданий согласно общей дизайн-концепции, работа со стилями (построение...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "(#Удаленка) Требуется #дизайнер - #верстальщик, проектно (многостраничные издания)Ищу несколько графических дизайнеров у"
+          },
+          "salary": {
+            "min": 2026,
+            "max": 2026,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "ких дизайнеров удаленно на проектное сотрудничество по июнь 2026.Задача: верстка контента многостраничных изданий согласно о"
+          },
+          "location": {
+            "value": {
+              "city": "верстальщик",
+              "country": "проектно",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": [
+              "https://docs.google.com/forms/d/e/1FAIpQLSfEJRPCC_XazLsGPnNFH7HZjMvm2w744QbMk6_LTT0kuE44CQ/viewformСобираю"
+            ]
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "salary_low_confidence",
+              "employment_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/talentedpeoples/31627",
+            "timingMs": 1
+          }
+        }
+      }
+    ],
+    "contacts_urls_trailing_punct": [
+      {
+        "jobId": "cmjbhnzns00k5v9jkxnbl488j",
+        "title": "ИЩЕМ 3D Motion Designer с опытом производства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство ",
+        "link": "https://svmd.io/creativeproduction",
+        "issue": "contacts_urls_trailing_punct",
+        "detail": {
+          "badUrls": [
+            "https://forms.yandex.ru/cloud/673499d590fa7ba4c6988bb7/Marin,"
+          ]
+        },
+        "originalPreview": "ИЩЕМ 3D Motion Designer с опытом производства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство SVMD (https://svmd.io/creativeproduction) успешно занимается закупкой мобильной рекламы по всему миру. Среди наших клиентов — топ-10 игровых компаний на мировом...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "3D Motion Designer с опытом производства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство"
+          },
+          "salary": {
+            "min": 2013,
+            "max": 2013,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "дства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство SVMD (https://svmd.io/creativeproduction) ус"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@mprobably"
+            ],
+            "urls": [
+              "https://forms.yandex.ru/cloud/673499d590fa7ba4c6988bb7/Marin,",
+              "https://svmd.io/creativeproduction"
+            ]
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "salary_low_confidence",
+              "work_format_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://svmd.io/creativeproduction",
+            "timingMs": 11
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhnzns00knv9jkekhkt02y",
+        "title": "ИЩЕМ 3D Motion Designer с опытом производства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство ",
+        "link": "https://svmd.io/creativeproduction",
+        "issue": "contacts_urls_trailing_punct",
+        "detail": {
+          "badUrls": [
+            "https://forms.yandex.ru/cloud/673499d590fa7ba4c6988bb7/Marin,"
+          ]
+        },
+        "originalPreview": "ИЩЕМ 3D Motion Designer с опытом производства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство SVMD (https://svmd.io/creativeproduction) успешно занимается закупкой мобильной рекламы по всему миру. Среди наших клиентов — топ-10 игровых компаний на мировом...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "3D Motion Designer с опытом производства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство"
+          },
+          "salary": {
+            "min": 2013,
+            "max": 2013,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "дства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство SVMD (https://svmd.io/creativeproduction) ус"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@mprobably"
+            ],
+            "urls": [
+              "https://forms.yandex.ru/cloud/673499d590fa7ba4c6988bb7/Marin,",
+              "https://svmd.io/creativeproduction"
+            ]
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "salary_low_confidence",
+              "work_format_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://svmd.io/creativeproduction",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhnzns00l5v9jk1lpmefee",
+        "title": "ИЩЕМ 3D Motion Designer с опытом производства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство ",
+        "link": "https://svmd.io/creativeproduction",
+        "issue": "contacts_urls_trailing_punct",
+        "detail": {
+          "badUrls": [
+            "https://forms.yandex.ru/cloud/673499d590fa7ba4c6988bb7/Marin,"
+          ]
+        },
+        "originalPreview": "ИЩЕМ 3D Motion Designer с опытом производства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство SVMD (https://svmd.io/creativeproduction) успешно занимается закупкой мобильной рекламы по всему миру. Среди наших клиентов — топ-10 игровых компаний на мировом...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "3D Motion Designer с опытом производства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство"
+          },
+          "salary": {
+            "min": 2013,
+            "max": 2013,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "дства рекламных креативов в GameDev и анимационных роликовС 2013 года агентство SVMD (https://svmd.io/creativeproduction) ус"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@mprobably"
+            ],
+            "urls": [
+              "https://forms.yandex.ru/cloud/673499d590fa7ba4c6988bb7/Marin,",
+              "https://svmd.io/creativeproduction"
+            ]
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "salary_low_confidence",
+              "work_format_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://svmd.io/creativeproduction",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbh9kz50006v9jk00f9my2w",
+        "title": "3D Character Artist‍️ Тип: #Freelance #Outsource #Part-time #Full-time Ищем: #3D #Character #GameDev️ Обязанности и треб",
+        "link": "https://t.me/devjobs/12044",
+        "issue": "contacts_urls_trailing_punct",
+        "detail": {
+          "badUrls": [
+            "https://t.me/David_Young_tg️Пожалуйста,"
+          ]
+        },
+        "originalPreview": "3D Character Artist‍️ Тип: #Freelance #Outsource #Part-time #Full-time Ищем: #3D #Character #GameDev️ Обязанности и требования:• Моделинг и оптимизация персонажей (hi/low poly, AAA)• Ретопология, UV, запекание карт, PBR-текстуры (Substance Painter)• Анатомия, топология под анимац...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "3D Character Artist‍️ Тип: #Freelance #Outsource #Part-time #Full-time Ищем: #3D #Character #GameDev️"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": "low poly",
+              "country": "AAA",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@David_Young_tg"
+            ],
+            "urls": [
+              "https://t.me/David_Young_tg️Пожалуйста,"
+            ]
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "salary_not_found",
+              "employment_conflict_full_part",
+              "work_format_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/devjobs/12044",
+            "timingMs": 0
+          }
+        }
+      },
+      {
+        "jobId": "cmjbh9kz5000dv9jkizzoir7u",
+        "title": "3D Character Artist‍️ Тип: #Freelance #Outsource #Part-time #Full-time Ищем: #3D #Character #GameDev️ Обязанности и треб",
+        "link": "https://t.me/devjobs/12044",
+        "issue": "contacts_urls_trailing_punct",
+        "detail": {
+          "badUrls": [
+            "https://t.me/David_Young_tg️Пожалуйста,"
+          ]
+        },
+        "originalPreview": "3D Character Artist‍️ Тип: #Freelance #Outsource #Part-time #Full-time Ищем: #3D #Character #GameDev️ Обязанности и требования:• Моделинг и оптимизация персонажей (hi/low poly, AAA)• Ретопология, UV, запекание карт, PBR-текстуры (Substance Painter)• Анатомия, топология под анимац...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "3D Character Artist‍️ Тип: #Freelance #Outsource #Part-time #Full-time Ищем: #3D #Character #GameDev️"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": "low poly",
+              "country": "AAA",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@David_Young_tg"
+            ],
+            "urls": [
+              "https://t.me/David_Young_tg️Пожалуйста,"
+            ]
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "salary_not_found",
+              "employment_conflict_full_part",
+              "work_format_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/devjobs/12044",
+            "timingMs": 0
+          }
+        }
+      },
+      {
+        "jobId": "cmjbh9kz5000kv9jkmuf946sd",
+        "title": "3D Character Artist‍️ Тип: #Freelance #Outsource #Part-time #Full-time Ищем: #3D #Character #GameDev️ Обязанности и треб",
+        "link": "https://t.me/devjobs/12044",
+        "issue": "contacts_urls_trailing_punct",
+        "detail": {
+          "badUrls": [
+            "https://t.me/David_Young_tg️Пожалуйста,"
+          ]
+        },
+        "originalPreview": "3D Character Artist‍️ Тип: #Freelance #Outsource #Part-time #Full-time Ищем: #3D #Character #GameDev️ Обязанности и требования:• Моделинг и оптимизация персонажей (hi/low poly, AAA)• Ретопология, UV, запекание карт, PBR-текстуры (Substance Painter)• Анатомия, топология под анимац...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "3D Character Artist‍️ Тип: #Freelance #Outsource #Part-time #Full-time Ищем: #3D #Character #GameDev️"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": "low poly",
+              "country": "AAA",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@David_Young_tg"
+            ],
+            "urls": [
+              "https://t.me/David_Young_tg️Пожалуйста,"
+            ]
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "salary_not_found",
+              "employment_conflict_full_part",
+              "work_format_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/devjobs/12044",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbh9kz50005v9jkyfyq51i7",
+        "title": "2D Character Artist‍️Тип: #Freelance, #Outsource #Part-time, #Full-timeИщем: #2D, #Character #Concept️ Обязанности и тре",
+        "link": "https://t.me/devjobs/12043",
+        "issue": "contacts_urls_trailing_punct",
+        "detail": {
+          "badUrls": [
+            "https://t.me/David_Young_tg️Пожалуйста,"
+          ]
+        },
+        "originalPreview": "2D Character Artist‍️Тип: #Freelance, #Outsource #Part-time, #Full-timeИщем: #2D, #Character #Concept️ Обязанности и требования:• Участие в создании визуального стиля персонажей в соответствии с заданным направлением, совместно с арт-директором, гейм-дизайнерами и 3D-художниками;...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "2D Character Artist‍️Тип: #Freelance, #Outsource #Part-time, #Full-timeИщем: #2D, #Character #Concept️"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": null,
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@David_Young_tg"
+            ],
+            "urls": [
+              "https://t.me/David_Young_tg️Пожалуйста,"
+            ]
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "salary_not_found",
+              "employment_conflict_full_part",
+              "work_format_not_found",
+              "schedule_not_found",
+              "location_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/devjobs/12043",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbh9kz5000cv9jk8mctf2fp",
+        "title": "2D Character Artist‍️Тип: #Freelance, #Outsource #Part-time, #Full-timeИщем: #2D, #Character #Concept️ Обязанности и тре",
+        "link": "https://t.me/devjobs/12043",
+        "issue": "contacts_urls_trailing_punct",
+        "detail": {
+          "badUrls": [
+            "https://t.me/David_Young_tg️Пожалуйста,"
+          ]
+        },
+        "originalPreview": "2D Character Artist‍️Тип: #Freelance, #Outsource #Part-time, #Full-timeИщем: #2D, #Character #Concept️ Обязанности и требования:• Участие в создании визуального стиля персонажей в соответствии с заданным направлением, совместно с арт-директором, гейм-дизайнерами и 3D-художниками;...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "2D Character Artist‍️Тип: #Freelance, #Outsource #Part-time, #Full-timeИщем: #2D, #Character #Concept️"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": null,
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@David_Young_tg"
+            ],
+            "urls": [
+              "https://t.me/David_Young_tg️Пожалуйста,"
+            ]
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "salary_not_found",
+              "employment_conflict_full_part",
+              "work_format_not_found",
+              "schedule_not_found",
+              "location_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/devjobs/12043",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbh9kz5000jv9jk7pj46eni",
+        "title": "2D Character Artist‍️Тип: #Freelance, #Outsource #Part-time, #Full-timeИщем: #2D, #Character #Concept️ Обязанности и тре",
+        "link": "https://t.me/devjobs/12043",
+        "issue": "contacts_urls_trailing_punct",
+        "detail": {
+          "badUrls": [
+            "https://t.me/David_Young_tg️Пожалуйста,"
+          ]
+        },
+        "originalPreview": "2D Character Artist‍️Тип: #Freelance, #Outsource #Part-time, #Full-timeИщем: #2D, #Character #Concept️ Обязанности и требования:• Участие в создании визуального стиля персонажей в соответствии с заданным направлением, совместно с арт-директором, гейм-дизайнерами и 3D-художниками;...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "2D Character Artist‍️Тип: #Freelance, #Outsource #Part-time, #Full-timeИщем: #2D, #Character #Concept️"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": null,
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@David_Young_tg"
+            ],
+            "urls": [
+              "https://t.me/David_Young_tg️Пожалуйста,"
+            ]
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "salary_not_found",
+              "employment_conflict_full_part",
+              "work_format_not_found",
+              "schedule_not_found",
+              "location_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/devjobs/12043",
+            "timingMs": 0
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhnvkh00iiv9jkb52t246n",
+        "title": "Специалист по обработке фотоГде: диджитал-агентство RapidWeb.Me http://rapidweb.me. Комплексное продвижение проектов в и",
+        "link": "http://rapidweb.me/",
+        "issue": "contacts_urls_trailing_punct",
+        "detail": {
+          "badUrls": [
+            "http://rapidweb.me."
+          ]
+        },
+        "originalPreview": "Специалист по обработке фотоГде: диджитал-агентство RapidWeb.Me http://rapidweb.me. Комплексное продвижение проектов в интернете. Зарплата: по договоренности (оклад или за 1 шт.)Обработка фото. Приведение фото товаров к единому формату по ТЗОбязанности- Приведение фото товаров в ...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Специалист по обработке фотоГде: диджитал-агентство RapidWeb.Me http://rapidweb.me. Комплексное продвижение проектов в и"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": null,
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": [
+              "http://rapidweb.me."
+            ]
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "salary_not_found",
+              "schedule_not_found",
+              "location_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "http://rapidweb.me/",
+            "timingMs": 1
+          }
+        }
+      }
+    ],
+    "original_text_looks_like_multi_vacancy_dump": [
+      {
+        "jobId": "cmjbhn6qs00adv9jkm49oum49",
+        "title": "Python разработчикУдалённоКомпания разрабатывает и внедряет свою платформу управления информацией о товарах. Выстраивает",
+        "link": "https://www.vseti.app/vakansii/437438893829443434343",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 3409
+        },
+        "originalPreview": "Python разработчикУдалённоКомпания разрабатывает и внедряет свою платформу управления информацией о товарах. Выстраивает и автоматизирует сквозной процесс: от создания и хранения данных до сбора аналитики по метрикам онлайн-продаж.В портфеле наших клиентов свыше 40+ глобальных ко...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "Python разработчикУдалённоКомпания разрабатывает и внедряет свою платформу управления информацией о товарах. Выстраивает"
+          },
+          "salary": {
+            "min": 170,
+            "max": 170,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "й офис во Франции (Лилль). Сейчас в компании работает более 170 сотрудников.‍Ключевые задачи:- Разработка скриптов на Pytho"
+          },
+          "location": {
+            "value": {
+              "city": "Moscow",
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "salary_low_confidence",
+              "title_low_confidence",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://www.vseti.app/vakansii/437438893829443434343",
+            "timingMs": 3
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhn6qs00axv9jkh8az3mu5",
+        "title": "Python разработчикУдалённоКомпания разрабатывает и внедряет свою платформу управления информацией о товарах. Выстраивает",
+        "link": "https://www.vseti.app/vakansii/437438893829443434343",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 3409
+        },
+        "originalPreview": "Python разработчикУдалённоКомпания разрабатывает и внедряет свою платформу управления информацией о товарах. Выстраивает и автоматизирует сквозной процесс: от создания и хранения данных до сбора аналитики по метрикам онлайн-продаж.В портфеле наших клиентов свыше 40+ глобальных ко...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "Python разработчикУдалённоКомпания разрабатывает и внедряет свою платформу управления информацией о товарах. Выстраивает"
+          },
+          "salary": {
+            "min": 170,
+            "max": 170,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "й офис во Франции (Лилль). Сейчас в компании работает более 170 сотрудников.‍Ключевые задачи:- Разработка скриптов на Pytho"
+          },
+          "location": {
+            "value": {
+              "city": "Moscow",
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "salary_low_confidence",
+              "title_low_confidence",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://www.vseti.app/vakansii/437438893829443434343",
+            "timingMs": 2
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhn6qs00bhv9jk702nevhs",
+        "title": "Python разработчикУдалённоКомпания разрабатывает и внедряет свою платформу управления информацией о товарах. Выстраивает",
+        "link": "https://www.vseti.app/vakansii/437438893829443434343",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 3409
+        },
+        "originalPreview": "Python разработчикУдалённоКомпания разрабатывает и внедряет свою платформу управления информацией о товарах. Выстраивает и автоматизирует сквозной процесс: от создания и хранения данных до сбора аналитики по метрикам онлайн-продаж.В портфеле наших клиентов свыше 40+ глобальных ко...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "Python разработчикУдалённоКомпания разрабатывает и внедряет свою платформу управления информацией о товарах. Выстраивает"
+          },
+          "salary": {
+            "min": 170,
+            "max": 170,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "й офис во Франции (Лилль). Сейчас в компании работает более 170 сотрудников.‍Ключевые задачи:- Разработка скриптов на Pytho"
+          },
+          "location": {
+            "value": {
+              "city": "Moscow",
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "salary_low_confidence",
+              "title_low_confidence",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://www.vseti.app/vakansii/437438893829443434343",
+            "timingMs": 2
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhn6qs00acv9jk206ezgfn",
+        "title": "Менеджер продуктаПитер, офисКакие задачи вас ждутКонкурентный анализ и помощь в проработке новых направлений‍Вы погрузит",
+        "link": "https://www.vseti.app/vakansii/343473493434340349348343",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 3042
+        },
+        "originalPreview": "Менеджер продуктаПитер, офисКакие задачи вас ждутКонкурентный анализ и помощь в проработке новых направлений‍Вы погрузитесь в полный цикл продуктового дискавери: от конкурентного анализа до защиты нового продукта. Вам предстоит генерировать и проверять гипотезы, чтобы определить,...",
+        "parsedPreview": {
+          "title": {
+            "value": "Менеджер продуктаПитер, офис",
+            "role": "product_manager",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Менеджер продуктаПитер, офис"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": "Moscow",
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "salary_not_found",
+              "experience_not_found",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://www.vseti.app/vakansii/343473493434340349348343",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhn6qs00awv9jkp88thmwz",
+        "title": "Менеджер продуктаПитер, офисКакие задачи вас ждутКонкурентный анализ и помощь в проработке новых направлений‍Вы погрузит",
+        "link": "https://www.vseti.app/vakansii/343473493434340349348343",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 3042
+        },
+        "originalPreview": "Менеджер продуктаПитер, офисКакие задачи вас ждутКонкурентный анализ и помощь в проработке новых направлений‍Вы погрузитесь в полный цикл продуктового дискавери: от конкурентного анализа до защиты нового продукта. Вам предстоит генерировать и проверять гипотезы, чтобы определить,...",
+        "parsedPreview": {
+          "title": {
+            "value": "Менеджер продуктаПитер, офис",
+            "role": "product_manager",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Менеджер продуктаПитер, офис"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": "Moscow",
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "salary_not_found",
+              "experience_not_found",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://www.vseti.app/vakansii/343473493434340349348343",
+            "timingMs": 2
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhn6qs00bgv9jkckyjn78y",
+        "title": "Менеджер продуктаПитер, офисКакие задачи вас ждутКонкурентный анализ и помощь в проработке новых направлений‍Вы погрузит",
+        "link": "https://www.vseti.app/vakansii/343473493434340349348343",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 3042
+        },
+        "originalPreview": "Менеджер продуктаПитер, офисКакие задачи вас ждутКонкурентный анализ и помощь в проработке новых направлений‍Вы погрузитесь в полный цикл продуктового дискавери: от конкурентного анализа до защиты нового продукта. Вам предстоит генерировать и проверять гипотезы, чтобы определить,...",
+        "parsedPreview": {
+          "title": {
+            "value": "Менеджер продуктаПитер, офис",
+            "role": "product_manager",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Менеджер продуктаПитер, офис"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": "Moscow",
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "salary_not_found",
+              "experience_not_found",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://www.vseti.app/vakansii/343473493434340349348343",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhn6qs00aav9jk7930i800",
+        "title": "Motion DesignerУдалённо‍Are you passionate about motion design, AI, and the fast-paced world of social media? Our team a",
+        "link": "https://www.vseti.app/vakansii/4394394303034439340343433443",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 1269
+        },
+        "originalPreview": "Motion DesignerУдалённо‍Are you passionate about motion design, AI, and the fast-paced world of social media? Our team at VIDS is looking for a creative, forward-thinking 𝗠𝗼𝘁𝗶𝗼𝗻 𝗗𝗲𝘀𝗶𝗴𝗻𝗲𝗿 to craft eye-catching advertising creatives for platforms like Instagram and Ti...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Motion DesignerУдалённо‍Are you passionate about motion design, AI, and the fast-paced world of social media? Our team a"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "en",
+            "warnings": [
+              "contacts_not_found",
+              "salary_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://www.vseti.app/vakansii/4394394303034439340343433443",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhn6qs00auv9jklog9pj57",
+        "title": "Motion DesignerУдалённо‍Are you passionate about motion design, AI, and the fast-paced world of social media? Our team a",
+        "link": "https://www.vseti.app/vakansii/4394394303034439340343433443",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 1269
+        },
+        "originalPreview": "Motion DesignerУдалённо‍Are you passionate about motion design, AI, and the fast-paced world of social media? Our team at VIDS is looking for a creative, forward-thinking 𝗠𝗼𝘁𝗶𝗼𝗻 𝗗𝗲𝘀𝗶𝗴𝗻𝗲𝗿 to craft eye-catching advertising creatives for platforms like Instagram and Ti...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Motion DesignerУдалённо‍Are you passionate about motion design, AI, and the fast-paced world of social media? Our team a"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "en",
+            "warnings": [
+              "contacts_not_found",
+              "salary_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://www.vseti.app/vakansii/4394394303034439340343433443",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhn6qs00bev9jkkbwy0ukl",
+        "title": "Motion DesignerУдалённо‍Are you passionate about motion design, AI, and the fast-paced world of social media? Our team a",
+        "link": "https://www.vseti.app/vakansii/4394394303034439340343433443",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 1269
+        },
+        "originalPreview": "Motion DesignerУдалённо‍Are you passionate about motion design, AI, and the fast-paced world of social media? Our team at VIDS is looking for a creative, forward-thinking 𝗠𝗼𝘁𝗶𝗼𝗻 𝗗𝗲𝘀𝗶𝗴𝗻𝗲𝗿 to craft eye-catching advertising creatives for platforms like Instagram and Ti...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Motion DesignerУдалённо‍Are you passionate about motion design, AI, and the fast-paced world of social media? Our team a"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "en",
+            "warnings": [
+              "contacts_not_found",
+              "salary_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://www.vseti.app/vakansii/4394394303034439340343433443",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhob0s00p6v9jk8bt2607m",
+        "title": "️PR-специалист/маркетолог для продвижения спектаклей и имиджа Новосибирского Театра Эстрады, удаленно, оплату обсуждают ",
+        "link": "https://forms.gle/DQdQGkV6tc8UTh4s8",
+        "issue": "original_text_looks_like_multi_vacancy_dump",
+        "detail": {
+          "length": 1702
+        },
+        "originalPreview": "️PR-специалист/маркетолог для продвижения спектаклей и имиджа Новосибирского Театра Эстрады, удаленно, оплату обсуждают с кандидатомТеатру нужен специалист, который поможет привлекать зрителей на мероприятия через разные рекламные каналы, формировать узнаваемость театра и работат...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "middle",
+            "specialization": [],
+            "raw": "️PR-специалист/маркетолог для продвижения спектаклей и имиджа Новосибирского Театра Эстрады, удаленно, оплату обсуждают"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": "Novosibirsk",
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "contacts_not_found",
+              "salary_not_found",
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://forms.gle/DQdQGkV6tc8UTh4s8",
+            "timingMs": 1
+          }
+        }
+      }
+    ],
+    "salary_currency_unknown_but_mentioned": [
+      {
+        "jobId": "cmjbhn6qs00abv9jktjga4r96",
+        "title": "Коллеги-дизайнеры!Недавно мы запустили новый канал с вакансиями для UX, product, motion и graphic дизайнеров.Что вы полу",
+        "link": "https://t.me/tribute/app?startapp=ep_b1iMP5lm2flEtkg1sNGQZuCt6EArtoaA4fhlvVQQhDH5YSifNaEX4sj4c5",
+        "issue": "salary_currency_unknown_but_mentioned",
+        "detail": {
+          "min": 50,
+          "max": 70,
+          "currency": "UNKNOWN",
+          "mentioned": "RUB"
+        },
+        "originalPreview": "Коллеги-дизайнеры!Недавно мы запустили новый канал с вакансиями для UX, product, motion и graphic дизайнеров.Что вы получите? 50–70 свежих вакансий в месяц, которых нет на vseti.app, HH и часто в других телеграм каналах Работу в компаниях типа InDrive, Авиасейлс, Prequel, Tabby, ...",
+        "parsedPreview": {
+          "title": {
+            "value": "Коллеги-дизайнеры!Недавно мы запустили новый канал с вакансиями для UX, product, motion и graphic дизайнеров.Что вы полу",
+            "role": "ux_ui_designer",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Коллеги-дизайнеры!Недавно мы запустили новый канал с вакансиями для UX, product, motion и graphic дизайнеров.Что вы полу"
+          },
+          "salary": {
+            "min": 50,
+            "max": 70,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "я UX, product, motion и graphic дизайнеров.Что вы получите? 50-70 свежих вакансий в месяц, которых нет на vseti.app, HH и"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@tribute"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "schedule_not_found",
+              "experience_not_found",
+              "tech_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/tribute/app?startapp=ep_b1iMP5lm2flEtkg1sNGQZuCt6EArtoaA4fhlvVQQhDH5YSifNaEX4sj4c5",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhn6qs00avv9jk6p4qmyz3",
+        "title": "Коллеги-дизайнеры!Недавно мы запустили новый канал с вакансиями для UX, product, motion и graphic дизайнеров.Что вы полу",
+        "link": "https://t.me/tribute/app?startapp=ep_b1iMP5lm2flEtkg1sNGQZuCt6EArtoaA4fhlvVQQhDH5YSifNaEX4sj4c5",
+        "issue": "salary_currency_unknown_but_mentioned",
+        "detail": {
+          "min": 50,
+          "max": 70,
+          "currency": "UNKNOWN",
+          "mentioned": "RUB"
+        },
+        "originalPreview": "Коллеги-дизайнеры!Недавно мы запустили новый канал с вакансиями для UX, product, motion и graphic дизайнеров.Что вы получите? 50–70 свежих вакансий в месяц, которых нет на vseti.app, HH и часто в других телеграм каналах Работу в компаниях типа InDrive, Авиасейлс, Prequel, Tabby, ...",
+        "parsedPreview": {
+          "title": {
+            "value": "Коллеги-дизайнеры!Недавно мы запустили новый канал с вакансиями для UX, product, motion и graphic дизайнеров.Что вы полу",
+            "role": "ux_ui_designer",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Коллеги-дизайнеры!Недавно мы запустили новый канал с вакансиями для UX, product, motion и graphic дизайнеров.Что вы полу"
+          },
+          "salary": {
+            "min": 50,
+            "max": 70,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "я UX, product, motion и graphic дизайнеров.Что вы получите? 50-70 свежих вакансий в месяц, которых нет на vseti.app, HH и"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@tribute"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "schedule_not_found",
+              "experience_not_found",
+              "tech_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/tribute/app?startapp=ep_b1iMP5lm2flEtkg1sNGQZuCt6EArtoaA4fhlvVQQhDH5YSifNaEX4sj4c5",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhn6qs00bfv9jkobqed22u",
+        "title": "Коллеги-дизайнеры!Недавно мы запустили новый канал с вакансиями для UX, product, motion и graphic дизайнеров.Что вы полу",
+        "link": "https://t.me/tribute/app?startapp=ep_b1iMP5lm2flEtkg1sNGQZuCt6EArtoaA4fhlvVQQhDH5YSifNaEX4sj4c5",
+        "issue": "salary_currency_unknown_but_mentioned",
+        "detail": {
+          "min": 50,
+          "max": 70,
+          "currency": "UNKNOWN",
+          "mentioned": "RUB"
+        },
+        "originalPreview": "Коллеги-дизайнеры!Недавно мы запустили новый канал с вакансиями для UX, product, motion и graphic дизайнеров.Что вы получите? 50–70 свежих вакансий в месяц, которых нет на vseti.app, HH и часто в других телеграм каналах Работу в компаниях типа InDrive, Авиасейлс, Prequel, Tabby, ...",
+        "parsedPreview": {
+          "title": {
+            "value": "Коллеги-дизайнеры!Недавно мы запустили новый канал с вакансиями для UX, product, motion и graphic дизайнеров.Что вы полу",
+            "role": "ux_ui_designer",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Коллеги-дизайнеры!Недавно мы запустили новый канал с вакансиями для UX, product, motion и graphic дизайнеров.Что вы полу"
+          },
+          "salary": {
+            "min": 50,
+            "max": 70,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "я UX, product, motion и graphic дизайнеров.Что вы получите? 50-70 свежих вакансий в месяц, которых нет на vseti.app, HH и"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@tribute"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "schedule_not_found",
+              "experience_not_found",
+              "tech_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/tribute/app?startapp=ep_b1iMP5lm2flEtkg1sNGQZuCt6EArtoaA4fhlvVQQhDH5YSifNaEX4sj4c5",
+            "timingMs": 0
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhmlxg002nv9jkcmc9a4c8",
+        "title": "#вакансия #контент_менеджер Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бр",
+        "link": "https://t.me/frilancekomfort/12622",
+        "issue": "salary_currency_unknown_but_mentioned",
+        "detail": {
+          "min": null,
+          "max": 50,
+          "currency": "UNKNOWN",
+          "mentioned": "RUB"
+        },
+        "originalPreview": "#вакансия #контент_менеджер Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бренд БАДов. Сейчас наша ключевая задача — построить UGC-контент-завод и масштабировать short-контент.Ищем главу контент-завода, который будет выстраивать систему...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бр"
+          },
+          "salary": {
+            "min": null,
+            "max": 50,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "граничений контента БАДов.• Опыт масштабирования через UGC (30-50+ видео в неделю).Чтобы попасть на следующий этап, просим"
+          },
+          "location": {
+            "value": {
+              "city": "Moscow",
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@archidise"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/frilancekomfort/12622",
+            "timingMs": 2
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhmlxg0037v9jkorwzuxk2",
+        "title": "#вакансия #контент_менеджер Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бр",
+        "link": "https://t.me/frilancekomfort/12622",
+        "issue": "salary_currency_unknown_but_mentioned",
+        "detail": {
+          "min": null,
+          "max": 50,
+          "currency": "UNKNOWN",
+          "mentioned": "RUB"
+        },
+        "originalPreview": "#вакансия #контент_менеджер Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бренд БАДов. Сейчас наша ключевая задача — построить UGC-контент-завод и масштабировать short-контент.Ищем главу контент-завода, который будет выстраивать систему...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бр"
+          },
+          "salary": {
+            "min": null,
+            "max": 50,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "граничений контента БАДов.• Опыт масштабирования через UGC (30-50+ видео в неделю).Чтобы попасть на следующий этап, просим"
+          },
+          "location": {
+            "value": {
+              "city": "Moscow",
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@archidise"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/frilancekomfort/12622",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhmlxg003rv9jkq1mrt3rk",
+        "title": "#вакансия #контент_менеджер Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бр",
+        "link": "https://t.me/frilancekomfort/12622",
+        "issue": "salary_currency_unknown_but_mentioned",
+        "detail": {
+          "min": null,
+          "max": 50,
+          "currency": "UNKNOWN",
+          "mentioned": "RUB"
+        },
+        "originalPreview": "#вакансия #контент_менеджер Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бренд БАДов. Сейчас наша ключевая задача — построить UGC-контент-завод и масштабировать short-контент.Ищем главу контент-завода, который будет выстраивать систему...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бр"
+          },
+          "salary": {
+            "min": null,
+            "max": 50,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "граничений контента БАДов.• Опыт масштабирования через UGC (30-50+ видео в неделю).Чтобы попасть на следующий этап, просим"
+          },
+          "location": {
+            "value": {
+              "city": "Moscow",
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@archidise"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/frilancekomfort/12622",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhowdq00xpv9jk0hzjfs78",
+        "title": "Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бренд БАДов. Сейчас наша ключе",
+        "link": "https://t.me/archidise",
+        "issue": "salary_currency_unknown_but_mentioned",
+        "detail": {
+          "min": null,
+          "max": 50,
+          "currency": "UNKNOWN",
+          "mentioned": "RUB"
+        },
+        "originalPreview": "Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бренд БАДов. Сейчас наша ключевая задача — построить UGC-контент-завод и масштабировать short-контент.Ищем главу контент-завода, который будет выстраивать систему производства контента, учас...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бренд БАДов. Сейчас наша ключе"
+          },
+          "salary": {
+            "min": null,
+            "max": 50,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "граничений контента БАДов.• Опыт масштабирования через UGC (30-50+ видео в неделю).Чтобы попасть на следующий этап, просим"
+          },
+          "location": {
+            "value": {
+              "city": "Moscow",
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@archidise"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/archidise",
+            "timingMs": 2
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhowdq00y9v9jkbv6ziz3r",
+        "title": "Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бренд БАДов. Сейчас наша ключе",
+        "link": "https://t.me/archidise",
+        "issue": "salary_currency_unknown_but_mentioned",
+        "detail": {
+          "min": null,
+          "max": 50,
+          "currency": "UNKNOWN",
+          "mentioned": "RUB"
+        },
+        "originalPreview": "Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бренд БАДов. Сейчас наша ключевая задача — построить UGC-контент-завод и масштабировать short-контент.Ищем главу контент-завода, который будет выстраивать систему производства контента, учас...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бренд БАДов. Сейчас наша ключе"
+          },
+          "salary": {
+            "min": null,
+            "max": 50,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "граничений контента БАДов.• Опыт масштабирования через UGC (30-50+ видео в неделю).Чтобы попасть на следующий этап, просим"
+          },
+          "location": {
+            "value": {
+              "city": "Moscow",
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@archidise"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/archidise",
+            "timingMs": 2
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhowdq00ytv9jk9ja5t767",
+        "title": "Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бренд БАДов. Сейчас наша ключе",
+        "link": "https://t.me/archidise",
+        "issue": "salary_currency_unknown_but_mentioned",
+        "detail": {
+          "min": null,
+          "max": 50,
+          "currency": "UNKNOWN",
+          "mentioned": "RUB"
+        },
+        "originalPreview": "Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бренд БАДов. Сейчас наша ключевая задача — построить UGC-контент-завод и масштабировать short-контент.Ищем главу контент-завода, который будет выстраивать систему производства контента, учас...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Глава контент-завода / Контент-менеджер в молодой бренд БАДов. Москва.О НАС: Мы — молодой бренд БАДов. Сейчас наша ключе"
+          },
+          "salary": {
+            "min": null,
+            "max": 50,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "граничений контента БАДов.• Опыт масштабирования через UGC (30-50+ видео в неделю).Чтобы попасть на следующий этап, просим"
+          },
+          "location": {
+            "value": {
+              "city": "Moscow",
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@archidise"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/archidise",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhncqn00bxv9jkr4bd9mfj",
+        "title": "(#Удаленка) Требуется #копирайтер в Юнион Холдинг Задачи: – Создавать продающие тексты (Sales Letters)объёмом 15 000–40 ",
+        "link": "https://t.me/talentedpeoples/31626",
+        "issue": "salary_currency_unknown_but_mentioned",
+        "detail": {
+          "min": 15000,
+          "max": 40000,
+          "currency": "UNKNOWN",
+          "mentioned": "RUB"
+        },
+        "originalPreview": "(#Удаленка) Требуется #копирайтер в Юнион Холдинг Задачи: – Создавать продающие тексты (Sales Letters)объёмом 15 000–40 000 знаков; – Анализировать аудиторию, боли, возражения и формировать сильные офферы; – Структурировать тексты так, чтобы они продавали, удерживали внимание и д...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "(#Удаленка) Требуется #копирайтер в Юнион Холдинг Задачи: – Создавать продающие тексты (Sales Letters)объёмом 15 000–40"
+          },
+          "salary": {
+            "min": 15000,
+            "max": 40000,
+            "currency": "UNKNOWN",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "Задачи: - Создавать продающие тексты (Sales Letters)объёмом 15 000-40 000 знаков; - Анализировать аудиторию, боли, возражения"
+          },
+          "location": {
+            "value": {
+              "city": "Анализировать аудиторию",
+              "country": "боли",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [
+              "konstantinapapadopulu@union.business"
+            ],
+            "phones": [],
+            "telegram": [],
+            "urls": []
+          },
+          "meta": {
+            "lang": "ru",
+            "warnings": [
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/talentedpeoples/31626",
+            "timingMs": 0
+          }
+        }
+      }
+    ],
+    "title_glued_or_too_long_raw": [
+      {
+        "jobId": "cmjbhp5bx0110v9jkezrsqzil",
+        "title": "Задача:Карточка товараОписание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N",
+        "link": "https://clck.ru/3N9iqa",
+        "issue": "title_glued_or_too_long_raw",
+        "detail": {
+          "rawLen": 140,
+          "rawPreview": "Задача:Карточка товараОписание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N9iqa#Карточка_товара"
+        },
+        "originalPreview": "Задача:Карточка товараОписание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N9iqa#Карточка_товара @AcademyQA_ru_bot - Бесплатные курсы и вебинары@Vakanser_bot - Бот вакансий и фриланс задач@Work_for_everyone_bot - Удаленная работа и рабо...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "qa_engineer",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Задача:Карточка товараОписание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N9iqa#Карточка_товара"
+          },
+          "salary": {
+            "min": 1000,
+            "max": null,
+            "currency": "RUB",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "писание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N9iqa#Карточка_товара @Acad"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@AcademyQA_ru_bot"
+            ],
+            "urls": [
+              "https://clck.ru/3N9iqa#Карточка_товара"
+            ]
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://clck.ru/3N9iqa",
+            "timingMs": 0
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhp5bx011kv9jk7vdbtrtc",
+        "title": "Задача:Карточка товараОписание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N",
+        "link": "https://clck.ru/3N9iqa",
+        "issue": "title_glued_or_too_long_raw",
+        "detail": {
+          "rawLen": 140,
+          "rawPreview": "Задача:Карточка товараОписание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N9iqa#Карточка_товара"
+        },
+        "originalPreview": "Задача:Карточка товараОписание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N9iqa#Карточка_товара @AcademyQA_ru_bot - Бесплатные курсы и вебинары@Vakanser_bot - Бот вакансий и фриланс задач@Work_for_everyone_bot - Удаленная работа и рабо...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "qa_engineer",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Задача:Карточка товараОписание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N9iqa#Карточка_товара"
+          },
+          "salary": {
+            "min": 1000,
+            "max": null,
+            "currency": "RUB",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "писание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N9iqa#Карточка_товара @Acad"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@AcademyQA_ru_bot"
+            ],
+            "urls": [
+              "https://clck.ru/3N9iqa#Карточка_товара"
+            ]
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://clck.ru/3N9iqa",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhp5bx0124v9jkjaae8jw7",
+        "title": "Задача:Карточка товараОписание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N",
+        "link": "https://clck.ru/3N9iqa",
+        "issue": "title_glued_or_too_long_raw",
+        "detail": {
+          "rawLen": 140,
+          "rawPreview": "Задача:Карточка товараОписание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N9iqa#Карточка_товара"
+        },
+        "originalPreview": "Задача:Карточка товараОписание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N9iqa#Карточка_товара @AcademyQA_ru_bot - Бесплатные курсы и вебинары@Vakanser_bot - Бот вакансий и фриланс задач@Work_for_everyone_bot - Удаленная работа и рабо...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "qa_engineer",
+            "level": "unknown",
+            "specialization": [],
+            "raw": "Задача:Карточка товараОписание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N9iqa#Карточка_товара"
+          },
+          "salary": {
+            "min": 1000,
+            "max": null,
+            "currency": "RUB",
+            "period": "month",
+            "salaryType": "unknown",
+            "raw": "писание:Сделать карточку товара для сумки на WBОплата: от 1 000₽Откликнуться - https://clck.ru/3N9iqa#Карточка_товара @Acad"
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": "Russia",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@AcademyQA_ru_bot"
+            ],
+            "urls": [
+              "https://clck.ru/3N9iqa#Карточка_товара"
+            ]
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "schedule_not_found",
+              "title_low_confidence",
+              "experience_not_found",
+              "tech_not_found",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://clck.ru/3N9iqa",
+            "timingMs": 1
+          }
+        }
+      }
+    ],
+    "title_starts_with_hashtags": [
+      {
+        "jobId": "cmjbhorii00vuv9jk8n5ea8od",
+        "title": "#вакансия #Python #удаленно #fulltime #techlead #FastAPI #AI #NLP #LLM #BackendLead #TechLead #Docker #BigData #startup ",
+        "link": "https://t.me/ru_pythonjobs/25556",
+        "issue": "title_starts_with_hashtags",
+        "detail": {
+          "rawPreview": "#BigData #startup Python Tech Lead"
+        },
+        "originalPreview": "#вакансия #Python #удаленно #fulltime #techlead #FastAPI #AI #NLP #LLM #BackendLead #TechLead #Docker #BigData #startup Python Tech LeadКомпания: Devhunt (к/а)️Проект: High-load AI-платформа для глубокой аналитики поведения пользователей! Локация: Россия Формат работы: удаленноВи...",
+        "parsedPreview": {
+          "title": {
+            "value": "Python Tech Lead",
+            "role": "tech_lead",
+            "level": "lead",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "#BigData #startup Python Tech Lead"
+          },
+          "salary": {
+            "min": 350,
+            "max": 450,
+            "currency": "RUB",
+            "period": "month",
+            "salaryType": "gross",
+            "raw": "ользователей! Локация: Россия Формат работы: удаленноВилка: 350.000 - 450.000 руб (GROSS)Задачи:Руководство командой разработки"
+          },
+          "location": {
+            "value": {
+              "city": "планирование",
+              "country": "распределение задач",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@aljenat"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "work_format_not_found",
+              "schedule_not_found",
+              "experience_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25556",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhorii00wev9jkeeprbo3i",
+        "title": "#вакансия #Python #удаленно #fulltime #techlead #FastAPI #AI #NLP #LLM #BackendLead #TechLead #Docker #BigData #startup ",
+        "link": "https://t.me/ru_pythonjobs/25556",
+        "issue": "title_starts_with_hashtags",
+        "detail": {
+          "rawPreview": "#BigData #startup Python Tech Lead"
+        },
+        "originalPreview": "#вакансия #Python #удаленно #fulltime #techlead #FastAPI #AI #NLP #LLM #BackendLead #TechLead #Docker #BigData #startup Python Tech LeadКомпания: Devhunt (к/а)️Проект: High-load AI-платформа для глубокой аналитики поведения пользователей! Локация: Россия Формат работы: удаленноВи...",
+        "parsedPreview": {
+          "title": {
+            "value": "Python Tech Lead",
+            "role": "tech_lead",
+            "level": "lead",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "#BigData #startup Python Tech Lead"
+          },
+          "salary": {
+            "min": 350,
+            "max": 450,
+            "currency": "RUB",
+            "period": "month",
+            "salaryType": "gross",
+            "raw": "ользователей! Локация: Россия Формат работы: удаленноВилка: 350.000 - 450.000 руб (GROSS)Задачи:Руководство командой разработки"
+          },
+          "location": {
+            "value": {
+              "city": "планирование",
+              "country": "распределение задач",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@aljenat"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "work_format_not_found",
+              "schedule_not_found",
+              "experience_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25556",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhorii00wyv9jkq4zszfz4",
+        "title": "#вакансия #Python #удаленно #fulltime #techlead #FastAPI #AI #NLP #LLM #BackendLead #TechLead #Docker #BigData #startup ",
+        "link": "https://t.me/ru_pythonjobs/25556",
+        "issue": "title_starts_with_hashtags",
+        "detail": {
+          "rawPreview": "#BigData #startup Python Tech Lead"
+        },
+        "originalPreview": "#вакансия #Python #удаленно #fulltime #techlead #FastAPI #AI #NLP #LLM #BackendLead #TechLead #Docker #BigData #startup Python Tech LeadКомпания: Devhunt (к/а)️Проект: High-load AI-платформа для глубокой аналитики поведения пользователей! Локация: Россия Формат работы: удаленноВи...",
+        "parsedPreview": {
+          "title": {
+            "value": "Python Tech Lead",
+            "role": "tech_lead",
+            "level": "lead",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "#BigData #startup Python Tech Lead"
+          },
+          "salary": {
+            "min": 350,
+            "max": 450,
+            "currency": "RUB",
+            "period": "month",
+            "salaryType": "gross",
+            "raw": "ользователей! Локация: Россия Формат работы: удаленноВилка: 350.000 - 450.000 руб (GROSS)Задачи:Руководство командой разработки"
+          },
+          "location": {
+            "value": {
+              "city": "планирование",
+              "country": "распределение задач",
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@aljenat"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "work_format_not_found",
+              "schedule_not_found",
+              "experience_not_found",
+              "languages_not_found",
+              "benefits_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25556",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhorii00vnv9jktn2tacct",
+        "title": "#вакансия #vacancy #job #remote #AI #deep_research #middle #senior #ML #machine_learning #DS #Data_science #OCR #python ",
+        "link": "https://t.me/ru_pythonjobs/25548",
+        "issue": "title_starts_with_hashtags",
+        "detail": {
+          "rawPreview": "#OCR #python"
+        },
+        "originalPreview": "#вакансия #vacancy #job #remote #AI #deep_research #middle #senior #ML #machine_learning #DS #Data_science #OCR #python #RAG #pytorchDeep Research engineer (remote)Skygen.ai — стартап, делаем ИИ-агента который выполняет любую задачу на компьютере.Нужен инженер (с ресерч-экспертиз...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "#OCR #python"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": null,
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@foreverinlovewithsummer"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "salary_not_found",
+              "employment_not_found",
+              "schedule_not_found",
+              "location_not_found",
+              "title_low_confidence",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25548",
+            "timingMs": 1
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhorii00w7v9jkugn7j1k3",
+        "title": "#вакансия #vacancy #job #remote #AI #deep_research #middle #senior #ML #machine_learning #DS #Data_science #OCR #python ",
+        "link": "https://t.me/ru_pythonjobs/25548",
+        "issue": "title_starts_with_hashtags",
+        "detail": {
+          "rawPreview": "#OCR #python"
+        },
+        "originalPreview": "#вакансия #vacancy #job #remote #AI #deep_research #middle #senior #ML #machine_learning #DS #Data_science #OCR #python #RAG #pytorchDeep Research engineer (remote)Skygen.ai — стартап, делаем ИИ-агента который выполняет любую задачу на компьютере.Нужен инженер (с ресерч-экспертиз...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "#OCR #python"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": null,
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@foreverinlovewithsummer"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "salary_not_found",
+              "employment_not_found",
+              "schedule_not_found",
+              "location_not_found",
+              "title_low_confidence",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25548",
+            "timingMs": 0
+          }
+        }
+      },
+      {
+        "jobId": "cmjbhorii00wrv9jktreeec7w",
+        "title": "#вакансия #vacancy #job #remote #AI #deep_research #middle #senior #ML #machine_learning #DS #Data_science #OCR #python ",
+        "link": "https://t.me/ru_pythonjobs/25548",
+        "issue": "title_starts_with_hashtags",
+        "detail": {
+          "rawPreview": "#OCR #python"
+        },
+        "originalPreview": "#вакансия #vacancy #job #remote #AI #deep_research #middle #senior #ML #machine_learning #DS #Data_science #OCR #python #RAG #pytorchDeep Research engineer (remote)Skygen.ai — стартап, делаем ИИ-агента который выполняет любую задачу на компьютере.Нужен инженер (с ресерч-экспертиз...",
+        "parsedPreview": {
+          "title": {
+            "value": null,
+            "role": "unknown",
+            "level": "unknown",
+            "specialization": [
+              "Python"
+            ],
+            "raw": "#OCR #python"
+          },
+          "salary": {
+            "min": null,
+            "max": null,
+            "currency": "UNKNOWN",
+            "period": "unknown",
+            "salaryType": "unknown",
+            "raw": null
+          },
+          "location": {
+            "value": {
+              "city": null,
+              "country": null,
+              "relocation": false,
+              "visaSupport": false
+            }
+          },
+          "contacts": {
+            "emails": [],
+            "phones": [],
+            "telegram": [
+              "@foreverinlovewithsummer"
+            ],
+            "urls": []
+          },
+          "meta": {
+            "lang": "mixed",
+            "warnings": [
+              "salary_not_found",
+              "employment_not_found",
+              "schedule_not_found",
+              "location_not_found",
+              "title_low_confidence",
+              "languages_not_found",
+              "interview_not_found",
+              "company_not_found"
+            ],
+            "sourceUrl": "https://t.me/ru_pythonjobs/25548",
+            "timingMs": 0
+          }
+        }
+      }
+    ]
+  },
+  "totals": {
+    "jobs": 1472,
+    "jobsWithIssues": 131,
+    "issues": 134
+  }
+}

@@ -1,0 +1,10 @@
+Source: LinkedIn
+Requirements:
+- 3-5 years experience
+- TypeScript, Node.js
+Benefits:
+- Remote
+- Medical insurance
+Salary: $3031-$3531 per month gross
+Contacts: jobs31@example.com, https://www.example.com/careers
+Company: Example 31 Inc

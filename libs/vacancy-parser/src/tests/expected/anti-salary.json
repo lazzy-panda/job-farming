@@ -1,0 +1,101 @@
+{
+  "title": {
+    "value": "QA Engineer",
+    "role": "qa_engineer",
+    "level": "unknown",
+    "specialization": [],
+    "raw": "QA Engineer"
+  },
+  "salary": {
+    "min": null,
+    "max": null,
+    "currency": "UNKNOWN",
+    "period": "unknown",
+    "salaryType": "unknown",
+    "raw": null
+  },
+  "contacts": {
+    "emails": [],
+    "phones": [],
+    "telegram": [],
+    "urls": []
+  },
+  "employment": {
+    "types": []
+  },
+  "workFormat": {
+    "value": "unknown"
+  },
+  "schedule": {
+    "patterns": [],
+    "hoursPerWeek": null,
+    "hasNightShifts": false,
+    "hasWeekends": false,
+    "isFlexible": false
+  },
+  "location": {
+    "value": {
+      "city": null,
+      "country": null,
+      "relocation": false,
+      "visaSupport": false
+    }
+  },
+  "experience": {
+    "minYears": null,
+    "maxYears": null
+  },
+  "tech": {
+    "must": [],
+    "plus": [],
+    "all": []
+  },
+  "languages": {
+    "required": [],
+    "plus": []
+  },
+  "benefits": [
+    "bonus"
+  ],
+  "interview": {
+    "steps": [],
+    "hasTestTask": false
+  },
+  "company": {
+    "name": null
+  },
+  "confidence": {
+    "title": 0.6681877721681662,
+    "salary": 0,
+    "contacts": 0,
+    "employment": 0,
+    "workFormat": 0,
+    "schedule": 0,
+    "location": 0,
+    "experience": 0,
+    "tech": 0,
+    "languages": 0,
+    "benefits": 0.32,
+    "interview": 0,
+    "company": 0,
+    "total": 0.6681877721681662
+  },
+  "meta": {
+    "lang": "en",
+    "warnings": [
+      "contacts_not_found",
+      "salary_not_found",
+      "employment_not_found",
+      "work_format_not_found",
+      "schedule_not_found",
+      "location_not_found",
+      "experience_not_found",
+      "tech_not_found",
+      "languages_not_found",
+      "interview_not_found",
+      "company_not_found"
+    ],
+    "sourceUrl": null,
+    "timingMs": 0
+  }
+}

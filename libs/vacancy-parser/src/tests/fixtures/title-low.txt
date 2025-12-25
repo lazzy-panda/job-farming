@@ -1,0 +1,3 @@
+Requirements: strong TypeScript
+Responsibilities: build APIs
+Benefits: remote

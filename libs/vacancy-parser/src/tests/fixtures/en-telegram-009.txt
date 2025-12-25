@@ -1,0 +1,10 @@
+Source: Telegram
+Requirements:
+- 3-5 years experience
+- TypeScript, Node.js
+Benefits:
+- Remote
+- Medical insurance
+Salary: $3009-$3509 per month gross
+Contacts: jobs9@example.com, https://www.example.com/careers
+Company: Example 9 Inc

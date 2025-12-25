@@ -1,0 +1,48 @@
+<button
+  mat-icon-button
+  class="parse-btn"
+  [disabled]="!hasText()"
+  (click)="toggle()"
+  cdkOverlayOrigin
+  #origin="cdkOverlayOrigin"
+  aria-label="Показать JSON парсера"
+>
+  <mat-icon class="material-symbols-outlined">code</mat-icon>
+</button>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOpen]="open()"
+  [cdkConnectedOverlayOrigin]="origin"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  (backdropClick)="close()"
+  [cdkConnectedOverlayBackdropClass]="'parse-backdrop'"
+>
+  <div class="panel" role="dialog" aria-label="JSON парсера">
+    <div class="panel-header">
+      <div class="title">Parser JSON</div>
+      <div class="actions">
+        <button mat-icon-button (click)="copyJson()" [disabled]="!result()" aria-label="Скопировать JSON">
+          <mat-icon class="material-symbols-outlined">content_copy</mat-icon>
+        </button>
+        <button mat-icon-button (click)="refresh()" aria-label="Перепарсить">
+          <mat-icon class="material-symbols-outlined">refresh</mat-icon>
+        </button>
+        <button mat-icon-button (click)="close()" aria-label="Закрыть">
+          <mat-icon class="material-symbols-outlined">close</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <div class="state" *ngIf="loading()">Парсинг…</div>
+      <div class="state error" *ngIf="!loading() && error()">Ошибка парсинга</div>
+      <div class="state error" *ngIf="!loading() && !error() && isDisabled()">
+        Парсер выключен на API (VACANCY_PARSER_ENABLED=1)
+      </div>
+
+      <pre class="json" *ngIf="!loading() && !error() && result() as r">{{ r | json }}</pre>
+      <div class="state" *ngIf="!loading() && !error() && !result()">Нет данных</div>
+    </div>
+  </div>
+</ng-template>

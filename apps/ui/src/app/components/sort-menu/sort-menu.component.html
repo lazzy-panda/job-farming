@@ -1,0 +1,39 @@
+<div cdkOverlayOrigin #origin="cdkOverlayOrigin">
+  <button mat-stroked-button class="sort-btn" matTooltip="Сортировка" (click)="open = !open">
+    <mat-icon class="material-symbols-outlined" aria-hidden="true">sort</mat-icon>
+    <span>Сортировка</span>
+  </button>
+</div>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="origin"
+  [cdkConnectedOverlayOpen]="open"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  [cdkConnectedOverlayPositions]="overlayPositions"
+  (backdropClick)="open = false"
+  (detach)="open = false"
+>
+  <div class="sort-menu-panel">
+    <div class="sort-menu-content">
+      <div class="sort-header">
+        <h3 class="sort-title">Сортировка</h3>
+      </div>
+
+      <div class="sort-body">
+        <button
+          *ngFor="let option of sortOptions"
+          class="sort-option"
+          [class.active]="option.value === sortMode"
+          (click)="onSortSelect(option.value)"
+        >
+          <div class="option-content">
+            <span class="option-title">{{ option.label }}</span>
+            <span class="option-caption">{{ option.caption }}</span>
+          </div>
+          <span class="checkmark" *ngIf="option.value === sortMode">✔</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>

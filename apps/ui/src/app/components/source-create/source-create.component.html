@@ -1,0 +1,35 @@
+<div class="source-form">
+  <div class="field-label">Адрес</div>
+  <div class="field-box">
+    <mat-icon
+      *ngIf="model.url && model.url.toLowerCase().includes('t.me/')"
+      class="material-symbols-outlined telegram-icon"
+      aria-hidden="true"
+    >
+      forum
+    </mat-icon>
+    <input
+      matInput
+      placeholder="https://t.me/s/channel или https://example.com/feed"
+      [(ngModel)]="model.url"
+      (ngModelChange)="onUrlChange($event)"
+      (keyup.enter)="submitSource()"
+      [class.error]="urlError"
+    />
+  </div>
+  <div class="error-message" *ngIf="urlError">{{ urlError }}</div>
+  <div class="hint" *ngIf="!urlError && model.url">
+    <span *ngIf="isTelegramSource()">Telegram канал</span>
+    <span *ngIf="isRssSource()">RSS лента</span>
+  </div>
+
+  <button
+    mat-flat-button
+    color="primary"
+    class="submit-btn"
+    (click)="submitSource()"
+    [disabled]="!!urlError || !model.url || !model.url.trim()"
+  >
+    Добавить
+  </button>
+</div>

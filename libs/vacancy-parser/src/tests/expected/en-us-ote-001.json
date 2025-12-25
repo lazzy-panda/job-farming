@@ -1,0 +1,103 @@
+{
+  "title": {
+    "value": "Staff Software Engineer",
+    "role": "unknown",
+    "level": "principal",
+    "specialization": [],
+    "raw": "Staff Software Engineer"
+  },
+  "salary": {
+    "min": null,
+    "max": null,
+    "currency": "USD",
+    "period": "unknown",
+    "salaryType": "unknown",
+    "raw": "$"
+  },
+  "contacts": {
+    "emails": [
+      "jobs@us-example.com"
+    ],
+    "phones": [],
+    "telegram": [],
+    "urls": []
+  },
+  "employment": {
+    "types": []
+  },
+  "workFormat": {
+    "value": "remote"
+  },
+  "schedule": {
+    "patterns": [],
+    "hoursPerWeek": null,
+    "hasNightShifts": false,
+    "hasWeekends": false,
+    "isFlexible": false
+  },
+  "location": {
+    "value": {
+      "city": null,
+      "country": "USA",
+      "relocation": false,
+      "visaSupport": false
+    }
+  },
+  "experience": {
+    "minYears": null,
+    "maxYears": null
+  },
+  "tech": {
+    "must": [],
+    "plus": [],
+    "all": []
+  },
+  "languages": {
+    "required": [],
+    "plus": []
+  },
+  "benefits": [
+    "parental_leave",
+    "remote",
+    "retirement",
+    "vacation"
+  ],
+  "interview": {
+    "steps": [],
+    "hasTestTask": false
+  },
+  "company": {
+    "name": null
+  },
+  "confidence": {
+    "title": 0.5866175789173301,
+    "salary": 0.2,
+    "contacts": 0.5,
+    "employment": 0,
+    "workFormat": 0.85,
+    "schedule": 0,
+    "location": 0.7,
+    "experience": 0,
+    "tech": 0,
+    "languages": 0,
+    "benefits": 0.9500000000000001,
+    "interview": 0,
+    "company": 0,
+    "total": 0.9500000000000001
+  },
+  "meta": {
+    "lang": "en",
+    "warnings": [
+      "salary_currency_only",
+      "employment_not_found",
+      "schedule_not_found",
+      "experience_not_found",
+      "tech_not_found",
+      "languages_not_found",
+      "interview_not_found",
+      "company_not_found"
+    ],
+    "sourceUrl": null,
+    "timingMs": 0
+  }
+}

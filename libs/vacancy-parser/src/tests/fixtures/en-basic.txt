@@ -1,0 +1,10 @@
+Senior Backend Developer (Node.js, NestJS)
+Requirements:
+- 4+ years experience
+- TypeScript, Node.js, NestJS
+Benefits:
+- Remote
+- Medical insurance
+Salary: $3000-5000 per month gross
+Contacts: jobs@example.com, https://www.example.com/careers
+Company: Example Inc

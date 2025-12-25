@@ -1,0 +1,59 @@
+<div cdkOverlayOrigin #origin="cdkOverlayOrigin">
+  <button mat-icon-button class="filters-btn" matTooltip="Фильтры" (click)="open = !open">
+    <img src="/icons/filter.svg" alt="Фильтры" class="filter-icon" />
+  </button>
+</div>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="origin"
+  [cdkConnectedOverlayOpen]="open"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  [cdkConnectedOverlayPositions]="overlayPositions"
+  (backdropClick)="open = false"
+  (detach)="open = false"
+>
+  <div class="filters-menu-panel">
+    <div class="filters-menu-content">
+      <div class="filters-header">
+        <h3 class="filters-title">Фильтры</h3>
+      </div>
+
+      <div class="filters-body">
+        <div class="filter-field">
+          <div class="field-label">Статус</div>
+          <div class="field-box">
+          <mat-select [(ngModel)]="filters.status" panelClass="filters-select-panel">
+              <mat-option value="">Все</mat-option>
+              <mat-option value="new">New</mat-option>
+              <mat-option value="applied">Applied</mat-option>
+              <mat-option value="archived">Archived</mat-option>
+            </mat-select>
+          </div>
+        </div>
+
+        <div class="filter-field">
+          <div class="field-label">Источник</div>
+          <div class="field-box">
+          <mat-select [(ngModel)]="filters.sourceId" panelClass="filters-select-panel">
+              <mat-option value="">Все</mat-option>
+              <mat-option *ngFor="let s of sources" [value]="s.id">{{ s.name }}</mat-option>
+            </mat-select>
+          </div>
+        </div>
+      </div>
+
+      <div class="filters-footer">
+        <button
+          mat-flat-button
+          color="primary"
+          class="apply-btn"
+          (click)="apply.emit(); open = false"
+        >
+          Применить фильтры
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+

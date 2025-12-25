@@ -1,0 +1,47 @@
+/* Sneat Dashboard - Job Create Styles */
+
+mat-card-title {
+  margin-bottom: 24px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--sneat-text-dark);
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--sneat-border);
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+
+  &:last-of-type {
+    margin-bottom: 24px;
+  }
+}
+
+mat-form-field {
+  flex: 1 1 240px;
+
+  ::ng-deep {
+    .mat-mdc-text-field-wrapper {
+      padding-bottom: 0;
+    }
+  }
+}
+
+button {
+  margin-top: 8px;
+  min-width: 140px;
+  height: 40px;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(48, 86, 211, 0.2);
+  transition: all 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(48, 86, 211, 0.3);
+    transform: translateY(-1px);
+  }
+}
+
+

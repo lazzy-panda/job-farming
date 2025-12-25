@@ -1,0 +1,104 @@
+{
+  "title": {
+    "value": "Backend Entwickler",
+    "role": "backend_developer",
+    "level": "unknown",
+    "specialization": [],
+    "raw": "Backend Entwickler"
+  },
+  "salary": {
+    "min": null,
+    "max": null,
+    "currency": "UNKNOWN",
+    "period": "unknown",
+    "salaryType": "unknown",
+    "raw": null
+  },
+  "contacts": {
+    "emails": [
+      "jobs@example.de"
+    ],
+    "phones": [],
+    "telegram": [],
+    "urls": []
+  },
+  "employment": {
+    "types": []
+  },
+  "workFormat": {
+    "value": "unknown"
+  },
+  "schedule": {
+    "patterns": [],
+    "hoursPerWeek": null,
+    "hasNightShifts": false,
+    "hasWeekends": false,
+    "isFlexible": false
+  },
+  "location": {
+    "value": {
+      "city": null,
+      "country": null,
+      "relocation": false,
+      "visaSupport": false
+    }
+  },
+  "experience": {
+    "minYears": null,
+    "maxYears": null
+  },
+  "tech": {
+    "must": [
+      "JavaScript",
+      "Node.js"
+    ],
+    "plus": [],
+    "all": []
+  },
+  "languages": {
+    "required": [],
+    "plus": []
+  },
+  "benefits": [
+    "retirement"
+  ],
+  "interview": {
+    "steps": [],
+    "hasTestTask": false
+  },
+  "company": {
+    "name": null
+  },
+  "confidence": {
+    "title": 0.6681877721681662,
+    "salary": 0,
+    "contacts": 0.5,
+    "employment": 0,
+    "workFormat": 0,
+    "schedule": 0,
+    "location": 0,
+    "experience": 0,
+    "tech": 0.31,
+    "languages": 0,
+    "benefits": 0.46,
+    "interview": 0,
+    "company": 0,
+    "total": 0.6681877721681662
+  },
+  "meta": {
+    "lang": "en",
+    "warnings": [
+      "salary_not_found",
+      "employment_not_found",
+      "work_format_not_found",
+      "schedule_not_found",
+      "location_not_found",
+      "experience_not_found",
+      "languages_not_found",
+      "interview_not_found",
+      "company_not_found"
+    ],
+    "sourceUrl": null,
+    "timingMs": 0
+  }
+}

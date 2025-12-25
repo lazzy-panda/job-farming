@@ -1,0 +1,73 @@
+/* Sneat Dashboard Layout Styles (Dashboard Page) */
+
+.layout {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: var(--sneat-bg-primary);
+  min-height: 100vh;
+}
+
+.filters {
+  mat-card {
+    width: 100%;
+    padding: 0;
+
+    .mat-mdc-card-content {
+      padding: 20px 24px;
+    }
+  }
+}
+
+.grid-two {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+mat-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  .mat-mdc-card-content {
+    &:last-child {
+      padding-bottom: 20px;
+    }
+  }
+}
+
+.grid-two {
+  mat-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .mat-mdc-card-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+.pagination-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-section {
+  display: flex;
+  width: 100%;
+
+  app-job-search {
+    width: 100%;
+  }
+}
+

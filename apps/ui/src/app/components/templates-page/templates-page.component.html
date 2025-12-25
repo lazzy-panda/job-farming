@@ -1,0 +1,91 @@
+<div class="layout">
+  <app-dashboard-header
+    title="Наборы шаблонов"
+    subtitle="Резюме и письма по наборам для разных типов вакансий"
+  />
+
+  <section class="grid">
+    <mat-card *ngFor="let set of templateSets(); trackBy: trackById">
+      <mat-card-title>{{ set.name }}</mat-card-title>
+
+      <div class="section">
+        <div class="section-header">
+          <h3>Резюме</h3>
+        </div>
+        <div class="list">
+          <div class="item" *ngFor="let cv of set.resumes; trackBy: trackById">
+            <div class="item-body">
+              <div class="item-title">{{ cv.title }}</div>
+              <div class="item-text">{{ cv.content }}</div>
+            </div>
+            <button
+              mat-stroked-button
+              color="primary"
+              [disabled]="set.selectedResumeId === cv.id"
+              (click)="selectResume(set.id, cv.id)"
+            >
+              <mat-icon class="material-symbols-outlined" aria-hidden="true">check_circle</mat-icon>
+              {{ set.selectedResumeId === cv.id ? 'Выбрано' : 'Использовать' }}
+            </button>
+          </div>
+        </div>
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Название резюме</mat-label>
+            <input matInput [(ngModel)]="pendingResumes[set.id].title" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Текст/ссылка</mat-label>
+            <textarea matInput rows="3" [(ngModel)]="pendingResumes[set.id].content"></textarea>
+          </mat-form-field>
+          <button mat-flat-button color="primary" (click)="addResume(set.id)">Добавить резюме</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <h3>Письма/сообщения</h3>
+        </div>
+        <div class="list">
+          <div class="item" *ngFor="let letter of set.letters; trackBy: trackById">
+            <div class="item-body">
+              <div class="item-title">
+                {{ letter.title }}
+                <span class="badge">{{ letter.channel }}</span>
+              </div>
+              <div class="item-text">{{ letter.content }}</div>
+            </div>
+            <button
+              mat-stroked-button
+              color="primary"
+              [disabled]="set.selectedLetterId === letter.id"
+              (click)="selectLetter(set.id, letter.id)"
+            >
+              <mat-icon class="material-symbols-outlined" aria-hidden="true">check_circle</mat-icon>
+              {{ set.selectedLetterId === letter.id ? 'Выбрано' : 'Использовать' }}
+            </button>
+          </div>
+        </div>
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Название письма</mat-label>
+            <input matInput [(ngModel)]="pendingLetters[set.id].title" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Канал</mat-label>
+            <mat-select [(ngModel)]="pendingLetters[set.id].channel">
+              <mat-option value="email">email</mat-option>
+              <mat-option value="telegram">telegram</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Текст</mat-label>
+            <textarea matInput rows="3" [(ngModel)]="pendingLetters[set.id].content"></textarea>
+          </mat-form-field>
+          <button mat-flat-button color="accent" (click)="addLetter(set.id)">Добавить письмо</button>
+        </div>
+      </div>
+    </mat-card>
+  </section>
+</div>
+

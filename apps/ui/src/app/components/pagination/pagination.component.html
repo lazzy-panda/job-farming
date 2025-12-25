@@ -1,0 +1,66 @@
+<div class="pagination">
+  <div class="pagination__info">
+    <span *ngIf="total > 0">Показано {{ startItem }}–{{ endItem }} из {{ total }}</span>
+    <span *ngIf="total === 0">Нет данных</span>
+  </div>
+
+  <div class="pagination__controls">
+    <button
+      class="nav-btn"
+      (click)="selectPage(1)"
+      [disabled]="pageIndex === 0 || total === 0"
+      aria-label="Первая страница"
+    >
+      «
+    </button>
+    <button
+      class="nav-btn"
+      (click)="previous()"
+      [disabled]="pageIndex === 0 || total === 0"
+      aria-label="Предыдущая страница"
+    >
+      ‹
+    </button>
+
+    <div class="pagination__pages">
+      <button
+        class="page-btn"
+        *ngFor="let page of displayedPages; trackBy: trackPage"
+        [disabled]="page === 'ellipsis'"
+        [class.active]="page !== 'ellipsis' && page === pageIndex + 1"
+        [class.hover-state]="page !== 'ellipsis' && page !== pageIndex + 1"
+        (click)="page !== 'ellipsis' && selectPage(page)"
+      >
+        <ng-container *ngIf="page === 'ellipsis'">…</ng-container>
+        <ng-container *ngIf="page !== 'ellipsis'">{{ page }}</ng-container>
+      </button>
+    </div>
+
+    <button
+      class="nav-btn"
+      (click)="next()"
+      [disabled]="pageIndex >= totalPages - 1 || total === 0"
+      aria-label="Следующая страница"
+    >
+      ›
+    </button>
+    <button
+      class="nav-btn"
+      (click)="selectPage(totalPages)"
+      [disabled]="pageIndex >= totalPages - 1 || total === 0"
+      aria-label="Последняя страница"
+    >
+      »
+    </button>
+  </div>
+
+  <div class="pagination__size" *ngIf="pageSizeOptions.length > 1">
+    <mat-form-field appearance="outline" class="size-select">
+      <mat-select [ngModel]="pageSize" (ngModelChange)="changePageSize($event)">
+        <mat-option *ngFor="let option of pageSizeOptions" [value]="option">
+          {{ option }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>

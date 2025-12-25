@@ -1,0 +1,30 @@
+<button mat-stroked-button color="primary" [matMenuTriggerFor]="filtersMenu">
+  <mat-icon class="material-symbols-outlined" aria-hidden="true">filter_list</mat-icon>
+  Фильтры
+</button>
+
+<mat-menu #filtersMenu="matMenu" class="filters-menu">
+  <div class="menu-content">
+    <mat-form-field appearance="outline">
+      <mat-label>Статус</mat-label>
+      <mat-select [(ngModel)]="filters.status">
+        <mat-option value="">Все</mat-option>
+        <mat-option value="new">New</mat-option>
+        <mat-option value="applied">Applied</mat-option>
+        <mat-option value="archived">Archived</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Источник</mat-label>
+      <mat-select [(ngModel)]="filters.sourceId">
+        <mat-option value="">Все</mat-option>
+        <mat-option *ngFor="let s of sources" [value]="s.id">{{ s.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" (click)="apply.emit()">Применить</button>
+  </div>
+</mat-menu>
+
+

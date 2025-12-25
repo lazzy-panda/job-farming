@@ -1,0 +1,106 @@
+{
+  "title": {
+    "value": "Требования: опыт от 3 лет. TypeScript, NestJS.",
+    "role": "unknown",
+    "level": "unknown",
+    "specialization": [
+      "NestJS",
+      "TypeScript"
+    ],
+    "raw": "Требования: опыт от 3 лет. TypeScript, NestJS."
+  },
+  "salary": {
+    "min": null,
+    "max": 226,
+    "currency": "RUB",
+    "period": "month",
+    "salaryType": "net",
+    "raw": "ет. TypeScript, NestJS. Условия: удаленная работа, ДМС. ЗП: 186-226 тыс ₽ на руки Контакты: hr6@example.com, @tg_hr_6 Компа"
+  },
+  "contacts": {
+    "emails": [
+      "hr6@example.com"
+    ],
+    "phones": [],
+    "telegram": [
+      "@tg_hr_6"
+    ],
+    "urls": []
+  },
+  "employment": {
+    "types": []
+  },
+  "workFormat": {
+    "value": "remote"
+  },
+  "schedule": {
+    "patterns": [],
+    "hoursPerWeek": null,
+    "hasNightShifts": false,
+    "hasWeekends": false,
+    "isFlexible": false
+  },
+  "location": {
+    "value": {
+      "city": null,
+      "country": null,
+      "relocation": false,
+      "visaSupport": false
+    }
+  },
+  "experience": {
+    "minYears": 3,
+    "maxYears": null
+  },
+  "tech": {
+    "must": [],
+    "plus": [],
+    "all": [
+      "NestJS",
+      "TypeScript"
+    ]
+  },
+  "languages": {
+    "required": [],
+    "plus": []
+  },
+  "benefits": [
+    "insurance",
+    "remote"
+  ],
+  "interview": {
+    "steps": [],
+    "hasTestTask": false
+  },
+  "company": {
+    "name": "ООО \"Компания 6\""
+  },
+  "confidence": {
+    "title": 0.5866175789173301,
+    "salary": 0.9,
+    "contacts": 0.6499999999999999,
+    "employment": 0,
+    "workFormat": 0.75,
+    "schedule": 0,
+    "location": 0,
+    "experience": 0.8,
+    "tech": 0.31,
+    "languages": 0,
+    "benefits": 0.39,
+    "interview": 0,
+    "company": 0.75,
+    "total": 0.9
+  },
+  "meta": {
+    "lang": "mixed",
+    "warnings": [
+      "employment_not_found",
+      "schedule_not_found",
+      "location_not_found",
+      "languages_not_found",
+      "interview_not_found"
+    ],
+    "sourceUrl": null,
+    "timingMs": 0
+  }
+}

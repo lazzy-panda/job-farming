@@ -1,0 +1,110 @@
+{
+  "title": {
+    "value": null,
+    "role": "unknown",
+    "level": "unknown",
+    "specialization": [
+      "Node.js",
+      "TypeScript",
+      "JavaScript"
+    ],
+    "raw": "Requirements: 4+ years experience. TypeScript, Node.js."
+  },
+  "salary": {
+    "min": 3010,
+    "max": 3510,
+    "currency": "USD",
+    "period": "month",
+    "salaryType": "gross",
+    "raw": "ipt, Node.js. Benefits: Remote, Medical insurance. Salary: $3010-$3510 per month gross Contacts: jobs10@example.com, https:/"
+  },
+  "contacts": {
+    "emails": [
+      "jobs10@example.com"
+    ],
+    "phones": [],
+    "telegram": [],
+    "urls": [
+      "https://www.example.com/careers"
+    ]
+  },
+  "employment": {
+    "types": []
+  },
+  "workFormat": {
+    "value": "remote"
+  },
+  "schedule": {
+    "patterns": [],
+    "hoursPerWeek": null,
+    "hasNightShifts": false,
+    "hasWeekends": false,
+    "isFlexible": false
+  },
+  "location": {
+    "value": {
+      "city": null,
+      "country": null,
+      "relocation": false,
+      "visaSupport": false
+    }
+  },
+  "experience": {
+    "minYears": 4,
+    "maxYears": null
+  },
+  "tech": {
+    "must": [
+      "JavaScript",
+      "Node.js",
+      "TypeScript"
+    ],
+    "plus": [],
+    "all": []
+  },
+  "languages": {
+    "required": [],
+    "plus": []
+  },
+  "benefits": [
+    "insurance",
+    "remote"
+  ],
+  "interview": {
+    "steps": [],
+    "hasTestTask": false
+  },
+  "company": {
+    "name": "Example 10 Inc"
+  },
+  "confidence": {
+    "title": 0.3318122278318339,
+    "salary": 1,
+    "contacts": 0.6499999999999999,
+    "employment": 0,
+    "workFormat": 0.85,
+    "schedule": 0,
+    "location": 0,
+    "experience": 0.9,
+    "tech": 0.33999999999999997,
+    "languages": 0,
+    "benefits": 0.67,
+    "interview": 0,
+    "company": 0.75,
+    "total": 1
+  },
+  "meta": {
+    "lang": "en",
+    "warnings": [
+      "employment_not_found",
+      "schedule_not_found",
+      "location_not_found",
+      "title_low_confidence",
+      "title_looks_like_section",
+      "languages_not_found",
+      "interview_not_found"
+    ],
+    "sourceUrl": null,
+    "timingMs": 0
+  }
+}

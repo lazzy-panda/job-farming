@@ -1,0 +1,132 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 16px 20px;
+  flex-wrap: wrap;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+
+  &__info {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #777777;
+    white-space: nowrap;
+  }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  &__pages {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  &__size {
+    display: flex;
+    align-items: center;
+
+    .size-select {
+      width: 80px;
+      margin: 0;
+
+      ::ng-deep {
+        .mat-mdc-text-field-wrapper {
+          border-radius: 8px;
+        }
+
+        .mdc-notched-outline {
+          border-width: 1px;
+          border-color: rgba(0, 0, 0, 0.12) !important;
+        }
+
+        .mdc-notched-outline__leading,
+        .mdc-notched-outline__notch,
+        .mdc-notched-outline__trailing {
+          border-width: 1px;
+          border-color: rgba(0, 0, 0, 0.12) !important;
+        }
+
+        .mdc-notched-outline__leading {
+          border-top-left-radius: 8px;
+          border-bottom-left-radius: 8px;
+        }
+
+        .mdc-notched-outline__trailing {
+          border-top-right-radius: 8px;
+          border-bottom-right-radius: 8px;
+        }
+      }
+    }
+  }
+
+  .nav-btn,
+  .page-btn {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0;
+    border: none;
+    border-radius: 8px;
+    background: #f8f8f8;
+    color: #777777;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover:not(:disabled) {
+      background: #e9e7fe;
+      color: #6e62f7;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+
+  .page-btn {
+    font-weight: 600;
+
+    &.active {
+      background: #6e62f7;
+      color: #ffffff;
+    }
+
+    &.hover-state:hover {
+      background: #e9e7fe;
+      color: #6e62f7;
+    }
+  }
+
+  .nav-btn {
+    font-size: 1.125rem;
+    font-weight: 400;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+
+    &__controls {
+      width: 100%;
+      justify-content: center;
+    }
+
+    &__size {
+      width: 100%;
+      justify-content: flex-end;
+    }
+  }
+}

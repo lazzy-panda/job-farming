@@ -1,0 +1,83 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Source {
+  id          String        @id @default(cuid())
+  name        String
+  sourceType  String
+  url         String?
+  metadata    Json?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  jobPostings JobPosting[]
+}
+
+model JobPosting {
+  id           String        @id @default(cuid())
+  title        String
+  description  String?
+  company      String?
+  location     String?
+  link         String?
+  status       String        @default("new")
+  tags         String?
+  publishedAt  DateTime?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  sourceId     String?
+  source       Source?       @relation(fields: [sourceId], references: [id])
+  applications Application[]
+}
+
+model Application {
+  id           String     @id @default(cuid())
+  jobPostingId String
+  jobPosting   JobPosting @relation(fields: [jobPostingId], references: [id])
+  channel      String
+  status       String     @default("pending")
+  sentAt       DateTime   @default(now())
+  notes        String?
+  createdAt    DateTime   @default(now())
+}
+
+model DeletedJob {
+  id        String   @id @default(cuid())
+  link      String?  @unique
+  createdAt DateTime @default(now())
+}
+
+model Template {
+  id        String   @id @default(cuid())
+  name      String
+  content   String
+  channel   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Settings {
+  id        Int     @id @default(1)
+  data      Json
+  updatedAt DateTime @updatedAt
+}
+
+model Proxy {
+  id            String   @id @default(cuid())
+  host          String
+  port          Int
+  username      String?
+  password      String?
+  active        Boolean  @default(true)
+  lastCheckedAt DateTime?
+  lastStatus    String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}

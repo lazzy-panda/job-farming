@@ -1,0 +1,7 @@
+diff --git a/node_modules/nx/index.js b/node_modules/nx/index.js
+new file mode 100644
+index 0000000..6d432da
+--- /dev/null
++++ b/node_modules/nx/index.js
+@@ -0,0 +1 @@
++module.exports = require('./bin/nx.js');

@@ -1,0 +1,104 @@
+{
+  "title": {
+    "value": "Требования",
+    "role": "unknown",
+    "level": "unknown",
+    "specialization": [],
+    "raw": "Требования"
+  },
+  "salary": {
+    "min": 205,
+    "max": 245,
+    "currency": "RUB",
+    "period": "month",
+    "salaryType": "net",
+    "raw": "- TypeScript, NestJS Условия: - удаленная работа - ДМС ЗП: 205-245 тыс ₽ на руки Контакты: hr25@example.com, @tg_hr_25 Ком"
+  },
+  "contacts": {
+    "emails": [
+      "hr25@example.com"
+    ],
+    "phones": [],
+    "telegram": [
+      "@tg_hr_25"
+    ],
+    "urls": []
+  },
+  "employment": {
+    "types": []
+  },
+  "workFormat": {
+    "value": "remote"
+  },
+  "schedule": {
+    "patterns": [],
+    "hoursPerWeek": null,
+    "hasNightShifts": false,
+    "hasWeekends": false,
+    "isFlexible": false
+  },
+  "location": {
+    "value": {
+      "city": null,
+      "country": null,
+      "relocation": false,
+      "visaSupport": false
+    }
+  },
+  "experience": {
+    "minYears": 2,
+    "maxYears": 4
+  },
+  "tech": {
+    "must": [],
+    "plus": [],
+    "all": [
+      "NestJS",
+      "TypeScript"
+    ]
+  },
+  "languages": {
+    "required": [],
+    "plus": []
+  },
+  "benefits": [
+    "insurance",
+    "remote"
+  ],
+  "interview": {
+    "steps": [],
+    "hasTestTask": false
+  },
+  "company": {
+    "name": "ООО \"Компания 25\""
+  },
+  "confidence": {
+    "title": 0.5,
+    "salary": 1,
+    "contacts": 0.6499999999999999,
+    "employment": 0,
+    "workFormat": 0.75,
+    "schedule": 0,
+    "location": 0,
+    "experience": 0.9,
+    "tech": 0.31,
+    "languages": 0,
+    "benefits": 0.39,
+    "interview": 0,
+    "company": 0.75,
+    "total": 1
+  },
+  "meta": {
+    "lang": "mixed",
+    "warnings": [
+      "employment_not_found",
+      "schedule_not_found",
+      "location_not_found",
+      "title_low_confidence",
+      "languages_not_found",
+      "interview_not_found"
+    ],
+    "sourceUrl": null,
+    "timingMs": 0
+  }
+}

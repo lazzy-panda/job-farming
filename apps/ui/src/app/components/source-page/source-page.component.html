@@ -1,0 +1,58 @@
+<div class="layout">
+  <app-dashboard-header
+    subtitle="Вакансии собираются автоматически из указанных источников"
+    (refresh)="loadSources()"
+  />
+
+  <section class="form-card">
+    <div class="panel">
+      <app-source-create [model]="sourceModel" (submit)="createSource($event)"></app-source-create>
+    </div>
+  </section>
+
+  <section class="list-card">
+    <div class="panel">
+      <div class="list-header">
+        <div>
+          <h2>Добавленные источники</h2>
+          <p class="subtitle">Все активные адреса для сбора вакансий</p>
+        </div>
+      </div>
+
+      <div class="list" *ngIf="sources().length; else empty">
+        <div class="list-row" *ngFor="let s of paginatedSources(); index as idx">
+          <div class="row-index">{{ pageIndex() * pageSize() + idx + 1 }}</div>
+          <div class="row-text">
+            <div class="row-title">{{ s.name || s.url }}</div>
+            <div class="row-sub">{{ s.url }}</div>
+          </div>
+          <button
+            mat-icon-button
+            color="warn"
+            class="delete-btn"
+            [disabled]="loading"
+            (click)="removeSource(s)"
+            aria-label="Удалить источник"
+          >
+            <mat-icon class="material-symbols-outlined" aria-hidden="true">delete</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <ng-template #empty>
+        <div class="empty">Источники пока не добавлены</div>
+      </ng-template>
+    </div>
+  </section>
+
+  <section class="pagination-section" *ngIf="sources().length > 0">
+    <app-pagination
+      [total]="sources().length"
+      [pageIndex]="pageIndex()"
+      [pageSize]="pageSize()"
+      [pageSizeOptions]="pageSizeOptions"
+      (pageChange)="onPageChange($event)"
+    ></app-pagination>
+  </section>
+</div>
+

@@ -1,0 +1,99 @@
+{
+  "title": {
+    "value": "DevOps Engineer",
+    "role": "devops_engineer",
+    "level": "unknown",
+    "specialization": [],
+    "raw": "DevOps Engineer"
+  },
+  "salary": {
+    "min": 110000,
+    "max": 130000,
+    "currency": "CHF",
+    "period": "year",
+    "salaryType": "unknown",
+    "raw": "DevOps Engineer Zurich, Switzerland Compensation: CHF 110’000 - 130’000 p.a. Apply: https://example.ch/careers"
+  },
+  "contacts": {
+    "emails": [],
+    "phones": [],
+    "telegram": [],
+    "urls": [
+      "https://example.ch/careers"
+    ]
+  },
+  "employment": {
+    "types": []
+  },
+  "workFormat": {
+    "value": "unknown"
+  },
+  "schedule": {
+    "patterns": [],
+    "hoursPerWeek": null,
+    "hasNightShifts": false,
+    "hasWeekends": false,
+    "isFlexible": false
+  },
+  "location": {
+    "value": {
+      "city": "Zurich",
+      "country": "Switzerland",
+      "relocation": false,
+      "visaSupport": false
+    }
+  },
+  "experience": {
+    "minYears": null,
+    "maxYears": null
+  },
+  "tech": {
+    "must": [],
+    "plus": [],
+    "all": []
+  },
+  "languages": {
+    "required": [],
+    "plus": []
+  },
+  "benefits": [],
+  "interview": {
+    "steps": [],
+    "hasTestTask": false
+  },
+  "company": {
+    "name": null
+  },
+  "confidence": {
+    "title": 0.6681877721681662,
+    "salary": 1,
+    "contacts": 0.5,
+    "employment": 0,
+    "workFormat": 0,
+    "schedule": 0,
+    "location": 0.9000000000000001,
+    "experience": 0,
+    "tech": 0,
+    "languages": 0,
+    "benefits": 0,
+    "interview": 0,
+    "company": 0,
+    "total": 1
+  },
+  "meta": {
+    "lang": "en",
+    "warnings": [
+      "employment_not_found",
+      "work_format_not_found",
+      "schedule_not_found",
+      "experience_not_found",
+      "tech_not_found",
+      "languages_not_found",
+      "benefits_not_found",
+      "interview_not_found",
+      "company_not_found"
+    ],
+    "sourceUrl": null,
+    "timingMs": 0
+  }
+}

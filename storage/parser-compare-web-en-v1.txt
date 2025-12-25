@@ -1,0 +1,896 @@
+[parse-web-samples] samples=7
+
+
+===== JOB web-en-001 =====
+META: {"id":"web-en-001","title":"Software Engineer","company":null,"publishedAt":null,"sourceId":"template: software engineer job description","link":"https://example.com/templates/software-engineer"}
+
+--- ORIGINAL TEXT ---
+Job Title: Software Engineer
+Location: Berlin - Germany
+Employment Type: Full-time
+
+Job Summary:
+We are seeking a skilled Software Engineer to design, develop, and maintain software applications.
+
+Responsibilities:
+- Design, develop, and test software applications.
+- Troubleshoot and debug issues in existing code.
+- Participate in code reviews.
+
+Requirements:
+- 2+ years of experience.
+- Proficiency in Python and TypeScript.
+
+Compensation:
+€65.000 - €80.000 p.a. (gross)
+
+Benefits:
+- Health insurance
+- Paid time off
+
+How to apply:
+Send your CV to jobs@company.example.
+
+--- PARSED JSON ---
+{
+  "title": {
+    "value": null,
+    "role": "unknown",
+    "level": "unknown",
+    "specialization": [],
+    "raw": "Software Engineer"
+  },
+  "salary": {
+    "min": 65000,
+    "max": 80000,
+    "currency": "EUR",
+    "period": "year",
+    "salaryType": "gross",
+    "raw": "€65.000 - €80.000 p.a. (gross)"
+  },
+  "contacts": {
+    "emails": [
+      "jobs@company.example"
+    ],
+    "phones": [],
+    "telegram": [],
+    "urls": []
+  },
+  "employment": {
+    "types": [
+      "full_time"
+    ]
+  },
+  "workFormat": {
+    "value": "unknown"
+  },
+  "schedule": {
+    "patterns": [],
+    "hoursPerWeek": null,
+    "hasNightShifts": false,
+    "hasWeekends": false,
+    "isFlexible": false
+  },
+  "location": {
+    "value": {
+      "city": "Berlin",
+      "country": "Germany",
+      "relocation": false,
+      "visaSupport": false
+    }
+  },
+  "experience": {
+    "minYears": 2,
+    "maxYears": null
+  },
+  "tech": {
+    "must": [
+      "Python",
+      "TypeScript"
+    ],
+    "plus": [],
+    "all": []
+  },
+  "languages": {
+    "required": [],
+    "plus": []
+  },
+  "benefits": [
+    "insurance",
+    "vacation"
+  ],
+  "interview": {
+    "steps": [],
+    "hasTestTask": false
+  },
+  "company": {
+    "name": null
+  },
+  "confidence": {
+    "title": 0.5866175789173301,
+    "salary": 1,
+    "contacts": 0.5,
+    "employment": 0.75,
+    "workFormat": 0,
+    "schedule": 0,
+    "location": 0.8,
+    "experience": 0.9,
+    "tech": 0.31,
+    "languages": 0,
+    "benefits": 0.67,
+    "interview": 0,
+    "company": 0,
+    "total": 1
+  },
+  "meta": {
+    "lang": "en",
+    "warnings": [
+      "work_format_not_found",
+      "schedule_not_found",
+      "title_low_confidence",
+      "languages_not_found",
+      "interview_not_found",
+      "company_not_found"
+    ],
+    "sourceUrl": "https://example.com/templates/software-engineer",
+    "timingMs": 49
+  }
+}
+===== /JOB web-en-001 =====
+
+
+===== JOB web-en-002 =====
+META: {"id":"web-en-002","title":"DevOps Engineer","company":null,"publishedAt":null,"sourceId":"template: devops engineer job description","link":"https://example.com/templates/devops-engineer"}
+
+--- ORIGINAL TEXT ---
+DevOps Engineer
+Location: Zurich, Switzerland
+
+The role:
+Build and maintain CI/CD pipelines, automate infrastructure, and improve reliability.
+
+Requirements:
+- Experience with Terraform and Kubernetes
+
+Compensation:
+CHF 110’000 - 130’000 p.a.
+
+Apply:
+https://example.ch/careers,
+
+--- PARSED JSON ---
+{
+  "title": {
+    "value": "DevOps Engineer",
+    "role": "devops_engineer",
+    "level": "unknown",
+    "specialization": [],
+    "raw": "DevOps Engineer"
+  },
+  "salary": {
+    "min": 110000,
+    "max": 130000,
+    "currency": "CHF",
+    "period": "year",
+    "salaryType": "unknown",
+    "raw": "e with Terraform and Kubernetes Compensation: CHF 110’000 - 130’000 p.a. Apply: https://example.ch/careers,"
+  },
+  "contacts": {
+    "emails": [],
+    "phones": [],
+    "telegram": [],
+    "urls": [
+      "https://example.ch/careers"
+    ]
+  },
+  "employment": {
+    "types": []
+  },
+  "workFormat": {
+    "value": "unknown"
+  },
+  "schedule": {
+    "patterns": [],
+    "hoursPerWeek": null,
+    "hasNightShifts": false,
+    "hasWeekends": false,
+    "isFlexible": false
+  },
+  "location": {
+    "value": {
+      "city": "Zurich",
+      "country": "Switzerland",
+      "relocation": false,
+      "visaSupport": false
+    }
+  },
+  "experience": {
+    "minYears": null,
+    "maxYears": null
+  },
+  "tech": {
+    "must": [
+      "Kubernetes",
+      "Terraform"
+    ],
+    "plus": [],
+    "all": [
+      "CI/CD"
+    ]
+  },
+  "languages": {
+    "required": [],
+    "plus": []
+  },
+  "benefits": [],
+  "interview": {
+    "steps": [],
+    "hasTestTask": false
+  },
+  "company": {
+    "name": null
+  },
+  "confidence": {
+    "title": 0.7407748991821539,
+    "salary": 1,
+    "contacts": 0.5,
+    "employment": 0,
+    "workFormat": 0,
+    "schedule": 0,
+    "location": 0.9000000000000001,
+    "experience": 0,
+    "tech": 0.33999999999999997,
+    "languages": 0,
+    "benefits": 0,
+    "interview": 0,
+    "company": 0,
+    "total": 1
+  },
+  "meta": {
+    "lang": "en",
+    "warnings": [
+      "employment_not_found",
+      "work_format_not_found",
+      "schedule_not_found",
+      "experience_not_found",
+      "languages_not_found",
+      "benefits_not_found",
+      "interview_not_found",
+      "company_not_found"
+    ],
+    "sourceUrl": "https://example.com/templates/devops-engineer",
+    "timingMs": 7
+  }
+}
+===== /JOB web-en-002 =====
+
+
+===== JOB web-en-003 =====
+META: {"id":"web-en-003","title":"Data Engineer","company":null,"publishedAt":null,"sourceId":"template: data engineer job description","link":"https://example.com/templates/data-engineer"}
+
+--- ORIGINAL TEXT ---
+Job Title: Data Engineer
+Location: London (UK)
+
+Responsibilities:
+- Build data pipelines.
+- Ensure data quality.
+
+Requirements:
+- Strong SQL.
+- Experience with Spark or Kafka.
+
+Salary:
+£75,000 - £95,000 per year (gross)
+
+Benefits:
+- Pension plan
+- Private medical insurance
+
+How to apply:
+Email: hiring@data.example
+
+--- PARSED JSON ---
+{
+  "title": {
+    "value": "Data Engineer",
+    "role": "data_engineer",
+    "level": "unknown",
+    "specialization": [],
+    "raw": "Data Engineer"
+  },
+  "salary": {
+    "min": null,
+    "max": null,
+    "currency": "UNKNOWN",
+    "period": "unknown",
+    "salaryType": "unknown",
+    "raw": null
+  },
+  "contacts": {
+    "emails": [
+      "hiring@data.example"
+    ],
+    "phones": [],
+    "telegram": [],
+    "urls": []
+  },
+  "employment": {
+    "types": []
+  },
+  "workFormat": {
+    "value": "unknown"
+  },
+  "schedule": {
+    "patterns": [],
+    "hoursPerWeek": null,
+    "hasNightShifts": false,
+    "hasWeekends": false,
+    "isFlexible": false
+  },
+  "location": {
+    "value": {
+      "city": "London",
+      "country": "UK",
+      "relocation": false,
+      "visaSupport": false
+    }
+  },
+  "experience": {
+    "minYears": null,
+    "maxYears": null
+  },
+  "tech": {
+    "must": [
+      "Kafka",
+      "SQL"
+    ],
+    "plus": [],
+    "all": []
+  },
+  "languages": {
+    "required": [],
+    "plus": []
+  },
+  "benefits": [
+    "insurance",
+    "retirement"
+  ],
+  "interview": {
+    "steps": [],
+    "hasTestTask": false
+  },
+  "company": {
+    "name": null
+  },
+  "confidence": {
+    "title": 0.7407748991821539,
+    "salary": 0,
+    "contacts": 0.5,
+    "employment": 0,
+    "workFormat": 0,
+    "schedule": 0,
+    "location": 0.9000000000000001,
+    "experience": 0,
+    "tech": 0.31,
+    "languages": 0,
+    "benefits": 0.67,
+    "interview": 0,
+    "company": 0,
+    "total": 0.9000000000000001
+  },
+  "meta": {
+    "lang": "en",
+    "warnings": [
+      "salary_not_found",
+      "employment_not_found",
+      "work_format_not_found",
+      "schedule_not_found",
+      "experience_not_found",
+      "languages_not_found",
+      "interview_not_found",
+      "company_not_found"
+    ],
+    "sourceUrl": "https://example.com/templates/data-engineer",
+    "timingMs": 11
+  }
+}
+===== /JOB web-en-003 =====
+
+
+===== JOB web-en-004 =====
+META: {"id":"web-en-004","title":"Backend Engineer (EU only)","company":null,"publishedAt":null,"sourceId":"example: EU-only remote job posting","link":"https://example.com/posts/backend-eu-only"}
+
+--- ORIGINAL TEXT ---
+Backend Engineer
+Remote (EU only)
+
+What you’ll do:
+- Build APIs in Node.js.
+- Maintain PostgreSQL schemas.
+
+Requirements:
+- 3+ years of experience.
+
+Compensation:
+€500 per day
+
+Contact:
+@hiring_team
+
+--- PARSED JSON ---
+{
+  "title": {
+    "value": "Backend Engineer (EU only)",
+    "role": "backend_developer",
+    "level": "unknown",
+    "specialization": [],
+    "raw": "Backend Engineer (EU only)"
+  },
+  "salary": {
+    "min": 500,
+    "max": 500,
+    "currency": "EUR",
+    "period": "day",
+    "salaryType": "unknown",
+    "raw": "€500 per day"
+  },
+  "contacts": {
+    "emails": [],
+    "phones": [],
+    "telegram": [
+      "@hiring_team"
+    ],
+    "urls": []
+  },
+  "employment": {
+    "types": []
+  },
+  "workFormat": {
+    "value": "remote"
+  },
+  "schedule": {
+    "patterns": [],
+    "hoursPerWeek": null,
+    "hasNightShifts": false,
+    "hasWeekends": false,
+    "isFlexible": false
+  },
+  "location": {
+    "value": {
+      "city": null,
+      "country": null,
+      "relocation": false,
+      "visaSupport": false
+    }
+  },
+  "experience": {
+    "minYears": 3,
+    "maxYears": null
+  },
+  "tech": {
+    "must": [],
+    "plus": [],
+    "all": [
+      "JavaScript",
+      "Node.js",
+      "PostgreSQL"
+    ]
+  },
+  "languages": {
+    "required": [],
+    "plus": []
+  },
+  "benefits": [
+    "remote"
+  ],
+  "interview": {
+    "steps": [],
+    "hasTestTask": false
+  },
+  "company": {
+    "name": null
+  },
+  "confidence": {
+    "title": 0.7407748991821539,
+    "salary": 0.6,
+    "contacts": 0.5,
+    "employment": 0,
+    "workFormat": 0.75,
+    "schedule": 0,
+    "location": 0,
+    "experience": 0.9,
+    "tech": 0.33999999999999997,
+    "languages": 0,
+    "benefits": 0.32,
+    "interview": 0,
+    "company": 0,
+    "total": 0.9
+  },
+  "meta": {
+    "lang": "en",
+    "warnings": [
+      "employment_not_found",
+      "schedule_not_found",
+      "location_not_found",
+      "location_region_only:EU",
+      "languages_not_found",
+      "interview_not_found",
+      "company_not_found"
+    ],
+    "sourceUrl": "https://example.com/posts/backend-eu-only",
+    "timingMs": 4
+  }
+}
+===== /JOB web-en-004 =====
+
+
+===== JOB web-en-005 =====
+META: {"id":"web-en-005","title":"Fullstack Developer (Poland)","company":null,"publishedAt":null,"sourceId":"example: PLN salary format","link":"https://example.com/posts/fullstack-pl"}
+
+--- ORIGINAL TEXT ---
+Fullstack Developer
+Location: Warsaw, Poland
+
+Responsibilities:
+- Build web apps with React and Node.js.
+
+Salary:
+18 000 zł net per month
+
+How to apply:
+Send portfolio to team@pl.example.
+
+--- PARSED JSON ---
+{
+  "title": {
+    "value": "Fullstack Developer (Poland)",
+    "role": "fullstack_developer",
+    "level": "unknown",
+    "specialization": [],
+    "raw": "Fullstack Developer (Poland)"
+  },
+  "salary": {
+    "min": 18000,
+    "max": 18000,
+    "currency": "PLN",
+    "period": "month",
+    "salaryType": "net",
+    "raw": "ibilities: - Build web apps with React and Node.js. Salary: 18 000 zł net per month How to apply: Send portfolio to team@pl.ex"
+  },
+  "contacts": {
+    "emails": [
+      "team@pl.example"
+    ],
+    "phones": [],
+    "telegram": [],
+    "urls": []
+  },
+  "employment": {
+    "types": []
+  },
+  "workFormat": {
+    "value": "unknown"
+  },
+  "schedule": {
+    "patterns": [],
+    "hoursPerWeek": null,
+    "hasNightShifts": false,
+    "hasWeekends": false,
+    "isFlexible": false
+  },
+  "location": {
+    "value": {
+      "city": "Warsaw",
+      "country": "Poland",
+      "relocation": false,
+      "visaSupport": false
+    }
+  },
+  "experience": {
+    "minYears": null,
+    "maxYears": null
+  },
+  "tech": {
+    "must": [],
+    "plus": [],
+    "all": [
+      "JavaScript",
+      "Node.js",
+      "React"
+    ]
+  },
+  "languages": {
+    "required": [],
+    "plus": []
+  },
+  "benefits": [],
+  "interview": {
+    "steps": [],
+    "hasTestTask": false
+  },
+  "company": {
+    "name": null
+  },
+  "confidence": {
+    "title": 0.7407748991821539,
+    "salary": 0.8,
+    "contacts": 0.5,
+    "employment": 0,
+    "workFormat": 0,
+    "schedule": 0,
+    "location": 0.9000000000000001,
+    "experience": 0,
+    "tech": 0.33999999999999997,
+    "languages": 0,
+    "benefits": 0,
+    "interview": 0,
+    "company": 0,
+    "total": 0.9000000000000001
+  },
+  "meta": {
+    "lang": "en",
+    "warnings": [
+      "employment_not_found",
+      "work_format_not_found",
+      "schedule_not_found",
+      "experience_not_found",
+      "languages_not_found",
+      "benefits_not_found",
+      "interview_not_found",
+      "company_not_found"
+    ],
+    "sourceUrl": "https://example.com/posts/fullstack-pl",
+    "timingMs": 2
+  }
+}
+===== /JOB web-en-005 =====
+
+
+===== JOB web-en-006 =====
+META: {"id":"web-en-006","title":"QA Engineer (Sweden)","company":null,"publishedAt":null,"sourceId":"example: SEK with kr","link":"https://example.com/posts/qa-se"}
+
+--- ORIGINAL TEXT ---
+QA Engineer
+Location: Stockholm, Sweden
+
+Responsibilities:
+- Write test cases.
+- Automate regression tests.
+
+Salary:
+60 000 kr per month
+
+Benefits:
+- Flexible hours
+- Remote-friendly
+
+--- PARSED JSON ---
+{
+  "title": {
+    "value": "QA Engineer (Sweden)",
+    "role": "qa_engineer",
+    "level": "unknown",
+    "specialization": [],
+    "raw": "QA Engineer (Sweden)"
+  },
+  "salary": {
+    "min": 60000,
+    "max": 60000,
+    "currency": "SEK",
+    "period": "month",
+    "salaryType": "unknown",
+    "raw": "s: - Write test cases. - Automate regression tests. Salary: 60 000 kr per month Benefits: - Flexible hours - Remote-friendly"
+  },
+  "contacts": {
+    "emails": [],
+    "phones": [],
+    "telegram": [],
+    "urls": []
+  },
+  "employment": {
+    "types": []
+  },
+  "workFormat": {
+    "value": "remote"
+  },
+  "schedule": {
+    "patterns": [
+      "flex"
+    ],
+    "hoursPerWeek": null,
+    "hasNightShifts": false,
+    "hasWeekends": false,
+    "isFlexible": true
+  },
+  "location": {
+    "value": {
+      "city": "Stockholm",
+      "country": "Sweden",
+      "relocation": false,
+      "visaSupport": false
+    }
+  },
+  "experience": {
+    "minYears": null,
+    "maxYears": null
+  },
+  "tech": {
+    "must": [],
+    "plus": [],
+    "all": []
+  },
+  "languages": {
+    "required": [],
+    "plus": []
+  },
+  "benefits": [
+    "flexible",
+    "remote",
+    "stock"
+  ],
+  "interview": {
+    "steps": [],
+    "hasTestTask": false
+  },
+  "company": {
+    "name": null
+  },
+  "confidence": {
+    "title": 0.7407748991821539,
+    "salary": 0.7,
+    "contacts": 0,
+    "employment": 0,
+    "workFormat": 0.85,
+    "schedule": 0.9000000000000001,
+    "location": 0.9000000000000001,
+    "experience": 0,
+    "tech": 0,
+    "languages": 0,
+    "benefits": 0.74,
+    "interview": 0,
+    "company": 0,
+    "total": 0.9000000000000001
+  },
+  "meta": {
+    "lang": "en",
+    "warnings": [
+      "contacts_not_found",
+      "employment_not_found",
+      "experience_not_found",
+      "tech_not_found",
+      "languages_not_found",
+      "interview_not_found",
+      "company_not_found"
+    ],
+    "sourceUrl": "https://example.com/posts/qa-se",
+    "timingMs": 3
+  }
+}
+===== /JOB web-en-006 =====
+
+
+===== JOB web-en-007 =====
+META: {"id":"web-en-007","title":"Accountant","company":null,"publishedAt":null,"sourceId":"template: accountant + EU salary","link":"https://example.com/templates/accountant"}
+
+--- ORIGINAL TEXT ---
+Accountant
+Location: Bucharest (Romania)
+
+Responsibilities:
+- Monthly close
+- VAT reporting
+
+Requirements:
+- 3+ years of experience
+
+Salary:
+RON 12.000 - 15.000 per month
+
+How to apply:
+Apply at https://example.ro/apply.
+
+--- PARSED JSON ---
+{
+  "title": {
+    "value": "Accountant",
+    "role": "accountant",
+    "level": "unknown",
+    "specialization": [],
+    "raw": "Accountant"
+  },
+  "salary": {
+    "min": null,
+    "max": null,
+    "currency": "UNKNOWN",
+    "period": "unknown",
+    "salaryType": "unknown",
+    "raw": null
+  },
+  "contacts": {
+    "emails": [],
+    "phones": [],
+    "telegram": [],
+    "urls": [
+      "https://example.ro/apply"
+    ]
+  },
+  "employment": {
+    "types": []
+  },
+  "workFormat": {
+    "value": "unknown"
+  },
+  "schedule": {
+    "patterns": [],
+    "hoursPerWeek": null,
+    "hasNightShifts": false,
+    "hasWeekends": false,
+    "isFlexible": false
+  },
+  "location": {
+    "value": {
+      "city": "Bucharest",
+      "country": "Romania",
+      "relocation": false,
+      "visaSupport": false
+    }
+  },
+  "experience": {
+    "minYears": null,
+    "maxYears": null
+  },
+  "tech": {
+    "must": [],
+    "plus": [],
+    "all": []
+  },
+  "languages": {
+    "required": [],
+    "plus": []
+  },
+  "benefits": [],
+  "interview": {
+    "steps": [],
+    "hasTestTask": false
+  },
+  "company": {
+    "name": null
+  },
+  "confidence": {
+    "title": 0.7407748991821539,
+    "salary": 0,
+    "contacts": 0.5,
+    "employment": 0,
+    "workFormat": 0,
+    "schedule": 0,
+    "location": 0.9000000000000001,
+    "experience": 0,
+    "tech": 0,
+    "languages": 0,
+    "benefits": 0,
+    "interview": 0,
+    "company": 0,
+    "total": 0.9000000000000001
+  },
+  "meta": {
+    "lang": "en",
+    "warnings": [
+      "salary_not_found",
+      "employment_not_found",
+      "work_format_not_found",
+      "schedule_not_found",
+      "experience_not_found",
+      "tech_not_found",
+      "languages_not_found",
+      "benefits_not_found",
+      "interview_not_found",
+      "company_not_found"
+    ],
+    "sourceUrl": "https://example.com/templates/accountant",
+    "timingMs": 4
+  }
+}
+===== /JOB web-en-007 =====
+
+[parse-web-samples] DONE

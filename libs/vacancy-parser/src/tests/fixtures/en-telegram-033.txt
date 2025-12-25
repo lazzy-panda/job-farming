@@ -1,0 +1,10 @@
+Source: Telegram
+Requirements:
+- 3-5 years experience
+- TypeScript, Node.js
+Benefits:
+- Remote
+- Medical insurance
+Salary: $3033-$3533 per month gross
+Contacts: jobs33@example.com, https://www.example.com/careers
+Company: Example 33 Inc

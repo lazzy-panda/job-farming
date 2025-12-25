@@ -1,0 +1,102 @@
+<div class="cards">
+  <ng-container *ngIf="jobs.length; else empty">
+    <mat-card class="job-card" *ngFor="let job of jobs; trackBy: trackById">
+      <div class="card-body">
+        <div class="card-header">
+          <div class="header-avatar" [class.placeholder]="!getChannelAvatar(job)">
+            <ng-container *ngIf="getChannelAvatar(job) as avatarUrl; else avatarFallback">
+              <img
+                [src]="avatarUrl"
+                [alt]="getChannelTitle(job)"
+                (error)="onAvatarError(job.id)"
+                referrerpolicy="no-referrer"
+              />
+            </ng-container>
+            <ng-template #avatarFallback>
+              <span class="avatar-initial">{{ getChannelInitial(job) }}</span>
+            </ng-template>
+          </div>
+          <div class="header-text">
+            <h3 class="job-title">{{ getParsedTitle(job) }}</h3>
+            <p class="channel-name">{{ getParsedWorkFormat(job) }}</p>
+          </div>
+        </div>
+
+        <div class="card-info-row">
+          <div class="info-block tags-block" *ngIf="job.tags">
+            <div class="info-value">{{ job.tags }}</div>
+            <div class="info-label">теги</div>
+          </div>
+          <div class="info-block-container">
+          <div class="info-block date-block" *ngIf="getJobDate(job) as jobDate">
+            <div class="info-value">{{ jobDate | date: 'dd.MM.yy' }}</div>
+            <a
+              *ngIf="job.source?.url as sourceUrl"
+              class="contact-link"
+              [href]="sourceUrl"
+              target="_blank"
+              rel="noopener"
+            >
+              {{ sourceUrl }}
+            </a>
+          </div>
+          <div class="footer-row">
+            <span class="footer-label">{{ getParsedSalary(job) }}</span>
+            <br/>
+            <p class="channel-name">{{ getChannelTitle(job) }}</p>
+          </div>
+        </div>
+        </div>
+        <div class="card-info-row">
+          <span class="footer-label">Опыт:</span>
+        </div>
+        <div class="card-description" *ngIf="job.description">
+          <p
+            class="description-text"
+            [class.expanded]="isDescriptionExpanded(job.id)"
+            [class.collapsed]="!isDescriptionExpanded(job.id)"
+          >
+            {{ job.description }}
+          </p>
+          <div class="description-actions">
+            <button
+              *ngIf="shouldShowExpandButton(job.description)"
+              class="expand-btn"
+              (click)="toggleDescription(job.id)"
+            >
+              {{ isDescriptionExpanded(job.id) ? 'Свернуть' : 'Развернуть' }}
+            </button>
+
+            <app-vacancy-parse-json class="parse-json" [job]="job"></app-vacancy-parse-json>
+          </div>
+        </div>
+
+       
+          
+          <div class="footer-row" *ngIf="job.company">
+            <span class="footer-label">Компания:</span>
+            <span class="footer-value">{{ job.company }}</span>
+          </div>
+
+
+        <div class="card-footer-link" *ngIf="job.link">
+          <span class="footer-label">Контакт:</span>
+
+          <a [href]="job.link" target="_blank" rel="noopener">{{ job.link }}</a>
+          <mat-icon class="material-symbols-outlined">chat</mat-icon>
+        </div>
+
+        <div class="card-actions">
+          <button mat-icon-button color="warn" (click)="remove.emit(job)">
+            <mat-icon class="material-symbols-outlined" aria-hidden="true">delete</mat-icon>
+            Удалить
+          </button>
+        </div>
+      </div>
+    </mat-card>
+  </ng-container>
+
+  <ng-template #empty>
+    <div class="empty">Нет вакансий. Добавьте или измените фильтры.</div>
+  </ng-template>
+</div>

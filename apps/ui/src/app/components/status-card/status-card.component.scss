@@ -1,0 +1,21 @@
+/* Sneat Dashboard - Status Card Styles */
+
+mat-card-title {
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--sneat-text-dark);
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--sneat-border);
+}
+
+p {
+  color: var(--sneat-text-medium);
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-line;
+  margin: 0;
+  padding: 8px 0;
+}
+
+

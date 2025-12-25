@@ -1,0 +1,90 @@
+<mat-card>
+  <mat-card-title>Настройки (SMTP/прочее)</mat-card-title>
+  <mat-card-content>
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>SMTP host</mat-label>
+        <input matInput [(ngModel)]="settings['SMTP_HOST']" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>SMTP port</mat-label>
+        <input matInput type="number" [(ngModel)]="settings['SMTP_PORT']" />
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>SMTP user</mat-label>
+        <input matInput [(ngModel)]="settings['SMTP_USER']" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>SMTP pass</mat-label>
+        <input matInput [(ngModel)]="settings['SMTP_PASS']" />
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>SMTP from</mat-label>
+        <input matInput [(ngModel)]="settings['SMTP_FROM']" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Порт API</mat-label>
+        <input matInput type="number" [(ngModel)]="settings['API_PORT']" />
+      </mat-form-field>
+    </div>
+
+    <mat-card-subtitle>Telegram HTTP</mat-card-subtitle>
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Задержка (мс)</mat-label>
+        <input matInput type="number" [(ngModel)]="settings['TELEGRAM_DELAY_MS']" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Джиттер (мс)</mat-label>
+        <input matInput type="number" [(ngModel)]="settings['TELEGRAM_JITTER_MS']" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Макс страниц</mat-label>
+        <input matInput type="number" [(ngModel)]="settings['TELEGRAM_MAX_PAGES']" />
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>User-Agent</mat-label>
+        <input matInput [(ngModel)]="settings['TELEGRAM_USER_AGENT']" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Keyword filters (через запятую)</mat-label>
+        <input matInput [(ngModel)]="settings['TELEGRAM_KEYWORDS']" />
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-slide-toggle [(ngModel)]="settings['TELEGRAM_PROXY_ENABLED']">Прокси</mat-slide-toggle>
+    </div>
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Proxy host</mat-label>
+        <input matInput [(ngModel)]="settings['TELEGRAM_PROXY_HOST']" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Proxy port</mat-label>
+        <input matInput type="number" [(ngModel)]="settings['TELEGRAM_PROXY_PORT']" />
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Proxy user</mat-label>
+        <input matInput [(ngModel)]="settings['TELEGRAM_PROXY_USER']" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Proxy pass</mat-label>
+        <input matInput [(ngModel)]="settings['TELEGRAM_PROXY_PASS']" />
+      </mat-form-field>
+    </div>
+
+    <button mat-flat-button color="primary" (click)="save.emit(settings)">
+      Сохранить настройки
+    </button>
+  </mat-card-content>
+</mat-card>
+
+

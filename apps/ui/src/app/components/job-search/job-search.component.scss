@@ -1,0 +1,150 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.search-card {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+
+.search-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.search-field {
+  flex: 1;
+  min-width: 320px;
+
+  // Тонкие серые скругленные границы для outline appearance
+  ::ng-deep {
+    .mat-mdc-text-field-wrapper {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .mdc-notched-outline {
+      border-width: 1px;
+      border-color: rgba(0, 0, 0, 0.12) !important;
+    }
+
+    .mdc-notched-outline__leading {
+      border-width: 1px;
+      border-color: rgba(0, 0, 0, 0.12) !important;
+      border-top-left-radius: 12px;
+      border-bottom-left-radius: 12px;
+    }
+
+    .mdc-notched-outline__notch {
+      border-width: 1px 0;
+      border-color: rgba(0, 0, 0, 0.12) !important;
+    }
+
+    .mdc-notched-outline__trailing {
+      border-width: 1px;
+      border-color: rgba(0, 0, 0, 0.12) !important;
+      border-top-right-radius: 12px;
+      border-bottom-right-radius: 12px;
+    }
+
+    // При фокусе тоже тонкая серая граница
+    &.mat-mdc-form-field-focused {
+      .mdc-notched-outline {
+        border-width: 1px;
+        border-color: rgba(0, 0, 0, 0.2) !important;
+      }
+
+      .mdc-notched-outline__leading {
+        border-width: 1px;
+        border-color: rgba(0, 0, 0, 0.2) !important;
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 12px;
+      }
+
+      .mdc-notched-outline__notch {
+        border-width: 1px 0;
+        border-color: rgba(0, 0, 0, 0.2) !important;
+      }
+
+      .mdc-notched-outline__trailing {
+        border-width: 1px;
+        border-color: rgba(0, 0, 0, 0.2) !important;
+        border-top-right-radius: 12px;
+        border-bottom-right-radius: 12px;
+      }
+    }
+
+    // При hover тоже тонкая серая граница
+    &:hover:not(.mat-mdc-form-field-focused) {
+      .mdc-notched-outline {
+        border-color: rgba(0, 0, 0, 0.15) !important;
+      }
+
+      .mdc-notched-outline__leading {
+        border-color: rgba(0, 0, 0, 0.15) !important;
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 12px;
+      }
+
+      .mdc-notched-outline__notch {
+        border-color: rgba(0, 0, 0, 0.15) !important;
+      }
+
+      .mdc-notched-outline__trailing {
+        border-color: rgba(0, 0, 0, 0.15) !important;
+        border-top-right-radius: 12px;
+        border-bottom-right-radius: 12px;
+      }
+    }
+  }
+}
+
+.stats {
+  flex: 0 0 auto;
+  min-width: 120px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.04);
+}
+
+.stats-title {
+  font-size: 12px;
+  color: rgba(15, 23, 42, 0.7);
+  line-height: 1.2;
+}
+
+.stats-value {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 4px;
+  color: rgba(15, 23, 42, 0.92);
+}
+
+.presets {
+  margin-top: 10px;
+}
+
+mat-chip-option {
+  margin-right: 8px;
+}
+
+@media (max-width: 720px) {
+  .search-row {
+    flex-direction: column;
+  }
+
+  .search-field {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .stats {
+    width: 100%;
+  }
+}
+
