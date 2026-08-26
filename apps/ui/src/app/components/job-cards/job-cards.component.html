@@ -23,29 +23,25 @@
         </div>
 
         <div class="card-info-row">
-          <div class="info-block tags-block" *ngIf="job.tags">
-            <div class="info-value">{{ job.tags }}</div>
-            <div class="info-label">теги</div>
-          </div>
           <div class="info-block-container">
-          <div class="info-block date-block" *ngIf="getJobDate(job) as jobDate">
-            <div class="info-value">{{ jobDate | date: 'dd.MM.yy' }}</div>
-            <a
-              *ngIf="job.source?.url as sourceUrl"
-              class="contact-link"
-              [href]="sourceUrl"
-              target="_blank"
-              rel="noopener"
-            >
-              {{ sourceUrl }}
-            </a>
+            <div class="info-block date-block" *ngIf="getJobDate(job) as jobDate">
+              <div class="info-value">{{ jobDate | date: 'dd.MM.yy' }}</div>
+              <a
+                *ngIf="job.source?.url as sourceUrl"
+                class="contact-link"
+                [href]="sourceUrl"
+                target="_blank"
+                rel="noopener"
+              >
+                {{ getSourceHost(job) }}
+              </a>
+            </div>
+            <div class="footer-row">
+              <span class="footer-label">{{ getParsedSalary(job) }}</span>
+              <br />
+              <p class="channel-name">{{ getChannelTitle(job) }}</p>
+            </div>
           </div>
-          <div class="footer-row">
-            <span class="footer-label">{{ getParsedSalary(job) }}</span>
-            <br/>
-            <p class="channel-name">{{ getChannelTitle(job) }}</p>
-          </div>
-        </div>
         </div>
         <div class="card-info-row">
           <span class="footer-label">Опыт:</span>
@@ -66,27 +62,84 @@
             >
               {{ isDescriptionExpanded(job.id) ? 'Свернуть' : 'Развернуть' }}
             </button>
-
             <app-vacancy-parse-json class="parse-json" [job]="job"></app-vacancy-parse-json>
+            <button
+              class="translate-btn"
+              mat-icon-button
+              type="button"
+              [disabled]="isTranslationLoading(job.id)"
+              [attr.aria-busy]="isTranslationLoading(job.id)"
+              (click)="translateJob(job)"
+              matTooltip="Перевести описание на русский"
+            >
+              <mat-icon class="material-symbols-outlined" aria-hidden="true">
+                {{ isTranslationLoading(job.id) ? 'autorenew' : 'translate' }}
+              </mat-icon>
+            </button>
+          </div>
+          <div class="translation-status" *ngIf="isTranslationLoading(job.id)">
+            Переводим текст...
+          </div>
+          <div class="translation-error" *ngIf="getTranslationError(job.id) as error">
+            {{ error }}
+          </div>
+          <div class="translation-block" *ngIf="getTranslatedText(job.id) as translated">
+            <div class="translation-title">Перевод (RU)</div>
+            <p class="translation-text">
+              {{ translated }}
+            </p>
           </div>
         </div>
 
-       
-          
-          <div class="footer-row" *ngIf="job.company">
-            <span class="footer-label">Компания:</span>
-            <span class="footer-value">{{ job.company }}</span>
-          </div>
 
-
-        <div class="card-footer-link" *ngIf="job.link">
-          <span class="footer-label">Контакт:</span>
-
-          <a [href]="job.link" target="_blank" rel="noopener">{{ job.link }}</a>
-          <mat-icon class="material-symbols-outlined">chat</mat-icon>
+        <div class="footer-row" *ngIf="job.company">
+          <span class="footer-label">Компания: </span>
+          <span class="footer-value">{{ job.company }}</span>
         </div>
+
+
+        <ng-container *ngIf="getPrimaryContact(job) as contact">
+          <div class="card-footer-link">
+            <span class="footer-label">Контакт:</span>
+
+            <a [href]="contact.href" target="_blank" rel="noopener">{{ contact.label }}</a>
+            <mat-icon class="material-symbols-outlined">chat</mat-icon>
+          </div>
+        </ng-container>
 
         <div class="card-actions">
+          <span class="status-chip applied" *ngIf="isApplied(job)">Отклик отправлен</span>
+          <span class="status-chip shortlisted" *ngIf="isShortlisted(job)">Отложено</span>
+          <button
+            mat-icon-button
+            type="button"
+            (click)="toggleShortlist(job)"
+            [matTooltip]="isShortlisted(job) ? 'Убрать из отложенных' : 'Отложить (шортлист плана)'"
+          >
+            <mat-icon class="material-symbols-outlined" [class.starred]="isShortlisted(job)" aria-hidden="true">
+              {{ isShortlisted(job) ? 'star' : 'star_outline' }}
+            </mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            type="button"
+            *ngIf="!isApplied(job)"
+            [disabled]="isApplying(job.id)"
+            (click)="createApplication(job, 'adapted')"
+            matTooltip="Адаптированный отклик (+2 очка)"
+          >
+            <mat-icon class="material-symbols-outlined" aria-hidden="true">edit_note</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            type="button"
+            *ngIf="!isApplied(job)"
+            [disabled]="isApplying(job.id)"
+            (click)="createApplication(job, 'template')"
+            matTooltip="Быстрый отклик по шаблону (+1 очко)"
+          >
+            <mat-icon class="material-symbols-outlined" aria-hidden="true">bolt</mat-icon>
+          </button>
           <button mat-icon-button color="warn" (click)="remove.emit(job)">
             <mat-icon class="material-symbols-outlined" aria-hidden="true">delete</mat-icon>
             Удалить

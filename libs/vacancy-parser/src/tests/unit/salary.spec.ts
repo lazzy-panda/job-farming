@@ -119,4 +119,12 @@ describe('salary extractor', () => {
     expect(res.salary.salaryType).toBe('net');
     expect(res.salary.period).toBe('month');
   });
+
+  it('ignores headcount numbers without salary context', () => {
+    const ctx = buildContext('Die Firma beschäftigt 850 Mitarbeiterinnen und Mitarbeiter weltweit.', {});
+    const res = extractSalary(ctx, { strict: false, enableTraces: false });
+    expect(res.salary.min).toBeNull();
+    expect(res.salary.max).toBeNull();
+    expect(res.warnings).toContain('salary_not_found');
+  });
 });

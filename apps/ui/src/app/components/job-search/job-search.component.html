@@ -8,6 +8,12 @@
         (ngModelChange)="onInput($event)"
         placeholder="Например: python, дизайнер, удалёнка, $"
         autocomplete="off"
+        lang="en-US"
+        inputmode="text"
+        spellcheck="false"
+        autocapitalize="none"
+        autocorrect="off"
+        enterkeyhint="search"
       />
       <button
         mat-icon-button
@@ -27,8 +33,8 @@
     </div>
   </div>
 
-  <div class="presets" *ngIf="presets.length">
-    <mat-chip-listbox aria-label="Быстрые фильтры поиска">
+  <div class="filters-row" *ngIf="presets.length || sources.length">
+    <mat-chip-listbox aria-label="Быстрые фильтры поиска" *ngIf="presets.length">
       <mat-chip-option
         *ngFor="let p of presets"
         (click)="applyPreset(p.value)"
@@ -36,6 +42,19 @@
         {{ p.label }}
       </mat-chip-option>
     </mat-chip-listbox>
+
+    <div class="divider" *ngIf="presets.length && sources.length"></div>
+
+    <div aria-label="Источники поиска" *ngIf="sources.length">
+      <div
+        *ngFor="let s of sources"
+        class="source-chip"
+        (click)="applySource(s.value)"
+      >
+        <span class="source-icon">
+          <span class="source-icon-svg" [innerHTML]="getSourceIconSvg(s.icon)"></span>
+        </span>
+      </div>
+    </div>
   </div>
 </mat-card>
-

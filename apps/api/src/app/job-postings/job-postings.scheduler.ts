@@ -19,4 +19,26 @@ export class JobPostingsScheduler {
       this.logger.error('cron scrape failed', error as Error);
     }
   }
+
+  // Ежедневная чистка аномалий (резюме, фейковые локации, низкие зарплаты, слишком короткие описания)
+  @Cron(process.env.CLEANUP_CRON ?? CronExpression.EVERY_DAY_AT_3AM)
+  async cleanupAnomalies() {
+    try {
+      const res = await this.jobPostingsService.cleanupAnomalies();
+      this.logger.log(`cleanupAnomalies removed=${res.removed}`);
+    } catch (error) {
+      this.logger.error('cleanupAnomalies failed', error as Error);
+    }
+  }
+
+  // Регулярная уборка устаревших/недоступных вакансий, даже если скрап упал
+  @Cron(process.env.CLEANUP_STALE_CRON ?? CronExpression.EVERY_6_HOURS)
+  async cleanupStaleJobs() {
+    try {
+      await this.jobPostingsService.cleanupStaleJobs();
+      this.logger.log('cleanupStaleJobs completed');
+    } catch (error) {
+      this.logger.error('cleanupStaleJobs failed', error as Error);
+    }
+  }
 }

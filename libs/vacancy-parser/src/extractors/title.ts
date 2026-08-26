@@ -1,6 +1,7 @@
 import type { DocumentContext } from '../core/document-context';
 import { scoreToConfidence } from '../core/scoring';
 import type { ParsedTitle, Role, RuleTrace } from '../model/types';
+import { shouldSkipGluedToken } from './glued-company-helpers';
 
 export interface TitleExtractResult {
   title: ParsedTitle;
@@ -124,7 +125,7 @@ const SPECIALIZATION_TOKENS: Array<{ re: RegExp; value: string }> = [
   { re: /(rails|ruby\s+on\s+rails)/i, value: 'Ruby on Rails' },
   { re: /(sinatra)/i, value: 'Sinatra' },
   { re: /(phoenix)/i, value: 'Phoenix' },
-  { re: /(gin)/i, value: 'Gin' },
+  { re: /\bgin\b/i, value: 'Gin' },
   { re: /(echo)/i, value: 'Echo' },
   { re: /(fiber)/i, value: 'Fiber' },
   { re: /(beego)/i, value: 'Beego' },
@@ -646,6 +647,75 @@ function uniq(values: string[]): string[] {
   return out;
 }
 
+function findTailWordStart(text: string, candidateStart: number): number {
+  let idx = Math.max(0, Math.min(candidateStart, text.length));
+  while (idx > 0) {
+    const prev = text[idx - 1];
+    if (/\s/.test(prev) || /[,.;:!?/\\|()[\]{}"'«»<>]/.test(prev) || /[-–—]/.test(prev)) {
+      break;
+    }
+    idx--;
+  }
+  return idx;
+}
+
+function findTailWordEnd(text: string, wordStart: number): number {
+  let idx = Math.max(0, Math.min(wordStart, text.length));
+  while (idx < text.length) {
+    const ch = text[idx];
+    if (/\s/.test(ch) || /[,.;:!?/\\|()[\]{}"'«»<>]/.test(ch) || /[-–—]/.test(ch)) {
+      break;
+    }
+    idx++;
+  }
+  return idx;
+}
+
+function extractTailWord(text: string, candidateStart: number): string {
+  if (!text) {
+    return '';
+  }
+  const start = findTailWordStart(text, candidateStart);
+  const end = findTailWordEnd(text, start);
+  return text.slice(start, end).trim();
+}
+
+function shouldSkipGluedCandidate(text: string, candidateStart: number, candidate: string): boolean {
+  if (!candidate) {
+    return true;
+  }
+  if (shouldSkipGluedToken(candidate)) {
+    return true;
+  }
+  const tailWord = extractTailWord(text, candidateStart);
+  if (tailWord && tailWord !== candidate && shouldSkipGluedToken(tailWord)) {
+    return true;
+  }
+  return false;
+}
+
+function resolveCandidateStart(
+  text: string,
+  match: RegExpExecArray | null,
+  candidate: string,
+  fallback?: number,
+): number {
+  if (typeof fallback === 'number' && Number.isFinite(fallback)) {
+    return Math.max(0, Math.min(fallback, text.length));
+  }
+  if (match?.index !== undefined && match[0]) {
+    const relative = match[0].lastIndexOf(candidate);
+    if (relative >= 0) {
+      return match.index + relative;
+    }
+  }
+  const idx = text.lastIndexOf(candidate);
+  if (idx >= 0) {
+    return idx;
+  }
+  return Math.max(0, text.length - candidate.length);
+}
+
 function cleanTitle(raw: string): string {
   const cleaned = raw
     .replace(/\s+/g, ' ')
@@ -768,7 +838,8 @@ function cleanTitle(raw: string): string {
   //          "Специалист по сверке данныхITea" -> "Специалист по сверке данных"
   //          "RS, СербияITea" -> "RS, Сербия"
   // Паттерны для названий компаний: LTD, LLC, INC, Corp, GmbH, ООО и т.д.
-  const companySuffixRe = /\s*([A-ZА-ЯЁ][A-Za-zА-Яа-яЁё0-9\s&'.-]{2,50})\s*(?:LTD|LLC|INC|Corp|Corporation|GmbH|ООО|ЗАО|ПАО|ИП)\b/i;
+  const companySuffixRe =
+    /\s*([A-ZА-ЯЁ][A-Za-zА-Яа-яЁё0-9\s&'.-]{2,50})\s*(?:LTD|LLC|INC|Corp|Corporation|GmbH|ООО|ЗАО|ПАО|ИП)\b(?:\s*[.,;:]\s*)?(?=$|\n)/i;
   const companyMatch = companySuffixRe.exec(withoutInlineAmount2);
   let withoutCompany = withoutInlineAmount2;
   if (companyMatch && companyMatch.index !== undefined && companyMatch.index > 10) {
@@ -779,32 +850,47 @@ function cleanTitle(raw: string): string {
     // Паттерн 1: заглавная буква после строчных/цифр (например, "AnalystSTARTRIBE", "данныхITea")
     // Ищем переход от строчной/цифры к заглавной букве (латиница или кириллица)
     // Важно: паттерн должен захватывать "AnalystSTARTRIBE" и "STARTRIBE LTD"
-    const gluedCompanyRe1 = /([a-zа-яё0-9\s/&-]+)([A-ZА-ЯЁ][A-Za-zА-Яа-яЁё0-9\s&'.-]{2,40})(?:\s*(?:LTD|LLC|INC|Corp|GmbH|ООО)\b|\s*[,:]|$)/;
+    const gluedCompanyRe1 =
+      /([a-zа-яё0-9\s/&-]+)(?<!\s)([A-ZА-ЯЁ][A-Za-zА-Яа-яЁё0-9&'.-]{2,40})(?:\s*(?:LTD|LLC|INC|Corp|GmbH|ООО)\b)?\s*(?:[,.;:])?\s*$/;
     const gluedMatch1 = gluedCompanyRe1.exec(withoutInlineAmount2);
     if (gluedMatch1 && gluedMatch1.index !== undefined && gluedMatch1.index > 5) {
-      const potentialCompany = gluedMatch1[2]?.trim();
-      // Проверяем, что это похоже на название компании (начинается с заглавной, не слишком короткое)
-      if (potentialCompany && /^[A-ZА-ЯЁ]/.test(potentialCompany) && potentialCompany.length >= 2) {
-        // Дополнительная проверка: если после названия должности идет заглавная буква, это скорее всего компания
-        const beforeCompany = gluedMatch1[1]?.trim() || '';
-        // Проверяем, что перед компанией есть хотя бы одно слово
-        if (beforeCompany.length > 3) {
-          withoutCompany = beforeCompany;
+      const potentialCompany = gluedMatch1[2]?.trim() ?? '';
+      const candidateStart = resolveCandidateStart(withoutInlineAmount2, gluedMatch1, potentialCompany);
+      if (
+        potentialCompany &&
+        /^[A-ZА-ЯЁ]/.test(potentialCompany) &&
+        potentialCompany.length >= 2 &&
+        !shouldSkipGluedCandidate(withoutInlineAmount2, candidateStart, potentialCompany)
+      ) {
+        const prefixSlice = withoutInlineAmount2.slice(0, candidateStart).trim();
+        if (prefixSlice.length > 3) {
+          withoutCompany = prefixSlice;
         }
       }
     }
     
     // Паттерн 1a: специально для случая "AnalystSTARTRIBE" - заглавная латинская буква после строчной латинской
     if (withoutCompany === withoutInlineAmount2) {
-      const gluedCompanyRe1a = /([a-z][a-z\s/&-]+)([A-Z][A-Za-z0-9]{2,40})(?:\s*(?:LTD|LLC|INC|Corp|GmbH)\b|\s*[,:]|$)/;
+      const gluedCompanyRe1a =
+        /([a-z][a-z\s/&-]+)(?<!\s)([A-Z][A-Za-z0-9]{2,40})(?:\s*(?:LTD|LLC|INC|Corp|GmbH)\b)?\s*(?:[,.;:])?\s*$/;
       const gluedMatch1a = gluedCompanyRe1a.exec(withoutInlineAmount2);
       if (gluedMatch1a && gluedMatch1a.index !== undefined && gluedMatch1a.index > 5) {
-        const potentialCompany = gluedMatch1a[2]?.trim();
-        const beforeCompany = gluedMatch1a[1]?.trim() || '';
-        if (potentialCompany && potentialCompany.length >= 2 && beforeCompany.length > 3) {
-          // Исключаем валидные токены
-          if (!/^(B2B|3D|C4D|iOS|iPad|iPhone|macOS|tvOS|watchOS|API|URL|HTTP|HTTPS|CSS|HTML|XML|JSON|PDF|JPG|PNG|GIF|SVG|MP4|AVI|MOV)$/i.test(potentialCompany)) {
-            withoutCompany = beforeCompany;
+        const potentialCompany = gluedMatch1a[2]?.trim() ?? '';
+        const candidateStart = resolveCandidateStart(withoutInlineAmount2, gluedMatch1a, potentialCompany);
+        if (
+          potentialCompany &&
+          potentialCompany.length >= 2 &&
+          !shouldSkipGluedCandidate(withoutInlineAmount2, candidateStart, potentialCompany) &&
+          withoutInlineAmount2.slice(0, candidateStart).trim().length > 3
+        ) {
+          const prefixSlice = withoutInlineAmount2.slice(0, candidateStart).trim();
+          if (
+            prefixSlice.length > 3 &&
+            !/^(B2B|3D|C4D|iOS|iPad|iPhone|macOS|tvOS|watchOS|API|URL|HTTP|HTTPS|CSS|HTML|XML|JSON|PDF|JPG|PNG|GIF|SVG|MP4|AVI|MOV)$/i.test(
+              potentialCompany,
+            )
+          ) {
+            withoutCompany = prefixSlice;
           }
         }
       }
@@ -814,16 +900,22 @@ function cleanTitle(raw: string): string {
     // Пример: "СербияITea" - кириллическая заглавная "я" + латинская "I"
     // Ищем паттерн: кириллическая буква (включая заглавные) + латинская заглавная буква
     if (withoutCompany === withoutInlineAmount2) {
-      const gluedCompanyRe2 = /([А-Яа-яЁё0-9\s,/-]+)([A-Z][A-Za-z0-9\s&'.-]{2,40})(?:\s*[,:]|$)/;
+      const gluedCompanyRe2 =
+        /([А-Яа-яЁё0-9\s,/-]+)(?<!\s)([A-Z][A-Za-z0-9&'.-]{2,40})\s*(?:[,.;:])?\s*$/;
       const gluedMatch2 = gluedCompanyRe2.exec(withoutInlineAmount2);
       if (gluedMatch2 && gluedMatch2.index !== undefined && gluedMatch2.index > 3) {
-        const beforePart = gluedMatch2[1]?.trim() || '';
         const companyPart = gluedMatch2[2]?.trim() || '';
-        // Проверяем, что перед компанией есть кириллический текст, а компания - латинская
-        if (beforePart.length > 3 && /[А-Яа-яЁё]/.test(beforePart) && /^[A-Z]/.test(companyPart) && companyPart.length >= 2) {
-          // Проверяем, что это не просто случайное совпадение (например, не "RS, Сербия" где RS - это код страны)
-          if (!/^[A-Z]{1,3}$/.test(companyPart) || beforePart.length > 10) {
-            withoutCompany = beforePart;
+        const candidateStart = resolveCandidateStart(withoutInlineAmount2, gluedMatch2, companyPart);
+        const prefixSlice = withoutInlineAmount2.slice(0, candidateStart).trim();
+        if (
+          prefixSlice.length > 3 &&
+          /[А-Яа-яЁё]/.test(prefixSlice) &&
+          /^[A-Z]/.test(companyPart) &&
+          companyPart.length >= 2 &&
+          !shouldSkipGluedCandidate(withoutInlineAmount2, candidateStart, companyPart)
+        ) {
+          if (!/^[A-Z]{1,3}$/.test(companyPart) || prefixSlice.length > 10) {
+            withoutCompany = prefixSlice;
           }
         }
       }
@@ -837,9 +929,17 @@ function cleanTitle(raw: string): string {
       if (gluedMatch3 && gluedMatch3.index !== undefined) {
         const beforePart = gluedMatch3[1] + gluedMatch3[2];
         const companyPart = gluedMatch3[3]?.trim() || '';
-        // Проверяем, что это похоже на название компании (начинается с заглавной, не слишком короткое)
-        if (companyPart.length >= 2 && /^[A-ZА-ЯЁ]/.test(companyPart)) {
-          // Проверяем, что перед компанией есть достаточно текста
+        const candidateStart = resolveCandidateStart(
+          withoutInlineAmount2,
+          null,
+          companyPart,
+          withoutInlineAmount2.length - companyPart.length,
+        );
+        if (
+          companyPart.length >= 2 &&
+          /^[A-ZА-ЯЁ]/.test(companyPart) &&
+          !shouldSkipGluedCandidate(withoutInlineAmount2, candidateStart, companyPart)
+        ) {
           if (beforePart.trim().length > 5) {
             withoutCompany = beforePart.trim();
           }
@@ -882,7 +982,8 @@ function cleanTitle(raw: string): string {
   })();
 
   // Hard limit to avoid returning whole vacancy text as title.
-  return (firstClause.length > 100 ? firstClause.slice(0, 100) : firstClause).trim();
+  const MAX_TITLE_LENGTH = 180;
+  return (firstClause.length > MAX_TITLE_LENGTH ? firstClause.slice(0, MAX_TITLE_LENGTH) : firstClause).trim();
 }
 
 function isAllCapsLike(text: string): boolean {

@@ -7,15 +7,6 @@ const mockedAxios = axios as jest.Mocked<typeof axios>;
 describe('TelegramHttpConnector integration-like pagination', () => {
   const connector = new TelegramHttpConnector();
 
-  beforeAll(() => {
-    jest.useFakeTimers();
-    jest.setSystemTime(new Date('2025-12-18T12:00:00Z'));
-  });
-
-  afterAll(() => {
-    jest.useRealTimers();
-  });
-
   it('stops pagination when hits old messageId', async () => {
     const page1 = `
       <div class="tgme_widget_message" data-post="channel/12">
@@ -36,7 +27,7 @@ describe('TelegramHttpConnector integration-like pagination', () => {
       sourceId: 's1',
       sourceType: 'telegram',
       url: 'https://t.me/s/channel',
-      metadata: { lastMessageId: 10, maxPages: 2 },
+      metadata: { lastMessageId: 10, maxPages: 2, delayMs: 0, jitterMs: 0 },
     });
 
     expect(jobs).toHaveLength(1);

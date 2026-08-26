@@ -8,21 +8,16 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { Resume, ResumeStats, Template } from '@job-farm/shared-models';
+import { ApiService } from '../../api.service';
 import { DashboardHeaderComponent } from '../dashboard-header/dashboard-header.component';
 
-type ResumeEntry = { id: string; title: string; content: string };
-type LetterEntry = { id: string; title: string; channel: 'email' | 'telegram'; content: string };
-type ResumeForm = { title: string; content: string };
-type LetterForm = { title: string; channel: 'email' | 'telegram'; content: string };
+type ResumeForm = { name: string; title: string; content: string; notes: string };
+type LetterForm = { name: string; channel: string; content: string };
 
-interface TemplateSet {
-  id: string;
-  name: string;
-  resumes: ResumeEntry[];
-  letters: LetterEntry[];
-  selectedResumeId?: string;
-  selectedLetterId?: string;
-}
+const EMPTY_RESUME_FORM: ResumeForm = { name: '', title: '', content: '', notes: '' };
+const EMPTY_LETTER_FORM: LetterForm = { name: '', channel: 'telegram', content: '' };
 
 @Component({
   standalone: true,
@@ -39,118 +34,169 @@ interface TemplateSet {
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatTooltipModule,
     DashboardHeaderComponent,
   ],
 })
 export class TemplatesPageComponent implements OnInit {
-  public readonly templateSets = signal<TemplateSet[]>([
-    {
-      id: 'set-1',
-      name: 'Набор 1 (Frontend)',
-      resumes: [{ id: 'cv-1', title: 'CV Frontend', content: 'Ссылка или текст резюме' }],
-      letters: [
-        {
-          id: 'lt-1',
-          title: 'Email EN',
-          channel: 'email',
-          content: 'Hi, I am interested in your Frontend role...',
-        },
-      ],
-      selectedResumeId: 'cv-1',
-      selectedLetterId: 'lt-1',
-    },
-  ]);
-
-  public pendingResumes: Record<string, ResumeForm> = {};
-  public pendingLetters: Record<string, LetterForm> = {};
-
+  private readonly api = inject(ApiService);
   private readonly snack = inject(MatSnackBar);
 
-  public ngOnInit(): void {
-    this.templateSets().forEach((set) => this.ensurePending(set.id));
+  readonly resumes = signal<Resume[]>([]);
+  readonly resumeStats = signal<ResumeStats[]>([]);
+  readonly letters = signal<Template[]>([]);
+
+  resumeForm: ResumeForm = { ...EMPTY_RESUME_FORM };
+  editingResumeId: string | null = null;
+
+  letterForm: LetterForm = { ...EMPTY_LETTER_FORM };
+  editingLetterId: string | null = null;
+
+  readonly letterChannels = ['telegram', 'email', 'hh', 'habr'];
+
+  ngOnInit(): void {
+    this.reload();
   }
 
-  public addResume(setId: string): void {
-    this.ensurePending(setId);
-    const form = this.pendingResumes[setId];
-    if (!form.title || !form.content) {
-      this.snack.open('Резюме: заполните название и содержание', 'OK', { duration: 2000 });
+  reload(): void {
+    this.api.getResumes().subscribe((r) => this.resumes.set(r));
+    this.api.getResumeStats().subscribe((s) => this.resumeStats.set(s));
+    this.api.getTemplates().subscribe((t) => this.letters.set(t));
+  }
+
+  // --- Резюме ---
+
+  statsFor(resume: Resume): ResumeStats | null {
+    return this.resumeStats().find((s) => s.resumeVersion === resume.name) ?? null;
+  }
+
+  saveResume(): void {
+    const form = this.resumeForm;
+    if (!form.name.trim() || !form.title.trim() || !form.content.trim()) {
+      this.snack.open('Заполните имя версии, заголовок и текст резюме', 'OK', { duration: 2500 });
       return;
     }
-    const nextSets = this.templateSets().map((set) =>
-      set.id === setId
-        ? {
-            ...set,
-            resumes: [...set.resumes, { id: this.createId(), title: form.title, content: form.content }],
-          }
-        : set,
-    );
-    this.templateSets.set(nextSets);
-    this.updatePendingResume(setId, { title: '', content: '' });
-    this.snack.open('Резюме добавлено', 'OK', { duration: 2000 });
+    const payload = {
+      name: form.name.trim(),
+      title: form.title.trim(),
+      content: form.content,
+      notes: form.notes.trim() || null,
+    };
+    const request = this.editingResumeId
+      ? this.api.updateResume(this.editingResumeId, payload)
+      : this.api.createResume(payload);
+    request.subscribe({
+      next: () => {
+        this.snack.open(this.editingResumeId ? 'Резюме обновлено' : 'Резюме добавлено', 'OK', {
+          duration: 2000,
+        });
+        this.cancelResumeEdit();
+        this.reload();
+      },
+      error: (err) =>
+        this.snack.open(err?.error?.message ?? 'Не удалось сохранить резюме', 'OK', {
+          duration: 3000,
+        }),
+    });
   }
 
-  public addLetter(setId: string): void {
-    this.ensurePending(setId);
-    const form = this.pendingLetters[setId];
-    if (!form.title || !form.content) {
-      this.snack.open('Письмо: заполните название и текст', 'OK', { duration: 2000 });
+  editResume(resume: Resume): void {
+    this.editingResumeId = resume.id;
+    this.resumeForm = {
+      name: resume.name,
+      title: resume.title,
+      content: resume.content,
+      notes: resume.notes ?? '',
+    };
+  }
+
+  cancelResumeEdit(): void {
+    this.editingResumeId = null;
+    this.resumeForm = { ...EMPTY_RESUME_FORM };
+  }
+
+  setDefaultResume(resume: Resume): void {
+    if (resume.isDefault) {
       return;
     }
-    const nextSets = this.templateSets().map((set) =>
-      set.id === setId
-        ? {
-            ...set,
-            letters: [
-              ...set.letters,
-              { id: this.createId(), title: form.title, channel: form.channel, content: form.content },
-            ],
-          }
-        : set,
-    );
-    this.templateSets.set(nextSets);
-    this.updatePendingLetter(setId, { title: '', channel: 'email', content: '' });
-    this.snack.open('Шаблон письма добавлен', 'OK', { duration: 2000 });
+    this.api.updateResume(resume.id, { isDefault: true }).subscribe(() => {
+      this.snack.open(`«${resume.name}» — резюме по умолчанию для откликов`, 'OK', { duration: 2000 });
+      this.reload();
+    });
   }
 
-  public selectResume(setId: string, resumeId: string): void {
-    this.templateSets.set(
-      this.templateSets().map((set) => (set.id === setId ? { ...set, selectedResumeId: resumeId } : set)),
-    );
-    this.snack.open('Резюме выбрано для откликов', 'OK', { duration: 1500 });
+  deleteResume(resume: Resume): void {
+    if (!confirm(`Удалить резюме «${resume.name}»?`)) {
+      return;
+    }
+    this.api.deleteResume(resume.id).subscribe(() => {
+      if (this.editingResumeId === resume.id) {
+        this.cancelResumeEdit();
+      }
+      this.reload();
+    });
   }
 
-  public selectLetter(setId: string, letterId: string): void {
-    this.templateSets.set(
-      this.templateSets().map((set) => (set.id === setId ? { ...set, selectedLetterId: letterId } : set)),
-    );
-    this.snack.open('Письмо выбрано для откликов', 'OK', { duration: 1500 });
+  // --- Шаблоны писем ---
+
+  saveLetter(): void {
+    const form = this.letterForm;
+    if (!form.name.trim() || !form.content.trim()) {
+      this.snack.open('Заполните название и текст шаблона', 'OK', { duration: 2500 });
+      return;
+    }
+    const payload = { name: form.name.trim(), channel: form.channel, content: form.content };
+    const request = this.editingLetterId
+      ? this.api.updateTemplate(this.editingLetterId, payload)
+      : this.api.createTemplate(payload);
+    request.subscribe({
+      next: () => {
+        this.snack.open(this.editingLetterId ? 'Шаблон обновлён' : 'Шаблон добавлен', 'OK', {
+          duration: 2000,
+        });
+        this.cancelLetterEdit();
+        this.reload();
+      },
+      error: () => this.snack.open('Не удалось сохранить шаблон', 'OK', { duration: 3000 }),
+    });
   }
 
-  public updatePendingResume(setId: string, value: { title: string; content: string }): void {
-    this.pendingResumes[setId] = value;
+  editLetter(letter: Template): void {
+    this.editingLetterId = letter.id;
+    this.letterForm = {
+      name: letter.name,
+      channel: letter.channel ?? 'telegram',
+      content: letter.content,
+    };
   }
 
-  public updatePendingLetter(setId: string, value: { title: string; channel: 'email' | 'telegram'; content: string }): void {
-    this.pendingLetters[setId] = value;
+  cancelLetterEdit(): void {
+    this.editingLetterId = null;
+    this.letterForm = { ...EMPTY_LETTER_FORM };
   }
 
-  public trackById(_index: number, item: { id: string }): string {
+  deleteLetter(letter: Template): void {
+    if (!confirm(`Удалить шаблон «${letter.name}»?`)) {
+      return;
+    }
+    this.api.deleteTemplate(letter.id).subscribe(() => {
+      if (this.editingLetterId === letter.id) {
+        this.cancelLetterEdit();
+      }
+      this.reload();
+    });
+  }
+
+  // --- Общее ---
+
+  copyContent(content: string): void {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(content);
+      this.snack.open('Текст скопирован в буфер', 'OK', { duration: 1500 });
+    }
+  }
+
+  trackById(_index: number, item: { id: string }): string {
     return item.id;
   }
-
-  private createId(): string {
-    return Math.random().toString(36).slice(2, 9);
-  }
-
-  private ensurePending(setId: string): void {
-    if (!this.pendingResumes[setId]) {
-      this.pendingResumes[setId] = { title: '', content: '' };
-    }
-    if (!this.pendingLetters[setId]) {
-      this.pendingLetters[setId] = { title: '', channel: 'email', content: '' };
-    }
-  }
 }
-
-

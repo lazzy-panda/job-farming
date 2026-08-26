@@ -1,3 +1,5 @@
+import { shouldSkipGluedToken } from '../extractors/glued-company-helpers';
+
 export interface SanitizeInputResult {
   text: string;
   warnings: string[];
@@ -11,6 +13,25 @@ function findFirstIndex(text: string, patterns: RegExp[]): { index: number; rule
     }
   }
   return null;
+}
+
+function isWhitelistedGlue(beforeToken: string, companyToken: string): boolean {
+  const trimmedCompany = companyToken?.trim() ?? '';
+  if (!trimmedCompany) {
+    return true;
+  }
+  if (shouldSkipGluedToken(trimmedCompany)) {
+    return true;
+  }
+  const trimmedBefore = beforeToken?.trim() ?? '';
+  if (trimmedBefore && shouldSkipGluedToken(trimmedBefore)) {
+    return true;
+  }
+  const glued = `${trimmedBefore}${trimmedCompany}`;
+  if (glued && shouldSkipGluedToken(glued)) {
+    return true;
+  }
+  return false;
 }
 
 export function sanitizeInputText(rawText: string): SanitizeInputResult {
@@ -89,9 +110,12 @@ export function sanitizeInputText(rawText: string): SanitizeInputResult {
   
   // Паттерн 2: строчная буква (латиница/кириллица) + заглавная латинская буква (например, "данныхITea", "AnalystSTARTRIBE")
   // Минимум 2 символа для компании, чтобы захватить "ITea", "RS" и т.д.
-  text = text.replace(/([a-zа-яё0-9\s/&-]+)([A-Z][A-Za-z0-9]{2,30})(?=\s|$|,|:|\n|LTD|LLC|INC|Corp|GmbH)/g, (match, before, company) => {
+  text = text.replace(/([A-Za-zА-Яа-яЁё0-9/&-]+)([A-Z][A-Za-z0-9]{2,30})(?=\s|$|,|:|\n|LTD|LLC|INC|Corp|GmbH)/g, (match, before, company) => {
     // Проверяем, что это не валидный токен (B2B, iOS и т.д.)
     if (/^(B2B|3D|C4D|iOS|iPad|iPhone|macOS|tvOS|watchOS|API|URL|HTTP|HTTPS|CSS|HTML|XML|JSON|PDF|JPG|PNG|GIF|SVG|MP4|AVI|MOV)$/i.test(company)) {
+      return match;
+    }
+    if (isWhitelistedGlue(before, company)) {
       return match;
     }
     // Проверяем, что перед компанией есть достаточно текста (не просто случайное совпадение)
@@ -106,6 +130,9 @@ export function sanitizeInputText(rawText: string): SanitizeInputResult {
   text = text.replace(/([A-Z][a-z]+)([A-Z][A-Za-z0-9]{2,30})(?=\s|$|,|:|LTD|LLC|INC|Corp|GmbH)/g, (match, before, company) => {
     // Проверяем, что это не валидный токен
     if (/^(B2B|3D|C4D|iOS|iPad|iPhone|macOS|tvOS|watchOS|API|URL|HTTP|HTTPS|CSS|HTML|XML|JSON|PDF|JPG|PNG|GIF|SVG|MP4|AVI|MOV)$/i.test(company)) {
+      return match;
+    }
+    if (isWhitelistedGlue(before, company)) {
       return match;
     }
     // Проверяем, что перед компанией есть достаточно текста

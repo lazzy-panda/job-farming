@@ -1,3 +1,14 @@
+.layout {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: var(--sneat-bg-primary, #f5f7fa);
+  min-height: 100vh;
+}
+
 .panel {
   width: 100%;
   background: #fff;
@@ -5,6 +16,11 @@
   border-radius: 0.75rem;
   box-shadow: 0 0.25rem 1.25rem 0 rgba(75, 70, 92, 0.15), 0 0 0 0.0625rem rgba(75, 70, 92, 0.05);
   padding: 1.5rem;
+}
+
+.form-card {
+  display: flex;
+  width: 100%;
 }
 
 .list-card {
@@ -84,6 +100,36 @@
       color: #8ea0b5;
       font-size: 0.85rem;
       word-break: break-all;
+    }
+
+    .row-source-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .source-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      ::ng-deep svg {
+        display: block;
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    .row-subscribers {
+      color: #4b5ab7;
+      font-size: 0.875rem;
+      font-weight: 600;
+      white-space: nowrap;
+      min-width: 60px;
+      text-align: right;
     }
 
     .delete-btn {

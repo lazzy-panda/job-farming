@@ -1,91 +1,134 @@
 <div class="layout">
   <app-dashboard-header
-    title="Наборы шаблонов"
-    subtitle="Резюме и письма по наборам для разных типов вакансий"
+    title="Резюме и шаблоны"
+    subtitle="Версии резюме для рассылки и шаблоны писем; отклики автоматически помечаются текущим резюме"
   />
 
-  <section class="grid">
-    <mat-card *ngFor="let set of templateSets(); trackBy: trackById">
-      <mat-card-title>{{ set.name }}</mat-card-title>
+  <div class="grid">
+    <mat-card class="section">
+      <div class="section-header">
+        <h3>Резюме — версии для рассылки</h3>
+      </div>
 
-      <div class="section">
-        <div class="section-header">
-          <h3>Резюме</h3>
-        </div>
-        <div class="list">
-          <div class="item" *ngFor="let cv of set.resumes; trackBy: trackById">
-            <div class="item-body">
-              <div class="item-title">{{ cv.title }}</div>
-              <div class="item-text">{{ cv.content }}</div>
-            </div>
+      <div class="list" *ngIf="resumes().length; else noResumes">
+        <div class="item" *ngFor="let resume of resumes(); trackBy: trackById">
+          <div class="item-main">
             <button
-              mat-stroked-button
-              color="primary"
-              [disabled]="set.selectedResumeId === cv.id"
-              (click)="selectResume(set.id, cv.id)"
+              mat-icon-button
+              type="button"
+              (click)="setDefaultResume(resume)"
+              [matTooltip]="resume.isDefault ? 'Используется для откликов' : 'Сделать резюме по умолчанию'"
             >
-              <mat-icon class="material-symbols-outlined" aria-hidden="true">check_circle</mat-icon>
-              {{ set.selectedResumeId === cv.id ? 'Выбрано' : 'Использовать' }}
+              <mat-icon class="material-symbols-outlined" [class.default-star]="resume.isDefault">
+                {{ resume.isDefault ? 'star' : 'star_outline' }}
+              </mat-icon>
+            </button>
+            <div class="item-text">
+              <span class="item-name">{{ resume.name }}</span>
+              <span class="item-sub">{{ resume.title }}</span>
+              <span class="item-stats" *ngIf="statsFor(resume) as stat">
+                отклики {{ stat.sent }} · ответы {{ stat.replied }} · собесы {{ stat.interviews }}
+              </span>
+            </div>
+          </div>
+          <div class="item-actions">
+            <button mat-icon-button type="button" (click)="copyContent(resume.content)" matTooltip="Скопировать текст резюме">
+              <mat-icon class="material-symbols-outlined">content_copy</mat-icon>
+            </button>
+            <button mat-icon-button type="button" (click)="editResume(resume)" matTooltip="Редактировать">
+              <mat-icon class="material-symbols-outlined">edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" type="button" (click)="deleteResume(resume)" matTooltip="Удалить">
+              <mat-icon class="material-symbols-outlined">delete</mat-icon>
             </button>
           </div>
         </div>
-        <div class="form-row">
-          <mat-form-field appearance="outline">
-            <mat-label>Название резюме</mat-label>
-            <input matInput [(ngModel)]="pendingResumes[set.id].title" />
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Текст/ссылка</mat-label>
-            <textarea matInput rows="3" [(ngModel)]="pendingResumes[set.id].content"></textarea>
-          </mat-form-field>
-          <button mat-flat-button color="primary" (click)="addResume(set.id)">Добавить резюме</button>
-        </div>
       </div>
+      <ng-template #noResumes>
+        <p class="hint">Пока нет ни одного резюме. Добавьте версию — например «DM v1» — и она будет
+        автоматически помечать каждый отклик для A/B-сравнения.</p>
+      </ng-template>
 
-      <div class="section">
-        <div class="section-header">
-          <h3>Письма/сообщения</h3>
+      <form class="form" (ngSubmit)="saveResume()">
+        <h4>{{ editingResumeId ? 'Редактирование резюме' : 'Новая версия резюме' }}</h4>
+        <mat-form-field appearance="outline">
+          <mat-label>Имя версии (попадает в статистику, напр. «DM v1»)</mat-label>
+          <input matInput name="resumeName" [(ngModel)]="resumeForm.name" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Заголовок резюме (роль в шапке)</mat-label>
+          <input matInput name="resumeTitle" [(ngModel)]="resumeForm.title" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Текст резюме</mat-label>
+          <textarea matInput rows="8" name="resumeContent" [(ngModel)]="resumeForm.content"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Заметки (для себя: под какие вакансии)</mat-label>
+          <input matInput name="resumeNotes" [(ngModel)]="resumeForm.notes" />
+        </mat-form-field>
+        <div class="form-actions">
+          <button mat-flat-button color="primary" type="submit">
+            {{ editingResumeId ? 'Сохранить' : 'Добавить резюме' }}
+          </button>
+          <button mat-button type="button" *ngIf="editingResumeId" (click)="cancelResumeEdit()">Отмена</button>
         </div>
-        <div class="list">
-          <div class="item" *ngFor="let letter of set.letters; trackBy: trackById">
-            <div class="item-body">
-              <div class="item-title">
-                {{ letter.title }}
-                <span class="badge">{{ letter.channel }}</span>
-              </div>
-              <div class="item-text">{{ letter.content }}</div>
-            </div>
-            <button
-              mat-stroked-button
-              color="primary"
-              [disabled]="set.selectedLetterId === letter.id"
-              (click)="selectLetter(set.id, letter.id)"
-            >
-              <mat-icon class="material-symbols-outlined" aria-hidden="true">check_circle</mat-icon>
-              {{ set.selectedLetterId === letter.id ? 'Выбрано' : 'Использовать' }}
-            </button>
-          </div>
-        </div>
-        <div class="form-row">
-          <mat-form-field appearance="outline">
-            <mat-label>Название письма</mat-label>
-            <input matInput [(ngModel)]="pendingLetters[set.id].title" />
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Канал</mat-label>
-            <mat-select [(ngModel)]="pendingLetters[set.id].channel">
-              <mat-option value="email">email</mat-option>
-              <mat-option value="telegram">telegram</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Текст</mat-label>
-            <textarea matInput rows="3" [(ngModel)]="pendingLetters[set.id].content"></textarea>
-          </mat-form-field>
-          <button mat-flat-button color="accent" (click)="addLetter(set.id)">Добавить письмо</button>
-        </div>
-      </div>
+      </form>
     </mat-card>
-  </section>
-</div>
 
+    <mat-card class="section">
+      <div class="section-header">
+        <h3>Шаблоны писем и откликов</h3>
+      </div>
+
+      <div class="list" *ngIf="letters().length; else noLetters">
+        <div class="item" *ngFor="let letter of letters(); trackBy: trackById">
+          <div class="item-main">
+            <div class="item-text">
+              <span class="item-name">{{ letter.name }}</span>
+            <span class="item-sub">канал: {{ letter.channel || '—' }}</span>
+            </div>
+          </div>
+          <div class="item-actions">
+            <button mat-icon-button type="button" (click)="copyContent(letter.content)" matTooltip="Скопировать текст">
+              <mat-icon class="material-symbols-outlined">content_copy</mat-icon>
+            </button>
+            <button mat-icon-button type="button" (click)="editLetter(letter)" matTooltip="Редактировать">
+              <mat-icon class="material-symbols-outlined">edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" type="button" (click)="deleteLetter(letter)" matTooltip="Удалить">
+              <mat-icon class="material-symbols-outlined">delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+      <ng-template #noLetters>
+        <p class="hint">Шаблоны сопроводительных писем для быстрых откликов (телеграм, email, hh).</p>
+      </ng-template>
+
+      <form class="form" (ngSubmit)="saveLetter()">
+        <h4>{{ editingLetterId ? 'Редактирование шаблона' : 'Новый шаблон письма' }}</h4>
+        <mat-form-field appearance="outline">
+          <mat-label>Название</mat-label>
+          <input matInput name="letterName" [(ngModel)]="letterForm.name" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Канал</mat-label>
+          <mat-select name="letterChannel" [(ngModel)]="letterForm.channel">
+            <mat-option *ngFor="let channel of letterChannels" [value]="channel">{{ channel }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Текст</mat-label>
+          <textarea matInput rows="6" name="letterContent" [(ngModel)]="letterForm.content"></textarea>
+        </mat-form-field>
+        <div class="form-actions">
+          <button mat-flat-button color="primary" type="submit">
+            {{ editingLetterId ? 'Сохранить' : 'Добавить шаблон' }}
+          </button>
+          <button mat-button type="button" *ngIf="editingLetterId" (click)="cancelLetterEdit()">Отмена</button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>

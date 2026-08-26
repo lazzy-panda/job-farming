@@ -24,6 +24,7 @@ model JobPosting {
   id           String        @id @default(cuid())
   title        String
   description  String?
+  rawContent   String?
   company      String?
   location     String?
   link         String?
@@ -38,14 +39,30 @@ model JobPosting {
 }
 
 model Application {
-  id           String     @id @default(cuid())
-  jobPostingId String
-  jobPosting   JobPosting @relation(fields: [jobPostingId], references: [id])
-  channel      String
-  status       String     @default("pending")
-  sentAt       DateTime   @default(now())
-  notes        String?
-  createdAt    DateTime   @default(now())
+  id            String       @id @default(cuid())
+  jobPostingId  String
+  jobPosting    JobPosting   @relation(fields: [jobPostingId], references: [id])
+  channel       String
+  status        String       @default("pending")
+  kind          String       @default("template")
+  resumeVersion String?
+  sentAt        DateTime     @default(now())
+  repliedAt     DateTime?
+  interviewAt   DateTime?
+  notes         String?
+  createdAt     DateTime     @default(now())
+  scoreEvents   ScoreEvent[]
+}
+
+model ScoreEvent {
+  id            String       @id @default(cuid())
+  date          DateTime     @default(now())
+  type          String
+  points        Int
+  note          String?
+  applicationId String?
+  application   Application? @relation(fields: [applicationId], references: [id], onDelete: SetNull)
+  createdAt     DateTime     @default(now())
 }
 
 model DeletedJob {
@@ -63,6 +80,17 @@ model Template {
   updatedAt DateTime @updatedAt
 }
 
+model Resume {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  title     String
+  content   String
+  notes     String?
+  isDefault Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Settings {
   id        Int     @id @default(1)
   data      Json
@@ -73,11 +101,25 @@ model Proxy {
   id            String   @id @default(cuid())
   host          String
   port          Int
+  protocol      ProxyProtocol @default(http)
   username      String?
   password      String?
+  userAgent     String?
+  userAgentSource String?
+  userAgentUpdatedAt DateTime?
+  cookieHeader  String?
+  cookieSource  String?
+  cookieUpdatedAt DateTime?
   active        Boolean  @default(true)
   lastCheckedAt DateTime?
   lastStatus    String?
+  lastUsedAt    DateTime?
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
+}
+
+enum ProxyProtocol {
+  http
+  https
+  socks5
 }

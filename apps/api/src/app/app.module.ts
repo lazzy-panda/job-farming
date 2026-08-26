@@ -15,6 +15,9 @@ import { ProxyManagerModule } from './proxy-manager/proxy-manager.module';
 import { MailerModule } from './mailer/mailer.module';
 import { MessengerModule } from './messenger/messenger.module';
 import { VacancyParseModule } from '../vacancy-parse/vacancy-parse.module';
+import { TranslationsModule } from './translations/translations.module';
+import { ScoresModule } from './scores/scores.module';
+import { ResumesModule } from './resumes/resumes.module';
 
 @Module({
   imports: [
@@ -32,6 +35,9 @@ import { VacancyParseModule } from '../vacancy-parse/vacancy-parse.module';
     MailerModule,
     MessengerModule,
     VacancyParseModule,
+    TranslationsModule,
+    ScoresModule,
+    ResumesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

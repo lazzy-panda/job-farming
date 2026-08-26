@@ -3,7 +3,7 @@
   https://vc.ru/hr/2295219-300-telegram-kanalov-s-vakansiyami
 
   Usage:
-    DATABASE_URL=file:./prisma/dev.db node scripts/import-vc-300-channels.js
+    DATABASE_URL=file:./dev.db node scripts/import-vc-300-channels.js
 */
 
 const axios = require('axios');
@@ -190,7 +190,7 @@ function createPool(concurrency) {
 }
 
 async function main() {
-  const dbUrl = process.env.DATABASE_URL || 'file:./prisma/dev.db';
+  const dbUrl = process.env.DATABASE_URL || 'file:./dev.db';
   const adapter = new PrismaBetterSqlite3({ url: dbUrl });
   const prisma = new PrismaClient({ adapter });
 

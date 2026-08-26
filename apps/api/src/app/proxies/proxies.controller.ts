@@ -16,8 +16,13 @@ export class ProxiesController {
     body: {
       host: string;
       port: number;
+      protocol?: 'http' | 'https' | 'socks5';
       username?: string;
       password?: string;
+      userAgent?: string;
+      userAgentSource?: string;
+      cookieHeader?: string;
+      cookieSource?: string;
       active?: boolean;
     },
   ) {
@@ -34,4 +39,3 @@ export class ProxiesController {
     return this.service.remove(id);
   }
 }
-

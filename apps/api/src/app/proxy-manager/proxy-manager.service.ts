@@ -1,30 +1,41 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { ProxyDbRow } from '../proxies/proxy.types';
 
 @Injectable()
 export class ProxyManagerService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async getNext() {
-    const proxy = await this.prisma.proxy.findFirst({
+  async getNext(): Promise<ProxyDbRow | null> {
+    const proxyDelegate = this.prisma.proxy as unknown as {
+      findFirst(args?: unknown): Promise<ProxyDbRow | null>;
+      update(args: unknown): Promise<ProxyDbRow>;
+    };
+
+    const proxy = await proxyDelegate.findFirst({
       where: { active: true },
-      orderBy: { updatedAt: 'asc' },
+      orderBy: [
+        { lastUsedAt: 'asc' },
+        { updatedAt: 'asc' },
+      ],
     });
     if (!proxy) return null;
-    await this.prisma.proxy.update({
+    await proxyDelegate.update({
       where: { id: proxy.id },
-      data: { updatedAt: new Date(), lastCheckedAt: new Date() },
+      data: { updatedAt: new Date(), lastCheckedAt: new Date(), lastUsedAt: new Date() },
     });
     return proxy;
   }
 
   async markBad(proxyId: string, reason?: string) {
-    await this.prisma.proxy.update({
+    const proxyDelegate = this.prisma.proxy as unknown as { update(args: unknown): Promise<ProxyDbRow> };
+    await proxyDelegate.update({
       where: { id: proxyId },
       data: {
         active: false,
         lastStatus: reason ?? 'bad',
         lastCheckedAt: new Date(),
+        lastUsedAt: null,
       },
     });
   }
@@ -33,4 +44,3 @@ export class ProxyManagerService {
     await this.markBad(proxyId, `blocked:${status}`);
   }
 }
-

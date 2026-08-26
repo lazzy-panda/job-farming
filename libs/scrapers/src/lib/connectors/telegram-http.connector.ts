@@ -2,18 +2,14 @@ import axios from 'axios';
 import { load } from 'cheerio';
 import { SourceConnector, SourceContext } from '../scrapers';
 import * as crypto from 'crypto';
-
-export class ProxyBlockedError extends Error {
-  constructor(public readonly status: number, public readonly host?: string) {
-    super(`Proxy blocked with status ${status}`);
-  }
-}
+import { ProxyBlockedError } from '../errors';
 
 type TelegramMetadata = {
   channels?: string[];
   lastMessageId?: number;
   maxPages?: number;
   userAgent?: string;
+  cookieHeader?: string;
   delayMs?: number;
   jitterMs?: number;
   proxyHost?: string;
@@ -46,7 +42,7 @@ const DEFAULT_UA =
 const DEFAULT_DELAY_MS = 500;
 const DEFAULT_JITTER_MS = 300;
 const DEFAULT_BACKOFF_MS = 3000;
-const DEFAULT_MAX_429_RETRY = 2;
+const DEFAULT_MAX_429_RETRY = 5;
 
 export class TelegramHttpConnector implements SourceConnector {
   async fetchNewJobs(ctx: SourceContext): Promise<ParsedJob[]> {
@@ -115,8 +111,14 @@ export class TelegramHttpConnector implements SourceConnector {
     const backoff = meta.backoffMs ?? DEFAULT_BACKOFF_MS;
     for (let attempt = 0; attempt <= max429; attempt += 1) {
       try {
+        const headers: Record<string, string> = {
+          'user-agent': meta.userAgent ?? DEFAULT_UA,
+        };
+        if (meta.cookieHeader) {
+          headers['Cookie'] = meta.cookieHeader;
+        }
         const res = await axios.get(url, {
-          headers: { 'user-agent': meta.userAgent ?? DEFAULT_UA },
+          headers,
           timeout: 10000,
           proxy: meta.proxyHost && meta.proxyPort
             ? {

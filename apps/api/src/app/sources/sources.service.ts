@@ -12,6 +12,8 @@ import * as crypto from 'crypto';
 import { promises as fs } from 'fs';
 import * as path from 'path';
 import axios from 'axios';
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const Parser = require('rss-parser');
 
 interface CreateSourceDto {
   name: string;
@@ -63,10 +65,11 @@ export class SourcesService {
     }
 
     // Проверка доступности и валидности источника
+    let rssFeedTitle: string | null = null;
     if (sourceType === 'telegram') {
       await this.validateTelegramSource(url);
     } else if (sourceType === 'rss') {
-      await this.validateRssSource(url);
+      rssFeedTitle = await this.validateRssSource(url);
     }
 
     const urlNormalized = this.normalizeUrl(url);
@@ -97,6 +100,13 @@ export class SourcesService {
         // Если метаданные не получены, используем slug
         const slug = this.extractTelegramSlug(url);
         sourceName = slug || url;
+      }
+    } else if (sourceType === 'rss') {
+      // Для RSS источников используем title из фида, если он есть
+      if (rssFeedTitle && rssFeedTitle.trim()) {
+        sourceName = rssFeedTitle.trim();
+      } else if (!sourceName) {
+        sourceName = url;
       }
     } else if (!sourceName) {
       sourceName = url;
@@ -196,11 +206,24 @@ export class SourcesService {
 
   private normalizeUrl(raw: string): string {
     let v = (raw ?? '').trim().toLowerCase();
+    // Для RSS URL сохраняем query параметры, так как они важны для различия лент
+    const isRss = this.isRssUrl(v);
+    
+    // Сохраняем query параметры для RSS
+    let query = '';
+    if (isRss && v.includes('?')) {
+      const parts = v.split('?');
+      v = parts[0];
+      query = '?' + parts.slice(1).join('?');
+    }
+    
     v = v.replace(/^https?:\/\//, '');
     v = v.replace(/^www\./, '');
     v = v.replace(/^t\.me\/s\//, 't.me/');
     v = v.replace(/\/+$/, '');
-    return v;
+    
+    // Возвращаем с query параметрами для RSS
+    return v + query;
   }
 
   private resolveSourceType(sourceType: string, url?: string | null): SourceType {
@@ -263,6 +286,9 @@ export class SourcesService {
     }
     if (profile.avatar) {
       metadata.telegramAvatar = profile.avatar;
+    }
+    if (profile.subscribersCount !== null && profile.subscribersCount !== undefined) {
+      metadata.telegramSubscribersCount = profile.subscribersCount;
     }
     return this.toJson(metadata);
   }
@@ -419,58 +445,123 @@ export class SourcesService {
     }
   }
 
-  private async validateRssSource(url: string): Promise<void> {
-    let response: Response;
+  private async validateRssSource(url: string): Promise<string | null> {
+    if (!url || !this.isValidUrl(url)) {
+      throw new BadRequestException('Некорректный URL для RSS фида');
+    }
+
+    let response;
     try {
-      response = await fetch(url, {
-        method: 'GET',
-        redirect: 'follow',
-        headers: { 'user-agent': this.telegramUserAgent },
+      response = await axios.get(url, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:128.0) Gecko/20100101 Firefox/128.0',
+          Accept: 'application/rss+xml, application/xml, application/atom+xml, application/json, text/xml',
+        },
+        timeout: 15000,
+        maxRedirects: 5,
+        validateStatus: (status) => status >= 200 && status < 400,
+        responseType: 'text',
       });
-    } catch {
-      throw new BadRequestException('Не удалось проверить доступность RSS-ленты');
-    }
-
-    if (response.status < 200 || response.status >= 400) {
-      throw new BadRequestException(`RSS-лента недоступна (статус: ${response.status})`);
-    }
-
-    const contentType = response.headers.get('content-type') ?? '';
-    const text = await response.text();
-
-    // Проверка валидности RSS
-    if (!this.isValidRssFeed(text, contentType)) {
-      throw new BadRequestException('URL не является валидной RSS-лентой');
-    }
-  }
-
-  private isValidRssFeed(content: string, contentType: string): boolean {
-    const lowerContent = content.toLowerCase();
-    const lowerContentType = contentType.toLowerCase();
-
-    // Проверка по content-type
-    if (lowerContentType.includes('xml') || lowerContentType.includes('rss') || lowerContentType.includes('atom')) {
-      // Проверка наличия RSS/Atom элементов
-      return (
-        lowerContent.includes('<rss') ||
-        lowerContent.includes('<feed') ||
-        lowerContent.includes('<channel') ||
-        lowerContent.includes('xmlns="http://www.w3.org/2005/atom"')
+    } catch (error) {
+      const err = error as { response?: { status?: number }; message?: string };
+      if (err.response?.status === 404) {
+        throw new BadRequestException('RSS фид не найден (404). Проверьте правильность URL.');
+      }
+      if (err.response?.status === 403) {
+        throw new BadRequestException('Доступ к RSS фиду запрещен (403). Фид может требовать авторизации.');
+      }
+      throw new BadRequestException(
+        `Не удалось проверить доступность RSS фида: ${err.message || 'Неизвестная ошибка'}`,
       );
     }
 
-    // Проверка по содержимому
-    return (
-      lowerContent.includes('<rss') ||
-      lowerContent.includes('<feed') ||
-      (lowerContent.includes('<channel') && lowerContent.includes('<item'))
-    );
+    const contentType = (response.headers['content-type'] || '').toLowerCase();
+    const isXmlContent =
+      contentType.includes('xml') ||
+      contentType.includes('rss') ||
+      contentType.includes('atom') ||
+      contentType.includes('application/json') ||
+      contentType.includes('text/plain');
+
+    if (!isXmlContent && !contentType.includes('json')) {
+      // Проверяем первые символы ответа
+      const bodyStart = (response.data as string).substring(0, 100).toLowerCase();
+      if (!bodyStart.includes('<?xml') && !bodyStart.includes('<rss') && !bodyStart.includes('<feed') && !bodyStart.includes('{')) {
+        throw new BadRequestException(
+          'Ответ не является валидным RSS/Atom фидом. Проверьте, что URL указывает на RSS ленту.',
+        );
+      }
+    }
+
+    // Попытка распарсить фид
+    try {
+      // Предварительная очистка XML от некорректных entity
+      let xmlContent = response.data as string;
+      
+      // Исправляем некорректные entity, которые содержат "=" (например, &amp;=)
+      // Entity не может содержать "=", поэтому экранируем амперсанд
+      xmlContent = xmlContent.replace(/&([a-zA-Z0-9#]+)=/g, '&amp;$1=');
+      
+      // Исправляем entity, которые заканчиваются на "=" без точки с запятой
+      xmlContent = xmlContent.replace(/&([a-zA-Z0-9#]+)=([^;])/g, '&amp;$1=$2');
+      
+      // Исправляем entity без точки с запятой перед пробелами, переносами строк и другими символами
+      xmlContent = xmlContent.replace(/&([a-zA-Z0-9#]+)([^;a-zA-Z0-9#&])/g, (match, entity, nextChar) => {
+        // Если это известная entity без точки с запятой, добавляем её
+        const knownEntities = ['amp', 'lt', 'gt', 'quot', 'apos', 'nbsp', 'mdash', 'ndash', 'copy', 'reg'];
+        if (knownEntities.includes(entity.toLowerCase())) {
+          return `&${entity};${nextChar}`;
+        }
+        // Иначе экранируем амперсанд
+        return `&amp;${entity}${nextChar}`;
+      });
+      
+      const parser = new Parser({
+        xml: {
+          // Более толерантный режим парсинга
+          normalize: true,
+          trim: true,
+          // Игнорируем некоторые ошибки XML
+          ignoreAttributes: false,
+        },
+        // Максимальное количество редиректов
+        maxRedirects: 5,
+      });
+      const feed = await parser.parseString(xmlContent);
+
+      // Проверка структуры фида
+      if (!feed.title && !feed.items || feed.items.length === 0) {
+        throw new BadRequestException(
+          'RSS фид не содержит элементов или имеет невалидную структуру. Убедитесь, что фид содержит хотя бы один элемент.',
+        );
+      }
+
+      // Проверка наличия хотя бы одного элемента с заголовком
+      const hasValidItems = feed.items.some((item) => item.title || item.content || item.contentSnippet);
+      if (!hasValidItems) {
+        throw new BadRequestException(
+          'RSS фид не содержит валидных элементов с контентом. Убедитесь, что фид содержит элементы с заголовками или описанием.',
+        );
+      }
+
+      // Возвращаем title из фида, если он есть
+      return feed.title ? String(feed.title).trim() : null;
+    } catch (error) {
+      const err = error as Error;
+      if (err.message.includes('BadRequestException')) {
+        throw err;
+      }
+      throw new BadRequestException(
+        `Не удалось распарсить RSS фид: ${err.message}. Убедитесь, что URL указывает на валидный RSS/Atom фид.`,
+      );
+    }
   }
 
   private async assertTelegramChannelAccessible(url?: string | null): Promise<{
     slug: string;
     title?: string | null;
     avatar?: string | null;
+    subscribersCount?: number | null;
   }> {
     const slug = this.extractTelegramSlug(url);
     if (!slug) {
@@ -505,10 +596,11 @@ export class SourcesService {
       slug,
       title: profile.title ?? null,
       avatar: profile.avatar ?? null,
+      subscribersCount: profile.subscribersCount ?? null,
     };
   }
 
-  private parseTelegramProfile(html: string): { title?: string; avatar?: string } {
+  private parseTelegramProfile(html: string): { title?: string; avatar?: string; subscribersCount?: number } {
     try {
       const $ = load(html);
       // Пробуем разные способы извлечения названия канала
@@ -537,9 +629,63 @@ export class SourcesService {
         $('.tgme_page_photo_image').attr('src')?.trim() ||
         null;
       
+      // Извлекаем количество подписчиков
+      let subscribersCount: number | undefined;
+      // Пробуем несколько способов извлечения
+      const pageExtra = $('.tgme_page_extra').text().trim();
+      const pageDescription = $('meta[property="og:description"]').attr('content')?.trim() || '';
+      
+      // Ищем в .tgme_page_extra
+      if (pageExtra) {
+        // Паттерны: "123 456 members", "123K members", "1.2M subscribers", "123 тыс. подписчиков" и т.д.
+        const patterns = [
+          /([\d\s.,]+)\s*(K|M|тыс|млн)?\s*(?:members|subscribers|подписчик|участник)/i,
+          /(?:members|subscribers|подписчик|участник)[:\s]+([\d\s.,]+)\s*(K|M|тыс|млн)?/i,
+        ];
+        
+        for (const pattern of patterns) {
+          const match = pageExtra.match(pattern);
+          if (match) {
+            const countStr = (match[1] || '').replace(/\s/g, '').replace(/,/g, '.');
+            const suffix = (match[2] || '').toUpperCase();
+            const count = parseFloat(countStr);
+            if (!isNaN(count) && count > 0) {
+              if (suffix === 'K' || suffix === 'ТЫС') {
+                subscribersCount = Math.round(count * 1000);
+              } else if (suffix === 'M' || suffix === 'МЛН') {
+                subscribersCount = Math.round(count * 1000000);
+              } else {
+                subscribersCount = Math.round(count);
+              }
+              break;
+            }
+          }
+        }
+      }
+      
+      // Если не нашли в pageExtra, пробуем в описании
+      if (!subscribersCount && pageDescription) {
+        const descMatch = pageDescription.match(/([\d\s.,]+)\s*(K|M|тыс|млн)?\s*(?:members|subscribers|подписчик|участник)/i);
+        if (descMatch) {
+          const countStr = (descMatch[1] || '').replace(/\s/g, '').replace(/,/g, '.');
+          const suffix = (descMatch[2] || '').toUpperCase();
+          const count = parseFloat(countStr);
+          if (!isNaN(count) && count > 0) {
+            if (suffix === 'K' || suffix === 'ТЫС') {
+              subscribersCount = Math.round(count * 1000);
+            } else if (suffix === 'M' || suffix === 'МЛН') {
+              subscribersCount = Math.round(count * 1000000);
+            } else {
+              subscribersCount = Math.round(count);
+            }
+          }
+        }
+      }
+      
       return {
         title: title || undefined,
         avatar: avatar || undefined,
+        subscribersCount,
       };
     } catch {
       return {};

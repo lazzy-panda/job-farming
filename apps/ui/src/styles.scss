@@ -263,6 +263,49 @@ a mat-icon {
 
 .cdk-overlay-pane {
   z-index: 1001 !important;
+  
+  /* Snackbar должен быть поверх всех overlay элементов */
+  &.mat-mdc-snack-bar-container,
+  &[class*="snackbar"] {
+    z-index: 10000 !important;
+  }
+}
+
+/* Material Snackbar - Убираем прозрачность и устанавливаем максимальный z-index */
+.mat-mdc-snack-bar-container {
+  background-color: var(--sneat-bg-secondary) !important;
+  color: var(--sneat-text-dark) !important;
+  opacity: 1 !important;
+  z-index: 10000 !important;
+  
+  .mdc-snackbar__surface {
+    background-color: var(--sneat-bg-secondary) !important;
+    opacity: 1 !important;
+    z-index: 10000 !important;
+  }
+  
+  .mdc-snackbar__label {
+    color: var(--sneat-text-dark) !important;
+    opacity: 1 !important;
+  }
+  
+  .mat-mdc-snack-bar-action {
+    color: var(--sneat-primary) !important;
+    opacity: 1 !important;
+    
+    &:hover {
+      color: var(--sneat-primary-dark) !important;
+    }
+  }
+}
+
+/* CDK Overlay для Snackbar - максимальный z-index */
+.cdk-overlay-container {
+  z-index: 10000 !important;
+}
+
+.cdk-overlay-pane.mat-mdc-snack-bar-container {
+  z-index: 10000 !important;
 }
 
 /* Scrollbar Styling */

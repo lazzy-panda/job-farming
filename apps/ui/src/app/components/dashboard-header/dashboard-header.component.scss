@@ -5,7 +5,7 @@
   background: #fff;
   border-bottom: 1px solid rgba(75, 70, 92, 0.12);
   box-shadow: 0 1px 0 0 rgba(75, 70, 92, 0.05);
-
+  border-radius: 0.75rem;
   .header-container {
     display: flex;
     align-items: center;
@@ -101,9 +101,9 @@
       white-space: nowrap;
 
       .nav-icon {
-        width: 1.25rem;
-        height: 1.25rem;
-        font-size: 1.25rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        font-size: 1.5rem;
         transition: color 0.15s ease-in-out;
         color: #8ea0b5;
         flex-shrink: 0;

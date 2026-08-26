@@ -84,8 +84,8 @@ export function extractEmployment(
     // freelance
     pushMatches(hits, text, section.name, 'freelance', 'kw:freelance', /(freelance|фриланс|project[- ]?based|проектная\s+работа)/i);
 
-    // internship
-    pushMatches(hits, text, section.name, 'internship', 'kw:internship', /(internship|intern|стажировк[аи])/i);
+    // internship - используем границы слов, чтобы не находить "intern" в "individual contributor"
+    pushMatches(hits, text, section.name, 'internship', 'kw:internship', /(?:^|[^\w])(internship|intern\b|стажировк[аи])(?:[^\w]|$)/i);
 
     // temporary
     pushMatches(hits, text, section.name, 'temporary', 'kw:temporary', /(temporary|временная\s+работа|на\s+срок)/i);

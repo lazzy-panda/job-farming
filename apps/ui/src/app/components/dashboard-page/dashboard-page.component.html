@@ -7,14 +7,28 @@
     (refresh)="refreshAndScrape()"
     (sortChange)="onSortChange($event)"
   />
+  <section class="plan-section">
+    <app-plan-panel #planPanel></app-plan-panel>
+  </section>
+
   <section class="search-section">
     <app-job-search
       [query]="searchQuery()"
       [total]="jobs().length"
       [filtered]="totalFiltered()"
+      [sourceTypes]="availableSourceTypes()"
       (queryChange)="onSearchQueryChange($event)"
+      (sourceChange)="onSourceChange($event)"
     />
   </section>
+
+  <mat-progress-bar
+    *ngIf="loading()"
+    mode="indeterminate"
+    color="accent"
+    class="loading-bar"
+    aria-label="Загрузка списка вакансий"
+  ></mat-progress-bar>
 
   <section>
     <app-job-cards
@@ -22,6 +36,7 @@
       [sources]="sources()"
       (open)="openAndCopy($event)"
       (remove)="deleteJob($event)"
+      (funnelChanged)="planPanel.refresh()"
     ></app-job-cards>
   </section>
 

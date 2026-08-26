@@ -70,4 +70,12 @@ describe('location extractor', () => {
     expect(res.location.value.country).toBe('Cyprus');
     expect(res.location.value.relocation).toBe(true);
   });
+
+  it('defaults country for Arbeitsagentur sources even without explicit location', () => {
+    const ctx = buildContext('Hybride Arbeitsmodelle und Flexibilität durch Gleitzeit.', {
+      sourceUrl: 'https://www.arbeitsagentur.de/jobs',
+    });
+    const res = extractLocation(ctx, { enableTraces: false });
+    expect(res.location.value.country).toBe('Germany');
+  });
 });

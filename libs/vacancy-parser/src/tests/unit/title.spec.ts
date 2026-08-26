@@ -140,4 +140,19 @@ describe('title extractor', () => {
     expect(result.title.role).toBe('ux_ui_designer');
     expect(result.meta.warnings).toContain('multi_vacancy_post');
   });
+
+  it('keeps spaced titles when there is no glued company', () => {
+    const text = 'Company type: Services\nSize: 50-200';
+    const result = parseVacancy(text, {
+      strict: true,
+      pageTitle: 'Senior Linux Engineer',
+    });
+    expect(result.title.value).toBe('Senior Linux Engineer');
+  });
+
+  it('keeps camelCase tech tokens at the end of title', () => {
+    const ctx = buildContext('body', { pageTitle: 'Senior Backend Developer TypeScript' });
+    const res = extractTitle(ctx, { strict: false, enableTraces: false });
+    expect(res.title.value).toBe('Senior Backend Developer TypeScript');
+  });
 });

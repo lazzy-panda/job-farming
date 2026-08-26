@@ -16,11 +16,17 @@
     "build:all": "nx build api && nx build ui && nx build desktop",
     "serve:ui:clean": "pkill -f \"nx serve ui\" || true && npx nx reset && NX_DAEMON=false npx nx serve ui --host=127.0.0.1 --port=4209 --watch=false",
     "serve:all": "API_PORT=3000 UI_PORT=4216 bash scripts/serve-all.sh",
+    "rss:sync:higheredjobs": "DATABASE_URL=file:./dev.db node scripts/import-higheredjobs-all-rss.js",
+    "proxies:refresh": "bash scripts/refresh-proxies.sh",
+    "proxies:apply-cookies": "node scripts/apply-highered-cookies.js",
     "postinstall": "patch-package"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": "20.19.0"
+  },
   "devDependencies": {
     "@angular-devkit/core": "^21.0.3",
     "@angular-devkit/schematics": "^21.0.3",
@@ -79,7 +85,8 @@
     },
     "@angular-devkit/schematics": {
       "ora": "5.4.1"
-    }
+    },
+    "zeptomatch": "1.1.0"
   },
   "dependencies": {
     "@angular/animations": "^21.0.4",
@@ -108,7 +115,9 @@
     "nodemailer": "^7.0.11",
     "prisma": "^7.1.0",
     "reflect-metadata": "^0.1.13",
+    "rss-parser": "^3.13.0",
     "rxjs": "~7.8.0",
+    "socks-proxy-agent": "^8.0.5",
     "zone.js": "~0.15.0"
   }
 }

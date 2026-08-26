@@ -10,6 +10,16 @@ export class ApplicationsController {
     return this.service.findAll();
   }
 
+  @Get('stats')
+  stats() {
+    return this.service.stats();
+  }
+
+  @Get('followups')
+  followups() {
+    return this.service.followups();
+  }
+
   @Post()
   create(
     @Body()
@@ -17,6 +27,8 @@ export class ApplicationsController {
       jobPostingId: string;
       channel: string;
       status?: string;
+      kind?: string;
+      resumeVersion?: string;
       notes?: string;
     },
   ) {
@@ -33,4 +45,3 @@ export class ApplicationsController {
     return this.service.remove(id);
   }
 }
-

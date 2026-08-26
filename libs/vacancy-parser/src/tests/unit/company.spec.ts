@@ -27,4 +27,30 @@ describe('company extractor', () => {
     expect(res.company.name).toBeNull();
     expect(res.confidence).toBe(0);
   });
+
+  it('ignores camelCase tech tokens at the end of a line', () => {
+    const ctx = buildContext('Stack: TypeScript, NestJS', {});
+    const res = extractCompany(ctx, { enableTraces: false });
+    expect(res.company.name).toBeNull();
+  });
+
+  it('extracts glued company only when it is at the end of the sentence', () => {
+    const ctx = buildContext('Finance / Data AnalystSTARTRIBE LTD\nМосква', {});
+    const res = extractCompany(ctx, { enableTraces: false });
+    expect(res.company.name).toBe('STARTRIBE');
+  });
+
+  it('does not treat trailing tech tokens as glued company', () => {
+    const ctx = buildContext('Senior Backend Developer TypeScript', {});
+    const res = extractCompany(ctx, { enableTraces: false });
+    expect(res.company.name).toBeNull();
+  });
+
+  it('extracts company from intro sentence with article', () => {
+    const text =
+      'Die medatixx GmbH & Co. KG ist gemeinsam mit ihrem Tochterunternehmen I-Motion GmbH ein führender Anbieter von Software.';
+    const ctx = buildContext(text, {});
+    const res = extractCompany(ctx, { enableTraces: false });
+    expect(res.company.name).toBe('medatixx GmbH & Co. KG');
+  });
 });

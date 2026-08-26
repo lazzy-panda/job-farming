@@ -1,5 +1,6 @@
 import type { DocumentContext } from '../core/document-context';
 import type { ParsedCompany, RuleTrace } from '../model/types';
+import { shouldSkipGluedToken } from './glued-company-helpers';
 
 export interface CompanyExtractResult {
   company: ParsedCompany;
@@ -9,11 +10,13 @@ export interface CompanyExtractResult {
 }
 
 function cleanName(raw: string): string {
-  return raw
+  const trimmed = raw
     .replace(/\s+/g, ' ')
     .replace(/^[-–—:\s]+/, '')
     .replace(/\s*[-–—:\s]+$/, '')
     .trim();
+  const withoutArticle = trimmed.replace(/^(?:the|der|die|das)\s+(?=[A-ZÄÖÜA-ZА-ЯЁ0-9])/i, '').trim();
+  return withoutArticle;
 }
 
 function cutCompanyTail(raw: string): string {
@@ -68,6 +71,11 @@ export function extractCompany(ctx: DocumentContext, opts: { enableTraces: boole
   candidates.push({ source: 'body', text: ctx.normalizedText });
 
   const patterns: Array<{ ruleId: string; re: RegExp; group: number }> = [
+    {
+      ruleId: 'company:intro_sentence',
+      re: /((?:[Dd]ie|[Dd]er|[Dd]as|The)\s+)?([A-ZÄÖÜ][^:\n]{2,80}?(?:GmbH(?:\s*&\s*Co\.\s*KG)?|AG|KG|mbH|Inc\.?|LLC|Ltd\.?|Corporation|Company|Group))(?=\s+(?:ist|sind|is|are|gehört|bietet|provides)\b)/i,
+      group: 0,
+    },
     // Explicit labels anywhere in the line (not only at line start).
     { ruleId: 'company:ru:label', re: /(?:компания|работодатель)\s*[:\-–—]\s*([^\n]{2,120})/i, group: 1 },
     { ruleId: 'company:en:label', re: /(?:company|employer)\s*[:\-–—]\s*([^\n]{2,120})/i, group: 1 },
@@ -76,18 +84,25 @@ export function extractCompany(ctx: DocumentContext, opts: { enableTraces: boole
     // English "at <Company>:" patterns
     { ruleId: 'company:en:at', re: /(?:^|[^A-Za-zА-Яа-яЁё])at\s+([A-Z][A-Za-z0-9&'.-]{2,60})\s*[:\-–—]/i, group: 1 },
     { ruleId: 'company:ooo', re: /(ООО\s+"?[A-Za-zА-Яа-яЁё0-9 ._-]{2,60}"?)/, group: 1 },
-    // Company with legal suffix (LTD, LLC, INC, Corp, GmbH) - может быть слипшимся с названием должности
-    // Ищем паттерн: "AnalystSTARTRIBE LTD" или "Analyst STARTRIBE LTD"
-    // Важно: ищем название компании ПЕРЕД суффиксом, даже если оно слиплось с должностью
-    { ruleId: 'company:ltd', re: /([A-ZА-ЯЁ][A-Za-zА-Яа-яЁё0-9\s&'.-]{2,50})\s*(?:LTD|LLC|INC|Corp|Corporation|GmbH)\b/i, group: 1 },
     // Слипшееся название компании после должности (например, "AnalystSTARTRIBE LTD" или "Finance / Data AnalystSTARTRIBE LTD")
-    // Паттерн: строчные/цифры/пробелы/слэши, затем заглавные буквы (название компании), затем LTD/LLC или запятая/двоеточие
+    // Паттерн предназначен только для случая, когда компания стоит В КОНЦЕ строки
     // Пример: "Finance / Data AnalystSTARTRIBE LTD" -> захватывает "STARTRIBE"
-    { ruleId: 'company:glued', re: /[a-zа-яё0-9\s/&-]+([A-ZА-ЯЁ][A-ZА-ЯЁ][A-Za-zА-Яа-яЁё0-9\s&'.-]{2,40})(?:\s*(?:LTD|LLC|INC|Corp|GmbH)\b|\s*[,:])/i, group: 1 },
+    {
+      ruleId: 'company:glued',
+      re: /(?<=[a-zа-яё0-9])([A-ZА-ЯЁ]{2}[A-Za-zА-Яа-яЁё0-9&'.-]{0,40})(?:\s*(?:LTD|LLC|INC|Corp|Corporation|GmbH)\b)?\s*(?:[,.;:]\s*)?(?=$|\n)/,
+      group: 1,
+    },
     // Слипшееся название компании без суффикса (например, "данныхITea" или "СербияITea")
     // Паттерн: кириллическая/строчная буква + заглавная латинская буква (название компании)
     // Пример: "Специалист по сверке данныхITea" -> захватывает "ITea"
-    { ruleId: 'company:glued_no_suffix', re: /([а-яёА-ЯЁ0-9\s,/-]+)([A-Z][A-Za-z0-9]{2,30})(?=\s|$|,|:|\n)/, group: 2 },
+    // Ограничиваем совпадения концом строки/предложения, чтобы не забирать CamelCase-технологии внутри текста
+    { ruleId: 'company:glued_no_suffix', re: /([а-яёА-ЯЁ0-9\s,/-]+)([A-Z][A-Za-z0-9]{2,30})(?=\s*(?:[,.;:]|$|\n))/u, group: 2 },
+    // Company with legal suffix (LTD, LLC, INC, Corp, GmbH) - уже с пробелами перед названием
+    {
+      ruleId: 'company:ltd',
+      re: /(?<![a-zа-яё0-9])([A-ZА-ЯЁ][A-Za-zА-Яа-яЁё0-9\s&'.-]{2,50})\s*(?:LTD|LLC|INC|Corp|Corporation|GmbH)\b/i,
+      group: 1,
+    },
   ];
 
   for (const c of candidates) {
@@ -101,6 +116,13 @@ export function extractCompany(ctx: DocumentContext, opts: { enableTraces: boole
         continue;
       }
       let picked = m[p.group] ?? '';
+
+      if (p.ruleId === 'company:glued_no_suffix') {
+        const prefix = m[1] ?? '';
+        if (!/[А-Яа-яЁё]/.test(prefix)) {
+          continue;
+        }
+      }
       
       // Для слипшихся названий компаний (ruleId: 'company:glued' или 'company:glued_no_suffix') нужно дополнительно очистить
       if (p.ruleId === 'company:glued' || p.ruleId === 'company:glued_no_suffix') {
@@ -109,6 +131,9 @@ export function extractCompany(ctx: DocumentContext, opts: { enableTraces: boole
       }
       
       const raw = cleanName(cutCompanyTail(picked));
+      if ((p.ruleId === 'company:glued' || p.ruleId === 'company:glued_no_suffix') && shouldSkipGluedToken(raw)) {
+        continue;
+      }
       if (!isPlausibleCompanyName(raw)) {
         continue;
       }

@@ -3,6 +3,7 @@ import { Component, OnInit, computed, effect, inject, signal } from '@angular/co
 import { finalize, firstValueFrom } from 'rxjs';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { RouterModule } from '@angular/router';
 import { JobPosting, Source } from '@job-farm/shared-models';
 import { ApiService } from '../../api.service';
@@ -11,6 +12,7 @@ import { DashboardHeaderComponent } from '../dashboard-header/dashboard-header.c
 import { SortMode } from '../sort-menu/sort-menu.component';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { JobSearchComponent } from '../job-search/job-search.component';
+import { PlanPanelComponent } from '../plan-panel/plan-panel.component';
 
 @Component({
   standalone: true,
@@ -24,11 +26,32 @@ import { JobSearchComponent } from '../job-search/job-search.component';
     DashboardHeaderComponent,
     JobSearchComponent,
     PaginationComponent,
+    PlanPanelComponent,
+    MatProgressBarModule,
   ],
   templateUrl: './dashboard-page.component.html',
   styleUrl: './dashboard-page.component.scss',
 })
 export class DashboardPageComponent implements OnInit {
+  private readonly apiSourceTypes = new Set([
+    'arbeitsagentur',
+    'arbeitnow',
+    'remotive',
+    'remoteok',
+    'jobicy',
+    'findwork',
+    'devitjobs',
+    'themuse',
+    'theirstack',
+    'fantasticjobs',
+    'jobdata',
+    'techmap',
+    'okjob',
+    'whatjobs',
+    'usajobs',
+    'jobs2careers',
+    'graphqljobs',
+  ]);
   private readonly api = inject(ApiService);
   private readonly snack = inject(MatSnackBar);
 
@@ -39,9 +62,41 @@ export class DashboardPageComponent implements OnInit {
   readonly pageIndex = signal(0);
   readonly pageSize = signal(20);
   readonly searchQuery = signal('');
+  readonly sourceTypeFilter = signal<string>('');
   readonly pageSizeOptions = [20, 50, 100];
+  readonly availableSourceTypes = computed(() => {
+    const seen = new Set<string>();
+    const ordered: string[] = [];
+    for (const source of this.sources()) {
+      const type = source.sourceType;
+      if (!type || seen.has(type)) {
+        continue;
+      }
+      seen.add(type);
+      ordered.push(type);
+    }
+    return ordered;
+  });
   readonly filteredJobs = computed(() => {
-    const list = this.applySearch([...this.jobs()], this.searchQuery());
+    let list = [...this.jobs()];
+    
+    // Фильтрация по типу источника
+    const sourceType = this.sourceTypeFilter();
+    if (sourceType) {
+      list = list.filter((job) => {
+        const source = this.sources().find((s) => s.id === job.sourceId);
+        const type = source?.sourceType ?? '';
+        if (sourceType === 'api') {
+          return this.apiSourceTypes.has(type);
+        }
+        return type === sourceType;
+      });
+    }
+    
+    // Поиск по тексту
+    list = this.applySearch(list, this.searchQuery());
+    
+    // Сортировка
     switch (this.sortMode()) {
       case 'date_asc':
         return list.sort((a, b) => this.getJobDate(a) - this.getJobDate(b));
@@ -164,6 +219,11 @@ export class DashboardPageComponent implements OnInit {
     this.pageIndex.set(0);
   }
 
+  onSourceChange(sourceType: string) {
+    this.sourceTypeFilter.set(sourceType ?? '');
+    this.pageIndex.set(0);
+  }
+
   onPageChange(event: { pageIndex: number; pageSize: number }) {
     if (event.pageSize !== this.pageSize()) {
       this.pageSize.set(event.pageSize);
@@ -177,13 +237,20 @@ export class DashboardPageComponent implements OnInit {
       return jobs;
     }
 
-    const tokens = q
-      .split(/[\s,;]+/g)
-      .map((t) => t.trim())
-      .filter(Boolean)
+    // «|» разделяет альтернативы (ИЛИ), внутри альтернативы слова соединяются по И
+    const alternatives = q
+      .split('|')
+      .map((part) =>
+        part
+          .split(/[\s,;]+/g)
+          .map((t) => t.trim())
+          .filter(Boolean)
+          .slice(0, 8),
+      )
+      .filter((tokens) => tokens.length > 0)
       .slice(0, 8);
 
-    if (tokens.length === 0) {
+    if (alternatives.length === 0) {
       return jobs;
     }
 
@@ -198,7 +265,7 @@ export class DashboardPageComponent implements OnInit {
         .join(' ')
         .toLowerCase();
 
-      return tokens.every((t) => haystack.includes(t));
+      return alternatives.some((tokens) => tokens.every((t) => haystack.includes(t)));
     });
   }
 

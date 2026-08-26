@@ -1,0 +1,118 @@
+<div class="proxy-form">
+  <div class="form-row">
+    <div class="field-group">
+      <div class="field-label">Адрес (IP или домен)</div>
+      <div class="field-box">
+        <input
+          matInput
+          placeholder="192.168.1.1 или proxy.example.com"
+          [(ngModel)]="model.host"
+          (ngModelChange)="onHostChange($event)"
+          (keyup.enter)="submitProxy()"
+          [class.error]="hostError"
+        />
+      </div>
+      <div class="error-message" *ngIf="hostError">{{ hostError }}</div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Порт</div>
+      <div class="field-box">
+        <input
+          matInput
+          type="number"
+          placeholder="1080"
+          [(ngModel)]="model.port"
+          (ngModelChange)="onPortChange($event)"
+          (keyup.enter)="submitProxy()"
+          [class.error]="portError"
+          min="1"
+          max="65535"
+        />
+      </div>
+      <div class="error-message" *ngIf="portError">{{ portError }}</div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="field-group">
+      <div class="field-label">Протокол</div>
+      <div class="field-box">
+        <select [(ngModel)]="model.protocol">
+          <option value="http">HTTP</option>
+          <option value="https">HTTPS</option>
+          <option value="socks5">SOCKS5</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Имя пользователя (опционально)</div>
+      <div class="field-box">
+        <input
+          matInput
+          placeholder="username"
+          [(ngModel)]="model.username"
+          (keyup.enter)="submitProxy()"
+        />
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-label">Пароль (опционально)</div>
+      <div class="field-box">
+        <input
+          matInput
+          type="password"
+          placeholder="password"
+          [(ngModel)]="model.password"
+          (keyup.enter)="submitProxy()"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row full-width">
+    <div class="field-group full-width">
+      <div class="field-label">User-Agent (опционально)</div>
+      <div class="field-box textarea">
+        <textarea
+          matInput
+          rows="3"
+          placeholder="Mozilla/5.0 ..."
+          [(ngModel)]="model.userAgent"
+        ></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row full-width">
+    <div class="field-group full-width">
+      <div class="field-label">Cookie заголовок (опционально)</div>
+      <div class="field-box textarea">
+        <textarea
+          matInput
+          rows="3"
+          placeholder="incap_ses=...; visid_incap=..."
+          [(ngModel)]="model.cookieHeader"
+        ></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="field-group">
+      <mat-checkbox [(ngModel)]="model.active">Активен</mat-checkbox>
+    </div>
+  </div>
+
+  <button
+    mat-flat-button
+    color="primary"
+    class="submit-btn"
+    (click)="submitProxy()"
+    [disabled]="!!hostError || !!portError || !model.host || !model.port"
+  >
+    {{ model.id ? 'Сохранить' : 'Добавить' }}
+  </button>
+</div>

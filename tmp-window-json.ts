@@ -1,0 +1,10 @@
+import { readFileSync } from 'fs';
+import { buildContext } from './libs/vacancy-parser/src/core/build-context';
+const text = readFileSync('./libs/vacancy-parser/src/tests/fixtures/ru-telegram-021.txt', 'utf8');
+const ctx = buildContext(text, {});
+const section = ctx.sections.find((s) => s.text.includes('201-241'))!;
+const idx = section.text.indexOf('201-241');
+const start = Math.max(0, idx - 60);
+const end = Math.min(section.text.length, idx + 5 + 60);
+const slice = section.text.slice(start, end);
+console.log(JSON.stringify(slice));

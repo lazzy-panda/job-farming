@@ -17,6 +17,10 @@ export class CleanupService {
 
     const targets = await this.prisma.jobPosting.findMany({
       where: {
+        // Вакансии из воронки плана (отложенные и с откликами) не удаляем:
+        // накопленная история нужна для чекпоинтов.
+        status: { notIn: ['shortlisted', 'applied'] },
+        applications: { none: {} },
         OR: [
           { publishedAt: { lt: cutoff } },
           { publishedAt: null, createdAt: { lt: cutoff } },

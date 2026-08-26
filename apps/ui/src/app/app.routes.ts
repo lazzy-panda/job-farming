@@ -3,6 +3,7 @@ import { DashboardPageComponent } from './components/dashboard-page/dashboard-pa
 import { SourcePageComponent } from './components/source-page/source-page.component';
 import { SettingsPageComponent } from './components/settings-page/settings-page.component';
 import { TemplatesPageComponent } from './components/templates-page/templates-page.component';
+import { ProxyPageComponent } from './components/proxy-page/proxy-page.component';
 
 export const appRoutes: Route[] = [
   {

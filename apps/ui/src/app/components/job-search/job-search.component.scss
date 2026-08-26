@@ -125,12 +125,83 @@
   color: rgba(15, 23, 42, 0.92);
 }
 
-.presets {
+.filters-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(0, 0, 0, 0.12);
+  flex-shrink: 0;
 }
 
 mat-chip-option {
   margin-right: 8px;
+}
+.actions {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  text-align: center;
+  justify-content: left;
+}
+
+// 7 Правил после этого комментария не трогать!
+.source-chip {
+  background: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  &.source-chip--telegram {
+    background: rgba(56, 176, 227, 0.1);
+    color: #127abf;
+  }
+
+  &.source-chip--rss {
+    background: rgba(245, 158, 11, 0.1);
+    color: #b45309;
+  }
+
+  &.source-chip--api {
+    background: rgba(99, 102, 241, 0.12);
+    color: #4338ca;
+  }
+}
+
+.source-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  .source-icon-svg {
+    display: inline-flex;
+    ::ng-deep svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
+
+.source-label {
+  font-size: 13px;
+  line-height: 1;
 }
 
 @media (max-width: 720px) {
@@ -147,4 +218,3 @@ mat-chip-option {
     width: 100%;
   }
 }
-

@@ -1,0 +1,128 @@
+<div class="layout">
+  <app-dashboard-header
+    subtitle="Прокси-серверы для обхода блокировок при скрапинге"
+    (refresh)="loadProxies()"
+  />
+
+  <section class="form-card">
+    <div class="panel">
+      <app-proxy-create
+        [model]="proxyModel"
+        (submit)="createProxy($event)"
+      ></app-proxy-create>
+      <button
+        *ngIf="editingId"
+        mat-button
+        color="warn"
+        class="cancel-btn"
+        (click)="cancelEdit()"
+      >
+        Отмена
+      </button>
+    </div>
+  </section>
+
+  <section class="list-card">
+    <div class="panel">
+      <div class="list-header">
+        <div>
+          <h2>Добавленные прокси</h2>
+          <p class="subtitle">Все активные прокси-серверы для ротации запросов</p>
+        </div>
+      </div>
+
+      <div class="list" *ngIf="proxies().length; else empty">
+        <div class="list-row" *ngFor="let p of paginatedProxies(); index as idx" [class.inactive]="!p.active">
+          <div class="row-index">{{ pageIndex() * pageSize() + idx + 1 }}</div>
+          <div class="row-text">
+            <div class="row-title">{{ formatProxyAddress(p) }}</div>
+            <div class="row-sub">
+              <span *ngIf="p.lastStatus">Статус: {{ formatLastStatus(p) }}</span>
+              <span *ngIf="p.lastCheckedAt">
+                Проверен: {{ p.lastCheckedAt | date: 'short' }}
+              </span>
+              <span *ngIf="p.lastUsedAt">
+                Использован: {{ p.lastUsedAt | date: 'short' }}
+              </span>
+            </div>
+            <div class="row-sub secondary" *ngIf="p.userAgent || p.cookieHeader">
+              <span *ngIf="p.userAgent">UA: {{ p.userAgent }}</span>
+              <span *ngIf="p.cookieHeader">
+                Cookie: {{ formatCookiePreview(p.cookieHeader) }}
+              </span>
+            </div>
+            <div class="row-sub meta" *ngIf="p.userAgentSource || p.cookieSource">
+              <span *ngIf="p.userAgentSource">
+                UA src: {{ p.userAgentSource }}
+                <ng-container *ngIf="p.userAgentUpdatedAt">
+                  · {{ p.userAgentUpdatedAt | date: 'short' }}
+                </ng-container>
+              </span>
+              <span *ngIf="p.cookieSource">
+                Cookie src: {{ p.cookieSource }}
+                <ng-container *ngIf="p.cookieUpdatedAt">
+                  · {{ p.cookieUpdatedAt | date: 'short' }}
+                </ng-container>
+              </span>
+            </div>
+          </div>
+          <div class="row-status">
+            <mat-chip-set>
+              <mat-chip [class.active]="p.active" [class.inactive]="!p.active">
+                {{ p.active ? 'Активен' : 'Неактивен' }}
+              </mat-chip>
+            </mat-chip-set>
+          </div>
+          <div class="row-actions">
+            <button
+              mat-icon-button
+              [color]="p.active ? 'warn' : 'primary'"
+              [matTooltip]="p.active ? 'Деактивировать' : 'Активировать'"
+              [disabled]="loading"
+              (click)="toggleActive(p)"
+              aria-label="Изменить статус"
+            >
+              <mat-icon class="material-symbols-outlined" aria-hidden="true">
+                {{ p.active ? 'toggle_on' : 'toggle_off' }}
+              </mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              color="primary"
+              matTooltip="Редактировать"
+              [disabled]="loading"
+              (click)="editProxy(p)"
+              aria-label="Редактировать прокси"
+            >
+              <mat-icon class="material-symbols-outlined" aria-hidden="true">edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              color="warn"
+              class="delete-btn"
+              [disabled]="loading"
+              (click)="removeProxy(p)"
+              aria-label="Удалить прокси"
+            >
+              <mat-icon class="material-symbols-outlined" aria-hidden="true">delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #empty>
+        <div class="empty">Прокси-серверы пока не добавлены</div>
+      </ng-template>
+    </div>
+  </section>
+
+  <section class="pagination-section" *ngIf="proxies().length > 0">
+    <app-pagination
+      [total]="proxies().length"
+      [pageIndex]="pageIndex()"
+      [pageSize]="pageSize()"
+      [pageSizeOptions]="pageSizeOptions"
+      (pageChange)="onPageChange($event)"
+    ></app-pagination>
+  </section>
+</div>

@@ -2,7 +2,7 @@
   Обновляет названия Telegram-источников, извлекая их из метаданных или HTML.
 
   Usage:
-    DATABASE_URL=file:./prisma/dev.db node scripts/update-source-names.js
+    DATABASE_URL=file:./dev.db node scripts/update-source-names.js
 */
 
 const axios = require('axios');
@@ -10,7 +10,7 @@ const { PrismaClient } = require('@prisma/client');
 const { PrismaBetterSqlite3 } = require('@prisma/adapter-better-sqlite3');
 const { load } = require('cheerio');
 
-const dbUrl = process.env.DATABASE_URL || 'file:./prisma/dev.db';
+const dbUrl = process.env.DATABASE_URL || 'file:./dev.db';
 const adapter = new PrismaBetterSqlite3({ url: dbUrl });
 const prisma = new PrismaClient({ adapter });
 

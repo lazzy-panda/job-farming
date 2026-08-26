@@ -98,6 +98,9 @@ function detectPeriod(text: string): MoneyPeriod {
   if (/\bproject\b|\bза\s*проект\b/.test(v)) {
     return 'project';
   }
+  if (/\bpro\s*jahr\b|\bper\s*jahr\b|\bper\s*anno\b|\b jährlich\b/.test(v)) {
+    return 'year';
+  }
   // default assumption for vacancies
   return 'month';
 }
@@ -181,6 +184,10 @@ function isAntiPattern(text: string): boolean {
     if (!hasSalarySignal(v)) {
       return true;
     }
+  }
+
+  if (/\bmitarbeit\w*|\bemployees?\b|\bstaff\b|\bколлег|\bсотрудник|\bpeople\b/.test(v) && !hasSalarySignal(v)) {
+    return true;
   }
 
   return false;

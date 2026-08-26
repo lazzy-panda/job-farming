@@ -1,9 +1,23 @@
-import { Body, Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  NotFoundException,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { JobPostingsService } from './job-postings.service';
+import { ScrapeJobsService } from './scrape-jobs.service';
 
 @Controller('job-postings')
 export class JobPostingsController {
-  constructor(private readonly service: JobPostingsService) {}
+  constructor(
+    private readonly service: JobPostingsService,
+    private readonly scrapeJobs: ScrapeJobsService,
+  ) {}
 
   @Get()
   findAll(
@@ -26,6 +40,7 @@ export class JobPostingsController {
     body: {
       title: string;
       description?: string;
+      rawContent?: string;
       company?: string;
       location?: string;
       link?: string;
@@ -42,8 +57,36 @@ export class JobPostingsController {
   }
 
   @Post('scrape')
-  async scrape(@Query('sourceId') sourceId?: string, @Query('dryRun') dryRun?: string) {
-    return this.service.scrape(sourceId || undefined, dryRun === 'true');
+  async scrape(
+    @Query('sourceId') sourceId?: string,
+    @Query('dryRun') dryRun?: string,
+    @Query('async') asyncFlag?: string,
+  ) {
+    const dryRunMode = dryRun === 'true';
+    const asyncMode = asyncFlag === 'true';
+    if (asyncMode) {
+      const job = this.scrapeJobs.enqueue({
+        sourceId: sourceId || undefined,
+        dryRun: dryRunMode,
+      });
+      return {
+        jobId: job.id,
+        status: job.status,
+        queuedAt: job.createdAt,
+        updatedAt: job.updatedAt,
+        params: job.params,
+      };
+    }
+    return this.service.scrape(sourceId || undefined, dryRunMode);
+  }
+
+  @Get('scrape/:jobId')
+  async getScrapeJob(@Param('jobId') jobId: string) {
+    const job = this.scrapeJobs.getJob(jobId);
+    if (!job) {
+      throw new NotFoundException('Scrape job not found');
+    }
+    return job;
   }
 
   @Post('backfill-published-at')
@@ -57,6 +100,11 @@ export class JobPostingsController {
       maxPages: maxPages ? Number(maxPages) : undefined,
       dryRun: dryRun === 'true',
     });
+  }
+
+  @Patch(':id')
+  updateStatus(@Param('id') id: string, @Body() body: { status: string }) {
+    return this.service.updateStatus(id, body.status);
   }
 
   @Delete(':id')

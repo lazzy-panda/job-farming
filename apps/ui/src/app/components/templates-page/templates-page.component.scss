@@ -51,24 +51,75 @@ mat-card {
   }
 }
 
-.item-body {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.item-title {
-  font-weight: 700;
-  color: var(--sneat-text-dark);
+.item-main {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  min-width: 0;
 }
 
 .item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.item-name {
+  font-weight: 700;
+  color: var(--sneat-text-dark);
+}
+
+.item-sub {
+  color: var(--sneat-text-medium);
+  font-size: 12.5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.item-stats {
+  font-size: 12px;
+  color: var(--sneat-primary, #3056d3);
+  font-weight: 600;
+}
+
+.item-actions {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+mat-icon.default-star {
+  color: #ffb300;
+}
+
+.hint {
+  margin: 0;
   color: var(--sneat-text-medium);
   font-size: 13px;
-  white-space: pre-line;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  h4 {
+    margin: 0 0 4px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--sneat-text-dark);
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+.form-actions {
+  display: flex;
+  gap: 8px;
 }
 
 .badge {

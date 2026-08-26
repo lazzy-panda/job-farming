@@ -22,9 +22,17 @@
       <div class="list" *ngIf="sources().length; else empty">
         <div class="list-row" *ngFor="let s of paginatedSources(); index as idx">
           <div class="row-index">{{ pageIndex() * pageSize() + idx + 1 }}</div>
+          <div class="row-source-icon" *ngIf="getSourceIconSvg(s) as iconSvg">
+            <span class="source-icon" [innerHTML]="iconSvg"></span>
+          </div>
           <div class="row-text">
             <div class="row-title">{{ getDisplayName(s) }}</div>
             <div class="row-sub">{{ s.url }}</div>
+          
+          </div>
+        
+          <div class="row-subscribers" *ngIf="getSubscribersCount(s) !== null">
+            {{ formatSubscribersCount(getSubscribersCount(s)!) }}
           </div>
           <button
             mat-icon-button

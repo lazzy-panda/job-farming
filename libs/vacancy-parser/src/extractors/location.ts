@@ -38,6 +38,8 @@ const NON_LOCATION_TOKENS = new Set<string>([
   'prometheus',
   'grafana',
   'sentry',
+  'java',
+  'oop',
   // url/email noise
   'http',
   'https',
@@ -73,6 +75,71 @@ const BANNED_LOCATION_WORDS = new Set<string>([
   'k',
 ] as const);
 
+const COUNTRY_CODE_TO_NAME: Record<string, string> = {
+  DE: 'Germany',
+  AT: 'Austria',
+  CH: 'Switzerland',
+  FR: 'France',
+  ES: 'Spain',
+  IT: 'Italy',
+  PT: 'Portugal',
+  NL: 'Netherlands',
+  BE: 'Belgium',
+  LU: 'Luxembourg',
+  IE: 'Ireland',
+  GB: 'UK',
+  UK: 'UK',
+  SE: 'Sweden',
+  NO: 'Norway',
+  DK: 'Denmark',
+  FI: 'Finland',
+  IS: 'Iceland',
+  PL: 'Poland',
+  CZ: 'Czechia',
+  SK: 'Slovakia',
+  SI: 'Slovenia',
+  HR: 'Croatia',
+  RO: 'Romania',
+  BG: 'Bulgaria',
+  HU: 'Hungary',
+  LT: 'Lithuania',
+  LV: 'Latvia',
+  EE: 'Estonia',
+  CY: 'Cyprus',
+  GR: 'Greece',
+  UA: 'Ukraine',
+  BY: 'Belarus',
+  KZ: 'Kazakhstan',
+  GE: 'Georgia',
+  AM: 'Armenia',
+  AZ: 'Azerbaijan',
+  TR: 'Turkey',
+  RU: 'Russia',
+  US: 'USA',
+  CA: 'Canada',
+  AU: 'Australia',
+  NZ: 'New Zealand',
+  SG: 'Singapore',
+  TH: 'Thailand',
+  VN: 'Vietnam',
+  PH: 'Philippines',
+  ID: 'Indonesia',
+  MY: 'Malaysia',
+  CN: 'China',
+  JP: 'Japan',
+  KR: 'South Korea',
+  IN: 'India',
+  IL: 'Israel',
+  AE: 'UAE',
+};
+
+function countryFromDefault(code: string | null): string | null {
+  if (!code) {
+    return null;
+  }
+  return COUNTRY_CODE_TO_NAME[code.trim().toUpperCase()] ?? null;
+}
+
 function isCamelLike(value: string): boolean {
   return /[a-z][A-Z]/.test(value);
 }
@@ -105,7 +172,9 @@ const COUNTRY_ALIASES: Array<{ re: RegExp; country: string }> = [
   { re: /\b(slovenia|si)\b/i, country: 'Slovenia' },
   { re: /\b(slovakia|sk)\b/i, country: 'Slovakia' },
   { re: /\b(luxembourg|lu)\b/i, country: 'Luxembourg' },
-  { re: /\b(iceland|is)\b/i, country: 'Iceland' },
+  { re: /\biceland\b/i, country: 'Iceland' },
+  // "is" как код страны только если стоит отдельно и не является частью слова
+  { re: /(?:^|[^a-z])\bis\b(?:[^a-z]|$)/i, country: 'Iceland' },
   { re: /\b(greece|hellas|ellada|ελλάδα|hellenic)\b/i, country: 'Greece' },
   { re: /\b(cyprus|κύπρος)\b/i, country: 'Cyprus' },
   // Cyrillic alias (do not rely on \b for Cyrillic)
@@ -140,7 +209,7 @@ const COUNTRY_ALIASES: Array<{ re: RegExp; country: string }> = [
   { re: /\b(taiwan|tw)\b/i, country: 'Taiwan' },
   { re: /\b(hong\s+kong|hk)\b/i, country: 'Hong Kong' },
   { re: /\b(saudi\s+arabia|sa)\b/i, country: 'Saudi Arabia' },
-  { re: /\b(qatar|qa)\b/i, country: 'Qatar' },
+  { re: /\bqatar\b/i, country: 'Qatar' },
   { re: /\b(kuwait|kw)\b/i, country: 'Kuwait' },
   { re: /\b(bahrain|bh)\b/i, country: 'Bahrain' },
   { re: /\b(oman|om)\b/i, country: 'Oman' },
@@ -232,7 +301,7 @@ const CITY_ALIASES: Array<{ re: RegExp; city: string; country?: string }> = [
   { re: /\blyon\b/i, city: 'Lyon', country: 'France' },
   { re: /\bmarseille\b/i, city: 'Marseille', country: 'France' },
   { re: /\btoulouse\b/i, city: 'Toulouse', country: 'France' },
-  { re: /\bnice\b/i, city: 'Nice', country: 'France' },
+  { re: /\bnice\b(?!\s+to\s+have)/i, city: 'Nice', country: 'France' },
   { re: /\bnantes\b/i, city: 'Nantes', country: 'France' },
   { re: /\bstrasbourg\b/i, city: 'Strasbourg', country: 'France' },
   { re: /\bmontpellier\b/i, city: 'Montpellier', country: 'France' },
@@ -820,7 +889,8 @@ export function extractLocation(
   const relocation = relocationFlag || hits.some((h) => h.relocation);
   const visaSupport = visaSupportFlag || hits.some((h) => h.visaSupport);
 
-  const countryFallback = best?.country ?? (/кипр/iu.test(ctx.normalizedText) ? 'Cyprus' : null);
+  const defaultCountryName = countryFromDefault(ctx.defaultCountry);
+  const countryFallback = best?.country ?? (/кипр/iu.test(ctx.normalizedText) ? 'Cyprus' : null) ?? defaultCountryName;
 
   const value: LocationInfo = {
     city: best?.city ?? null,

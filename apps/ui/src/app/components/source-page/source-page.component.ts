@@ -1,10 +1,13 @@
 import { Component, OnInit, computed, effect, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { firstValueFrom } from 'rxjs';
 import { Source } from '@job-farm/shared-models';
 import { ApiService } from '../../api.service';
 import { SourceCreateComponent } from '../source-create/source-create.component';
@@ -42,6 +45,8 @@ export class SourcePageComponent implements OnInit {
   public readonly pageSize = signal(20);
   public readonly pageSizeOptions = [20, 50, 100];
 
+  private iconCache: Record<string, SafeHtml> = {};
+
   public readonly paginatedSources = computed(() => {
     const list = this.sources();
     const start = this.pageIndex() * this.pageSize();
@@ -49,7 +54,12 @@ export class SourcePageComponent implements OnInit {
   });
 
 
-  constructor(private readonly api: ApiService, private readonly snack: MatSnackBar) {
+  constructor(
+    private readonly api: ApiService,
+    private readonly snack: MatSnackBar,
+    private readonly http: HttpClient,
+    private readonly sanitizer: DomSanitizer,
+  ) {
     effect(() => {
       const total = this.sources().length;
       const size = this.pageSize();
@@ -60,8 +70,45 @@ export class SourcePageComponent implements OnInit {
     });
   }
 
-  public ngOnInit(): void {
+  public async ngOnInit(): Promise<void> {
+    // Предзагрузка иконок
+    await Promise.all(['telegram', 'rss', 'arbeitsagentur'].map((icon) => this.loadIcon(icon)));
     this.loadSources();
+  }
+
+  private async loadIcon(iconType: string): Promise<void> {
+    if (this.iconCache[iconType]) {
+      return;
+    }
+
+    try {
+      const svgContent = await firstValueFrom(
+        this.http.get(`/icons/${iconType}.svg`, { responseType: 'text' }),
+      );
+      const svgWithSize = svgContent.replace(
+        '<svg',
+        '<svg width="20" height="20"',
+      );
+      this.iconCache[iconType] = this.sanitizer.bypassSecurityTrustHtml(svgWithSize);
+    } catch (error) {
+      console.error(`Failed to load icon ${iconType}:`, error);
+      this.iconCache[iconType] = this.sanitizer.bypassSecurityTrustHtml('');
+    }
+  }
+
+  public getSourceIconSvg(source: Source): SafeHtml {
+    const iconType =
+      source.sourceType === 'telegram'
+        ? 'telegram'
+        : source.sourceType === 'rss'
+          ? 'rss'
+          : source.sourceType === 'arbeitsagentur'
+            ? 'arbeitsagentur'
+            : null;
+    if (!iconType) {
+      return this.sanitizer.bypassSecurityTrustHtml('');
+    }
+    return this.iconCache[iconType] || this.sanitizer.bypassSecurityTrustHtml('');
   }
 
   public removeSource(source: Source): void {
@@ -85,7 +132,14 @@ export class SourcePageComponent implements OnInit {
     this.loading = true;
     this.api.getSources().subscribe({
       next: (data) => {
-        this.sources.set(this.dedupeSources(data ?? []));
+        const deduped = this.dedupeSources(data ?? []);
+        // Сортируем по createdAt в порядке убывания (новые источники первыми)
+        const sorted = deduped.sort((a, b) => {
+          const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+          const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+          return dateB - dateA; // Убывание: новые первыми
+        });
+        this.sources.set(sorted);
         this.loading = false;
       },
       error: () => {
@@ -123,6 +177,28 @@ export class SourcePageComponent implements OnInit {
     }
     
     return source.name || source.url || '—';
+  }
+
+  public getSubscribersCount(source: Source): number | null {
+    if (source.sourceType !== 'telegram') {
+      return null;
+    }
+    const metadata = (source.metadata as Record<string, unknown>) ?? {};
+    const count = metadata['telegramSubscribersCount'];
+    if (typeof count === 'number' && count > 0) {
+      return count;
+    }
+    return null;
+  }
+
+  public formatSubscribersCount(count: number): string {
+    if (count >= 1000000) {
+      return `${(count / 1000000).toFixed(1)}M`;
+    }
+    if (count >= 1000) {
+      return `${(count / 1000).toFixed(1)}K`;
+    }
+    return count.toLocaleString('ru-RU');
   }
 
   public createSource(payload?: Partial<Source>): void {
@@ -203,9 +279,14 @@ export class SourcePageComponent implements OnInit {
         return errorBody;
       }
       
-      // Если error - объект, ищем message или error
+      // Если error - объект, ищем error или message
       if (typeof errorBody === 'object' && errorBody !== null) {
         const body = errorBody as Record<string, unknown>;
+        
+        // Сначала проверяем поле error (NestJS формат: {statusCode: 409, error: '...'})
+        if (typeof body['error'] === 'string') {
+          return body['error'] as string;
+        }
         
         // NestJS может вернуть message напрямую
         if (typeof body['message'] === 'string') {
@@ -215,11 +296,6 @@ export class SourcePageComponent implements OnInit {
         // Или массив сообщений
         if (Array.isArray(body['message'])) {
           return (body['message'] as string[]).join(', ');
-        }
-        
-        // Или error как строка (вложенный объект)
-        if (typeof body['error'] === 'string') {
-          return body['error'] as string;
         }
       }
     }

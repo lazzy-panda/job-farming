@@ -3,17 +3,19 @@ import { Component, EventEmitter, Input, Output, inject, signal } from '@angular
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { JobPosting, Source } from '@job-farm/shared-models';
-import type { VacancyParseResult } from '../../api.service';
+import { ApiService, TranslationResponse, VacancyParseResult } from '../../api.service';
 import { VacancyParseClientService } from '../../vacancy-parse-client.service';
 import { VacancyParseJsonComponent } from '../vacancy-parse-json/vacancy-parse-json.component';
+import { firstValueFrom } from 'rxjs';
 
 const API_BASE = 'http://127.0.0.1:3000/api';
 
 @Component({
   standalone: true,
   selector: 'app-job-cards',
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule, VacancyParseJsonComponent],
+  imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule, MatTooltipModule, VacancyParseJsonComponent],
   templateUrl: './job-cards.component.html',
   styleUrls: ['./job-cards.component.scss'],
 })
@@ -22,11 +24,20 @@ export class JobCardsComponent {
   @Input() sources: Source[] = [];
   @Output() open = new EventEmitter<JobPosting>();
   @Output() remove = new EventEmitter<JobPosting>();
+  /** Изменилась воронка (отклик/шортлист) — дашборду пора обновить панель плана */
+  @Output() funnelChanged = new EventEmitter<void>();
+
+  private readonly applyingIds = new Set<string>();
 
   private readonly parseClient = inject(VacancyParseClientService);
+  private readonly api = inject(ApiService);
   private readonly parsedByJobId = new Map<string, VacancyParseResult>();
   private readonly parseRequested = new Set<string>();
   private readonly parsedTick = signal(0);
+  private readonly translations = new Map<string, string>();
+  private readonly translationErrors = new Map<string, string>();
+  private readonly translationLoading = new Set<string>();
+  private readonly translationTick = signal(0);
 
   private readonly failedAvatarJobIds = new Set<string>();
   private readonly expandedDescriptions = new Set<string>();
@@ -59,12 +70,18 @@ export class JobCardsComponent {
 
     const minValue = min ?? max ?? null;
     const maxValue = max ?? min ?? null;
+    
+    // Если зарплата >= 1000 (будет отформатирована с "K") и период = "month",
+    // убираем "/мес", так как обычно "125K USD" означает годовую зарплату
+    const hasKFormat = (minValue !== null && minValue >= 1000) || (maxValue !== null && maxValue >= 1000);
+    const shouldSkipMonthPeriod = hasKFormat && period === 'month';
+    
     const amount = (minValue !== null && maxValue !== null && minValue !== maxValue)
       ? `${this.formatMoney(minValue)}–${this.formatMoney(maxValue)}`
       : this.formatMoney(minValue ?? maxValue ?? 0);
 
     const currencyPart = currency && currency !== 'UNKNOWN' ? ` ${currency}` : '';
-    const periodPart = this.formatPeriod(period);
+    const periodPart = shouldSkipMonthPeriod ? '' : this.formatPeriod(period);
     return `${amount}${currencyPart}${periodPart}`;
   }
 
@@ -73,8 +90,65 @@ export class JobCardsComponent {
     return src?.name ?? '—';
   }
 
+  getSourceHost(job: JobPosting): string {
+    const url = job.source?.url ?? '';
+    try {
+      return new URL(url).hostname.replace(/^www\./, '');
+    } catch {
+      return url;
+    }
+  }
+
+  isShortlisted(job: JobPosting): boolean {
+    return job.status === 'shortlisted';
+  }
+
+  isApplied(job: JobPosting): boolean {
+    return job.status === 'applied';
+  }
+
+  isApplying(jobId: string): boolean {
+    return this.applyingIds.has(jobId);
+  }
+
+  toggleShortlist(job: JobPosting): void {
+    const next = job.status === 'shortlisted' ? 'new' : 'shortlisted';
+    this.api.updateJobPostingStatus(job.id, next).subscribe({
+      next: (updated) => {
+        job.status = updated.status;
+        this.funnelChanged.emit();
+      },
+    });
+  }
+
+  createApplication(job: JobPosting, kind: 'adapted' | 'template'): void {
+    if (this.applyingIds.has(job.id) || job.status === 'applied') {
+      return;
+    }
+    this.applyingIds.add(job.id);
+    const channel = this.resolveSource(job)?.sourceType ?? 'manual';
+    this.api.createApplication({ jobPostingId: job.id, channel, kind }).subscribe({
+      next: () => {
+        job.status = 'applied';
+        this.funnelChanged.emit();
+      },
+      complete: () => this.applyingIds.delete(job.id),
+      error: () => this.applyingIds.delete(job.id),
+    });
+  }
+
   getChannelTitle(job: JobPosting): string {
     const src = this.resolveSource(job);
+    
+    // Для RSS источников используем название компании из парсинга
+    if (src?.sourceType === 'rss') {
+      const parsed = this.getParsed(job);
+      const company = parsed?.company as { name?: string } | null | undefined;
+      if (company?.name && company.name.trim()) {
+        return company.name.trim();
+      }
+    }
+    
     const metadata = (src?.metadata as Record<string, unknown>) ?? {};
     return (
       (metadata['telegramTitle'] as string) ??
@@ -107,6 +181,39 @@ export class JobCardsComponent {
   getChannelInitial(job: JobPosting): string {
     const title = this.getChannelTitle(job);
     return title?.charAt(0)?.toUpperCase() ?? '#';
+  }
+
+  getPrimaryContact(job: JobPosting): { label: string; href: string } | null {
+    const parsed = this.getParsed(job);
+    const contacts = (parsed?.contacts as Record<string, unknown>) ?? {};
+    const emails = Array.isArray(contacts['emails']) ? (contacts['emails'] as string[]) : [];
+    const phones = Array.isArray(contacts['phones']) ? (contacts['phones'] as string[]) : [];
+    const urls = Array.isArray(contacts['urls']) ? (contacts['urls'] as string[]) : [];
+
+    const email = emails.find((e) => typeof e === 'string' && e.includes('@'));
+    if (email) {
+      const address = email.trim();
+      return { label: address, href: `mailto:${address}` };
+    }
+
+    const phone = phones.find((p) => typeof p === 'string' && p.trim().length >= 7);
+    if (phone) {
+      const number = phone.trim();
+      const digitsOnly = number.replace(/[^\d+]/g, '');
+      return { label: number, href: `tel:${digitsOnly || number}` };
+    }
+
+    const firstUrl = urls.find((u) => typeof u === 'string' && u.trim().length > 0);
+    if (firstUrl) {
+      const normalizedUrl = this.normalizeUrl(firstUrl);
+      return { label: normalizedUrl, href: normalizedUrl };
+    }
+
+    const fallback = this.normalizeUrl(job.link ?? '');
+    if (fallback) {
+      return { label: fallback, href: fallback };
+    }
+    return null;
   }
 
   getJobDate(job: JobPosting): Date | null {
@@ -165,6 +272,64 @@ export class JobCardsComponent {
     return description.trim().length > 320;
   }
 
+  getTranslatedText(jobId: string): string | null {
+    this.translationTick();
+    return this.translations.get(jobId) ?? null;
+  }
+
+  getTranslationError(jobId: string): string | null {
+    this.translationTick();
+    return this.translationErrors.get(jobId) ?? null;
+  }
+
+  isTranslationLoading(jobId: string): boolean {
+    this.translationTick();
+    return this.translationLoading.has(jobId);
+  }
+
+  async translateJob(job: JobPosting): Promise<void> {
+    if (!job?.id || this.translationLoading.has(job.id)) {
+      return;
+    }
+    const sourceText = (job.rawContent ?? job.description ?? '').trim();
+    if (!sourceText) {
+      this.translationErrors.set(job.id, 'Нет текста для перевода');
+      this.translations.delete(job.id);
+      this.translationTick.update((v) => v + 1);
+      return;
+    }
+
+    this.translationErrors.delete(job.id);
+    this.translationLoading.add(job.id);
+    this.translationTick.update((v) => v + 1);
+
+    try {
+      const response: TranslationResponse = await firstValueFrom(
+        this.api.translateText({
+          jobId: job.id,
+          text: sourceText,
+          targetLang: 'ru',
+        }),
+      );
+      const translated = (response?.text ?? '').trim();
+      if (translated) {
+        this.translations.set(job.id, translated);
+      } else {
+        this.translationErrors.set(job.id, 'Модель вернула пустой ответ');
+        this.translations.delete(job.id);
+      }
+    } catch (error) {
+      const err =
+        (error as { error?: { message?: string } })?.error?.message ??
+        (error as Error)?.message ??
+        'Ошибка перевода';
+      this.translationErrors.set(job.id, err);
+    } finally {
+      this.translationLoading.delete(job.id);
+      this.translationTick.update((v) => v + 1);
+    }
+  }
+
   private resolveSource(job: JobPosting): Source | null {
     return (
       job.source ??
@@ -187,6 +352,14 @@ export class JobCardsComponent {
       return `https://${value.replace(/^\/+/, '')}`;
     }
     return value;
+  }
+
+  private normalizeUrl(raw: string): string {
+    const value = (raw ?? '').trim();
+    if (!value) return '';
+    if (/^https?:\/\//i.test(value)) return value;
+    if (value.startsWith('//')) return `https:${value}`;
+    return `https://${value}`;
   }
 
   private parseDate(raw: string | null): Date | null {
@@ -269,7 +442,15 @@ export class JobCardsComponent {
   }
 
   private formatMoney(value: number): string {
-    // Compact formatting without locales to keep UI stable.
+    // Compact formatting with K notation (1000 → 1K)
+    if (value >= 1000000) {
+      const millions = value / 1000000;
+      return millions % 1 === 0 ? `${millions}M` : `${millions.toFixed(1)}M`;
+    }
+    if (value >= 1000) {
+      const thousands = value / 1000;
+      return thousands % 1 === 0 ? `${thousands}K` : `${thousands.toFixed(1)}K`;
+    }
     return Math.round(value).toString();
   }
 

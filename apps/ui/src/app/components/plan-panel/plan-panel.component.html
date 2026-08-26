@@ -1,0 +1,70 @@
+<mat-card class="plan-panel" *ngIf="summary() as s">
+  <div class="panel-row scores-row">
+    <div class="score-block" [class.ok]="s.today >= s.todayTarget && s.todayTarget > 0">
+      <span class="score-value">{{ s.today }}<span class="score-target" *ngIf="s.todayTarget > 0">/{{ s.todayTarget }}</span></span>
+      <span class="score-label">{{ s.todayTarget === 0 ? 'воскресенье — выходной' : 'очки сегодня' }}</span>
+    </div>
+    <div class="score-block" [class.ok]="s.week >= s.weekTarget">
+      <span class="score-value">{{ s.week }}<span class="score-target">/{{ s.weekTarget }}</span></span>
+      <span class="score-label">очки недели</span>
+    </div>
+    <div class="red-flag" *ngIf="s.redFlag" matTooltip="Два дня подряд без очков — разбираем, что мешает">
+      <mat-icon class="material-symbols-outlined">warning</mat-icon>
+      2 дня по нулям
+    </div>
+    <div class="manual-buttons">
+      <button
+        mat-stroked-button
+        type="button"
+        *ngFor="let btn of manualButtons"
+        [disabled]="busy()"
+        (click)="addManual(btn.type)"
+        [matTooltip]="'+' + btn.points + ' очк.'"
+      >
+        <mat-icon class="material-symbols-outlined">{{ btn.icon }}</mat-icon>
+        {{ btn.label }} +{{ btn.points }}
+      </button>
+    </div>
+  </div>
+
+  <div class="panel-row funnel-row" *ngIf="stats() as f">
+    <span class="funnel-title">{{ checkpoint.label }}:</span>
+    <span class="funnel-chip" [class.ok]="f.applicationsTotal >= checkpoint.applications">
+      отклики {{ f.applicationsTotal }}/{{ checkpoint.applications }}
+      <em>({{ f.applicationsAdapted }} адапт. · {{ f.applicationsTemplate }} шабл.)</em>
+    </span>
+    <span class="funnel-chip" *ngIf="checkpoint.replies" [class.ok]="f.replied >= checkpoint.replies">
+      ответы {{ f.replied }}/{{ checkpoint.replies }}
+    </span>
+    <span class="funnel-chip" *ngIf="checkpoint.interviews" [class.ok]="f.interviews >= checkpoint.interviews">
+      собесы {{ f.interviews }}/{{ checkpoint.interviews }}
+    </span>
+    <span class="funnel-chip muted">офферы {{ f.offers }}</span>
+    <span class="funnel-chip muted">касания {{ f.touches }} · созвоны {{ f.calls }} · посты {{ f.posts }} · артефакты {{ f.artifacts }}</span>
+  </div>
+
+  <div class="panel-row followups-row" *ngIf="followups().length > 0">
+    <button mat-button type="button" class="followups-toggle" (click)="toggleFollowups()">
+      <mat-icon class="material-symbols-outlined">notifications_active</mat-icon>
+      Фоллоу-апы: {{ followups().length }} без ответа &gt; 3 дней
+      <mat-icon class="material-symbols-outlined">{{ showFollowups() ? 'expand_less' : 'expand_more' }}</mat-icon>
+    </button>
+    <div class="followups-list" *ngIf="showFollowups()">
+      <div class="followup-item" *ngFor="let app of followups()">
+        <span class="followup-days">{{ daysWaiting(app) }} дн.</span>
+        <a
+          *ngIf="app.jobPosting?.link as link; else noLink"
+          [href]="link"
+          target="_blank"
+          rel="noopener"
+          class="followup-title"
+        >{{ jobLabel(app) }}</a>
+        <ng-template #noLink><span class="followup-title">{{ jobLabel(app) }}</span></ng-template>
+        <span class="followup-actions">
+          <button mat-button type="button" (click)="markReplied(app)">Ответили</button>
+          <button mat-button type="button" (click)="markInterview(app)" matTooltip="+8 очков">Собес</button>
+        </span>
+      </div>
+    </div>
+  </div>
+</mat-card>
