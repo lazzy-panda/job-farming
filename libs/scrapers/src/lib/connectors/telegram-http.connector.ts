@@ -36,7 +36,9 @@ type ParsedJob = {
   hash?: string;
 };
 
-const DEFAULT_MAX_PAGES = 3;
+// 10 страниц × ~20 сообщений: активному каналу хватает докопать 14-дневный cutoff
+// при первом импорте; lastSeen/cutoff останавливают цикл раньше, перерасхода нет
+const DEFAULT_MAX_PAGES = 10;
 const DEFAULT_UA =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:128.0) Gecko/20100101 Firefox/128.0';
 const DEFAULT_DELAY_MS = 500;
@@ -247,7 +249,9 @@ export class TelegramHttpConnector implements SourceConnector {
         description: normalizedText,
         company: undefined,
         location: undefined,
-        link: links[0] ?? `https://t.me/${channel}/${messageId}`,
+        // Всегда пермалинк поста: первая ссылка из текста — часто контакт HR,
+        // и по ней ложно дедупятся РАЗНЫЕ вакансии одного автора
+        link: `https://t.me/${channel}/${messageId}`,
         tags: hashtags.length ? hashtags.join(', ') : undefined,
         publishedAt,
         messageId,

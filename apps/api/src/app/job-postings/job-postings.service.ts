@@ -711,6 +711,10 @@ export class JobPostingsService {
       if (typeof metadata.max429Retry !== 'number') {
         metadata.max429Retry = max429Retry;
       }
+      const envMaxPages = Number(process.env.TELEGRAM_MAX_PAGES) || 0;
+      if (typeof metadata.maxPages !== 'number' && envMaxPages > 0) {
+        metadata.maxPages = envMaxPages;
+      }
 
       const seenHashes = new Set(
         Array.isArray(metadata.lastHashes) ? (metadata.lastHashes as string[]) : [],

@@ -70,6 +70,18 @@ const SOURCES = [
   { name: null, sourceType: 'telegram', url: 'https://t.me/getitrussia', metadata: { plan: true } },
   { name: null, sourceType: 'telegram', url: 'https://t.me/remocate', metadata: { plan: true } },
   { name: null, sourceType: 'telegram', url: 'https://t.me/careerspace', metadata: { plan: true } },
+  // Волна 2 (проверены 26.08.2026: живые, свежие посты, вакансионный контент)
+  { name: null, sourceType: 'telegram', url: 'https://t.me/remote_w0rk', metadata: { plan: true } },
+  { name: null, sourceType: 'telegram', url: 'https://t.me/remote_jobs_ru', metadata: { plan: true } },
+  { name: null, sourceType: 'telegram', url: 'https://t.me/geekjobs', metadata: { plan: true } },
+  { name: null, sourceType: 'telegram', url: 'https://t.me/theyseeku', metadata: { plan: true } },
+  { name: null, sourceType: 'telegram', url: 'https://t.me/workasap', metadata: { plan: true } },
+  { name: null, sourceType: 'telegram', url: 'https://t.me/myresume_ru', metadata: { plan: true } },
+  // Трек Б (клиенты/диджитал): SMM, фриланс, маркетинг, дизайн
+  { name: null, sourceType: 'telegram', url: 'https://t.me/dnative_job', metadata: { plan: true } },
+  { name: null, sourceType: 'telegram', url: 'https://t.me/freelancetaverna', metadata: { plan: true } },
+  { name: null, sourceType: 'telegram', url: 'https://t.me/marketing_jobs', metadata: { plan: true } },
+  { name: null, sourceType: 'telegram', url: 'https://t.me/designhunters', metadata: { plan: true } },
 ];
 
 async function main() {
