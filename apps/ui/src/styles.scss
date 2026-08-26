@@ -1,31 +1,69 @@
-/* Sneat Dashboard Theme - Global Styles */
+/* Job Farming — глобальные стили по канвасу «Job Farm UI» (светлая тема) */
 
-/* Color Palette */
 :root {
-  --sneat-primary: #3056d3;
-  --sneat-primary-dark: #1b2559;
-  --sneat-primary-light: #ecf4ff;
-  --sneat-text-dark: #1b2559;
-  --sneat-text-medium: #6f6b7d;
-  --sneat-text-light: #a5a3ae;
-  --sneat-bg-primary: #f5f7fb;
-  --sneat-bg-secondary: #fff;
-  --sneat-border: #e7e7ed;
-  --sneat-shadow: rgba(76, 87, 125, 0.08);
-  --sneat-shadow-hover: rgba(76, 87, 125, 0.12);
-  --sneat-success: #2e7d32;
-  --sneat-success-bg: #e8f5e9;
-  --sneat-archived: #6f6b7d;
-  --sneat-archived-bg: #f4f5f7;
-  --sneat-warning: #ff9800;
-  --sneat-warning-bg: #fff3e0;
-  --sneat-error: #f44336;
-  --sneat-error-bg: #ffebee;
-  --sneat-info: #2196f3;
-  --sneat-info-bg: #e3f2fd;
+  /* Дизайн-токены канваса */
+  --jf-bg: #f2f4fb;
+  --jf-surface: #fff;
+  --jf-surface-2: #fbfcfe;
+  --jf-surface-3: #f7f8fd;
+  --jf-ink: #1b2450;
+  --jf-ink-2: #4a5680;
+  --jf-ink-3: #6b779e;
+  --jf-muted: #8b95bd;
+  --jf-faint: #9aa3c4;
+  --jf-disabled: #c3cadd;
+  --jf-border: #e6e9f7;
+  --jf-border-2: #dfe3fa;
+  --jf-border-3: #eef0f8;
+  --jf-hairline: #f1f3fa;
+  --jf-blue: #4a55d8;
+  --jf-blue-dark: #3a45c8;
+  --jf-blue-bg: #eef0fd;
+  --jf-blue-bg-2: #f3f5fd;
+  --jf-orange: #f07800;
+  --jf-amber: #ffc018;
+  --jf-warm-bg: #fff8ef;
+  --jf-warm-border: #f7dfc0;
+  --jf-warm-ink: #b56a12;
+  --jf-green: #2f9c5f;
+  --jf-green-2: #4bbd7a;
+  --jf-green-bg: #f2fbf5;
+  --jf-green-border: #bfe6cd;
+  --jf-red: #e8452a;
+  --jf-red-dark: #cf3a21;
+  --jf-red-bg: #fff5f3;
+  --jf-red-border: #f6c9bf;
+  --jf-red-ink: #b3311c;
+  --jf-shadow-card: 0 1px 2px rgba(27, 36, 80, 0.04);
+  --jf-shadow-pop: 0 18px 44px rgba(27, 36, 80, 0.18);
+  --jf-shadow-modal: 0 24px 60px rgba(27, 36, 80, 0.28);
+  --jf-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --jf-sans: Commissioner, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Ремап старой палитры sneat — legacy-компоненты подхватывают дизайн автоматически */
+  --sneat-primary: var(--jf-blue);
+  --sneat-primary-dark: var(--jf-blue-dark);
+  --sneat-primary-light: var(--jf-blue-bg);
+  --sneat-text-dark: var(--jf-ink);
+  --sneat-text-medium: var(--jf-ink-3);
+  --sneat-text-light: var(--jf-muted);
+  --sneat-bg-primary: var(--jf-bg);
+  --sneat-bg-secondary: var(--jf-surface);
+  --sneat-border: var(--jf-border);
+  --sneat-shadow: rgba(27, 36, 80, 0.04);
+  --sneat-shadow-hover: rgba(27, 36, 80, 0.1);
+  --sneat-success: var(--jf-green);
+  --sneat-success-bg: var(--jf-green-bg);
+  --sneat-archived: var(--jf-ink-3);
+  --sneat-archived-bg: var(--jf-surface-3);
+  --sneat-warning: var(--jf-orange);
+  --sneat-warning-bg: var(--jf-warm-bg);
+  --sneat-error: var(--jf-red);
+  --sneat-error-bg: var(--jf-red-bg);
+  --sneat-info: var(--jf-blue);
+  --sneat-info-bg: var(--jf-blue-bg);
 }
 
-/* Global Reset & Base Styles */
 * {
   box-sizing: border-box;
 }
@@ -34,11 +72,11 @@ html,
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Advent Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--jf-sans);
   font-size: 14px;
   line-height: 1.5;
-  color: var(--sneat-text-dark);
-  background-color: var(--sneat-bg-primary);
+  color: var(--jf-ink);
+  background: var(--jf-bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -51,42 +89,203 @@ h5,
 h6 {
   margin: 0;
   font-weight: 700;
-  color: var(--sneat-text-dark);
+  color: var(--jf-ink);
   line-height: 1.2;
-}
-
-h1 {
-  font-size: 24px;
-}
-
-h2 {
-  font-size: 20px;
-}
-
-h3 {
-  font-size: 18px;
-}
-
-h4 {
-  font-size: 16px;
 }
 
 p {
   margin: 0;
-  color: var(--sneat-text-medium);
+  color: var(--jf-ink-3);
 }
 
 a {
-  color: var(--sneat-primary);
+  color: var(--jf-blue);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.15s ease;
 
   &:hover {
-    color: var(--sneat-primary-dark);
+    color: var(--jf-orange);
   }
 }
 
-/* Material Symbols (local) */
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--jf-amber);
+  color: var(--jf-ink);
+}
+
+/* Анимации канваса */
+@keyframes jfIndet {
+  0% { transform: translateX(-100%) scaleX(0.4); }
+  50% { transform: translateX(30%) scaleX(0.8); }
+  100% { transform: translateX(260%) scaleX(0.4); }
+}
+@keyframes jfToast {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes jfPop {
+  from { opacity: 0; transform: translateY(6px) scale(0.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes jfSpin {
+  to { transform: rotate(360deg); }
+}
+@keyframes jfSkel {
+  0% { opacity: 0.45; }
+  50% { opacity: 0.85; }
+  100% { opacity: 0.45; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Общие элементы дизайна (используются в переработанных компонентах) */
+.jf-card {
+  background: var(--jf-surface);
+  border: 1px solid var(--jf-border);
+  border-radius: 18px;
+  box-shadow: var(--jf-shadow-card);
+}
+
+.jf-section-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--jf-ink-3);
+}
+
+.jf-field {
+  display: block;
+
+  > span {
+    display: block;
+    font-size: 11.5px;
+    color: var(--jf-ink-3);
+    margin-bottom: 4px;
+  }
+}
+
+.jf-input,
+.jf-textarea,
+.jf-select {
+  width: 100%;
+  background: var(--jf-surface-3);
+  border: 1.5px solid var(--jf-border);
+  border-radius: 10px;
+  padding: 9px 11px;
+  font-size: 13.5px;
+  color: var(--jf-ink);
+  outline: none;
+
+  &:focus-visible {
+    border-color: var(--jf-blue);
+  }
+
+  &::placeholder {
+    color: var(--jf-faint);
+  }
+}
+
+.jf-textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.jf-select {
+  cursor: pointer;
+}
+
+.jf-input--mono {
+  font-family: var(--jf-mono);
+}
+
+.jf-btn-primary {
+  background: var(--jf-blue);
+  border: 0;
+  color: #fff;
+  border-radius: 11px;
+  padding: 9px 17px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background: var(--jf-blue-dark);
+  }
+
+  &:disabled {
+    background: var(--jf-border-2);
+    cursor: not-allowed;
+  }
+}
+
+.jf-btn-ghost {
+  background: var(--jf-surface);
+  border: 1px solid var(--jf-border);
+  color: var(--jf-ink-2);
+  border-radius: 11px;
+  padding: 9px 17px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--jf-muted);
+  }
+}
+
+.jf-icon-btn {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  background: none;
+  border: 0;
+  border-radius: 9px;
+  color: var(--jf-ink-2);
+  cursor: pointer;
+  padding: 0;
+
+  &:hover {
+    background: var(--jf-surface-3);
+  }
+}
+
+.jf-mono {
+  font-family: var(--jf-mono);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--jf-blue);
+  outline-offset: 1px;
+}
+
+.jf-input:focus-visible,
+.jf-textarea:focus-visible,
+.jf-select:focus-visible {
+  outline: none;
+}
+
+/* Material Symbols (локальный шрифт) — используется в legacy-компонентах */
 @font-face {
   font-family: 'Material Symbols Outlined';
   font-style: normal;
@@ -111,115 +310,20 @@ a {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
-/* Material Overrides */
+/* Material-остатки (legacy-страницы) в палитре дизайна */
 .mat-mdc-card {
-  border-radius: 12px;
-  box-shadow: 0 2px 8px var(--sneat-shadow);
-  border: 1px solid var(--sneat-border);
-  background: var(--sneat-bg-secondary);
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
-
-  &:hover {
-    box-shadow: 0 4px 16px var(--sneat-shadow-hover);
-  }
+  border-radius: 16px;
+  box-shadow: var(--jf-shadow-card);
+  border: 1px solid var(--jf-border);
+  background: var(--jf-surface);
 }
 
 .mat-mdc-card-title {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
-  color: var(--sneat-text-dark);
-  margin-bottom: 16px;
+  color: var(--jf-ink);
 }
 
-.mat-mdc-card-subtitle {
-  font-size: 13px;
-  color: var(--sneat-text-medium);
-}
-
-.mat-mdc-card-content {
-  padding: 20px;
-}
-
-.mat-mdc-form-field {
-  .mat-mdc-text-field-wrapper {
-    background-color: var(--sneat-bg-secondary);
-  }
-
-  .mat-mdc-form-field-label {
-    color: var(--sneat-text-medium);
-    font-weight: 500;
-  }
-
-  .mat-mdc-text-field-input {
-    color: var(--sneat-text-dark);
-    font-size: 14px;
-  }
-
-  &.mat-form-field-appearance-outline {
-    .mat-mdc-text-field-wrapper {
-      .mat-mdc-form-field-outline {
-        color: var(--sneat-border);
-      }
-
-      &:hover .mat-mdc-form-field-outline {
-        color: var(--sneat-text-light);
-      }
-    }
-
-    &.mat-focused .mat-mdc-form-field-outline-thick {
-      color: var(--sneat-primary);
-    }
-  }
-}
-
-.mat-mdc-select {
-  .mat-mdc-select-value {
-    color: var(--sneat-text-dark);
-  }
-}
-
-.mat-mdc-option {
-  &:hover {
-    background-color: var(--sneat-bg-primary);
-  }
-
-  &.mdc-list-item--selected {
-    background-color: var(--sneat-primary-light);
-    color: var(--sneat-primary);
-  }
-}
-
-.mat-mdc-button,
-.mat-mdc-raised-button,
-.mat-mdc-unelevated-button,
-.mat-mdc-outlined-button {
-  border-radius: 8px;
-  font-weight: 500;
-  text-transform: none;
-  padding: 8px 16px;
-  transition: all 0.2s ease;
-
-  &.mat-primary {
-    background-color: var(--sneat-primary);
-    color: white;
-
-    &:hover {
-      background-color: var(--sneat-primary-dark);
-    }
-  }
-}
-
-.mat-mdc-outlined-button {
-  border-color: var(--sneat-border);
-  color: var(--sneat-text-dark);
-
-  &:hover {
-    background-color: var(--sneat-bg-primary);
-    border-color: var(--sneat-primary);
-  }
-}
-
-/* Icon Styling */
 mat-icon {
   font-size: 24px;
   width: 24px;
@@ -229,100 +333,54 @@ mat-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  &.header-icon {
-    font-size: 32px;
-    width: 32px;
-    height: 32px;
-    line-height: 32px;
-    color: var(--sneat-primary);
-  }
-
-  &.info-icon {
-    font-size: 16px;
-    width: 16px;
-    height: 16px;
-    line-height: 16px;
-    color: var(--sneat-text-light);
-  }
 }
 
-button mat-icon,
-a mat-icon {
-  margin-right: 8px;
-  font-size: 18px;
-  width: 18px;
-  height: 18px;
-  line-height: 18px;
-}
-
-/* CDK Overlay - Ensure menus are above cards */
+/* CDK overlay поверх контента */
 .cdk-overlay-container {
   z-index: 1001 !important;
 }
 
-.cdk-overlay-pane {
-  z-index: 1001 !important;
-  
-  /* Snackbar должен быть поверх всех overlay элементов */
-  &.mat-mdc-snack-bar-container,
-  &[class*="snackbar"] {
-    z-index: 10000 !important;
-  }
-}
-
-/* Material Snackbar - Убираем прозрачность и устанавливаем максимальный z-index */
-.mat-mdc-snack-bar-container {
-  background-color: var(--sneat-bg-secondary) !important;
-  color: var(--sneat-text-dark) !important;
-  opacity: 1 !important;
-  z-index: 10000 !important;
-  
+/* Тосты — тёмно-синяя пилюля из канваса */
+.mat-mdc-snack-bar-container.jf-toast {
   .mdc-snackbar__surface {
-    background-color: var(--sneat-bg-secondary) !important;
-    opacity: 1 !important;
-    z-index: 10000 !important;
+    background: var(--jf-ink) !important;
+    border-radius: 12px !important;
+    box-shadow: var(--jf-shadow-modal) !important;
+    min-width: 0 !important;
+    animation: jfToast 0.18s ease-out;
   }
-  
+
   .mdc-snackbar__label {
-    color: var(--sneat-text-dark) !important;
-    opacity: 1 !important;
+    color: #fff !important;
+    font-family: var(--jf-sans);
+    font-size: 13.5px;
+    padding: 11px 16px;
   }
-  
+
   .mat-mdc-snack-bar-action {
-    color: var(--sneat-primary) !important;
-    opacity: 1 !important;
-    
-    &:hover {
-      color: var(--sneat-primary-dark) !important;
-    }
+    color: var(--jf-amber) !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.04em;
   }
 }
 
-/* CDK Overlay для Snackbar - максимальный z-index */
-.cdk-overlay-container {
-  z-index: 10000 !important;
-}
-
-.cdk-overlay-pane.mat-mdc-snack-bar-container {
-  z-index: 10000 !important;
-}
-
-/* Scrollbar Styling */
+/* Скроллбар */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--sneat-bg-primary);
+  background: var(--jf-bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--sneat-border);
+  background: var(--jf-border-2);
   border-radius: 4px;
 
   &:hover {
-    background: var(--sneat-text-light);
+    background: var(--jf-muted);
   }
 }

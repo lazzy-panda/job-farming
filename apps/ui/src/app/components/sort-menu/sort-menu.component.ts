@@ -1,8 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 
 export type SortMode = 'date_desc' | 'date_asc' | 'company';
@@ -10,13 +7,7 @@ export type SortMode = 'date_desc' | 'date_asc' | 'company';
 @Component({
   standalone: true,
   selector: 'app-sort-menu',
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatIconModule,
-    MatTooltipModule,
-    OverlayModule,
-  ],
+  imports: [CommonModule, OverlayModule],
   templateUrl: './sort-menu.component.html',
   styleUrl: './sort-menu.component.scss',
 })

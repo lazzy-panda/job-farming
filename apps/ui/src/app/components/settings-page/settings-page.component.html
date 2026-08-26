@@ -1,12 +1,10 @@
 <div class="layout">
-  <app-dashboard-header
-    title="Настройки"
-    subtitle="SMTP/порты и другие параметры; данные сохраняются локально"
-  />
+  <app-dashboard-header (refresh)="loadSettings()" />
 
-  <section class="form-card">
+  <main class="page-main">
+    <h1 class="page-title">Настройки</h1>
+    <p class="page-sub">SMTP для отправки писем, порт API и параметры HTTP-чтения Telegram.</p>
+
     <app-settings-form [settings]="settings()" (save)="saveSettings($event)"></app-settings-form>
-  </section>
+  </main>
 </div>
-
-

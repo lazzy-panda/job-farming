@@ -1,52 +1,72 @@
 <div class="layout">
   <app-dashboard-header
-    title="Job Farm"
-    subtitle="Angular 21 + API http://localhost:3000/api"
     [showSort]="true"
     [sortMode]="sortMode()"
+    [loading]="loading()"
     (refresh)="refreshAndScrape()"
     (sortChange)="onSortChange($event)"
   />
-  <section class="plan-section">
-    <app-plan-panel #planPanel></app-plan-panel>
-  </section>
 
-  <section class="search-section">
+  <main class="page-main">
+    <app-plan-panel #planPanel></app-plan-panel>
+
     <app-job-search
       [query]="searchQuery()"
       [total]="jobs().length"
       [filtered]="totalFiltered()"
       [sourceTypes]="availableSourceTypes()"
+      [activeSource]="sourceTypeFilter()"
       (queryChange)="onSearchQueryChange($event)"
       (sourceChange)="onSourceChange($event)"
     />
-  </section>
 
-  <mat-progress-bar
-    *ngIf="loading()"
-    mode="indeterminate"
-    color="accent"
-    class="loading-bar"
-    aria-label="Загрузка списка вакансий"
-  ></mat-progress-bar>
+    <div class="skeleton-grid" *ngIf="loading() && jobs().length === 0">
+      <div class="skeleton-card" *ngFor="let i of [1, 2, 3, 4, 5, 6]">
+        <div class="sk-head">
+          <span class="sk-avatar"></span>
+          <span class="sk-line wide"></span>
+        </div>
+        <span class="sk-line w60"></span>
+        <span class="sk-line"></span>
+        <span class="sk-line"></span>
+        <span class="sk-line w75"></span>
+        <div class="sk-actions">
+          <span class="sk-box"></span>
+          <span class="sk-box"></span>
+          <span class="sk-box"></span>
+        </div>
+      </div>
+    </div>
 
-  <section>
+    <div class="error-banner" *ngIf="loadError() && !loading()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" class="err-icon" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7.5v6M12 16.6h.01" />
+      </svg>
+      <div class="err-text">
+        <div class="err-title">Не удалось загрузить вакансии</div>
+        <div class="err-detail">API не отвечает: <span class="jf-mono">{{ loadError() }}</span>. Проверьте, запущен ли сервер на порту 3000.</div>
+      </div>
+      <button type="button" class="err-retry" (click)="loadJobs()">Повторить</button>
+    </div>
+
     <app-job-cards
+      *ngIf="!loading() || jobs().length > 0"
       [jobs]="paginatedJobs()"
       [sources]="sources()"
       (open)="openAndCopy($event)"
       (remove)="deleteJob($event)"
       (funnelChanged)="planPanel.refresh()"
+      (resetFilters)="resetFilters()"
     ></app-job-cards>
-  </section>
 
-  <section class="pagination-section" *ngIf="totalFiltered() > 0">
     <app-pagination
+      *ngIf="totalFiltered() > 0"
       [total]="totalFiltered()"
       [pageIndex]="pageIndex()"
       [pageSize]="pageSize()"
       [pageSizeOptions]="pageSizeOptions"
       (pageChange)="onPageChange($event)"
     ></app-pagination>
-  </section>
+  </main>
 </div>

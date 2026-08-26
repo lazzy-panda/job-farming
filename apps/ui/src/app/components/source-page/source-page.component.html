@@ -1,48 +1,45 @@
 <div class="layout">
-  <app-dashboard-header
-    subtitle="Вакансии собираются автоматически из указанных источников"
-    (refresh)="loadSources()"
-  />
+  <app-dashboard-header (refresh)="loadSources()" />
 
-  <section class="form-card">
-    <div class="panel">
+  <main class="page-main">
+    <h1 class="page-title">Источники</h1>
+    <p class="page-sub">
+      Вакансии собираются автоматически: Telegram-каналы читаются по HTTP, RSS-ленты — по расписанию.
+      Ничего запускать вручную не нужно.
+    </p>
+
+    <section class="jf-card create-card">
+      <div class="jf-section-label card-label">Добавить источник</div>
       <app-source-create [model]="sourceModel" (submit)="createSource($event)"></app-source-create>
-    </div>
-  </section>
+    </section>
 
-  <section class="list-card">
-    <div class="panel">
-      <div class="list-header">
-        <div>
-          <h2>Добавленные источники</h2>
-          <p class="subtitle">Все активные адреса для сбора вакансий</p>
-        </div>
+    <section class="jf-card list-card">
+      <div class="list-head">
+        <span class="jf-section-label">Добавленные источники</span>
+        <span class="count-pill jf-mono">{{ sources().length }}</span>
       </div>
 
       <div class="list" *ngIf="sources().length; else empty">
-        <div class="list-row" *ngFor="let s of paginatedSources(); index as idx">
-          <div class="row-index">{{ pageIndex() * pageSize() + idx + 1 }}</div>
-          <div class="row-source-icon" *ngIf="getSourceIconSvg(s) as iconSvg">
-            <span class="source-icon" [innerHTML]="iconSvg"></span>
-          </div>
+        <div class="row" *ngFor="let s of paginatedSources(); index as idx">
+          <span class="num jf-mono">{{ pageIndex() * pageSize() + idx + 1 }}</span>
+          <span class="row-icon" *ngIf="getSourceIconSvg(s) as iconSvg" [innerHTML]="iconSvg"></span>
           <div class="row-text">
-            <div class="row-title">{{ getDisplayName(s) }}</div>
-            <div class="row-sub">{{ s.url }}</div>
-          
+            <div class="row-name">{{ getDisplayName(s) }}</div>
+            <div class="row-url jf-mono">{{ s.url }}</div>
           </div>
-        
-          <div class="row-subscribers" *ngIf="getSubscribersCount(s) !== null">
-            {{ formatSubscribersCount(getSubscribersCount(s)!) }}
-          </div>
+          <span class="subs jf-mono" *ngIf="getSubscribersCount(s) !== null">
+            {{ formatSubscribersCount(getSubscribersCount(s)!) }} подписчиков
+          </span>
           <button
-            mat-icon-button
-            color="warn"
-            class="delete-btn"
+            type="button"
+            class="jf-icon-btn danger"
+            title="Удалить источник"
             [disabled]="loading"
             (click)="removeSource(s)"
-            aria-label="Удалить источник"
           >
-            <mat-icon class="material-symbols-outlined" aria-hidden="true">delete</mat-icon>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <path d="M4 7h16M9.5 7V4h5v3M6.5 7l1 13h9l1-13" />
+            </svg>
           </button>
         </div>
       </div>
@@ -50,17 +47,16 @@
       <ng-template #empty>
         <div class="empty">Источники пока не добавлены</div>
       </ng-template>
-    </div>
-  </section>
 
-  <section class="pagination-section" *ngIf="sources().length > 0">
-    <app-pagination
-      [total]="sources().length"
-      [pageIndex]="pageIndex()"
-      [pageSize]="pageSize()"
-      [pageSizeOptions]="pageSizeOptions"
-      (pageChange)="onPageChange($event)"
-    ></app-pagination>
-  </section>
+      <div class="pager-wrap" *ngIf="sources().length > 0">
+        <app-pagination
+          [total]="sources().length"
+          [pageIndex]="pageIndex()"
+          [pageSize]="pageSize()"
+          [pageSizeOptions]="pageSizeOptions"
+          (pageChange)="onPageChange($event)"
+        ></app-pagination>
+      </div>
+    </section>
+  </main>
 </div>
-

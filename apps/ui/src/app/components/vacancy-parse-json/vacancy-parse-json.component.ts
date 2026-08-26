@@ -1,8 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, SimpleChanges, computed, inject, signal } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { OverlayModule } from '@angular/cdk/overlay';
+import { Component, HostListener, Input, OnChanges, SimpleChanges, computed, inject, signal } from '@angular/core';
 import type { JobPosting } from '@job-farm/shared-models';
 import type { VacancyParseResult } from '../../api.service';
 import { VacancyParseClientService } from '../../vacancy-parse-client.service';
@@ -10,7 +7,7 @@ import { VacancyParseClientService } from '../../vacancy-parse-client.service';
 @Component({
   standalone: true,
   selector: 'app-vacancy-parse-json',
-  imports: [CommonModule, MatButtonModule, MatIconModule, OverlayModule],
+  imports: [CommonModule],
   templateUrl: './vacancy-parse-json.component.html',
   styleUrl: './vacancy-parse-json.component.scss',
 })
@@ -37,6 +34,13 @@ export class VacancyParseJsonComponent implements OnChanges {
 
   toggle(): void {
     this.open.update((v) => !v);
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    if (this.open()) {
+      this.close();
+    }
   }
 
   close(): void {

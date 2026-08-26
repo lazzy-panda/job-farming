@@ -1,7 +1,23 @@
-.form-card {
-  mat-card {
-    width: 100%;
-  }
+.layout {
+  min-height: 100vh;
+  background: var(--jf-bg);
+  padding: 12px 12px 60px;
 }
 
+.page-main {
+  max-width: 940px;
+  margin: 0 auto;
+}
 
+.page-title {
+  margin: 6px 0 4px;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.page-sub {
+  margin: 0 0 14px;
+  font-size: 13.5px;
+  color: var(--jf-ink-3);
+}

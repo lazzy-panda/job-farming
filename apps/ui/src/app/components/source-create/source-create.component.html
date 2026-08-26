@@ -1,32 +1,38 @@
-<div class="source-form">
-  <div class="field-label">Адрес</div>
-  <div class="field-box">
-    <mat-icon
-      *ngIf="model.url && model.url.toLowerCase().includes('t.me/')"
-      class="material-symbols-outlined telegram-icon"
-      aria-hidden="true"
-    >
-      forum
-    </mat-icon>
-    <input
-      matInput
-      placeholder="https://t.me/s/channel или https://example.com/feed"
-      [(ngModel)]="model.url"
-      (ngModelChange)="onUrlChange($event)"
-      (keyup.enter)="submitSource()"
-      [class.error]="urlError"
-    />
-  </div>
-  <div class="error-message" *ngIf="urlError">{{ urlError }}</div>
-  <div class="hint" *ngIf="!urlError && model.url">
-    <span *ngIf="isTelegramSource()">Telegram канал</span>
-    <span *ngIf="isRssSource()">RSS лента</span>
+<div class="create-row">
+  <div class="input-col">
+    <div class="input-box">
+      <span class="type-icon" aria-hidden="true">
+        <svg *ngIf="isTelegramSource()" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2aa4dd" stroke-width="1.8" stroke-linejoin="round">
+          <path d="m21.5 4.5-4 15.5-6-4.5-3 3v-4.5l9.5-8.5-11.5 7-4-1.5z" />
+        </svg>
+        <svg *ngIf="!isTelegramSource() && isRssSource()" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f07800" stroke-width="1.9" stroke-linecap="round">
+          <path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16" />
+          <circle cx="5" cy="19" r="1.6" fill="#f07800" stroke="none" />
+        </svg>
+        <svg *ngIf="!isTelegramSource() && !isRssSource()" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18" />
+        </svg>
+      </span>
+      <input
+        class="jf-mono"
+        [ngModel]="model.url"
+        (ngModelChange)="onUrlChange($event)"
+        (keyup.enter)="submitSource()"
+        placeholder="t.me/job_SA_PM или https://career.habr.com/vacancies/rss?q=…"
+        aria-label="Адрес источника"
+      />
+    </div>
+    <div class="hint" *ngIf="!urlError">
+      Тип определён автоматически:
+      <b>{{ isTelegramSource() ? 'Telegram-канал' : isRssSource() ? 'RSS-лента' : '—' }}</b>
+    </div>
+    <div class="error" *ngIf="urlError">{{ urlError }}</div>
   </div>
 
   <button
-    mat-flat-button
-    color="primary"
-    class="submit-btn"
+    type="button"
+    class="add-btn"
     (click)="submitSource()"
     [disabled]="!!urlError || !model.url || !model.url.trim()"
   >

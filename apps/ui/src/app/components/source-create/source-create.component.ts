@@ -1,21 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { Source } from '@job-farm/shared-models';
 
 @Component({
   standalone: true,
   selector: 'app-source-create',
-  imports: [
-    CommonModule,
-    FormsModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-  ],
+  imports: [CommonModule, FormsModule],
   templateUrl: './source-create.component.html',
   styleUrls: ['./source-create.component.scss'],
 })

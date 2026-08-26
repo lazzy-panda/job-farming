@@ -1,6 +1,8 @@
 <div cdkOverlayOrigin #origin="cdkOverlayOrigin">
-  <button mat-stroked-button class="sort-btn" matTooltip="Сортировка" (click)="open = !open">
-    <mat-icon class="material-symbols-outlined" aria-hidden="true">sort</mat-icon>
+  <button type="button" class="sort-btn" title="Сортировка" (click)="open = !open">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true">
+      <path d="M4 7h14M4 12h9M4 17h5" />
+    </svg>
     <span>Сортировка</span>
   </button>
 </div>
@@ -10,30 +12,38 @@
   [cdkConnectedOverlayOrigin]="origin"
   [cdkConnectedOverlayOpen]="open"
   [cdkConnectedOverlayHasBackdrop]="true"
+  [cdkConnectedOverlayBackdropClass]="'sort-backdrop'"
   [cdkConnectedOverlayPositions]="overlayPositions"
   (backdropClick)="open = false"
   (detach)="open = false"
 >
-  <div class="sort-menu-panel">
-    <div class="sort-menu-content">
-      <div class="sort-header">
-        <h3 class="sort-title">Сортировка</h3>
-      </div>
-
-      <div class="sort-body">
-        <button
-          *ngFor="let option of sortOptions"
-          class="sort-option"
-          [class.active]="option.value === sortMode"
-          (click)="onSortSelect(option.value)"
+  <div class="sort-panel">
+    <div class="jf-section-label panel-label">Сортировка</div>
+    <button
+      type="button"
+      class="sort-option"
+      *ngFor="let option of sortOptions"
+      (click)="onSortSelect(option.value)"
+    >
+      <span class="check">
+        <svg
+          *ngIf="option.value === sortMode"
+          width="15"
+          height="15"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.8"
+          stroke-linecap="round"
+          aria-hidden="true"
         >
-          <div class="option-content">
-            <span class="option-title">{{ option.label }}</span>
-            <span class="option-caption">{{ option.caption }}</span>
-          </div>
-          <span class="checkmark" *ngIf="option.value === sortMode">✔</span>
-        </button>
-      </div>
-    </div>
+          <path d="m5 13 4.5 4.5L19 7" />
+        </svg>
+      </span>
+      <span class="option-text">
+        <span class="option-label">{{ option.label }}</span>
+        <span class="option-hint">{{ option.caption }}</span>
+      </span>
+    </button>
   </div>
 </ng-template>

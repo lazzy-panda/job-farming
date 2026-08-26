@@ -1,48 +1,54 @@
 <button
-  mat-icon-button
-  class="parse-btn"
+  type="button"
+  class="json-chip"
+  title="Parser JSON"
   [disabled]="!hasText()"
   (click)="toggle()"
-  cdkOverlayOrigin
-  #origin="cdkOverlayOrigin"
-  aria-label="Показать JSON парсера"
 >
-  <mat-icon class="material-symbols-outlined">code</mat-icon>
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true">
+    <path d="m9 8-4 4 4 4M15 8l4 4-4 4" />
+  </svg>
+  JSON
 </button>
 
-<ng-template
-  cdkConnectedOverlay
-  [cdkConnectedOverlayOpen]="open()"
-  [cdkConnectedOverlayOrigin]="origin"
-  [cdkConnectedOverlayHasBackdrop]="true"
-  (backdropClick)="close()"
-  [cdkConnectedOverlayBackdropClass]="'parse-backdrop'"
->
-  <div class="panel" role="dialog" aria-label="JSON парсера">
-    <div class="panel-header">
-      <div class="title">Parser JSON</div>
-      <div class="actions">
-        <button mat-icon-button (click)="copyJson()" [disabled]="!result()" aria-label="Скопировать JSON">
-          <mat-icon class="material-symbols-outlined">content_copy</mat-icon>
-        </button>
-        <button mat-icon-button (click)="refresh()" aria-label="Перепарсить">
-          <mat-icon class="material-symbols-outlined">refresh</mat-icon>
-        </button>
-        <button mat-icon-button (click)="close()" aria-label="Закрыть">
-          <mat-icon class="material-symbols-outlined">close</mat-icon>
-        </button>
-      </div>
+<ng-container *ngIf="open()">
+  <div class="backdrop" (click)="close()"></div>
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Parser JSON">
+    <div class="modal-head">
+      <span class="modal-title jf-mono">Parser JSON</span>
+      <span class="modal-sub">{{ job.title }}</span>
+      <button type="button" class="head-btn" title="Копировать" [disabled]="!result()" (click)="copyJson()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true">
+          <rect x="8.5" y="8.5" width="11" height="12" rx="2" />
+          <path d="M15.5 5.5H6.5a2 2 0 0 0-2 2v9" />
+        </svg>
+      </button>
+      <button type="button" class="head-btn" title="Перепарсить" (click)="refresh()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true">
+          <path d="M20.5 12a8.5 8.5 0 1 1-2.7-6.2" />
+          <path d="M20.7 4v4.4h-4.4" />
+        </svg>
+      </button>
+      <button type="button" class="head-btn close" title="Закрыть" (click)="close()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
+      </button>
     </div>
 
-    <div class="panel-body">
-      <div class="state" *ngIf="loading()">Парсинг…</div>
+    <div class="modal-body">
+      <div class="state" *ngIf="loading()">
+        <span class="spinner"></span>
+        Парсинг…
+      </div>
       <div class="state error" *ngIf="!loading() && error()">Ошибка парсинга</div>
       <div class="state error" *ngIf="!loading() && !error() && isDisabled()">
         Парсер выключен на API (VACANCY_PARSER_ENABLED=1)
       </div>
-
-      <pre class="json" *ngIf="!loading() && !error() && result() as r">{{ r | json }}</pre>
+      <pre class="json jf-mono" *ngIf="!loading() && !error() && result() as r">{{ r | json }}</pre>
       <div class="state" *ngIf="!loading() && !error() && !result()">Нет данных</div>
     </div>
+
+    <div class="modal-foot jf-mono">VACANCY_PARSER_ENABLED=1</div>
   </div>
-</ng-template>
+</ng-container>

@@ -1,9 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output, inject, signal } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { JobPosting, Source } from '@job-farm/shared-models';
 import { ApiService, TranslationResponse, VacancyParseResult } from '../../api.service';
 import { VacancyParseClientService } from '../../vacancy-parse-client.service';
@@ -15,7 +11,7 @@ const API_BASE = 'http://127.0.0.1:3000/api';
 @Component({
   standalone: true,
   selector: 'app-job-cards',
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule, MatTooltipModule, VacancyParseJsonComponent],
+  imports: [CommonModule, VacancyParseJsonComponent],
   templateUrl: './job-cards.component.html',
   styleUrls: ['./job-cards.component.scss'],
 })
@@ -26,6 +22,8 @@ export class JobCardsComponent {
   @Output() remove = new EventEmitter<JobPosting>();
   /** Изменилась воронка (отклик/шортлист) — дашборду пора обновить панель плана */
   @Output() funnelChanged = new EventEmitter<void>();
+  /** Клик «Сбросить фильтры» в пустом состоянии */
+  @Output() resetFilters = new EventEmitter<void>();
 
   private readonly applyingIds = new Set<string>();
 
@@ -88,6 +86,19 @@ export class JobCardsComponent {
   getSourceName(job: JobPosting): string {
     const src = this.sources.find((s) => s.id === job.sourceId);
     return src?.name ?? '—';
+  }
+
+  getParsedExperience(job: JobPosting): string {
+    const parsed = this.getParsed(job);
+    const value = this.readString(((parsed?.experience as Record<string, unknown>) ?? {})['value']);
+    if (!value) return '—';
+    const labels: Record<string, string> = {
+      junior: 'Junior',
+      middle: 'Middle',
+      senior: 'Senior',
+      lead: 'Lead',
+    };
+    return labels[value] ?? value;
   }
 
   getSourceHost(job: JobPosting): string {

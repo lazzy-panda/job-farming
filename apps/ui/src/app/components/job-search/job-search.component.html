@@ -1,60 +1,61 @@
-<mat-card class="search-card">
+<section class="search jf-card">
   <div class="search-row">
-    <mat-form-field class="search-field" appearance="outline">
-      <mat-icon matPrefix class="material-symbols-outlined" aria-hidden="true">search</mat-icon>
+    <div class="input-box">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" class="lens" aria-hidden="true">
+        <circle cx="11" cy="11" r="7" />
+        <path d="m16.5 16.5 4.5 4.5" />
+      </svg>
       <input
-        matInput
-        [ngModel]="query"
-        (ngModelChange)="onInput($event)"
+        [value]="query"
+        (input)="onInput($any($event.target).value)"
         placeholder="Например: python, дизайнер, удалёнка, $"
         autocomplete="off"
-        lang="en-US"
-        inputmode="text"
         spellcheck="false"
-        autocapitalize="none"
-        autocorrect="off"
         enterkeyhint="search"
+        aria-label="Поиск вакансий"
       />
-      <button
-        mat-icon-button
-        matSuffix
-        type="button"
-        aria-label="Очистить поиск"
-        [disabled]="!query"
-        (click)="clear()"
-      >
-        <mat-icon class="material-symbols-outlined" aria-hidden="true">close</mat-icon>
+      <button type="button" class="clear-btn" title="Очистить" *ngIf="query" (click)="clear()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
       </button>
-    </mat-form-field>
-
-    <div class="stats" aria-label="Статистика результатов">
+    </div>
+    <div class="stats-box">
       <div class="stats-title">Найдено</div>
-      <div class="stats-value">{{ filtered }} / {{ total }}</div>
+      <div class="stats-value jf-mono">{{ filtered }} / {{ total }}</div>
     </div>
   </div>
 
-  <div class="filters-row" *ngIf="presets.length || sources.length">
-    <mat-chip-listbox aria-label="Быстрые фильтры поиска" *ngIf="presets.length">
-      <mat-chip-option
+  <div class="filters-row">
+    <div class="pills">
+      <button
+        type="button"
+        class="pill preset"
         *ngFor="let p of presets"
-        (click)="applyPreset(p.value)"
+        [class.on]="isPresetActive(p.value)"
+        (click)="togglePreset(p.value)"
       >
+        <svg *ngIf="isPresetActive(p.value)" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true">
+          <path d="m5 13 4.5 4.5L19 7" />
+        </svg>
         {{ p.label }}
-      </mat-chip-option>
-    </mat-chip-listbox>
+      </button>
+    </div>
 
-    <div class="divider" *ngIf="presets.length && sources.length"></div>
+    <span class="divider" *ngIf="presets.length && sources.length"></span>
 
-    <div aria-label="Источники поиска" *ngIf="sources.length">
-      <div
+    <div class="pills" *ngIf="sources.length">
+      <button
+        type="button"
+        class="pill source"
         *ngFor="let s of sources"
-        class="source-chip"
-        (click)="applySource(s.value)"
+        [class.on]="isSourceActive(s.value)"
+        [title]="'Источник: ' + s.label"
+        (click)="toggleSource(s.value)"
       >
-        <span class="source-icon">
-          <span class="source-icon-svg" [innerHTML]="getSourceIconSvg(s.icon)"></span>
-        </span>
-      </div>
+        <span class="source-icon" [innerHTML]="getSourceIconSvg(s.icon)"></span>
+        {{ s.label }}
+      </button>
     </div>
   </div>
-</mat-card>
+</section>

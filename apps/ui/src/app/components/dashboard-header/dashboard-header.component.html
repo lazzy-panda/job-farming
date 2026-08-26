@@ -1,45 +1,48 @@
-<header class="header">
-  <div class="header-container">
-    <a routerLink="/" class="header-brand">
-      <div>
-        <img
-          ngSrc="/logo-1.png"
-          width="80"
-          height="80"
-          alt="Job Farm"
-          class="brand-logo"
-          priority
-        />
-      </div>
+<header class="header jf-card">
+  <div class="header-row">
+    <a routerLink="/" class="brand" title="Job Farming">
+      <img src="/logo-full.png" alt="Job Farming" class="brand-logo" />
     </a>
 
-    <nav class="header-nav">
+    <nav class="nav">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-item">
+        Дашборд
+        <span class="underline"></span>
+      </a>
       <a routerLink="/sources/new" routerLinkActive="active" class="nav-item">
-        <mat-icon class="material-symbols-outlined nav-icon" aria-hidden="true">add_circle</mat-icon>
-        <span class="nav-label">Добавить источник</span>
+        Добавить источник
+        <span class="underline"></span>
       </a>
       <a routerLink="/templates" routerLinkActive="active" class="nav-item">
-        <mat-icon class="material-symbols-outlined nav-icon" aria-hidden="true">collections_bookmark</mat-icon>
-        <span class="nav-label">Шаблоны</span>
+        Шаблоны
+        <span class="underline"></span>
       </a>
       <a routerLink="/settings" routerLinkActive="active" class="nav-item">
-        <mat-icon class="material-symbols-outlined nav-icon" aria-hidden="true">settings</mat-icon>
-        <span class="nav-label">Настройки</span>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="3.2" />
+          <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1-1.55 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.55-1H3a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.55-1 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34h.09a1.7 1.7 0 0 0 1-1.55V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87v.09a1.7 1.7 0 0 0 1.55 1H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.55 1z" />
+        </svg>
+        Настройки
+        <span class="underline"></span>
       </a>
     </nav>
 
-    <div class="header-actions">
-      <ng-container *ngIf="showSort">
-        <app-sort-menu
-          [sortMode]="sortMode"
-          (sortChange)="sortChange.emit($event)"
-        ></app-sort-menu>
-      </ng-container>
-
-      <button mat-icon-button (click)="refresh.emit()" class="action-btn" matTooltip="Обновить">
-        <mat-icon class="material-symbols-outlined" aria-hidden="true">refresh</mat-icon>
+    <div class="actions">
+      <app-sort-menu
+        *ngIf="showSort"
+        [sortMode]="sortMode"
+        (sortChange)="sortChange.emit($event)"
+      ></app-sort-menu>
+      <button type="button" class="refresh-btn" title="Обновить данные" (click)="refresh.emit()">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true">
+          <path d="M20.5 12a8.5 8.5 0 1 1-2.7-6.2" />
+          <path d="M20.7 4v4.4h-4.4" />
+        </svg>
       </button>
     </div>
   </div>
-</header>
 
+  <div class="loading-track" *ngIf="loading" aria-label="Загрузка">
+    <div class="loading-bar"></div>
+  </div>
+</header>

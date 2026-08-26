@@ -1,220 +1,166 @@
-:host {
+.search {
+  padding: 12px 16px 13px;
+  margin-bottom: 12px;
   display: block;
-  width: 100%;
-}
-
-.search-card {
-  width: 100%;
-  padding: 14px 16px;
-  border-radius: 14px;
-  background: #fff;
-  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
 }
 
 .search-row {
   display: flex;
-  align-items: flex-start;
-  gap: 14px;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
 }
 
-.search-field {
+.input-box {
   flex: 1;
-  min-width: 320px;
+  min-width: 300px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--jf-surface-3);
+  border: 1.5px solid var(--jf-border);
+  border-radius: 12px;
+  padding: 0 13px;
+  height: 44px;
 
-  // Тонкие серые скругленные границы для outline appearance
-  ::ng-deep {
-    .mat-mdc-text-field-wrapper {
-      border-radius: 12px;
-      overflow: hidden;
+  &:focus-within {
+    border-color: var(--jf-blue);
+  }
+
+  .lens {
+    flex: none;
+    color: var(--jf-muted);
+  }
+
+  input {
+    flex: 1;
+    background: none;
+    border: 0;
+    outline: none;
+    color: var(--jf-ink);
+    font-size: 14px;
+    height: 100%;
+    min-width: 0;
+
+    &::placeholder {
+      color: var(--jf-faint);
     }
+  }
 
-    .mdc-notched-outline {
-      border-width: 1px;
-      border-color: rgba(0, 0, 0, 0.12) !important;
-    }
+  .clear-btn {
+    width: 24px;
+    height: 24px;
+    display: grid;
+    place-items: center;
+    background: none;
+    border: 0;
+    color: var(--jf-muted);
+    cursor: pointer;
+    flex: none;
+    padding: 0;
 
-    .mdc-notched-outline__leading {
-      border-width: 1px;
-      border-color: rgba(0, 0, 0, 0.12) !important;
-      border-top-left-radius: 12px;
-      border-bottom-left-radius: 12px;
-    }
-
-    .mdc-notched-outline__notch {
-      border-width: 1px 0;
-      border-color: rgba(0, 0, 0, 0.12) !important;
-    }
-
-    .mdc-notched-outline__trailing {
-      border-width: 1px;
-      border-color: rgba(0, 0, 0, 0.12) !important;
-      border-top-right-radius: 12px;
-      border-bottom-right-radius: 12px;
-    }
-
-    // При фокусе тоже тонкая серая граница
-    &.mat-mdc-form-field-focused {
-      .mdc-notched-outline {
-        border-width: 1px;
-        border-color: rgba(0, 0, 0, 0.2) !important;
-      }
-
-      .mdc-notched-outline__leading {
-        border-width: 1px;
-        border-color: rgba(0, 0, 0, 0.2) !important;
-        border-top-left-radius: 12px;
-        border-bottom-left-radius: 12px;
-      }
-
-      .mdc-notched-outline__notch {
-        border-width: 1px 0;
-        border-color: rgba(0, 0, 0, 0.2) !important;
-      }
-
-      .mdc-notched-outline__trailing {
-        border-width: 1px;
-        border-color: rgba(0, 0, 0, 0.2) !important;
-        border-top-right-radius: 12px;
-        border-bottom-right-radius: 12px;
-      }
-    }
-
-    // При hover тоже тонкая серая граница
-    &:hover:not(.mat-mdc-form-field-focused) {
-      .mdc-notched-outline {
-        border-color: rgba(0, 0, 0, 0.15) !important;
-      }
-
-      .mdc-notched-outline__leading {
-        border-color: rgba(0, 0, 0, 0.15) !important;
-        border-top-left-radius: 12px;
-        border-bottom-left-radius: 12px;
-      }
-
-      .mdc-notched-outline__notch {
-        border-color: rgba(0, 0, 0, 0.15) !important;
-      }
-
-      .mdc-notched-outline__trailing {
-        border-color: rgba(0, 0, 0, 0.15) !important;
-        border-top-right-radius: 12px;
-        border-bottom-right-radius: 12px;
-      }
+    &:hover {
+      color: var(--jf-red);
     }
   }
 }
 
-.stats {
-  flex: 0 0 auto;
-  min-width: 120px;
-  padding: 10px 12px;
+.stats-box {
+  background: var(--jf-surface-3);
+  border: 1px solid var(--jf-border);
   border-radius: 12px;
-  background: rgba(15, 23, 42, 0.04);
-}
+  padding: 6px 15px;
+  min-width: 132px;
+  flex: none;
 
-.stats-title {
-  font-size: 12px;
-  color: rgba(15, 23, 42, 0.7);
-  line-height: 1.2;
-}
+  .stats-title {
+    font-size: 11px;
+    color: var(--jf-ink-3);
+  }
 
-.stats-value {
-  font-size: 16px;
-  font-weight: 600;
-  margin-top: 4px;
-  color: rgba(15, 23, 42, 0.92);
+  .stats-value {
+    font-size: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
 }
 
 .filters-row {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 10px;
   flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 11px;
+  align-items: center;
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
 }
 
 .divider {
   width: 1px;
-  height: 24px;
-  background: rgba(0, 0, 0, 0.12);
-  flex-shrink: 0;
+  height: 22px;
+  background: var(--jf-border);
 }
 
-mat-chip-option {
-  margin-right: 8px;
-}
-.actions {
+.pill {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  text-align: center;
-  justify-content: left;
-}
-
-// 7 Правил после этого комментария не трогать!
-.source-chip {
-  background: none;
-  display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
+  border-radius: 20px;
+  padding: 6px 13px;
+  font-size: 12.5px;
   font-weight: 600;
-  letter-spacing: 0.01em;
   cursor: pointer;
 
-  &:hover {
-    transform: translateY(-1px);
-  }
+  &.preset {
+    background: var(--jf-surface);
+    border: 1.5px solid var(--jf-border-2);
+    color: var(--jf-ink-2);
 
-  &.source-chip--telegram {
-    background: rgba(56, 176, 227, 0.1);
-    color: #127abf;
-  }
+    &:hover {
+      border-color: var(--jf-blue);
+      color: var(--jf-blue);
+    }
 
-  &.source-chip--rss {
-    background: rgba(245, 158, 11, 0.1);
-    color: #b45309;
-  }
-
-  &.source-chip--api {
-    background: rgba(99, 102, 241, 0.12);
-    color: #4338ca;
-  }
-}
-
-.source-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: #fff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  .source-icon-svg {
-    display: inline-flex;
-    ::ng-deep svg {
-      width: 18px;
-      height: 18px;
+    &.on {
+      background: var(--jf-blue);
+      border-color: var(--jf-blue);
+      color: #fff;
     }
   }
-}
 
-.source-label {
-  font-size: 13px;
-  line-height: 1;
-}
+  &.source {
+    gap: 7px;
+    padding: 6px 12px;
+    background: var(--jf-surface);
+    border: 1.5px solid var(--jf-border-3);
+    color: var(--jf-faint);
 
-@media (max-width: 720px) {
-  .search-row {
-    flex-direction: column;
-  }
+    .source-icon {
+      display: grid;
+      place-items: center;
+      opacity: 0.4;
 
-  .search-field {
-    width: 100%;
-    min-width: 0;
-  }
+      ::ng-deep svg {
+        display: block;
+      }
+    }
 
-  .stats {
-    width: 100%;
+    &:hover {
+      border-color: var(--jf-border-2);
+    }
+
+    &.on {
+      background: var(--jf-blue-bg);
+      border-color: var(--jf-blue);
+      color: var(--jf-ink);
+
+      .source-icon {
+        opacity: 1;
+      }
+    }
   }
 }

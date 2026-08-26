@@ -1,6 +1,5 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ApiService } from '../../api.service';
 import { SettingsFormComponent } from '../settings-form/settings-form.component';
@@ -9,13 +8,7 @@ import { DashboardHeaderComponent } from '../dashboard-header/dashboard-header.c
 @Component({
   standalone: true,
   selector: 'app-settings-page',
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatSnackBarModule,
-    SettingsFormComponent,
-    DashboardHeaderComponent,
-  ],
+  imports: [CommonModule, MatSnackBarModule, SettingsFormComponent, DashboardHeaderComponent],
   templateUrl: './settings-page.component.html',
   styleUrl: './settings-page.component.scss',
 })

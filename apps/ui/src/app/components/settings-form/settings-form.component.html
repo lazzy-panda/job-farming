@@ -1,90 +1,67 @@
-<mat-card>
-  <mat-card-title>Настройки (SMTP/прочее)</mat-card-title>
-  <mat-card-content>
-    <div class="form-row">
-      <mat-form-field appearance="outline">
-        <mat-label>SMTP host</mat-label>
-        <input matInput [(ngModel)]="settings['SMTP_HOST']" />
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>SMTP port</mat-label>
-        <input matInput type="number" [(ngModel)]="settings['SMTP_PORT']" />
-      </mat-form-field>
-    </div>
-    <div class="form-row">
-      <mat-form-field appearance="outline">
-        <mat-label>SMTP user</mat-label>
-        <input matInput [(ngModel)]="settings['SMTP_USER']" />
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>SMTP pass</mat-label>
-        <input matInput [(ngModel)]="settings['SMTP_PASS']" />
-      </mat-form-field>
-    </div>
-    <div class="form-row">
-      <mat-form-field appearance="outline">
-        <mat-label>SMTP from</mat-label>
-        <input matInput [(ngModel)]="settings['SMTP_FROM']" />
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Порт API</mat-label>
-        <input matInput type="number" [(ngModel)]="settings['API_PORT']" />
-      </mat-form-field>
+<section class="jf-card form-card">
+  <div class="jf-section-label group-label">SMTP и API</div>
+  <div class="fields-grid">
+    <label class="jf-field" *ngFor="let field of smtpFields">
+      <span>{{ field.label }}</span>
+      <input
+        class="jf-input jf-input--mono"
+        [type]="field.type === 'number' ? 'number' : 'text'"
+        [name]="field.key"
+        [placeholder]="field.placeholder ?? ''"
+        [(ngModel)]="settings[field.key]"
+      />
+    </label>
+  </div>
+
+  <div class="jf-section-label group-label divided">Telegram HTTP</div>
+  <div class="fields-grid">
+    <label class="jf-field" *ngFor="let field of telegramFields">
+      <span>{{ field.label }}</span>
+      <input
+        class="jf-input jf-input--mono"
+        [type]="field.type === 'number' ? 'number' : 'text'"
+        [name]="field.key"
+        [placeholder]="field.placeholder ?? ''"
+        [(ngModel)]="settings[field.key]"
+      />
+    </label>
+  </div>
+
+  <div class="proxy-block">
+    <div class="proxy-head">
+      <button
+        type="button"
+        class="toggle"
+        [class.on]="proxyEnabled"
+        role="switch"
+        [attr.aria-checked]="proxyEnabled"
+        aria-label="Прокси для Telegram"
+        (click)="toggleProxy()"
+      >
+        <span class="knob"></span>
+      </button>
+      <div>
+        <div class="proxy-title">Прокси для Telegram</div>
+        <div class="proxy-sub">Пул адресов обновляется скриптом <span class="jf-mono">npm run proxies:refresh</span></div>
+      </div>
     </div>
 
-    <mat-card-subtitle>Telegram HTTP</mat-card-subtitle>
-    <div class="form-row">
-      <mat-form-field appearance="outline">
-        <mat-label>Задержка (мс)</mat-label>
-        <input matInput type="number" [(ngModel)]="settings['TELEGRAM_DELAY_MS']" />
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Джиттер (мс)</mat-label>
-        <input matInput type="number" [(ngModel)]="settings['TELEGRAM_JITTER_MS']" />
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Макс страниц</mat-label>
-        <input matInput type="number" [(ngModel)]="settings['TELEGRAM_MAX_PAGES']" />
-      </mat-form-field>
+    <div class="fields-grid proxy-fields" *ngIf="proxyEnabled">
+      <label class="jf-field" *ngFor="let field of proxyFields">
+        <span>{{ field.label }}</span>
+        <input
+          class="jf-input jf-input--mono"
+          [type]="field.type === 'number' ? 'number' : 'text'"
+          [name]="field.key"
+          [placeholder]="field.placeholder ?? ''"
+          [(ngModel)]="settings[field.key]"
+        />
+      </label>
     </div>
-    <div class="form-row">
-      <mat-form-field appearance="outline">
-        <mat-label>User-Agent</mat-label>
-        <input matInput [(ngModel)]="settings['TELEGRAM_USER_AGENT']" />
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Keyword filters (через запятую)</mat-label>
-        <input matInput [(ngModel)]="settings['TELEGRAM_KEYWORDS']" />
-      </mat-form-field>
-    </div>
-    <div class="form-row">
-      <mat-slide-toggle [(ngModel)]="settings['TELEGRAM_PROXY_ENABLED']">Прокси</mat-slide-toggle>
-    </div>
-    <div class="form-row">
-      <mat-form-field appearance="outline">
-        <mat-label>Proxy host</mat-label>
-        <input matInput [(ngModel)]="settings['TELEGRAM_PROXY_HOST']" />
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Proxy port</mat-label>
-        <input matInput type="number" [(ngModel)]="settings['TELEGRAM_PROXY_PORT']" />
-      </mat-form-field>
-    </div>
-    <div class="form-row">
-      <mat-form-field appearance="outline">
-        <mat-label>Proxy user</mat-label>
-        <input matInput [(ngModel)]="settings['TELEGRAM_PROXY_USER']" />
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Proxy pass</mat-label>
-        <input matInput [(ngModel)]="settings['TELEGRAM_PROXY_PASS']" />
-      </mat-form-field>
-    </div>
+  </div>
 
-    <button mat-flat-button color="primary" (click)="save.emit(settings)">
-      Сохранить настройки
-    </button>
-  </mat-card-content>
-</mat-card>
-
-
+  <div class="save-row">
+    <button type="button" class="save-btn" (click)="save.emit(settings)">Сохранить настройки</button>
+    <span class="save-hint">Изменения применяются без перезапуска API</span>
+  </div>
+</section>

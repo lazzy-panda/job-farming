@@ -2,28 +2,21 @@ import { Component, OnInit, computed, effect, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { MatCardModule } from '@angular/material/card';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { firstValueFrom } from 'rxjs';
 import { Source } from '@job-farm/shared-models';
 import { ApiService } from '../../api.service';
 import { SourceCreateComponent } from '../source-create/source-create.component';
 import { DashboardHeaderComponent } from '../dashboard-header/dashboard-header.component';
 import { PaginationComponent } from '../pagination/pagination.component';
+import { JfConfirmService } from '../confirm-dialog/confirm.service';
 
 @Component({
   standalone: true,
   selector: 'app-source-page',
   imports: [
     CommonModule,
-    MatCardModule,
     MatSnackBarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatTooltipModule,
     SourceCreateComponent,
     DashboardHeaderComponent,
     PaginationComponent,
@@ -59,6 +52,7 @@ export class SourcePageComponent implements OnInit {
     private readonly snack: MatSnackBar,
     private readonly http: HttpClient,
     private readonly sanitizer: DomSanitizer,
+    private readonly confirmDialog: JfConfirmService,
   ) {
     effect(() => {
       const total = this.sources().length;
@@ -111,8 +105,14 @@ export class SourcePageComponent implements OnInit {
     return this.iconCache[iconType] || this.sanitizer.bypassSecurityTrustHtml('');
   }
 
-  public removeSource(source: Source): void {
+  public async removeSource(source: Source): Promise<void> {
     if (!source?.id) {
+      return;
+    }
+    const confirmed = await this.confirmDialog.ask(
+      `Удалить источник «${this.getDisplayName(source)}»? Собранные с него вакансии останутся.`,
+    );
+    if (!confirmed) {
       return;
     }
     this.loading = true;

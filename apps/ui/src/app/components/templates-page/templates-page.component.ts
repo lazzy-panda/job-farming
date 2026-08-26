@@ -1,17 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { Resume, ResumeStats, Template } from '@job-farm/shared-models';
 import { ApiService } from '../../api.service';
 import { DashboardHeaderComponent } from '../dashboard-header/dashboard-header.component';
+import { JfConfirmService } from '../confirm-dialog/confirm.service';
 
 type ResumeForm = { name: string; title: string; content: string; notes: string };
 type LetterForm = { name: string; channel: string; content: string };
@@ -24,23 +18,12 @@ const EMPTY_LETTER_FORM: LetterForm = { name: '', channel: 'telegram', content: 
   selector: 'app-templates-page',
   templateUrl: './templates-page.component.html',
   styleUrl: './templates-page.component.scss',
-  imports: [
-    CommonModule,
-    FormsModule,
-    MatCardModule,
-    MatIconModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatTooltipModule,
-    DashboardHeaderComponent,
-  ],
+  imports: [CommonModule, FormsModule, MatSnackBarModule, DashboardHeaderComponent],
 })
 export class TemplatesPageComponent implements OnInit {
   private readonly api = inject(ApiService);
   private readonly snack = inject(MatSnackBar);
+  private readonly confirmDialog = inject(JfConfirmService);
 
   readonly resumes = signal<Resume[]>([]);
   readonly resumeStats = signal<ResumeStats[]>([]);
@@ -125,8 +108,8 @@ export class TemplatesPageComponent implements OnInit {
     });
   }
 
-  deleteResume(resume: Resume): void {
-    if (!confirm(`Удалить резюме «${resume.name}»?`)) {
+  async deleteResume(resume: Resume): Promise<void> {
+    if (!(await this.confirmDialog.ask(`Удалить резюме «${resume.name}»?`))) {
       return;
     }
     this.api.deleteResume(resume.id).subscribe(() => {
@@ -175,8 +158,8 @@ export class TemplatesPageComponent implements OnInit {
     this.letterForm = { ...EMPTY_LETTER_FORM };
   }
 
-  deleteLetter(letter: Template): void {
-    if (!confirm(`Удалить шаблон «${letter.name}»?`)) {
+  async deleteLetter(letter: Template): Promise<void> {
+    if (!(await this.confirmDialog.ask(`Удалить шаблон «${letter.name}»?`))) {
       return;
     }
     this.api.deleteTemplate(letter.id).subscribe(() => {
@@ -194,6 +177,11 @@ export class TemplatesPageComponent implements OnInit {
       navigator.clipboard.writeText(content);
       this.snack.open('Текст скопирован в буфер', 'OK', { duration: 1500 });
     }
+  }
+
+  letterPreview(letter: Template): string {
+    const text = (letter.content ?? '').replace(/\s+/g, ' ').trim();
+    return text.length > 72 ? text.slice(0, 72) + '…' : text;
   }
 
   trackById(_index: number, item: { id: string }): string {

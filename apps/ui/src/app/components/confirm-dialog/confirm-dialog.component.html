@@ -1,0 +1,11 @@
+<ng-container *ngIf="confirm.current() as request">
+  <div class="backdrop" (click)="confirm.answer(false)"></div>
+  <div class="dialog" role="dialog" aria-modal="true" aria-label="Подтвердите действие">
+    <div class="title">Подтвердите действие</div>
+    <div class="text">{{ request.text }}</div>
+    <div class="actions">
+      <button type="button" class="jf-btn-ghost" (click)="confirm.answer(false)">Отмена</button>
+      <button type="button" class="danger" (click)="confirm.answer(true)">Удалить</button>
+    </div>
+  </div>
+</ng-container>

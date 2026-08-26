@@ -1,9 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject, signal } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { Application, FunnelStats, ScoreEvent, ScoreSummary } from '@job-farm/shared-models';
 import { ApiService } from '../../api.service';
 
@@ -32,7 +28,7 @@ interface ManualScoreButton {
 @Component({
   standalone: true,
   selector: 'app-plan-panel',
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule, MatTooltipModule],
+  imports: [CommonModule],
   templateUrl: './plan-panel.component.html',
   styleUrls: ['./plan-panel.component.scss'],
 })

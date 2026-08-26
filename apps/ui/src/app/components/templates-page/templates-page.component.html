@@ -1,134 +1,167 @@
 <div class="layout">
-  <app-dashboard-header
-    title="Резюме и шаблоны"
-    subtitle="Версии резюме для рассылки и шаблоны писем; отклики автоматически помечаются текущим резюме"
-  />
+  <app-dashboard-header (refresh)="reload()" />
 
-  <div class="grid">
-    <mat-card class="section">
-      <div class="section-header">
-        <h3>Резюме — версии для рассылки</h3>
-      </div>
+  <main class="page-main">
+    <h1 class="page-title">Резюме и шаблоны</h1>
+    <p class="page-sub">
+      Версии резюме нужны для A/B: дефолтная версия штампуется в каждый отклик, и статистика по
+      откликам, ответам и собесам считается отдельно для каждой версии.
+    </p>
 
-      <div class="list" *ngIf="resumes().length; else noResumes">
-        <div class="item" *ngFor="let resume of resumes(); trackBy: trackById">
-          <div class="item-main">
+    <div class="columns">
+      <section class="jf-card col">
+        <div class="col-head">
+          <h2>Резюме — версии для рассылки</h2>
+          <span class="col-count jf-mono">{{ resumes().length }}</span>
+        </div>
+
+        <div class="items" *ngIf="resumes().length; else noResumes">
+          <div class="resume-item" *ngFor="let resume of resumes(); trackBy: trackById">
             <button
-              mat-icon-button
               type="button"
+              class="star-btn"
+              [class.on]="resume.isDefault"
+              [title]="resume.isDefault ? 'Используется для откликов' : 'Сделать версией по умолчанию'"
               (click)="setDefaultResume(resume)"
-              [matTooltip]="resume.isDefault ? 'Используется для откликов' : 'Сделать резюме по умолчанию'"
             >
-              <mat-icon class="material-symbols-outlined" [class.default-star]="resume.isDefault">
-                {{ resume.isDefault ? 'star' : 'star_outline' }}
-              </mat-icon>
+              <svg width="17" height="17" viewBox="0 0 24 24" [attr.fill]="resume.isDefault ? '#ffc018' : 'none'" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true">
+                <path d="m12 3.6 2.7 5.9 6.3.7-4.7 4.3 1.3 6.2-5.6-3.2-5.6 3.2 1.3-6.2L3 10.2l6.3-.7z" />
+              </svg>
             </button>
-            <div class="item-text">
-              <span class="item-name">{{ resume.name }}</span>
-              <span class="item-sub">{{ resume.title }}</span>
-              <span class="item-stats" *ngIf="statsFor(resume) as stat">
-                отклики {{ stat.sent }} · ответы {{ stat.replied }} · собесы {{ stat.interviews }}
-              </span>
+
+            <div class="item-body">
+              <div class="name-row">
+                <span class="item-name">{{ resume.name }}</span>
+                <span class="default-chip" *ngIf="resume.isDefault">по умолчанию</span>
+              </div>
+              <div class="item-sub">{{ resume.title }}</div>
+              <div class="item-stats jf-mono" *ngIf="statsFor(resume) as stat">
+                <span>отклики <b>{{ stat.sent }}</b></span>
+                <span>ответы <b>{{ stat.replied }}</b></span>
+                <span>собесы <b>{{ stat.interviews }}</b></span>
+              </div>
+            </div>
+
+            <div class="item-actions">
+              <button type="button" class="mini-btn" title="Копировать текст" (click)="copyContent(resume.content)">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="8.5" y="8.5" width="11" height="12" rx="2" />
+                  <path d="M15.5 5.5H6.5a2 2 0 0 0-2 2v9" />
+                </svg>
+              </button>
+              <button type="button" class="mini-btn" title="Редактировать" (click)="editResume(resume)">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 20h4L20 8l-4-4L4 16z" />
+                </svg>
+              </button>
+              <button type="button" class="mini-btn danger" title="Удалить" (click)="deleteResume(resume)">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                  <path d="M4 7h16M9.5 7V4h5v3M6.5 7l1 13h9l1-13" />
+                </svg>
+              </button>
             </div>
           </div>
-          <div class="item-actions">
-            <button mat-icon-button type="button" (click)="copyContent(resume.content)" matTooltip="Скопировать текст резюме">
-              <mat-icon class="material-symbols-outlined">content_copy</mat-icon>
-            </button>
-            <button mat-icon-button type="button" (click)="editResume(resume)" matTooltip="Редактировать">
-              <mat-icon class="material-symbols-outlined">edit</mat-icon>
-            </button>
-            <button mat-icon-button color="warn" type="button" (click)="deleteResume(resume)" matTooltip="Удалить">
-              <mat-icon class="material-symbols-outlined">delete</mat-icon>
-            </button>
+        </div>
+        <ng-template #noResumes>
+          <p class="hint">
+            Пока нет ни одного резюме. Добавьте версию — например «DM v1» — и она будет автоматически
+            помечать каждый отклик для A/B-сравнения.
+          </p>
+        </ng-template>
+
+        <form class="form" (ngSubmit)="saveResume()">
+          <div class="form-title">{{ editingResumeId ? 'Редактирование резюме' : 'Новая версия резюме' }}</div>
+          <div class="grid-2">
+            <label class="jf-field">
+              <span>Имя версии</span>
+              <input class="jf-input" name="resumeName" [(ngModel)]="resumeForm.name" placeholder="напр. «DM v1»" />
+            </label>
+            <label class="jf-field">
+              <span>Заголовок резюме (роль в шапке)</span>
+              <input class="jf-input" name="resumeTitle" [(ngModel)]="resumeForm.title" placeholder="Delivery Manager / РП" />
+            </label>
           </div>
+          <label class="jf-field">
+            <span>Текст резюме</span>
+            <textarea class="jf-textarea" rows="4" name="resumeContent" [(ngModel)]="resumeForm.content" placeholder="Опыт, проекты, стек, результаты…"></textarea>
+          </label>
+          <label class="jf-field">
+            <span>Заметки (под какие вакансии)</span>
+            <input class="jf-input" name="resumeNotes" [(ngModel)]="resumeForm.notes" placeholder="Для DM/РП в аутсорсе, удалёнка" />
+          </label>
+          <div class="form-actions">
+            <button type="submit" class="jf-btn-primary">
+              {{ editingResumeId ? 'Сохранить' : 'Добавить резюме' }}
+            </button>
+            <button type="button" class="jf-btn-ghost" *ngIf="editingResumeId" (click)="cancelResumeEdit()">Отмена</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="jf-card col">
+        <div class="col-head">
+          <h2>Шаблоны писем и откликов</h2>
+          <span class="col-count jf-mono">{{ letters().length }}</span>
         </div>
-      </div>
-      <ng-template #noResumes>
-        <p class="hint">Пока нет ни одного резюме. Добавьте версию — например «DM v1» — и она будет
-        автоматически помечать каждый отклик для A/B-сравнения.</p>
-      </ng-template>
+        <p class="col-sub">Сопроводительные письма для быстрых откликов: telegram, email, hh, habr.</p>
 
-      <form class="form" (ngSubmit)="saveResume()">
-        <h4>{{ editingResumeId ? 'Редактирование резюме' : 'Новая версия резюме' }}</h4>
-        <mat-form-field appearance="outline">
-          <mat-label>Имя версии (попадает в статистику, напр. «DM v1»)</mat-label>
-          <input matInput name="resumeName" [(ngModel)]="resumeForm.name" />
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Заголовок резюме (роль в шапке)</mat-label>
-          <input matInput name="resumeTitle" [(ngModel)]="resumeForm.title" />
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Текст резюме</mat-label>
-          <textarea matInput rows="8" name="resumeContent" [(ngModel)]="resumeForm.content"></textarea>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Заметки (для себя: под какие вакансии)</mat-label>
-          <input matInput name="resumeNotes" [(ngModel)]="resumeForm.notes" />
-        </mat-form-field>
-        <div class="form-actions">
-          <button mat-flat-button color="primary" type="submit">
-            {{ editingResumeId ? 'Сохранить' : 'Добавить резюме' }}
-          </button>
-          <button mat-button type="button" *ngIf="editingResumeId" (click)="cancelResumeEdit()">Отмена</button>
-        </div>
-      </form>
-    </mat-card>
-
-    <mat-card class="section">
-      <div class="section-header">
-        <h3>Шаблоны писем и откликов</h3>
-      </div>
-
-      <div class="list" *ngIf="letters().length; else noLetters">
-        <div class="item" *ngFor="let letter of letters(); trackBy: trackById">
-          <div class="item-main">
-            <div class="item-text">
-              <span class="item-name">{{ letter.name }}</span>
-            <span class="item-sub">канал: {{ letter.channel || '—' }}</span>
+        <div class="items" *ngIf="letters().length; else noLetters">
+          <div class="letter-item" *ngFor="let letter of letters(); trackBy: trackById">
+            <div class="item-body">
+              <div class="item-name">{{ letter.name }}</div>
+              <div class="item-sub">{{ letterPreview(letter) }}</div>
+            </div>
+            <span class="channel-pill jf-mono">{{ letter.channel || '—' }}</span>
+            <div class="item-actions">
+              <button type="button" class="mini-btn" title="Копировать текст" (click)="copyContent(letter.content)">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="8.5" y="8.5" width="11" height="12" rx="2" />
+                  <path d="M15.5 5.5H6.5a2 2 0 0 0-2 2v9" />
+                </svg>
+              </button>
+              <button type="button" class="mini-btn" title="Редактировать" (click)="editLetter(letter)">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 20h4L20 8l-4-4L4 16z" />
+                </svg>
+              </button>
+              <button type="button" class="mini-btn danger" title="Удалить" (click)="deleteLetter(letter)">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                  <path d="M4 7h16M9.5 7V4h5v3M6.5 7l1 13h9l1-13" />
+                </svg>
+              </button>
             </div>
           </div>
-          <div class="item-actions">
-            <button mat-icon-button type="button" (click)="copyContent(letter.content)" matTooltip="Скопировать текст">
-              <mat-icon class="material-symbols-outlined">content_copy</mat-icon>
-            </button>
-            <button mat-icon-button type="button" (click)="editLetter(letter)" matTooltip="Редактировать">
-              <mat-icon class="material-symbols-outlined">edit</mat-icon>
-            </button>
-            <button mat-icon-button color="warn" type="button" (click)="deleteLetter(letter)" matTooltip="Удалить">
-              <mat-icon class="material-symbols-outlined">delete</mat-icon>
-            </button>
-          </div>
         </div>
-      </div>
-      <ng-template #noLetters>
-        <p class="hint">Шаблоны сопроводительных писем для быстрых откликов (телеграм, email, hh).</p>
-      </ng-template>
+        <ng-template #noLetters>
+          <p class="hint">Пока нет шаблонов — добавьте первый в форме ниже.</p>
+        </ng-template>
 
-      <form class="form" (ngSubmit)="saveLetter()">
-        <h4>{{ editingLetterId ? 'Редактирование шаблона' : 'Новый шаблон письма' }}</h4>
-        <mat-form-field appearance="outline">
-          <mat-label>Название</mat-label>
-          <input matInput name="letterName" [(ngModel)]="letterForm.name" />
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Канал</mat-label>
-          <mat-select name="letterChannel" [(ngModel)]="letterForm.channel">
-            <mat-option *ngFor="let channel of letterChannels" [value]="channel">{{ channel }}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Текст</mat-label>
-          <textarea matInput rows="6" name="letterContent" [(ngModel)]="letterForm.content"></textarea>
-        </mat-form-field>
-        <div class="form-actions">
-          <button mat-flat-button color="primary" type="submit">
-            {{ editingLetterId ? 'Сохранить' : 'Добавить шаблон' }}
-          </button>
-          <button mat-button type="button" *ngIf="editingLetterId" (click)="cancelLetterEdit()">Отмена</button>
-        </div>
-      </form>
-    </mat-card>
-  </div>
+        <form class="form" (ngSubmit)="saveLetter()">
+          <div class="form-title">{{ editingLetterId ? 'Редактирование шаблона' : 'Новый шаблон письма' }}</div>
+          <div class="grid-2-1">
+            <label class="jf-field">
+              <span>Название</span>
+              <input class="jf-input" name="letterName" [(ngModel)]="letterForm.name" placeholder="Отклик в телеграм — DM" />
+            </label>
+            <label class="jf-field">
+              <span>Канал</span>
+              <select class="jf-select" name="letterChannel" [(ngModel)]="letterForm.channel">
+                <option *ngFor="let channel of letterChannels" [value]="channel">{{ channel }}</option>
+              </select>
+            </label>
+          </div>
+          <label class="jf-field">
+            <span>Текст</span>
+            <textarea class="jf-textarea" rows="4" name="letterContent" [(ngModel)]="letterForm.content" placeholder="Здравствуйте! Видел вашу вакансию…"></textarea>
+          </label>
+          <div class="form-actions">
+            <button type="submit" class="jf-btn-primary">
+              {{ editingLetterId ? 'Сохранить' : 'Добавить шаблон' }}
+            </button>
+            <button type="button" class="jf-btn-ghost" *ngIf="editingLetterId" (click)="cancelLetterEdit()">Отмена</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
 </div>

@@ -1,0 +1,60 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1080;
+  background: rgba(27, 36, 80, 0.3);
+  backdrop-filter: blur(2px);
+}
+
+.dialog {
+  position: fixed;
+  z-index: 1081;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(400px, calc(100vw - 32px));
+  background: var(--jf-surface);
+  border-radius: 16px;
+  box-shadow: var(--jf-shadow-modal);
+  padding: 18px;
+  animation: jfPop 0.16s ease-out;
+}
+
+.title {
+  font-size: 14.5px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.text {
+  font-size: 13.5px;
+  color: var(--jf-ink-2);
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 18px;
+
+  .jf-btn-ghost {
+    border-radius: 10px;
+    padding: 9px 16px;
+  }
+
+  .danger {
+    background: var(--jf-red);
+    border: 0;
+    color: #fff;
+    border-radius: 10px;
+    padding: 9px 16px;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+      background: var(--jf-red-dark);
+    }
+  }
+}

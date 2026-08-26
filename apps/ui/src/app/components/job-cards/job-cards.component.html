@@ -1,155 +1,137 @@
 <div class="cards">
   <ng-container *ngIf="jobs.length; else empty">
-    <mat-card class="job-card" *ngFor="let job of jobs; trackBy: trackById">
-      <div class="card-body">
-        <div class="card-header">
-          <div class="header-avatar" [class.placeholder]="!getChannelAvatar(job)">
-            <ng-container *ngIf="getChannelAvatar(job) as avatarUrl; else avatarFallback">
-              <img
-                [src]="avatarUrl"
-                [alt]="getChannelTitle(job)"
-                (error)="onAvatarError(job.id)"
-                referrerpolicy="no-referrer"
-              />
-            </ng-container>
-            <ng-template #avatarFallback>
-              <span class="avatar-initial">{{ getChannelInitial(job) }}</span>
-            </ng-template>
-          </div>
-          <div class="header-text">
-            <h3 class="job-title">{{ getParsedTitle(job) }}</h3>
-            <p class="channel-name">{{ getParsedWorkFormat(job) }}</p>
-          </div>
-        </div>
+    <article class="job-card" *ngFor="let job of jobs; trackBy: trackById">
+      <div class="card-head">
+        <span class="avatar" [class.placeholder]="!getChannelAvatar(job)">
+          <ng-container *ngIf="getChannelAvatar(job) as avatarUrl; else avatarFallback">
+            <img [src]="avatarUrl" [alt]="getChannelTitle(job)" (error)="onAvatarError(job.id)" referrerpolicy="no-referrer" />
+          </ng-container>
+          <ng-template #avatarFallback>{{ getChannelInitial(job) }}</ng-template>
+        </span>
+        <h3 class="title">{{ getParsedTitle(job) }}</h3>
+        <span class="format-pill">{{ getParsedWorkFormat(job) }}</span>
+      </div>
 
-        <div class="card-info-row">
-          <div class="info-block-container">
-            <div class="info-block date-block" *ngIf="getJobDate(job) as jobDate">
-              <div class="info-value">{{ jobDate | date: 'dd.MM.yy' }}</div>
-              <a
-                *ngIf="job.source?.url as sourceUrl"
-                class="contact-link"
-                [href]="sourceUrl"
-                target="_blank"
-                rel="noopener"
-              >
-                {{ getSourceHost(job) }}
-              </a>
-            </div>
-            <div class="footer-row">
-              <span class="footer-label">{{ getParsedSalary(job) }}</span>
-              <br />
-              <p class="channel-name">{{ getChannelTitle(job) }}</p>
-            </div>
-          </div>
-        </div>
-        <div class="card-info-row">
-          <span class="footer-label">Опыт:</span>
-        </div>
-        <div class="card-description" *ngIf="job.description">
-          <p
-            class="description-text"
-            [class.expanded]="isDescriptionExpanded(job.id)"
-            [class.collapsed]="!isDescriptionExpanded(job.id)"
-          >
-            {{ job.description }}
-          </p>
-          <div class="description-actions">
-            <button
-              *ngIf="shouldShowExpandButton(job.description)"
-              class="expand-btn"
-              (click)="toggleDescription(job.id)"
-            >
-              {{ isDescriptionExpanded(job.id) ? 'Свернуть' : 'Развернуть' }}
-            </button>
-            <app-vacancy-parse-json class="parse-json" [job]="job"></app-vacancy-parse-json>
-            <button
-              class="translate-btn"
-              mat-icon-button
-              type="button"
-              [disabled]="isTranslationLoading(job.id)"
-              [attr.aria-busy]="isTranslationLoading(job.id)"
-              (click)="translateJob(job)"
-              matTooltip="Перевести описание на русский"
-            >
-              <mat-icon class="material-symbols-outlined" aria-hidden="true">
-                {{ isTranslationLoading(job.id) ? 'autorenew' : 'translate' }}
-              </mat-icon>
-            </button>
-          </div>
-          <div class="translation-status" *ngIf="isTranslationLoading(job.id)">
-            Переводим текст...
-          </div>
-          <div class="translation-error" *ngIf="getTranslationError(job.id) as error">
-            {{ error }}
-          </div>
-          <div class="translation-block" *ngIf="getTranslatedText(job.id) as translated">
-            <div class="translation-title">Перевод (RU)</div>
-            <p class="translation-text">
-              {{ translated }}
-            </p>
-          </div>
-        </div>
+      <div class="meta-row">
+        <span class="jf-mono" *ngIf="getJobDate(job) as jobDate">{{ jobDate | date: 'dd.MM.yy' }}</span>
+        <a
+          *ngIf="job.source?.url as sourceUrl"
+          [href]="sourceUrl"
+          target="_blank"
+          rel="noopener"
+        >{{ getSourceHost(job) }}</a>
+        <span class="salary jf-mono">{{ getParsedSalary(job) }}</span>
+        <span class="channel">{{ getChannelTitle(job) }}</span>
+      </div>
 
+      <div class="exp-row">Опыт: <b>{{ getParsedExperience(job) }}</b></div>
 
-        <div class="footer-row" *ngIf="job.company">
-          <span class="footer-label">Компания: </span>
-          <span class="footer-value">{{ job.company }}</span>
-        </div>
+      <ng-container *ngIf="job.description">
+        <p class="desc" [class.clamped]="!isDescriptionExpanded(job.id)">{{ job.description }}</p>
 
-
-        <ng-container *ngIf="getPrimaryContact(job) as contact">
-          <div class="card-footer-link">
-            <span class="footer-label">Контакт:</span>
-
-            <a [href]="contact.href" target="_blank" rel="noopener">{{ contact.label }}</a>
-            <mat-icon class="material-symbols-outlined">chat</mat-icon>
-          </div>
-        </ng-container>
-
-        <div class="card-actions">
-          <span class="status-chip applied" *ngIf="isApplied(job)">Отклик отправлен</span>
-          <span class="status-chip shortlisted" *ngIf="isShortlisted(job)">Отложено</span>
+        <div class="desc-actions">
           <button
-            mat-icon-button
             type="button"
+            class="chip-btn"
+            *ngIf="shouldShowExpandButton(job.description)"
+            (click)="toggleDescription(job.id)"
+          >
+            {{ isDescriptionExpanded(job.id) ? 'Свернуть' : 'Развернуть' }}
+          </button>
+          <app-vacancy-parse-json [job]="job"></app-vacancy-parse-json>
+          <button
+            type="button"
+            class="translate-btn"
+            title="Перевести описание"
+            [disabled]="isTranslationLoading(job.id)"
+            (click)="translateJob(job)"
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <path d="M3.5 5.5h10M8.5 5.5c0 5-2 8.8-5 10.5M6 11.5c1.1 2.8 3 4.6 5.6 5.4" />
+              <path d="m12.5 20 4.2-9 4.3 9M14.2 16.6h5" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="translating" *ngIf="isTranslationLoading(job.id)">
+          <span class="spinner"></span>
+          Переводим текст…
+        </div>
+        <div class="translation-error" *ngIf="getTranslationError(job.id) as error">{{ error }}</div>
+        <div class="translation" *ngIf="getTranslatedText(job.id) as translated">
+          <div class="translation-label">Перевод (RU)</div>
+          <p>{{ translated }}</p>
+        </div>
+      </ng-container>
+
+      <div class="info-row" *ngIf="job.company || getPrimaryContact(job)">
+        <span *ngIf="job.company">Компания: <b>{{ job.company }}</b></span>
+        <span *ngIf="getPrimaryContact(job) as contact">
+          Контакт: <a [href]="contact.href" target="_blank" rel="noopener">{{ contact.label }}</a>
+        </span>
+      </div>
+
+      <div class="card-actions">
+        <span class="status-chip applied" *ngIf="isApplied(job)">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true">
+            <path d="m5 13 4.5 4.5L19 7" />
+          </svg>
+          Отклик отправлен
+        </span>
+        <span class="status-chip shortlisted" *ngIf="isShortlisted(job)">Отложено</span>
+
+        <div class="action-btns">
+          <button
+            type="button"
+            class="jf-icon-btn star"
+            [class.starred]="isShortlisted(job)"
+            [title]="isShortlisted(job) ? 'Убрать из отложенных' : 'Отложить в шортлист'"
             (click)="toggleShortlist(job)"
-            [matTooltip]="isShortlisted(job) ? 'Убрать из отложенных' : 'Отложить (шортлист плана)'"
           >
-            <mat-icon class="material-symbols-outlined" [class.starred]="isShortlisted(job)" aria-hidden="true">
-              {{ isShortlisted(job) ? 'star' : 'star_outline' }}
-            </mat-icon>
+            <svg width="17" height="17" viewBox="0 0 24 24" [attr.fill]="isShortlisted(job) ? '#ffc018' : 'none'" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true">
+              <path d="m12 3.6 2.7 5.9 6.3.7-4.7 4.3 1.3 6.2-5.6-3.2-5.6 3.2 1.3-6.2L3 10.2l6.3-.7z" />
+            </svg>
           </button>
           <button
-            mat-icon-button
             type="button"
+            class="jf-icon-btn apply"
             *ngIf="!isApplied(job)"
             [disabled]="isApplying(job.id)"
+            title="Адаптированный отклик (+2)"
             (click)="createApplication(job, 'adapted')"
-            matTooltip="Адаптированный отклик (+2 очка)"
           >
-            <mat-icon class="material-symbols-outlined" aria-hidden="true">edit_note</mat-icon>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <path d="M3 6h11M3 11h8M3 16h6" />
+              <path d="M13.5 19.5 20 13l2.5 2.5-6.5 6.5h-2.5z" />
+            </svg>
           </button>
           <button
-            mat-icon-button
             type="button"
+            class="jf-icon-btn quick"
             *ngIf="!isApplied(job)"
             [disabled]="isApplying(job.id)"
+            title="Быстрый отклик по шаблону (+1)"
             (click)="createApplication(job, 'template')"
-            matTooltip="Быстрый отклик по шаблону (+1 очко)"
           >
-            <mat-icon class="material-symbols-outlined" aria-hidden="true">bolt</mat-icon>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true">
+              <path d="M13 2.5 4.5 14H10l-1 7.5L19.5 10H14z" />
+            </svg>
           </button>
-          <button mat-icon-button color="warn" (click)="remove.emit(job)">
-            <mat-icon class="material-symbols-outlined" aria-hidden="true">delete</mat-icon>
-            Удалить
+          <button type="button" class="jf-icon-btn danger" title="Удалить вакансию" (click)="remove.emit(job)">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <path d="M4 7h16M9.5 7V4h5v3M6.5 7l1 13h9l1-13" />
+            </svg>
           </button>
         </div>
       </div>
-    </mat-card>
+    </article>
   </ng-container>
 
   <ng-template #empty>
-    <div class="empty">Нет вакансий. Добавьте или измените фильтры.</div>
+    <div class="empty">
+      <div class="empty-title">Нет вакансий</div>
+      <div class="empty-text">Добавьте источник или измените фильтры.</div>
+      <button type="button" class="jf-btn-primary" (click)="resetFilters.emit()">Сбросить фильтры</button>
+    </div>
   </ng-template>
 </div>

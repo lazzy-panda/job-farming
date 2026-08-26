@@ -2,8 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, computed, effect, inject, signal } from '@angular/core';
 import { finalize, firstValueFrom } from 'rxjs';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatCardModule } from '@angular/material/card';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { RouterModule } from '@angular/router';
 import { JobPosting, Source } from '@job-farm/shared-models';
 import { ApiService } from '../../api.service';
@@ -13,6 +11,7 @@ import { SortMode } from '../sort-menu/sort-menu.component';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { JobSearchComponent } from '../job-search/job-search.component';
 import { PlanPanelComponent } from '../plan-panel/plan-panel.component';
+import { JfConfirmService } from '../confirm-dialog/confirm.service';
 
 @Component({
   standalone: true,
@@ -20,14 +19,12 @@ import { PlanPanelComponent } from '../plan-panel/plan-panel.component';
   imports: [
     CommonModule,
     MatSnackBarModule,
-    MatCardModule,
     RouterModule,
     JobCardsComponent,
     DashboardHeaderComponent,
     JobSearchComponent,
     PaginationComponent,
     PlanPanelComponent,
-    MatProgressBarModule,
   ],
   templateUrl: './dashboard-page.component.html',
   styleUrl: './dashboard-page.component.scss',
@@ -54,10 +51,12 @@ export class DashboardPageComponent implements OnInit {
   ]);
   private readonly api = inject(ApiService);
   private readonly snack = inject(MatSnackBar);
+  private readonly confirmDialog = inject(JfConfirmService);
 
   readonly jobs = signal<JobPosting[]>([]);
   readonly sources = signal<Source[]>([]);
   readonly loading = signal(false);
+  readonly loadError = signal<string | null>(null);
   readonly sortMode = signal<SortMode>('date_desc');
   readonly pageIndex = signal(0);
   readonly pageSize = signal(20);
@@ -153,11 +152,14 @@ export class DashboardPageComponent implements OnInit {
         next: (data) => {
           this.jobs.set(data);
           this.pageIndex.set(0);
+          this.loadError.set(null);
           this.runDebugParse(data);
         },
         error: (err) => {
           console.error(err);
-          this.snack.open('Ошибка загрузки вакансий', 'OK', { duration: 3000 });
+          const status = err?.status ? `GET /api/job-postings — ${err.status}` : 'GET /api/job-postings';
+          this.loadError.set(status);
+          this.loading.set(false);
         },
         complete: () => this.loading.set(false),
       });
@@ -187,11 +189,11 @@ export class DashboardPageComponent implements OnInit {
     }
   }
 
-  deleteJob(job: JobPosting) {
+  async deleteJob(job: JobPosting) {
     if (!job?.id) {
       return;
     }
-    const confirmed = confirm(`Удалить вакансию “${job.title}”?`);
+    const confirmed = await this.confirmDialog.ask(`Удалить вакансию «${job.title}»?`);
     if (!confirmed) {
       return;
     }
@@ -221,6 +223,12 @@ export class DashboardPageComponent implements OnInit {
 
   onSourceChange(sourceType: string) {
     this.sourceTypeFilter.set(sourceType ?? '');
+    this.pageIndex.set(0);
+  }
+
+  resetFilters() {
+    this.searchQuery.set('');
+    this.sourceTypeFilter.set('');
     this.pageIndex.set(0);
   }
 
