@@ -59,9 +59,9 @@ export class SourcesService {
     // Определение типа источника
     const sourceType = this.resolveSourceType(dto.sourceType, url);
 
-    // Ограничение типов источников только telegram и rss
-    if (sourceType !== 'telegram' && sourceType !== 'rss') {
-      throw new BadRequestException('Поддерживаются только источники типа telegram и rss');
+    // Поддерживаемые типы: telegram, rss, facebook
+    if (sourceType !== 'telegram' && sourceType !== 'rss' && sourceType !== 'facebook') {
+      throw new BadRequestException('Поддерживаются источники типа telegram, rss и facebook');
     }
 
     // Проверка доступности и валидности источника
@@ -107,6 +107,11 @@ export class SourcesService {
         sourceName = rssFeedTitle.trim();
       } else if (!sourceName) {
         sourceName = url;
+      }
+    } else if (sourceType === 'facebook') {
+      if (!sourceName) {
+        const slug = /facebook\.com\/(?:groups\/)?([^/?#]+)/i.exec(url)?.[1];
+        sourceName = slug ? `facebook/${slug}` : url;
       }
     } else if (!sourceName) {
       sourceName = url;
@@ -233,6 +238,9 @@ export class SourcesService {
     if (sourceType === 'rss') {
       return 'rss';
     }
+    if (sourceType === 'facebook' || this.isFacebookUrl(url)) {
+      return 'facebook';
+    }
     if (this.isTelegramUrl(url)) {
       return 'telegram';
     }
@@ -240,6 +248,13 @@ export class SourcesService {
       return 'rss';
     }
     return (sourceType as SourceType) || 'site';
+  }
+
+  private isFacebookUrl(url?: string | null): boolean {
+    if (!url) {
+      return false;
+    }
+    return /(^|\.)facebook\.com\//i.test(url.replace(/^https?:\/\//i, ''));
   }
 
   private isRssUrl(url?: string | null): boolean {

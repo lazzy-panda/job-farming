@@ -253,13 +253,19 @@ export class RssConnector implements SourceConnector {
 
       try {
         const feed = await this.parser.parseString(xml);
-        return feed;
+        if (feed) {
+          return feed;
+        }
+        throw new Error('Parser returned empty output');
       } catch (parseError) {
         // Если парсинг не удался, пробуем более агрессивную очистку
         const cleanedXml = this.aggressiveXmlCleanup(xml);
         try {
           const feed = await this.parser.parseString(cleanedXml);
-          return feed;
+          if (feed) {
+            return feed;
+          }
+          throw new Error('Parser returned empty output');
         } catch (retryError) {
           // Дополнительный компактный фолбэк: удаляем непечатные символы и повторяем
           try {
@@ -267,7 +273,9 @@ export class RssConnector implements SourceConnector {
               cleanedXml.replace(/[\u0000-\u0008\u000B-\u000C\u000E-\u001F]/g, ''),
             );
             const feed = await this.parser.parseString(stripped);
-            return feed;
+            if (feed) {
+              return feed;
+            }
           } catch (finalError) {
             // no-op, провалимся в обработку ниже
           }

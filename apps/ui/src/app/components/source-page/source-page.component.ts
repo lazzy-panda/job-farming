@@ -66,7 +66,7 @@ export class SourcePageComponent implements OnInit {
 
   public async ngOnInit(): Promise<void> {
     // Предзагрузка иконок
-    await Promise.all(['telegram', 'rss', 'arbeitsagentur'].map((icon) => this.loadIcon(icon)));
+    await Promise.all(['telegram', 'rss', 'facebook', 'arbeitsagentur'].map((icon) => this.loadIcon(icon)));
     this.loadSources();
   }
 
@@ -96,9 +96,11 @@ export class SourcePageComponent implements OnInit {
         ? 'telegram'
         : source.sourceType === 'rss'
           ? 'rss'
-          : source.sourceType === 'arbeitsagentur'
-            ? 'arbeitsagentur'
-            : null;
+          : source.sourceType === 'facebook'
+            ? 'facebook'
+            : source.sourceType === 'arbeitsagentur'
+              ? 'arbeitsagentur'
+              : null;
     if (!iconType) {
       return this.sanitizer.bypassSecurityTrustHtml('');
     }

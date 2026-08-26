@@ -3,9 +3,12 @@ import axios from 'axios';
 import { PrismaService } from '../prisma/prisma.service';
 import { JobPosting, JobStatus, Source as SharedSource, SourceType } from '@job-farm/shared-models';
 import { Prisma } from '@prisma/client';
+import * as fs from 'fs';
+import * as path from 'path';
 import {
   TelegramHttpConnector,
   RssConnector,
+  FacebookConnector,
   ProxyBlockedError,
   ArbeitsagenturConnector,
   ArbeitsagenturJob,
@@ -387,6 +390,173 @@ export class JobPostingsService {
     }
   }
 
+  /**
+   * Скрейп Facebook-групп/страниц. Требует cookies живой сессии в
+   * FACEBOOK_COOKIE_FILE (по умолчанию storage/facebook.cookies.txt) — без них
+   * источник помечается lastError=facebook_cookies_required и пропускается.
+   */
+  private async scrapeFacebookSources(
+    sources: Array<{ id: string; sourceType: string }>,
+    dryRun: boolean,
+  ): Promise<number> {
+    const facebookSources = sources.filter((s) => s.sourceType === 'facebook');
+    if (!facebookSources.length) {
+      return 0;
+    }
+    if (!this.parseBooleanEnv(process.env.FACEBOOK_ENABLED, true)) {
+      return 0;
+    }
+
+    const cookieHeader = this.readFacebookCookie();
+    const connector = new FacebookConnector();
+    const delayMs = this.parseNumberEnv(process.env.FACEBOOK_SOURCE_DELAY_MS, 3000) ?? 3000;
+    let total = 0;
+
+    for (let idx = 0; idx < facebookSources.length; idx++) {
+      const source = await this.prisma.source.findFirst({
+        where: { id: facebookSources[idx].id },
+      });
+      if (!source) {
+        continue;
+      }
+      const metadata = (source.metadata as Record<string, unknown>) ?? {};
+
+      if (!cookieHeader) {
+        metadata.lastError = 'facebook_cookies_required';
+        if (!dryRun) {
+          await this.saveSourceMetadata(source.id, metadata);
+        }
+        this.logger.warn(
+          `facebook source=${source.id} skipped: нет cookies (см. storage/facebook.cookies.txt)`,
+        );
+        continue;
+      }
+
+      const seenHashes = new Set(
+        Array.isArray(metadata.lastHashes) ? (metadata.lastHashes as string[]) : [],
+      );
+
+      let items;
+      try {
+        items = await connector.fetchNewJobs({
+          sourceId: source.id,
+          sourceType: source.sourceType,
+          url: source.url,
+          metadata: { ...metadata, cookieHeader },
+        });
+      } catch (error) {
+        const message = (error as Error)?.message ?? 'unknown_error';
+        metadata.lastError = message;
+        if (!dryRun) {
+          await this.saveSourceMetadata(source.id, metadata);
+        }
+        this.logger.warn(`facebook source=${source.id} failed: ${message}`);
+        continue;
+      }
+
+      const safeLinks = items
+        .map((i) => this.validateLink(i.link ?? null))
+        .filter((l): l is string => Boolean(l));
+      const existing = await this.prisma.jobPosting.findMany({
+        where: {
+          sourceId: source.id,
+          link: { in: safeLinks.length ? safeLinks : undefined },
+        },
+        select: { link: true },
+      });
+      const existingLinks = new Set(existing.map((e) => e.link));
+
+      const skippedReasons: Record<string, number> = {};
+      const fresh = items.filter((i) => {
+        const link = this.validateLink(i.link ?? null);
+        if (!link || existingLinks.has(link)) {
+          return false;
+        }
+        if (i.hash && seenHashes.has(i.hash)) {
+          return false;
+        }
+        const decision = this.isVacancyCandidate({
+          title: i.title,
+          description: i.description ?? null,
+          tags: null,
+          link,
+        });
+        if (!decision.keep) {
+          skippedReasons[decision.reason] = (skippedReasons[decision.reason] ?? 0) + 1;
+          return false;
+        }
+        return true;
+      });
+
+      if (fresh.length > 0 && !dryRun) {
+        await this.prisma.jobPosting.createMany({
+          data: fresh.map((i) => ({
+            title: i.title,
+            description: i.description ?? null,
+            rawContent: i.description ?? null,
+            link: this.validateLink(i.link ?? null),
+            sourceId: source.id,
+            status: 'new' as JobStatus,
+            publishedAt: i.publishedAt ?? null,
+          })),
+        });
+      }
+      total += fresh.length;
+
+      if (!dryRun) {
+        const newHashes = [
+          ...Array.from(seenHashes),
+          ...items.map((i) => i.hash).filter((h): h is string => Boolean(h)),
+        ].slice(-300);
+        await this.saveSourceMetadata(source.id, {
+          ...metadata,
+          lastHashes: newHashes,
+          lastScrapedAt: new Date().toISOString(),
+          emptyRuns: fresh.length > 0 ? 0 : ((metadata.emptyRuns as number) ?? 0) + 1,
+          lastError: null,
+        });
+      }
+
+      this.logger.log(
+        `facebook scrape source=${source.id} new=${fresh.length} fetched=${items.length} dryRun=${dryRun} skippedReasons=${JSON.stringify(skippedReasons)}`,
+      );
+
+      if (idx < facebookSources.length - 1) {
+        await new Promise((resolve) => setTimeout(resolve, delayMs));
+      }
+    }
+
+    return total;
+  }
+
+  /** Cookie-строка сессии Facebook из файла (форматы: raw, "Cookie: ...", JSON [{name,value}]) */
+  private readFacebookCookie(): string | null {
+    const filePath = path.resolve(
+      process.cwd(),
+      process.env.FACEBOOK_COOKIE_FILE || 'storage/facebook.cookies.txt',
+    );
+    try {
+      const raw = fs.readFileSync(filePath, 'utf8').trim();
+      if (!raw) {
+        return null;
+      }
+      if (raw.startsWith('[') || raw.startsWith('{')) {
+        const parsed = JSON.parse(raw) as
+          | Array<{ name?: string; value?: string }>
+          | { cookies?: Array<{ name?: string; value?: string }> };
+        const list = Array.isArray(parsed) ? parsed : (parsed.cookies ?? []);
+        const pairs = list
+          .filter((c) => c?.name && c?.value !== undefined)
+          .map((c) => `${c.name}=${c.value}`);
+        return pairs.length ? pairs.join('; ') : null;
+      }
+      const line = raw.split('\n')[0].trim();
+      return line.replace(/^Cookie:\s*/i, '') || null;
+    } catch {
+      return null;
+    }
+  }
+
   async updateStatus(id: string, status: string): Promise<JobPosting> {
     const allowed = ['new', 'shortlisted', 'applied', 'archived'];
     if (!allowed.includes(status)) {
@@ -745,6 +915,12 @@ export class JobPostingsService {
         const jitter = Math.floor(Math.random() * sourceJitterMs);
         await new Promise((resolve) => setTimeout(resolve, sourceDelayMs + jitter));
       }
+    }
+
+    // Обработка Facebook источников (группы/страницы, нужны cookies сессии)
+    const facebookCount = await this.scrapeFacebookSources(sources, dryRun);
+    if (facebookCount > 0) {
+      total += facebookCount;
     }
 
     // Обработка RSS источников

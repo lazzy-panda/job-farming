@@ -21,6 +21,11 @@ export class SourceCreateComponent {
     return this.model.sourceType === 'telegram' || /t\.me\//i.test(url);
   }
 
+  public isFacebookSource(): boolean {
+    const url = (this.model.url ?? '').trim();
+    return this.model.sourceType === 'facebook' || /facebook\.com\//i.test(url);
+  }
+
   public isRssSource(): boolean {
     const url = (this.model.url ?? '').trim();
     if (!url) {
@@ -65,10 +70,12 @@ export class SourceCreateComponent {
       if (slug && (!this.model.name || this.model.name === this.model.url)) {
         this.model.name = slug;
       }
+    } else if (/facebook\.com\//i.test(url)) {
+      this.model.sourceType = 'facebook';
     } else if (this.isRssSource()) {
       this.model.sourceType = 'rss';
     } else if (url) {
-      this.urlError = 'Поддерживаются только ссылки на Telegram (t.me/...) и RSS-ленты';
+      this.urlError = 'Поддерживаются ссылки Telegram (t.me/…), Facebook (facebook.com/…) и RSS-ленты';
     }
   }
 
@@ -109,8 +116,8 @@ export class SourceCreateComponent {
       return;
     }
 
-    if (!/t\.me\//i.test(url) && !this.isRssSource()) {
-      this.urlError = 'Поддерживаются только ссылки на Telegram (t.me/...) и RSS-ленты';
+    if (!/t\.me\//i.test(url) && !/facebook\.com\//i.test(url) && !this.isRssSource()) {
+      this.urlError = 'Поддерживаются ссылки Telegram (t.me/…), Facebook (facebook.com/…) и RSS-ленты';
       return;
     }
 

@@ -1,0 +1,12 @@
+# Скопируйте этот файл в storage/facebook.cookies.txt и вставьте cookies своей сессии Facebook.
+# Файл storage/facebook.cookies.txt в .gitignore — в git не попадёт.
+#
+# Как получить cookies:
+# 1. Залогиньтесь на facebook.com в браузере.
+# 2. DevTools → Network → любой запрос к facebook.com → Request Headers → скопируйте значение заголовка Cookie.
+# 3. Вставьте одной строкой (можно с префиксом "Cookie: ").
+#
+# Поддерживаемые форматы:
+#   c_user=100000000000000; xs=abc...; datr=...
+#   Cookie: c_user=...; xs=...
+#   JSON-массив [{"name":"c_user","value":"..."}, ...] (экспорт из расширений)

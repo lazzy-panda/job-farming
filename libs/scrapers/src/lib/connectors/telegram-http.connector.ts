@@ -61,25 +61,28 @@ export class TelegramHttpConnector implements SourceConnector {
       const delayMs = meta.delayMs ?? DEFAULT_DELAY_MS;
       const jitterMs = meta.jitterMs ?? DEFAULT_JITTER_MS;
 
-      let stop = false;
-      for (let page = 1; page <= maxPages && !stop; page += 1) {
-        const html = await this.fetchPage(channel, page, meta);
+      // t.me/s отдаёт сообщения от старых к новым; идём от новых к старым
+      // и уходим вглубь истории через ?before=<minId>, пока не упрёмся в
+      // lastSeen / cutoff / конец истории.
+      let beforeId: number | null = null;
+      for (let page = 1; page <= maxPages; page += 1) {
+        const html = await this.fetchPage(channel, beforeId, meta);
         if (!html) {
           break;
         }
 
-        const pageJobs = this.parsePage(html, channel, lastSeen, cutoff);
-        if (!pageJobs.newJobs.length) {
-          // либо нет новых, либо все старше cutoff
-          stop = true;
-        } else {
-          jobs.push(...pageJobs.newJobs);
-          stop = pageJobs.stop;
-        }
+        const parsed = this.parsePage(html, channel, lastSeen, cutoff);
+        jobs.push(...parsed.newJobs);
 
-        if (!stop) {
-          await this.waitWithJitter(delayMs, jitterMs);
+        if (parsed.stop || parsed.minId === null || parsed.minId <= 1) {
+          break;
         }
+        if (beforeId !== null && parsed.minId >= beforeId) {
+          // страница не продвинулась назад — конец истории
+          break;
+        }
+        beforeId = parsed.minId;
+        await this.waitWithJitter(delayMs, jitterMs);
       }
     }
 
@@ -105,8 +108,14 @@ export class TelegramHttpConnector implements SourceConnector {
     return cutoff;
   }
 
-  private async fetchPage(channel: string, page: number, meta: TelegramMetadata): Promise<string> {
-    const url = page > 1 ? `https://t.me/s/${channel}?page=${page}` : `https://t.me/s/${channel}`;
+  private async fetchPage(
+    channel: string,
+    beforeId: number | null,
+    meta: TelegramMetadata,
+  ): Promise<string> {
+    const url = beforeId
+      ? `https://t.me/s/${channel}?before=${beforeId}`
+      : `https://t.me/s/${channel}`;
     const max429 = meta.max429Retry ?? DEFAULT_MAX_429_RETRY;
     const backoff = meta.backoffMs ?? DEFAULT_BACKOFF_MS;
     for (let attempt = 0; attempt <= max429; attempt += 1) {
@@ -156,11 +165,14 @@ export class TelegramHttpConnector implements SourceConnector {
     channel: string,
     lastSeen: number,
     cutoff: Date,
-  ): { newJobs: ParsedJob[]; stop: boolean } {
+  ): { newJobs: ParsedJob[]; stop: boolean; minId: number | null } {
     const $ = load(html);
-    const elements = $('.tgme_widget_message').toArray();
+    // На странице сообщения идут от старых к новым — обрабатываем от новых к старым,
+    // чтобы корректно останавливаться на lastSeen/cutoff, не теряя свежие посты.
+    const elements = $('.tgme_widget_message').toArray().reverse();
     const newJobs: ParsedJob[] = [];
     let stop = false;
+    let minId: number | null = null;
 
     for (const el of elements) {
       const dataPost = $(el).attr('data-post');
@@ -169,6 +181,8 @@ export class TelegramHttpConnector implements SourceConnector {
       const [, idStr] = dataPost.split('/');
       const messageId = Number(idStr);
       if (!messageId || Number.isNaN(messageId)) continue;
+
+      minId = minId === null ? messageId : Math.min(minId, messageId);
 
       if (messageId <= lastSeen) {
         stop = true;
@@ -244,7 +258,7 @@ export class TelegramHttpConnector implements SourceConnector {
       newJobs.push(job);
     }
 
-    return { newJobs, stop };
+    return { newJobs, stop, minId };
   }
 
   private buildTitle(text: string): string {

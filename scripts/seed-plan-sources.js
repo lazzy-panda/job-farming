@@ -65,6 +65,11 @@ const SOURCES = [
   { name: null, sourceType: 'telegram', url: 'https://t.me/forproducts', metadata: { plan: true } },
   { name: null, sourceType: 'telegram', url: 'https://t.me/job_SA_PM', metadata: { plan: true } },
   { name: null, sourceType: 'telegram', url: 'https://t.me/itpminfo', metadata: { plan: true } },
+  // Дополнительные живые каналы с PM/DM/продуктовыми вакансиями (проверены 26.08.2026)
+  { name: null, sourceType: 'telegram', url: 'https://t.me/product_jobs', metadata: { plan: true } },
+  { name: null, sourceType: 'telegram', url: 'https://t.me/getitrussia', metadata: { plan: true } },
+  { name: null, sourceType: 'telegram', url: 'https://t.me/remocate', metadata: { plan: true } },
+  { name: null, sourceType: 'telegram', url: 'https://t.me/careerspace', metadata: { plan: true } },
 ];
 
 async function main() {

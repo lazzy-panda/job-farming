@@ -18,17 +18,18 @@ describe('TelegramHttpConnector', () => {
   });
 
   it('returns only new messages after lastSeen and within 14 days', async () => {
+    // Реальный t.me/s рендерит сообщения от старых к новым
     const html = `
+      <div class="tgme_widget_message" data-post="channel/4">
+        <time datetime="2025-12-01T10:00:00+00:00"></time>
+        <div class="tgme_widget_message_text">Old post</div>
+      </div>
       <div class="tgme_widget_message" data-post="channel/6">
         <time datetime="2025-12-17T10:00:00+00:00"></time>
         <div class="tgme_widget_message_text">
           Senior Dev
           <a href="https://example.com/job">link</a>
         </div>
-      </div>
-      <div class="tgme_widget_message" data-post="channel/4">
-        <time datetime="2025-12-01T10:00:00+00:00"></time>
-        <div class="tgme_widget_message_text">Old post</div>
       </div>
     `;
     mockedAxios.get.mockResolvedValueOnce({ data: html });

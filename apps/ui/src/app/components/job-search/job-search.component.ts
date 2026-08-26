@@ -50,6 +50,7 @@ export class JobSearchComponent implements OnInit, OnChanges {
   private iconCache: Record<string, SafeHtml> = {};
   private readonly baseSources: SourceButton[] = [
     { label: 'Telegram', value: 'telegram', icon: 'telegram' },
+    { label: 'Facebook', value: 'facebook', icon: 'facebook' },
     { label: 'RSS', value: 'rss', icon: 'rss' },
     { label: 'API', value: 'api', icon: 'api' },
   ];
